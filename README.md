@@ -1,5 +1,13 @@
 # Solar-Explorer
 
-To install all dependencies use:
+Clone into directory:
+
+
+Enter correct path:
+
+cd hello
+
+
+To install all dependenices:
 
 npm install
