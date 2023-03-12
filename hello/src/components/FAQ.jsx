@@ -1,9 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import NavBar from "./NavBar";
-import { Canvas } from "@react-three/fiber";
+import { Canvas, useFrame} from "@react-three/fiber";
 import { MeshDistortMaterial, OrbitControls, Sphere } from "@react-three/drei";
-
+import Space from './SpaceBoy'
 
 const Section = styled.div`
 height: 100vh;
@@ -22,20 +21,15 @@ justify-content: space-between;
 `
 
 const Left = styled.div`
- flex: 2;
- display: flex;
+flex:2;
+position: relative;
+display: flex;
  flex-direction: column;
  justify-content: center;
  gap: 20px;
 `
 const Title = styled.h1`
 font-size:74px;
-`
-const Info = styled.h1`
-font-size:74px;
-`
-const Subtitle = styled.p`
-font-size: 24px;
 `
 
 const Right = styled.div`
@@ -62,29 +56,27 @@ animation: animate 2s infinite ease alternate;
 
 `
 
-const Home = () => {
+const FAQ = () => {
     return (
-        <Section id='Home'>
+        <Section id ='FAQ'>
             <Container>
                 <Left>
-                    <Title>Explore. Learn. Interact.</Title>
-                    <Info></Info>
-                    <Subtitle>Immerse yourself in a 3-Dimensional space of our own Solar System.</Subtitle>
+                    <Title>FAQ.</Title>
                 </Left>
                 <Right>
-                    <Canvas camera={{fov:25, position: [5,5,5]}}>
-                        <OrbitControls enableZoom = {false} autoRotate/>
-                        <ambientLight intensity={1}/>
-                        <directionalLight position={[3,2,1]}/>
-                        <Sphere args={[1,100,200]} scale={1.3}>
+                <Canvas camera={{fov:25, position: [5,5,5]}}>
+                    <OrbitControls enableZoom = {false} autoRotate/>
+                    <ambientLight intensity={1}/>
+                    <directionalLight position={[3,2,1]}/>
+                    <Sphere args={[1,100,200]} scale={1.3}>
                         <MeshDistortMaterial color="#751947" attach="material" distort={0.5} speed={2}/>
-                        </Sphere>
-                    </Canvas>
-                    <Img src="/src/assets/img/astroBook.png"/>
+                    </Sphere>
+                </Canvas>
+                    <Img src="/src/assets/img/astro3.png"/>
                 </Right>
             </Container>
         </Section>
     )
 }
 
-export default Home
+export default FAQ

@@ -1,18 +1,26 @@
+import React, {useState, useEffect} from "react";
 import Home from "./components/Home"
 import About from "./components/About";
 import Contact from "./components/Contact";
 import Explore from "./components/Explore";
+import FAQ from "./components/FAQ";
 import NavBar from "./components/NavBar";
 import styled from 'styled-components';
+import CircleLoader from 'react-spinners/CircleLoader'
+import './index.css'
 
 //preloader
-var loader = document.getElementById("preloader");
-window.addEventListener("load", function(){
-  loader.style.display = "none";
-})
+
+const Section = styled.div`
+height: 100vh;
+scroll-snap-align: center;
+display:flex;
+flex-direction: column;
+align-items: center;
+background: url("/src/assets/img/wallpaper.jpg");
+`
 
 const Container = styled.div`
-background: url("/src/assets/img/wallpaper.jpg");
   height: 100vh;
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
@@ -25,14 +33,18 @@ background: url("/src/assets/img/wallpaper.jpg");
 `
 
 function App() {
-
   return (
+    <Section>
+    <NavBar/>
     <Container>
       <Home/>
       <About/>
+      <FAQ/>
       <Contact/>
       <Explore/>
     </Container>
+    </Section>
+
   )
 }
 

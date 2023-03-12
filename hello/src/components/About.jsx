@@ -27,6 +27,9 @@ position: relative;
 const Title = styled.h1`
 font-size:74px;
 `
+const Disc = styled.div`
+font-size:24px;
+`
 
 const Right = styled.div`
 flex:2;
@@ -36,21 +39,34 @@ display: flex;
  justify-content: center;
  gap: 20px;
 `
+
 const Img = styled.img`
 object-fit: contain;
 position: absolute;
-top:0;
-bottom:0;
-left:0;
-right:0;
 margin: auto;
-max-width: 500px;
+max-width: 50px;
 height: auto;
-animation: animate 2s infinite ease alternate;
+bottom:220px;
+animation: animate 1s infinite ease alternate;
 
 @keyframes animate {
     to{
-        transform: translateY(50px);
+        transform: translateY(5px);
+    }
+}
+
+`
+const ImgDis = styled.p`
+object-fit: contain;
+position: absolute;
+margin: auto;
+bottom:229px;
+left:50px;
+animation: animate 1s infinite ease alternate;
+
+@keyframes animate {
+    to{
+        transform: translateY(5px);
     }
 }
 
@@ -58,14 +74,22 @@ animation: animate 2s infinite ease alternate;
 
 const About = () => {
     return (
-        <Section>
+        <Section id='About'>
             <Container>
                 <Left>
-                        <Space/>
-    
+                    <Space/>
                 </Left>
                 <Right>
                     <Title>What we do.</Title>
+                    <Disc>
+                        We have created an immersive 3D environment of all the planets in our Solar System.
+                         You will make your way around the planets in out Solar System, and interact with all it has to offer.
+                          You will learn and have fun whilst doing it!<br></br><br></br>
+
+                          This project was created using ThreeJS, to get the most out of your interactive planetary experience.
+                    </Disc>
+                    <Img src="/src/assets/img/arrow.png"></Img>
+                    <ImgDis>Give it a whirl!</ImgDis>
                 </Right>
             </Container>
         </Section>

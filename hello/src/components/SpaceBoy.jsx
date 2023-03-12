@@ -15,7 +15,7 @@ import { Mesh } from 'three'
 
 
 function Model(props) {
-  const { nodes, materials } = useGLTF('/spaceboi/space-transformed.glb')
+  const { nodes, materials } = useGLTF('/src/assets/models/space-transformed.glb')
   const meshRef = useRef();
 
   useFrame(() => {

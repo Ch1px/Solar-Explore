@@ -10,8 +10,8 @@ scroll-snap-align: center;
 
 const Explore = () => {
     return (
-        <Section>
-            <Planets/>
+        <Section id='Explore'>
+            {/*<Planets/>*/}
         </Section>
     )
 }

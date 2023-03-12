@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
+import Contact from "./Contact";
 
 const Section = styled.div`
 display: flex;
@@ -18,9 +20,11 @@ align-items: center;
 gap: 50px;
 `
 const Logo = styled.img`
-height: 90px
+padding-top: 10px;
+height: 40px;
 `
 const List = styled.ul`
+padding-top:10px;
 display: flex;
 gap:40px;
 list-style: none;
@@ -53,20 +57,27 @@ cursor: pointer;
 `
 
 const NavBar = () => {
+    const scrollToSection = (event) => {
+        event.preventDefault();
+        const targetId = event.currentTarget.getAttribute('href');
+        const targetSection = document.querySelector(targetId);
+        targetSection.scrollIntoView({ behavior: 'smooth' });
+    };
     return (
         <Section>
             <Container>
             <Links>
             <Logo src="./src/assets/img/planetllooo.png"/>
             <List>
-                <ListItem>Home</ListItem>
-                <ListItem>About</ListItem>
-                <ListItem>Contact</ListItem>
-                <ListItem>Explore</ListItem>
+                <ListItem><a href="#Home" onClick={scrollToSection}>Home</a></ListItem>
+                <ListItem><a href="#About" onClick={scrollToSection}>About</a></ListItem>
+                <ListItem><a href="#FAQ" onClick={scrollToSection}>FAQ</a></ListItem>
+                <ListItem><a href="#Contact" onClick={scrollToSection}>Contact</a></ListItem>
+                <ListItem><a href="#Explore" onClick={scrollToSection}>Explore</a></ListItem>
             </List>
             </Links>
             <Icons>
-                <a href="https://github.com/Ch1px/Solar-Explore">
+                <a href="https://github.com/Ch1px/Solar-Explorer">
                     <Icon src="./src/assets/img/gitLogo2.png" />
                 </a>
                 <a href="https://www.instagram.com/dan_glancy/">
