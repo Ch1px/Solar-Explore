@@ -10,3 +10,7 @@ cd hello
 
 To install all dependenices:
 npm install
+
+
+To run the website use:
+npm run dev
