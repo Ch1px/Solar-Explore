@@ -31,7 +31,7 @@ list-style: none;
 `
 const ListItem = styled.li`
 cursor: pointer;
-background: linear-gradient(to right, #eb42ce, #3fb2ff 50%, #ffffff 50%);
+background: linear-gradient(to right, #3fb2ff, #eb42ce 50%, #ffffff 50%);
 background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

@@ -80,7 +80,7 @@ const About = () => {
                     <Space/>
                 </Left>
                 <Right>
-                    <Title>What we do.</Title>
+                    <Title>What we do.</Title><br/>
                     <Disc>
                         We have created an immersive 3D environment of all the planets in our Solar System.
                          You will make your way around the planets in out Solar System, and interact with all it has to offer.

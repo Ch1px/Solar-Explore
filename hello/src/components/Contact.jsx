@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState, useRef } from "react";
+import emailjs from '@emailjs/browser';
 import styled from "styled-components";
 import { Canvas, useFrame} from "@react-three/fiber";
 import { MeshDistortMaterial, OrbitControls, Sphere } from "@react-three/drei";
-import Space from './SpaceBoy'
+import Earth from './Earth'
 
 const Section = styled.div`
 height: 100vh;
@@ -13,66 +14,104 @@ align-items: center;
 justify-content: space-between;
 `
 const Container = styled.div`
-height: 100vh;
-scroll-snap-align: center;
-width:1400px;
-display: flex;
-justify-content: space-between;
+width:100%;
+height: 100%;
+display:flex;
+justify-content: center;
+gap: 50px;
+
 `
 
 const Left = styled.div`
-flex:3;
+flex: 2;
+align-items: center;
 position: relative;
 `
+
 const Title = styled.h1`
-font-size:74px;
+color: white;
+font-weight: 200;
+font-size: 50px;
+`
+const Form = styled.form`
+width: 500px;
+display: flex;
+flex-direction: column;
+gap:25px;
+color: black;
+
+`
+const Input = styled.input`
+padding: 20px;
+border:none;
+border-radius: 5px;
+`
+const Message = styled.textarea`
+padding: 20px;
+border:none;
+border-radius: 5px;
+`
+const Button = styled.button`
+padding:20px;
+background-color: #d10169;
+color: white;
+font-weight: bold;
+cursor:pointer;
+border-radius: 5px;
+padding: 20px
+`
+const Sent = styled.div`
+color: white;
 `
 
 const Right = styled.div`
 flex:2;
-position: relative;
+
+align-items: center;
 display: flex;
- flex-direction: column;
- justify-content: center;
+ justify-content: flex-start;
  gap: 20px;
 `
-const Img = styled.img`
-object-fit: contain;
-position: absolute;
-top:0;
-bottom:0;
-left:0;
-right:0;
-margin: auto;
-max-width: 500px;
-height: auto;
-animation: animate 2s infinite ease alternate;
 
-@keyframes animate {
-    to{
-        transform: translateY(50px);
-    }
-}
-
-`
 
 const Contact = () => {
+    const ref = useRef()
+
+    const [success,setSuccess] = useState(null)
+
+    const handleSubmit =e=>{
+        e.preventDefault()
+
+    emailjs.sendForm('service_g2ggs8p', 'template_jw2gizm', ref.current, 'SiI49mnog4ZAd1Qyh')
+      .then((result) => {
+          console.log(result.text);
+          setSuccess(true)
+      }, (error) => {
+          console.log(error.text);
+          setSuccess(false)
+    });
+
+}
     return (
         <Section id='Contact'>
             <Container>
                 <Left>
-                <Canvas camera={{fov:25, position: [5,5,5]}}>
+                <Canvas camera={{fov:50, position: [5,5,5]}}>
                     <OrbitControls enableZoom = {false} autoRotate/>
                     <ambientLight intensity={1}/>
                     <directionalLight position={[3,2,1]}/>
-                    <Sphere args={[1,100,200]} scale={1.3}>
-                        <MeshDistortMaterial color="#176f92" attach="material" distort={0.5} speed={2}/>
-                    </Sphere>
+                    <Earth/>
                 </Canvas>
-                <Img src="/src/assets/img/astro.png"/>
                 </Left>
                 <Right>
-                    <Title>Contact.</Title>
+                    <Form ref={ref} onSubmit={handleSubmit}>
+                        <Title>Contact.</Title>
+                        <Input placeholder="Name" name="name"></Input>
+                        <Input placeholder="Email" name="email"></Input>
+                        <Message placeholder="Message" name="message" rows={10}></Message>
+                        <Button>Send</Button>
+                        <Sent>{success && "Your message has been sent. We'll get back to you ASAP :)"}</Sent>
+                    </Form>
                 </Right>
             </Container>
         </Section>

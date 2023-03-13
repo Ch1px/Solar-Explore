@@ -59,7 +59,7 @@ renderer.setPixelRatio(window.devicePixelRatio)
 renderer.setClearColor(0x060012)
 
 camera.position.setZ(200);
-camera.position.setY(270);
+camera.position.setY(10);
 camera.position.setX(0);
 renderer.render(scene, camera);
 
@@ -473,7 +473,7 @@ scene.add(ambientLight);
 //scene.add(gridHelper);
 
 
-//const controls = new OrbitControls(camera, renderer.domElement);
+const controls = new OrbitControls(camera, renderer.domElement);
 
 //Add background stars
 function addStar() {
@@ -501,7 +501,7 @@ function addSunText(){
 //Zoom into planet on click
 const mmi = new MouseMeshInteraction(scene, camera);
 
-mmi.addHandler('button','click', function(){
+/*mmi.addHandler('button','click', function(){
   gsap.to(camera.position,{
     x: 0,
     z: 200,
@@ -607,7 +607,7 @@ mmi.addHandler('pluto', 'click', function(mesh){
     y:0,
     duration: 4
   });
-});
+});*/
 
 
 //create animations/ handle updates
@@ -631,7 +631,7 @@ function animate() {
   renderer.render(scene,camera);
   mmi.update();
   //interactionManager.update();
-  //controls.update();
+  controls.update();
 }
 
 animate()

@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@danielblagy/three-mmi": "^1.0.0",
+    "@emailjs/browser": "^3.10.0",
     "@react-three/drei": "^9.57.2",
     "@react-three/fiber": "^8.12.0",
     "gsap": "^3.11.4",

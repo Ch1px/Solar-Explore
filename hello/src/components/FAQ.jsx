@@ -31,6 +31,9 @@ display: flex;
 const Title = styled.h1`
 font-size:74px;
 `
+const Dis = styled.p`
+font-size:24px;
+`
 
 const Right = styled.div`
 flex:3;
@@ -62,6 +65,7 @@ const FAQ = () => {
             <Container>
                 <Left>
                     <Title>FAQ.</Title>
+                    <Dis>To be built.</Dis>
                 </Left>
                 <Right>
                 <Canvas camera={{fov:25, position: [5,5,5]}}>

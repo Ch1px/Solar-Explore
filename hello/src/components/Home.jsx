@@ -30,12 +30,20 @@ const Left = styled.div`
 `
 const Title = styled.h1`
 font-size:74px;
-`
-const Info = styled.h1`
-font-size:74px;
+
 `
 const Subtitle = styled.p`
 font-size: 24px;
+`
+
+const Button = styled.button`
+background-color: #0099ff;
+color:white;
+cursor: pointer;
+border: none;
+border-radius: 5px;
+width: 15vh;
+padding:7px;
 `
 
 const Right = styled.div`
@@ -63,13 +71,19 @@ animation: animate 2s infinite ease alternate;
 `
 
 const Home = () => {
+    const scrollToSection = (event) => {
+        event.preventDefault();
+        const targetId = event.currentTarget.getAttribute('href');
+        const targetSection = document.querySelector(targetId);
+        targetSection.scrollIntoView({ behavior: 'smooth' });
+    };
     return (
         <Section id='Home'>
             <Container>
                 <Left>
                     <Title>Explore. Learn. Interact.</Title>
-                    <Info></Info>
                     <Subtitle>Immerse yourself in a 3-Dimensional space of our own Solar System.</Subtitle>
+                    <Button><a href="#About" onClick={scrollToSection}>Learn more</a></Button>
                 </Left>
                 <Right>
                     <Canvas camera={{fov:25, position: [5,5,5]}}>
