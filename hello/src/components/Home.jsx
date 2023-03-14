@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import NavBar from "./NavBar";
 import { Canvas } from "@react-three/fiber";
 import { MeshDistortMaterial, Sphere } from "@react-three/drei";
 

@@ -1,12 +1,11 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 import Home from "./components/Home"
 import About from "./components/About";
 import Contact from "./components/Contact";
 import Explore from "./components/Explore";
-import FAQ from "./components/FAQ";
+import News from "./components/News";
 import NavBar from "./components/NavBar";
 import styled from 'styled-components';
-import CircleLoader from 'react-spinners/CircleLoader'
 import './index.css'
 
 //preloader
@@ -43,9 +42,9 @@ function App() {
     <Container>
       <Home/>
       <About/>
-      <FAQ/>
-      <Contact/>
+      <News/>
       <Explore/>
+      <Contact/>
     </Container>
     </Section>
 

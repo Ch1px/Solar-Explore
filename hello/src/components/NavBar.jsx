@@ -1,7 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
-import Contact from "./Contact";
 
 const Section = styled.div`
 display: flex;
@@ -71,9 +69,9 @@ const NavBar = () => {
             <List>
                 <ListItem><a href="#Home" onClick={scrollToSection}>Home</a></ListItem>
                 <ListItem><a href="#About" onClick={scrollToSection}>About</a></ListItem>
-                <ListItem><a href="#FAQ" onClick={scrollToSection}>FAQ</a></ListItem>
+                <ListItem><a href="#News" onClick={scrollToSection}>News</a></ListItem>
+                <ListItem><a href="#Explore" onClick={scrollToSection}>Our Solar System</a></ListItem>
                 <ListItem><a href="#Contact" onClick={scrollToSection}>Contact</a></ListItem>
-                <ListItem><a href="#Explore" onClick={scrollToSection}>Explore</a></ListItem>
             </List>
             </Links>
             <Icons>

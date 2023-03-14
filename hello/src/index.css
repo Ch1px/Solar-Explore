@@ -13,21 +13,24 @@
     color: rgb(255, 255, 255);
 }
 #container{
-    width: 25vh;
+    width: 40vh;
     background: rgba(0,0,0,0.5);
     padding:10px;    
     border-radius: 5px;
+    position: relative;
+    left: 70px;
+    top:50px;
 }
 
 #name{
     color: white;
-    font-size: 16px;
+    font-size: 20px;
     font-weight: bold;
     padding-bottom: 10px;
 }
 
 #planet{
     color: white;
-    font-size: 13px;
+    font-size: 17px;
 
 }

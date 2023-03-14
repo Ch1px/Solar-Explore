@@ -1,8 +1,9 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import styled from "styled-components";
-import { Canvas, useFrame} from "@react-three/fiber";
+import { Canvas} from "@react-three/fiber";
 import { MeshDistortMaterial, OrbitControls, Sphere } from "@react-three/drei";
-import Space from './SpaceBoy'
+import axios from "axios"
+
 
 const Section = styled.div`
 height: 100vh;
@@ -59,12 +60,26 @@ animation: animate 2s infinite ease alternate;
 
 `
 
-const FAQ = () => {
+const News = () => {
+    const [articles, setArticles] = useState([]);
+
+    const getArticles = async () => {
+        try {
+            const res = await axios.get("https://localhost:4000");
+            setArticles(res.data);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    useEffect (() => {
+        getArticles();
+    })
     return (
-        <Section id ='FAQ'>
+        <Section id ='News'>
             <Container>
                 <Left>
-                    <Title>FAQ.</Title>
+                    <Title>News.</Title>
                     <Dis>To be built.</Dis>
                 </Left>
                 <Right>
@@ -83,4 +98,4 @@ const FAQ = () => {
     )
 }
 
-export default FAQ
+export default News
