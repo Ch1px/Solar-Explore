@@ -24,15 +24,15 @@ const Explore = () => {
             <Container>
                 <Canvas camera={{fov:50, position: [0,10,65]}}>
                     <OrbitControls/>
-                    <ambientLight intensity={0.07}/>
-                    <pointLight position={[14,0,0]}/>
-                    <pointLight position={[0,0,14]}/>
-                    <pointLight position={[0,0,-14]}/>
-                    <pointLight position={[14,0,14]}/>
-                    <pointLight position={[-14,0,0]}/>
-                    <pointLight position={[-14,0,-14]}/>
-                    <pointLight position={[0,14,0]}/>
-                    <pointLight position={[0,-14,0]}/>
+                    <ambientLight intensity={0.1}/>
+                    <pointLight position={[14,0,0]} intensity={0.5}/>
+                    <pointLight position={[0,0,14]} intensity={0.5}/>
+                    <pointLight position={[0,0,-14]} intensity={0.5}/>
+                    <pointLight position={[14,0,14]} intensity={0.5}/>
+                    <pointLight position={[-14,0,0]} intensity={0.5}/>
+                    <pointLight position={[-14,0,-14]} intensity={0.5}/>
+                    <pointLight position={[0,14,0]} intensity={0.5}/>
+                    <pointLight position={[0,-14,0]} intensity={0.5}/>
                     <Planet/>
                 </Canvas>
             </Container>

@@ -31,6 +31,7 @@ export default function Planets(props) {
     const neptune = useRef();
     const ring = useRef();
     const uRing = useRef();
+    const nRing = useRef();
     
     useFrame(() => {
         sun.current.rotation.y += 0.004;
@@ -44,6 +45,7 @@ export default function Planets(props) {
         neptune.current.rotation.y += 0.002;
         ring.current.rotation.y += 0.004;
         uRing.current.rotation.y += 0.003;
+    nRing.current.rotation.y += 0.002;
       })
     return (
       <group {...props} dispose={null}>
@@ -148,10 +150,22 @@ export default function Planets(props) {
         </mesh>
         </group>
         <mesh ref={neptune}>
-            <Sphere args={[1,100,200]} scale={1.8} position={[67,0,0]}>
+            <Sphere args={[1,100,200]} scale={1.8} position={[70,0,0]}>
                 <meshStandardMaterial map={nepMap}/>
             </Sphere>
         </mesh>
+        <group ref={nRing}>
+        <mesh>
+            <Ring args={[3.4,3.45,100]} position={[70,0,0]} rotation={[-Math.PI / 2, 6.1, Math.PI / 2]}>
+                <meshStandardMaterial color={'#383838'} opacity={'0.5'}/>
+            </Ring>
+        </mesh>
+        <mesh>
+            <Ring args={[3.6,3.65,100]} position={[70,0,0]} rotation={[-Math.PI / 2, 6.1, Math.PI / 2]}>
+                <meshStandardMaterial color={'#313131'}opacity={'0.5'}/>
+            </Ring>
+        </mesh>
+        </group>
       </group>
     )
   }
