@@ -1,10 +1,12 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { MeshDistortMaterial, Ring, Sphere, Torus } from "@react-three/drei";
 import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
-import { useLoader } from '@react-three/fiber'
+import { useLoader, useThree } from '@react-three/fiber'
 import { TextureLoader } from 'three/src/loaders/TextureLoader'
 import { useGLTF} from '@react-three/drei'
+import {Html} from '@react-three/drei'
+import gsap from 'gsap'
 
 export default function Planets(props) {
     const { nodes, materials } = useGLTF('/src/assets/models/solar-transformed.glb')
@@ -19,7 +21,8 @@ export default function Planets(props) {
         './src/assets/img/uranusTexture.jpg',
         './src/assets/img/neptuneTexture.jpg'
     ])
-    
+    const { camera } = useThree();
+
     const sun = useRef();
     const mercury = useRef();
     const venus = useRef();
@@ -32,8 +35,59 @@ export default function Planets(props) {
     const ring = useRef();
     const uRing = useRef();
     const nRing = useRef();
-    
-    useFrame(() => {
+
+    const [isRotating, setIsRotating] = useState(false);
+
+    const [isHoveredSun, setIsHoveredSun] = useState(false);
+    const [isHoveredMercury, setIsHoveredMercury] = useState(false);
+    const [isHoveredVenus, setIsHoveredVenus] = useState(false);
+    const [isHoveredEarth, setIsHoveredEarth] = useState(false);
+    const [isHoveredMars, setIsHoveredMars] = useState(false);
+    const [isHoveredJupiter, setIsHoveredJupiter] = useState(false);
+    const [isHoveredSaturn, setIsHoveredSaturn] = useState(false);
+    const [isHoveredUranus, setIsHoveredUranus] = useState(false);
+    const [isHoveredNeptune, setIsHoveredNeptune] = useState(false);
+  
+    useFrame(({ mouse }) => {
+      const raycaster = new THREE.Raycaster();
+      raycaster.setFromCamera(mouse, camera);
+      const intersects = raycaster.intersectObject(sun.current);
+      const intersects1= raycaster.intersectObject(mercury.current);
+      const intersects2 = raycaster.intersectObject(venus.current);
+      const intersects3 = raycaster.intersectObject(earth.current);
+      const intersects4 = raycaster.intersectObject(mars.current);
+      const intersects5 = raycaster.intersectObject(jupiter.current);
+      const intersects6 = raycaster.intersectObject(saturn.current);
+      const intersects7 = raycaster.intersectObject(uranus.current);
+      const intersects8 = raycaster.intersectObject(neptune.current);
+      setIsHoveredSun(intersects.length > 0);
+      setIsHoveredMercury(intersects1.length > 0);
+      setIsHoveredVenus(intersects2.length > 0);
+      setIsHoveredEarth(intersects3.length > 0);
+      setIsHoveredMars(intersects4.length > 0);
+      setIsHoveredJupiter(intersects5.length > 0);
+      setIsHoveredSaturn(intersects6.length > 0);
+      setIsHoveredUranus(intersects7.length > 0);
+      setIsHoveredNeptune(intersects8.length > 0);
+    });
+    const toggleRotation = () => {
+        setIsRotating(!isRotating);
+      };
+
+      useEffect(() => {
+        const handleKeyDown = (event) => {
+          if (event.code === 'Space') {
+            setIsRotating(!isRotating);
+          }
+        };
+        window.addEventListener('keydown', handleKeyDown);
+        return () => {
+          window.removeEventListener('keydown', handleKeyDown);
+        };
+      }, [isRotating]);
+  
+    useFrame((state) => {
+      if (isRotating) {
         sun.current.rotation.y += 0.004;
         mercury.current.rotation.y += 0.009;
         venus.current.rotation.y += 0.008;
@@ -45,8 +99,9 @@ export default function Planets(props) {
         neptune.current.rotation.y += 0.002;
         ring.current.rotation.y += 0.004;
         uRing.current.rotation.y += 0.003;
-    nRing.current.rotation.y += 0.002;
-      })
+        nRing.current.rotation.y += 0.002;
+      }
+    });
     return (
       <group {...props} dispose={null}>
 
@@ -55,36 +110,43 @@ export default function Planets(props) {
             <meshStandardMaterial map={sunMap}/>
             </Sphere>
         </mesh>
+        {isHoveredSun && <Html position={[0,0,0]}><p>Sun Hovered!</p></Html>}
         <mesh ref={mercury}>
             <Sphere args={[1,100,200]} scale={1} position={[12,0,0]}>
                 <meshStandardMaterial map={mercMap}/>
             </Sphere>
         </mesh>
+        {isHoveredMercury && <Html position={[12,0,0]}><p>Mercury Hovered!</p></Html>}
         <mesh ref={venus}>
             <Sphere args={[1,100,200]} scale={1.2} position={[18,0,0]}>
                 <meshStandardMaterial map={venusMap}/>
             </Sphere>
         </mesh>
+        {isHoveredVenus && <Html position={[18,0,0]}><p>Venus Hovered!</p></Html>}
         <mesh ref={earth}>
             <Sphere args={[1,100,200]} scale={1.4} position={[24,0,0]}>
                 <meshStandardMaterial map={earthMap}/>
             </Sphere>
         </mesh>
+        {isHoveredEarth && <Html position={[24,0,0]}><p>Earth Hovered!</p></Html>}
         <mesh ref={mars}>
             <Sphere args={[1,100,200]} scale={1.3} position={[30,0,0]}>
                 <meshStandardMaterial map={marsMap}/>
             </Sphere>
         </mesh>
+        {isHoveredMars && <Html position={[30,0,0]}><p>Mars Hovered!</p></Html>}
         <mesh ref={jupiter}>
             <Sphere args={[1,100,200]} scale={3.8} position={[39,0,0]}>
                 <meshStandardMaterial map={jupiterMap}/>
             </Sphere>
         </mesh>
+        {isHoveredJupiter && <Html position={[39,0,0]}><p>Jupiter Hovered!</p></Html>}
         <mesh ref={saturn}>
             <Sphere args={[1,100,200]} scale={2.2} position={[50,0,0]} rotation={[-Math.PI / 2, 1, Math.PI / 2]}>
                 <meshStandardMaterial map={saturnMap}/>
             </Sphere>
         </mesh>
+        {isHoveredSaturn && <Html position={[50,0,0]}><p>SATURN Hovered!</p></Html>}
         <group ref={ring}>
         <mesh>
             <Ring args={[3,3.2,100]} position={[50,0,0]} rotation={[-Math.PI / 2, 5.8, Math.PI / 2]}>
@@ -132,6 +194,7 @@ export default function Planets(props) {
                 <meshStandardMaterial map={uraMap}/>
             </Sphere>
         </mesh>
+        {isHoveredUranus && <Html position={[60,0,0]}><p>Uranus Hovered!</p></Html>}
         <group ref={uRing}>
         <mesh>
             <Ring args={[3,3.2,100]} position={[60,0,0]} rotation={[-Math.PI / 2, 4.8, Math.PI / 2]}>
@@ -154,6 +217,7 @@ export default function Planets(props) {
                 <meshStandardMaterial map={nepMap}/>
             </Sphere>
         </mesh>
+        {isHoveredNeptune && <Html position={[70,0,0]}><p>Neptune Hovered!</p></Html>}
         <group ref={nRing}>
         <mesh>
             <Ring args={[3.4,3.45,100]} position={[70,0,0]} rotation={[-Math.PI / 2, 6.1, Math.PI / 2]}>
@@ -167,6 +231,8 @@ export default function Planets(props) {
         </mesh>
         </group>
       </group>
+      
+      
     )
   }
 
