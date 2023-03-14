@@ -12,9 +12,81 @@
 #button {
     color: rgb(255, 255, 255);
 }
-#container{
+#containerSun{
     width: 40vh;
-    background: rgba(0,0,0,0.5);
+    background: rgba(255, 187, 0, 0.719);
+    padding:10px;    
+    border-radius: 5px;
+    position: relative;
+    left: 70px;
+    top:50px;
+}
+#containerMer{
+    width: 40vh;
+    background: rgba(63, 0, 163, 0.5);
+    padding:10px;    
+    border-radius: 5px;
+    position: relative;
+    left: 70px;
+    top:50px;
+}
+#containerVen{
+    width: 40vh;
+    background: rgba(139, 28, 0, 0.5);
+    padding:10px;    
+    border-radius: 5px;
+    position: relative;
+    left: 70px;
+    top:50px;
+}
+#containerEarth{
+    width: 40vh;
+    background: rgba(0, 153, 255,0.5);
+    padding:10px;    
+    border-radius: 5px;
+    position: relative;
+    left: 70px;
+    top:50px;
+}
+#containerMars{
+    width: 40vh;
+    background: rgba(255, 136, 0, 0.5);
+    padding:10px;    
+    border-radius: 5px;
+    position: relative;
+    left: 70px;
+    top:50px;
+}
+#containerJup{
+    width: 40vh;
+    background: rgba(187, 148, 75, 0.5);
+    padding:10px;    
+    border-radius: 5px;
+    position: relative;
+    left: 70px;
+    top:50px;
+}
+#containerSat{
+    width: 40vh;
+    background: rgba(76, 0, 255, 0.5);
+    padding:10px;    
+    border-radius: 5px;
+    position: relative;
+    left: 70px;
+    top:50px;
+}
+#containerUra{
+    width: 40vh;
+    background: rgba(87, 184, 248, 0.5);
+    padding:10px;    
+    border-radius: 5px;
+    position: relative;
+    left: 70px;
+    top:50px;
+}
+#containerNep{
+    width: 40vh;
+    background: rgba(0, 4, 255, 0.5);
     padding:10px;    
     border-radius: 5px;
     position: relative;
