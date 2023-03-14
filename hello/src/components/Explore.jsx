@@ -4,6 +4,7 @@ import Planets from "./planets";
 import { Canvas } from '@react-three/fiber'
 import Solar from "./Solar"
 import {OrbitControls} from "@react-three/drei";
+import Planet from './PlanetRTF'
 
 const Section = styled.div`
 height: 100vh;
@@ -20,7 +21,21 @@ justify-content: space-between;
 const Explore = () => {
     return (
         <Section id='Explore'>
-            <Planets/>
+            <Container>
+                <Canvas camera={{fov:50, position: [0,10,65]}}>
+                    <OrbitControls/>
+                    <ambientLight intensity={0.07}/>
+                    <pointLight position={[14,0,0]}/>
+                    <pointLight position={[0,0,14]}/>
+                    <pointLight position={[0,0,-14]}/>
+                    <pointLight position={[14,0,14]}/>
+                    <pointLight position={[-14,0,0]}/>
+                    <pointLight position={[-14,0,-14]}/>
+                    <pointLight position={[0,14,0]}/>
+                    <pointLight position={[0,-14,0]}/>
+                    <Planet/>
+                </Canvas>
+            </Container>
         </Section>
     )
 }

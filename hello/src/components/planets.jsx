@@ -5,6 +5,7 @@ import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import gsap from 'gsap'
 import MouseMeshInteraction from '@danielblagy/three-mmi/module/three_mmi.js';
+import {CSS2DRenderer, CSS2DObject} from 'three/examples/jsm/renderers/CSS2DRenderer'
 
 import sunVertexShader from '/src/assets/shaders/sun/sunVertex.glsl'; import sunFragmentShader from '/src/assets/shaders/sun/sunFragment.glsl';
 import sunAVertexShader from '/src/assets/shaders/sun/sunAVertex.glsl'; import sunAFragmentShader from '/src/assets/shaders/sun/sunAFragment.glsl';
@@ -41,22 +42,19 @@ import neptuneAVertexShader from '/src/assets/shaders/neptune/neptuneAV.glsl'; i
 
 import plutoVertexShader from '/src/assets/shaders/pluto/plutoV.glsl'; import plutoFragmentShader from '/src/assets/shaders/pluto/plutoF.glsl';
 import plutoAVertexShader from '/src/assets/shaders/pluto/plutoAV.glsl'; import plutoAFragmentShader from '/src/assets/shaders/pluto/plutoAF.glsl';
-
-
+import { MeshLambertMaterial } from 'three';
 
 
 function Planets() {
   useEffect(() => {
-    const scene = new THREE.Scene();
+const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-const renderer = new THREE.WebGLRenderer({
-  canvas: document.querySelector('#bg'), antialias: true,
-});
+const renderer = new THREE.WebGLRenderer({antialias: true});
 
 renderer.setPixelRatio(window.devicePixelRatio);
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(window.devicePixelRatio)
-renderer.setClearColor(0x060012)
+renderer.setClearColor(0xffffff)
 
 camera.position.setZ(200);
 camera.position.setY(10);
@@ -64,24 +62,27 @@ camera.position.setX(0);
 renderer.render(scene, camera);
 
 
+const labelRenderer = new CSS2DRenderer();
+labelRenderer.setSize(window.innerWidth, window.innerHeight);
+labelRenderer.domElement.style.position = 'absolute';
+labelRenderer.domElement.style.top = '0px';
+labelRenderer.domElement.style.pointerEvents = 'none';
+document.body.appendChild(labelRenderer.domElement);
 
+const p = document.createElement('p')
+p.className = 'tip';
+const pContainer = document.createElement('div');
+pContainer.appendChild(p)
+const cPointLabel = new CSS2DObject(pContainer)
+scene.add(cPointLabel);
 
-const exploreButton = new THREE.Mesh(
-  new THREE.BoxGeometry(5,2,0.1),
-  new THREE.MeshBasicMaterial({color: 0xffffff})
-);
-exploreButton.position.set(0,265,190)
-exploreButton.name = 'button'
-scene.add(exploreButton);
-
-
-
-
-
-
+const mousePos = new THREE.Vector2();
+const raycaster = new THREE.Raycaster();
 
 
 //Create objects
+
+const group = new THREE.Group();
 
 //Create sun
 const sun = new THREE.Mesh( 
@@ -97,7 +98,7 @@ const sun = new THREE.Mesh(
    } ));
 sun.name = 'sun'
 sun.position.set(-170,0,0);
-scene.add(sun);
+group.add(sun);
 
 //Add shaders
 const sunAtmosphere = new THREE.Mesh( 
@@ -128,21 +129,10 @@ const mercury = new THREE.Mesh(
    } ) );
 mercury.name = 'mercury';
 mercury.position.set(-90,0,0);
-scene.add(mercury);
+group.add(mercury);
 
 //add shaders
-const mercuryAtmosphere = new THREE.Mesh( 
-  new THREE.SphereGeometry( 1.6, 50, 50 ),
-  new THREE.ShaderMaterial( {
-    vertexShader: merAVertexShader,
-    fragmentShader: merAFragmentShader,
-    blending: THREE.AdditiveBlending,
-    side: THREE.BackSide
-   } )
-);
-mercuryAtmosphere.scale.set(1.07,1.07,1.07)
-mercuryAtmosphere.position.set(-90,0,0);
-scene.add(mercuryAtmosphere);
+
 
 
 //create venus
@@ -159,7 +149,7 @@ const venus = new THREE.Mesh(
   } ) );
 venus.name = 'venus'
 venus.position.set(-75,0,0);
-scene.add(venus);
+group.add(venus);
 
 //add shaders
 const venusAtmosphere = new THREE.Mesh( 
@@ -190,7 +180,7 @@ const earth = new THREE.Mesh(
   } ) );
 earth.name = 'earth'
 earth.position.set(-60,0,0);
-scene.add(earth);
+group.add(earth);
 
 //add shaders
 const earthAtmosphere = new THREE.Mesh( 
@@ -222,7 +212,7 @@ const moon = new THREE.Mesh(
 );
 moon.name = 'moon'
 moon.position.set(-55,1.5,0);
-scene.add(moon);
+group.add(moon);
 
 //add shaders
 const moonAtmosphere = new THREE.Mesh( 
@@ -253,7 +243,7 @@ const mars = new THREE.Mesh(
   } ) );
 mars.name = 'mars'
 mars.position.set(-43,0,0);
-scene.add(mars);
+group.add(mars);
 
 //add shaders
 const marsAtmosphere = new THREE.Mesh( 
@@ -285,7 +275,7 @@ const jupiter = new THREE.Mesh(
   } ) );
 jupiter.name = 'jupiter'
 jupiter.position.set(0,0,0);
-scene.add(jupiter);
+group.add(jupiter);
 
 //add shaders
 const jupiterAtmosphere = new THREE.Mesh( 
@@ -319,7 +309,7 @@ const saturn = new THREE.Mesh(
 saturn.name = 'saturn'
 saturn.rotateX(-4);
 saturn.position.set(70,0,0);
-scene.add(saturn);
+group.add(saturn);
 
 const saturnAtmosphere = new THREE.Mesh( 
   new THREE.SphereGeometry( 10, 50, 50 ),
@@ -383,7 +373,7 @@ const uranus = new THREE.Mesh(
     } } ));
 uranus.name = 'uranus'
 uranus.position.set(115,0,0);
-scene.add(uranus);
+group.add(uranus);
 
 //add shaders
 const uranusAtmosphere = new THREE.Mesh( 
@@ -413,7 +403,7 @@ const neptune = new THREE.Mesh(
     } } ));
 neptune.name = 'neptune'
 neptune.position.set(155,0,0);
-scene.add(neptune);
+group.add(neptune);
 
 //add shaders
 const neptuneAtmosphere = new THREE.Mesh( 
@@ -446,7 +436,7 @@ const pluto = new THREE.Mesh(
 );
 pluto.name = 'pluto';
 pluto.position.set(200,0,0);
-scene.add(pluto);
+group.add(pluto);
 
 //add shaders
 const plutoAtmosphere = new THREE.Mesh( 
@@ -461,6 +451,8 @@ const plutoAtmosphere = new THREE.Mesh(
 plutoAtmosphere.scale.set(1.07,1.07,1.07)
 plutoAtmosphere.position.set(200,0,0);
 scene.add(plutoAtmosphere);
+
+scene.add(group)
 
 
 /**lighting
@@ -491,41 +483,40 @@ Array(2000).fill().forEach(addStar)
 
 
 
-function addSunText(){
-  const p = document.createElement('p');
-  p.className = 'sunFact'
-}
+window.addEventListener('click', function(e) {
+  mousePos.x = (e.clientX / this.window.innerWidth) * 2 - 1;
+  mousePos.y = (e.clientY / this.window.innerHeight) * 2 + 1;
+
+  raycaster.setFromCamera(mousePos, camera);
+  const intersects = raycaster.intersectObjects(group);
+  if(intersects.length > 0) {
+    switch (intersects[0].object.name) {
+      case 'sun':
+        p.className = 'tip show';
+        cPointLabel.position.set(0, 80, 0);
+        p.textContent='The sun';
+          break;
+        default:
+          break;
+    }
+  }
+})
 
 
 
 //Zoom into planet on click
 const mmi = new MouseMeshInteraction(scene, camera);
 
-/*mmi.addHandler('button','click', function(){
-  gsap.to(camera.position,{
-    x: 0,
-    z: 200,
-    y: 10,
-    duration: 5
-  });
+mmi.addHandler('sun', 'click', function(){
+    p.className = 'tip show';
+    cPointLabel.position.set(-170, 80, 0);
+    p.textContent='The sun';
 });
 
-mmi.addHandler('sun', 'click', function(mesh){
-  gsap.to(camera.position, {
-    x: -150,
-    z: 150,
-    y: 0,
-    duration: 4
-  });
-});
-
-mmi.addHandler('mercury', 'click', function(mesh){
-  gsap.to(camera.position, {
-    x: -90,
-    z:5,
-    y:0,
-    duration: 4
-  });
+mmi.addHandler('mercury', 'click', function(){
+  p.className = 'tip show';
+  cPointLabel.position.set(-90, 20, 0);
+  p.textContent='Mercury';
 });
 
 mmi.addHandler('venus', 'click', function(mesh){
@@ -607,7 +598,11 @@ mmi.addHandler('pluto', 'click', function(mesh){
     y:0,
     duration: 4
   });
-});*/
+});
+
+window.addEventListener('resize', function() {
+  labelRenderer.setSize(this.window.innerWidth, this.window.innerHeight);
+})
 
 
 //create animations/ handle updates
@@ -628,7 +623,10 @@ function animate() {
   neptune.rotation.y += 0.003;
   pluto.rotation.y += 0.005;
 
+  earth.rotateY(0.004);
+
   renderer.render(scene,camera);
+  labelRenderer.render(scene, camera);
   mmi.update();
   //interactionManager.update();
   controls.update();
@@ -636,12 +634,6 @@ function animate() {
 
 animate()
   }, []);
-
-  return (
-    <div>
-      <canvas id='bg'/>
-    </div>
-  );
 }
 
 export default Planets;

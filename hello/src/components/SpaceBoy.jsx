@@ -19,9 +19,6 @@ function Model(props) {
   const meshRef = useRef();
 
   useFrame(() => {
-    if (!meshRef.current){
-      return;
-    }
     meshRef.current.rotation.y += 0.003;
   })
 

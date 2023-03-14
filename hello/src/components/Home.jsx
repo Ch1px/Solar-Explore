@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import NavBar from "./NavBar";
 import { Canvas } from "@react-three/fiber";
-import { MeshDistortMaterial, OrbitControls, Sphere } from "@react-three/drei";
+import { MeshDistortMaterial, Sphere } from "@react-three/drei";
 
 
 const Section = styled.div`
@@ -87,7 +87,6 @@ const Home = () => {
                 </Left>
                 <Right>
                     <Canvas camera={{fov:25, position: [5,5,5]}}>
-                        <OrbitControls enableZoom = {false} autoRotate/>
                         <ambientLight intensity={1}/>
                         <directionalLight position={[3,2,1]}/>
                         <Sphere args={[1,100,200]} scale={1.3}>

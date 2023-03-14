@@ -84,7 +84,7 @@ const About = () => {
                     <Disc>
                         We have created an immersive 3D environment of all the planets in our Solar System.
                          You will make your way around the planets in out Solar System, and interact with all it has to offer.
-                          You will learn and have fun whilst doing it!<br></br><br></br>
+                          Not only will you learn, you will have fun whilst doing it!<br></br><br></br>
 
                           This project was created using ThreeJS, to get the most out of your interactive planetary experience.
                     </Disc>
