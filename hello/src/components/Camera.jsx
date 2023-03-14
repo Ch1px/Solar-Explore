@@ -10,7 +10,7 @@ export default function CameraControls() {
   
     const handleClick = () => {
       gsap.to(camera.position, {
-        x: 0,
+        x: -30,
         z:65,
         y:10,
         duration: 2
@@ -29,7 +29,7 @@ export default function CameraControls() {
           left: '50%',
           transform: 'translate(-100%)',
           zIndex: 1,
-        }} onClick={handleClick} ref={buttonRef}>Reposition Camera</button>
+        }} onClick={handleClick} ref={buttonRef}></button>
           </Html>
         </mesh>
       </>

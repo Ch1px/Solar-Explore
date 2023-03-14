@@ -36,10 +36,10 @@ const Explore = () => {
             <Container>
             <P>Press 'spacebar' to toggle Planet Orbit<br></br>Press 'R' to reposition the camera</P>
             <P2>Hover mouse over planets to learn some facts!</P2>
-                <Canvas camera={{fov:50, position: [-20,10,20]}}>
+                <Canvas camera={{fov:50, position: [-30,10,65]}}>
                     <OrbitControls/>
                     <CameraControls/>
-                    <ambientLight intensity={0.1}/>
+                    <ambientLight intensity={0.06}/>
                     <pointLight position={[14,0,0]} intensity={0.5}/>
                     <pointLight position={[0,0,14]} intensity={0.5}/>
                     <pointLight position={[0,0,-14]} intensity={0.5}/>
