@@ -9,21 +9,42 @@ import {Html} from '@react-three/drei'
 import gsap from 'gsap'
 import '/src/index.css'
 
-export default function Planets(props) {
-    const { nodes, materials } = useGLTF('/src/assets/models/solar-transformed.glb')
-    const [sunMap, mercMap, venusMap, earthMap, marsMap, jupiterMap, saturnMap, uraMap, nepMap] = useLoader(TextureLoader, [
-        './src/assets/img/sunMap.jpg',
-        './src/assets/img/mercMap.jpg',
-        './src/assets/img/venusTexture.jpg',
-        './src/assets/img/EarthTexture.jpg',
-        './src/assets/img/marsTexture.jpg',
-        './src/assets/img/jupiterTexture.jpg',
-        './src/assets/img/saturnMap.jpg',
-        './src/assets/img/uranusTexture.jpg',
-        './src/assets/img/neptuneTexture.jpg'
-    ])
+import sunVertexShader from '/src/assets/shaders/sun/sunVertex.glsl'; import sunFragmentShader from '/src/assets/shaders/sun/sunFragment.glsl';
+import sunAVertexShader from '/src/assets/shaders/sun/sunAVertex.glsl'; import sunAFragmentShader from '/src/assets/shaders/sun/sunAFragment.glsl';
 
-    const { camera } = useThree();
+import merVertexShader from '/src/assets/shaders//mercury/merVertex.glsl'; import merFragmentShader from '/src/assets/shaders/mercury/merFragment.glsl';
+import merAVertexShader from '/src/assets/shaders/mercury/merAVertex.glsl'; import merAFragmentShader from '/src/assets/shaders/mercury/merAFragment.glsl';
+
+import venusVertexShader from '/src/assets/shaders/venus/venusV.glsl'; import venusFragmentShader from '/src/assets/shaders/venus/venusF.glsl';
+import venusAVertexShader from '/src/assets/shaders/venus/venusAV.glsl'; import venusAFragmentShader from '/src/assets/shaders/venus/venusAF.glsl';
+
+import earthVertexShader from '/src/assets/shaders/earth/earthV.glsl'; import earthFragmentShader from '/src/assets/shaders/earth/earthF.glsl';
+import earthAVertexShader from '/src/assets/shaders/earth/earthAV.glsl'; import earthAFragmentShader from '/src/assets/shaders/earth/earthAF.glsl';
+
+import moonVertexShader from '/src/assets/shaders/moon/moonV.glsl'; import moonFragmentShader from '/src/assets/shaders/moon/moonF.glsl';
+import moonAVertexShader from '/src/assets/shaders/moon/moonAV.glsl'; import moonAFragmentShader from '/src/assets/shaders/moon/moonAF.glsl';
+
+import marsVertexShader from '/src/assets/shaders/mars/marsV.glsl'; import marsFragmentShader from '/src/assets/shaders/mars/marsF.glsl';
+import marsAVertexShader from '/src/assets/shaders/mars/marsAV.glsl'; import marsAFragmentShader from '/src/assets/shaders/mars/marsAF.glsl';
+
+import jupiterVertexShader from '/src/assets/shaders/jupiter/jupiterV.glsl'; import jupiterFragmentShader from '/src/assets/shaders/jupiter/jupiterF.glsl';
+import jupiterAVertexShader from '/src/assets/shaders/jupiter/jupiterAV.glsl'; import jupiterAFragmentShader from '/src/assets/shaders/jupiter/jupiterAF.glsl';
+
+import saturnVertexShader from '/src/assets/shaders/saturn/saturnV.glsl'; import saturnFragmentShader from '/src/assets/shaders/saturn/saturnF.glsl';
+import saturnAVertexShader from '/src/assets/shaders/saturn/saturnAV.glsl'; import saturnAFragmentShader from '/src/assets/shaders/saturn/saturnAF.glsl';
+
+import ringVertexShader from '/src/assets/shaders/saturn/ringV.glsl'; import ringFragmentShader from '/src/assets/shaders/saturn/ringF.glsl';
+import ringAVertexShader from '/src/assets/shaders/saturn/ringAV.glsl'; import ringAFragmentShader from '/src/assets/shaders/saturn/ringAF.glsl';
+
+import uranusVertexShader from '/src/assets/shaders/uranus/uranusV.glsl'; import uranusFragmentShader from '/src/assets/shaders/uranus/uranusF.glsl';
+import uranusAVertexShader from '/src/assets/shaders/uranus/uranusAV.glsl'; import uranusAFragmentShader from '/src/assets/shaders/uranus/uranusAF.glsl'
+
+import neptuneVertexShader from '/src/assets/shaders/neptune/neptuneV.glsl'; import neptuneFragmentShader from '/src/assets/shaders/neptune/neptuneF.glsl';
+import neptuneAVertexShader from '/src/assets/shaders/neptune/neptuneAV.glsl'; import neptuneAFragmentShader from '/src/assets/shaders/neptune/neptuneAF.glsl'
+
+import plutoVertexShader from '/src/assets/shaders/pluto/plutoV.glsl'; import plutoFragmentShader from '/src/assets/shaders/pluto/plutoF.glsl';
+import plutoAVertexShader from '/src/assets/shaders/pluto/plutoAV.glsl'; import plutoAFragmentShader from '/src/assets/shaders/pluto/plutoAF.glsl';
+export default function Planets(props) {
 
     const sun = useRef();
     const mercury = useRef();
@@ -38,6 +59,11 @@ export default function Planets(props) {
     const uranusRings = useRef();
     const neptuneRings = useRef();
 
+    const sunTexture = useLoader(THREE.TextureLoader, ('./src/assets/img/sunMap.jpg'))
+
+
+    const { camera } = useThree();
+
     const [isRotating, setIsRotating] = useState(false);
 
     const [isHoveredSun, setIsHoveredSun] = useState(false);
@@ -49,6 +75,7 @@ export default function Planets(props) {
     const [isHoveredSaturn, setIsHoveredSaturn] = useState(false);
     const [isHoveredUranus, setIsHoveredUranus] = useState(false);
     const [isHoveredNeptune, setIsHoveredNeptune] = useState(false);
+      
   
     useFrame(({ mouse }) => {
       const raycaster = new THREE.Raycaster();
@@ -110,44 +137,44 @@ export default function Planets(props) {
         {isHoveredNeptune && <Html position={[neptune.current.position]}><div id='containerNep'><h1 id='name'>Neptune</h1><p id='planet'>Neptune is dark, cold, and very windy. It’s the last of the planets in our solar system. It’s more than 30 times as far from the Sun as Earth is. Neptune is very similar to Uranus. It’s made of a thick soup of water, ammonia, and methane over an Earth-sized solid center. Its atmosphere is made of hydrogen, helium, and methane. The methane gives Neptune the same blue color as Uranus. Neptune has six rings, but they’re very hard to see.</p></div></Html>}
 
         <mesh ref={sun}>
-            <Sphere args={[1,100,200]} scale={8.0} position={[0,0,0]}>
-            <meshStandardMaterial map={sunMap}/>
+        <Sphere args={[1,100,200]} scale={8} position={[0,0,0]}>
+                <meshStandardMaterial map={sunTexture}/>
             </Sphere>
         </mesh>
        
         <mesh ref={mercury}>
             <Sphere args={[1,100,200]} scale={1} position={[12,0,0]}>
-                <meshStandardMaterial map={mercMap}/>
+                <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/mercMap.jpg'))}/>
             </Sphere>
         </mesh>
     
         <mesh ref={venus}>
             <Sphere args={[1,100,200]} scale={1.2} position={[18,0,0]}>
-                <meshStandardMaterial map={venusMap}/>
+                <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/venusTexture.jpg'))}/>
             </Sphere>
         </mesh>
         
         <mesh ref={earth}>
             <Sphere args={[1,100,200]} scale={1.4} position={[24,0,0]}>
-                <meshStandardMaterial map={earthMap}/>
+                <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/EarthTexture.jpg'))}/>
             </Sphere>
         </mesh>
         
         <mesh ref={mars}>
             <Sphere args={[1,100,200]} scale={1.3} position={[30,0,0]}>
-                <meshStandardMaterial map={marsMap}/>
+                <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/marsTexture.jpg'))}/>
             </Sphere>
         </mesh>
         
         <mesh ref={jupiter}>
             <Sphere args={[1,100,200]} scale={3.8} position={[39,0,0]}>
-                <meshStandardMaterial map={jupiterMap}/>
+                <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/jupiterTexture.jpg'))}/>
             </Sphere>
         </mesh>
         
         <mesh ref={saturn}>
             <Sphere args={[1,100,200]} scale={2.2} position={[50,0,0]} rotation={[-Math.PI / 2, 1, Math.PI / 2]}>
-                <meshStandardMaterial map={saturnMap}/>
+                <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/saturnMap.jpg'))}/>
             </Sphere>
         </mesh>
         
@@ -174,7 +201,7 @@ export default function Planets(props) {
         </mesh>
         <mesh>
             <Ring args={[4,4.1,100]} position={[50,0,0]} rotation={[-Math.PI / 2, 5.8, Math.PI / 2]}>
-                <meshStandardMaterial color={'#d0d1c7'}/>
+                <meshStandardMaterial color={'#150061'}/>
             </Ring>
         </mesh>
         <mesh>
@@ -194,38 +221,38 @@ export default function Planets(props) {
         </mesh>
         <mesh>
             <Ring args={[5,5.1,100]} position={[50,0,0]} rotation={[-Math.PI / 2, 5.8, Math.PI / 2]}>
-                <meshStandardMaterial color={'#210099'}/>
+                <meshStandardMaterial color={'#390181'}/>
             </Ring>
         </mesh>
         </group>
 
         <mesh ref={uranus}>
-            <Sphere args={[1,100,200]} scale={1.8} position={[60,0,0]}>
-                <meshStandardMaterial map={uraMap}/>
+            <Sphere args={[1,100,200]} scale={1.8} position={[60,0,0]} rotation={[-Math.PI / 2, 0.16, Math.PI / 2]}>
+                <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/uranusTexture.jpg'))}/>
             </Sphere>
         </mesh>
         
         <group ref={uranusRings}>
         <mesh>
-            <Ring args={[3,3.2,100]} position={[60,0,0]} rotation={[-Math.PI / 2, 4.8, Math.PI / 2]}>
-                <meshStandardMaterial color={'#8aedff'} opacity={'0.5'}/>
+            <Ring args={[3.05,3.14,100]} position={[60,0,0]} rotation={[-Math.PI / 2, 4.8, Math.PI / 2]}>
+                <meshStandardMaterial color={'#8aedff61'} />
             </Ring>
         </mesh>
         <mesh>
-            <Ring args={[3.4,3.5,100]} position={[60,0,0]} rotation={[-Math.PI / 2, 4.8, Math.PI / 2]}>
-                <meshStandardMaterial color={'#01c0a7'}opacity={'0.5'}/>
+            <Ring args={[3.4,3.47,100]} position={[60,0,0]} rotation={[-Math.PI / 2, 4.8, Math.PI / 2]}>
+                <meshStandardMaterial color={'#c3f0ea63'}/>
             </Ring>
         </mesh>
         <mesh>
             <Ring args={[3.7,3.9,100]} position={[60,0,0]} rotation={[-Math.PI / 2, 4.8, Math.PI / 2]}>
-                <meshStandardMaterial color={'#98fcff'}opacity={'0.5'}/>
+                <meshStandardMaterial color={'#98fcff'}/>
             </Ring>
         </mesh>
         </group>
         
         <mesh ref={neptune}>
             <Sphere args={[1,100,200]} scale={1.8} position={[70,0,0]}>
-                <meshStandardMaterial map={nepMap}/>
+                <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/neptuneTexture.jpg'))}/>
             </Sphere>
         </mesh>
 

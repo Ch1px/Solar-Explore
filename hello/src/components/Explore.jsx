@@ -5,6 +5,7 @@ import {OrbitControls} from "@react-three/drei";
 import Planet from './PlanetRTF'
 import CameraControls from "./Camera";
 
+
 const Section = styled.div`
 height: 100vh;
 scroll-snap-align: center;
@@ -39,15 +40,21 @@ const Explore = () => {
                 <Canvas camera={{fov:50, position: [-30,0,65]}}>
                     <OrbitControls/>
                     <CameraControls/>
-                    <ambientLight intensity={0.06}/>
-                    <pointLight position={[14,0,0]} intensity={0.5}/>
-                    <pointLight position={[0,0,14]} intensity={0.5}/>
-                    <pointLight position={[0,0,-14]} intensity={0.5}/>
-                    <pointLight position={[14,0,14]} intensity={0.5}/>
-                    <pointLight position={[-14,0,0]} intensity={0.5}/>
-                    <pointLight position={[-14,0,-14]} intensity={0.5}/>
-                    <pointLight position={[0,14,0]} intensity={0.5}/>
-                    <pointLight position={[0,-14,0]} intensity={0.5}/>
+                    <rectAreaLight lookAt={[0,0,0]} color={'orange'} intensity={10} position={[0,0,9.8]}/>
+                    <rectAreaLight rotation={[3,0,0]} color={'orange'} intensity={10} position={[0,0,-9.8]}/>
+                    <rectAreaLight rotation={[-1.5,0,0]} color={'orange'} intensity={10} position={[0,9.8,0]}/>
+                    <rectAreaLight rotation={[0,2,0]} color={'orange'} intensity={10} position={[9.8,0,0]}/>
+                    <rectAreaLight rotation={[0,-1,0]} color={'orange'} intensity={10} position={[-9.8,0,0]}/>
+                    <rectAreaLight rotation={[1,0,0]} color={'orange'} intensity={10} position={[0,-9.8,0]}/>
+                    <ambientLight intensity={0.02}/>
+                    <pointLight position={[14,0,0]} intensity={0.2}/>
+                    <pointLight position={[0,0,14]} intensity={0.2}/>
+                    <pointLight position={[0,0,-14]} intensity={0.2}/>
+                    <pointLight position={[14,0,14]} intensity={0.2}/>
+                    <pointLight position={[-14,0,0]} intensity={0.2}/>
+                    <pointLight position={[-14,0,-14]} intensity={0.2}/>
+                    <pointLight position={[0,14,0]} intensity={0.2}/>
+                    <pointLight position={[0,-14,0]} intensity={0.2}/>
                     <Planet/>
                 </Canvas>
             </Container>
