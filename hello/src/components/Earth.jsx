@@ -14,7 +14,7 @@ export default function Model(props) {
   const { nodes, materials } = useGLTF('/src/assets/models/earth-transformed.glb')
   return (
     <group {...props} dispose={null}>
-      <group scale={0.3}>
+      <group scale={0.25}>
       <mesh geometry={nodes.earth4_blinn1_0.geometry} material={materials.blinn1} />
       <mesh geometry={nodes.earth4_lambert1_0.geometry} material={materials.lambert1} />
       </group>

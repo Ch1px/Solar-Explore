@@ -38,7 +38,7 @@ const Explore = () => {
     return (
         <Section id='Explore'>
             <Container>
-                <Canvas camera={{fov:50, position: [-30,0,65]}} anitalias>
+                <Canvas camera={{fov:50, position: [-30,0,65]}}>
                     <Html position={[null]}><div id='titleContainer'><h1 id='solarTitle'>Solar Explore</h1></div></Html>
                     <Html position={[null]}>
                         <div id = 'containerText'>

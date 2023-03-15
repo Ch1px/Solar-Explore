@@ -40,42 +40,15 @@ const Right = styled.div`
 flex:3;
 position: relative;
 `
-const Img = styled.img`
-object-fit: contain;
-position: absolute;
-top:0;
-bottom:0;
-left:0;
-right:0;
-margin: auto;
-max-width: 500px;
-height: auto;
-animation: animate 2s infinite ease alternate;
-
-@keyframes animate {
-    to{
-        transform: translateY(50px);
-    }
-}
-
-`
 
 const News = () => {
     return (
         <Section id ='News'>
             <Container>
                 <Left>
+                    <p>News<br/>To be built</p>
                 </Left>
                 <Right>
-                <Canvas camera={{fov:25, position: [5,5,5]}}>
-                    <OrbitControls enableZoom = {false} autoRotate/>
-                    <ambientLight intensity={1}/>
-                    <directionalLight position={[3,2,1]}/>
-                    <Sphere args={[1,100,200]} scale={1.3}>
-                        <MeshDistortMaterial color="#751947" attach="material" distort={0.5} speed={2}/>
-                    </Sphere>
-                </Canvas>
-                    <Img src="/src/assets/img/astro3.png"/>
                 </Right>
             </Container>
         </Section>

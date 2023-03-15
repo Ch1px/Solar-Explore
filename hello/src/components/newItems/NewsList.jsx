@@ -6,9 +6,10 @@ const NewsList = () => {
     const [articles, setArticles] = useState([])
 
     useEffect(() => {
+        
         const getArticles = async () => {
             const response = await axios.get(`https://newsapi.org/v2/everything?q=football&apiKey=`)
-            setArticles(response.data.articles)
+            setArticles(response.articles)
             console.log(response)
         }
 
