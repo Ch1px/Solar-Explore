@@ -94,6 +94,19 @@
     top:50px;
 }
 
+#containerText{
+    width: 35vh;
+    background: rgba(255, 0, 140, 0.3);
+    padding:12px;    
+    border-radius: 20px;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    left: 160vh;
+    top:3vh;
+    font-size: small;
+}
+
 #name{
     color: white;
     font-size: 20px;
@@ -105,4 +118,22 @@
     color: white;
     font-size: 17px;
 
+}
+
+#titleContainer{
+    width: 20vh;  
+    position: relative;
+    display: flex;
+    justify-content: center;
+    top:87vh;
+    left:5vh;
+}
+
+#solarTitle{
+    color: white;
+    font-size: 25px;
+    font-weight: bold;
+    width: 18vh;
+    text-align: center;
+    position: absolute;
 }

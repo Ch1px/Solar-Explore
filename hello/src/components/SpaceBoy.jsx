@@ -62,7 +62,7 @@ export default function draw(){
   return (
     <Canvas camera={{ fov: 75, position: [0, 3, 5]}}>
       <Model/>
-      <OrbitControls enableZoom={false}/>
+      <OrbitControls enableZoom={false} enablePan={false}/>
     </Canvas>
   )
 }

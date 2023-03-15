@@ -20,7 +20,7 @@ export default function CameraControls() {
     return (
       <>
         <mesh>
-          <planeBufferGeometry args={[1, 1]} />
+          <planeGeometry args={[1, 1]} />
           <meshBasicMaterial visible={false} />
           <Html>
             <button style={{

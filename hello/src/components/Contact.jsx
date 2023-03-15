@@ -97,7 +97,7 @@ const Contact = () => {
             <Container>
                 <Left>
                 <Canvas camera={{fov:50, position: [5,5,5]}}>
-                    <OrbitControls enableZoom = {false} autoRotate/>
+                    <OrbitControls enableZoom = {false} autoRotate enablePan={false}/>
                     <ambientLight intensity={1}/>
                     <directionalLight position={[3,2,1]}/>
                     <Earth/>

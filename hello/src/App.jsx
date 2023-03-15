@@ -42,8 +42,8 @@ function App() {
     <Container>
       <Home/>
       <About/>
-      <News/>
       <Explore/>
+      <News/>
       <Contact/>
     </Container>
     </Section>

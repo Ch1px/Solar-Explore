@@ -24,7 +24,7 @@ height: 40px;
 const List = styled.ul`
 padding-top:10px;
 display: flex;
-gap:40px;
+gap:50px;
 list-style: none;
 `
 const ListItem = styled.li`
@@ -69,8 +69,8 @@ const NavBar = () => {
             <List>
                 <ListItem><a href="#Home" onClick={scrollToSection}>Home</a></ListItem>
                 <ListItem><a href="#About" onClick={scrollToSection}>About</a></ListItem>
-                <ListItem><a href="#News" onClick={scrollToSection}>News</a></ListItem>
                 <ListItem><a href="#Explore" onClick={scrollToSection}>Our Solar System</a></ListItem>
+                <ListItem><a href="#News" onClick={scrollToSection}>Galaxy News</a></ListItem>
                 <ListItem><a href="#Contact" onClick={scrollToSection}>Contact</a></ListItem>
             </List>
             </Links>

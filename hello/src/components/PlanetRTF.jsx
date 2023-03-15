@@ -7,6 +7,9 @@ import { TextureLoader } from 'three/src/loaders/TextureLoader'
 import { useGLTF} from '@react-three/drei'
 import {Html} from '@react-three/drei'
 import gsap from 'gsap'
+import {OrbitControls} from "@react-three/drei";
+import Planet from './PlanetRTF'
+
 import '/src/index.css'
 
 import sunVertexShader from '/src/assets/shaders/sun/sunVertex.glsl'; import sunFragmentShader from '/src/assets/shaders/sun/sunFragment.glsl';
@@ -59,10 +62,7 @@ export default function Planets(props) {
     const uranusRings = useRef();
     const neptuneRings = useRef();
 
-    const sunTexture = useLoader(THREE.TextureLoader, ('./src/assets/img/sunMap.jpg'))
-
-
-    const { camera } = useThree();
+    const { camera, gl } = useThree();
 
     const [isRotating, setIsRotating] = useState(false);
 
@@ -91,13 +91,9 @@ export default function Planets(props) {
       const intersects8 = raycaster.intersectObject(neptune.current); setIsHoveredNeptune(intersects8.length > 0);
     });
 
-    const toggleRotation = () => {
-        setIsRotating(!isRotating);
-    };
-
     useEffect(() => {
     const handleKeyDown = (event) => {
-        if (event.code === 'Space') {
+        if (event.code === 'KeyO') {
             setIsRotating(!isRotating);
         }
     };
@@ -124,6 +120,112 @@ export default function Planets(props) {
         neptuneRings.current.rotation.y += 0.002;
       }
     });
+    const controlsRef = useRef();
+
+      const handleClickSun = () => {
+        gsap.to(controlsRef.current.target, {
+        duration: 2,
+          x: 0,
+          y: 0,
+          z: 0,
+          onUpdate: () => {
+            controlsRef.current.update();
+          }
+        });
+      };
+      const handleClickMercury = () => {
+        gsap.to(controlsRef.current.target, {
+        duration: 2,
+          x: 12,
+          y: 0,
+          z: 0,
+          onUpdate: () => {
+            controlsRef.current.update();
+          }
+        });
+      };
+      const handleClickVenus = () => {
+        gsap.to(controlsRef.current.target, {
+        duration: 2,
+          x: 18,
+          y: 0,
+          z: 0,
+          onUpdate: () => {
+            controlsRef.current.update();
+          }
+        });
+      };
+      const handleClickEarth = () => {
+        gsap.to(controlsRef.current.target, {
+        duration: 2,
+          x: 24,
+          y: 0,
+          z: 0,
+          onUpdate: () => {
+            controlsRef.current.update();
+          }
+        });
+      };
+      const handleClickMars = () => {
+        gsap.to(controlsRef.current.target, {
+        duration: 2,
+          x: 30,
+          y: 0,
+          z: 0,
+          onUpdate: () => {
+            controlsRef.current.update();
+          }
+        });
+      };
+      const handleClickJupiter = () => {
+        gsap.to(controlsRef.current.target, {
+        duration: 2,
+          x: 39,
+          y: 0,
+          z: 0,
+          onUpdate: () => {
+            controlsRef.current.update();
+          }
+        });
+      };
+      const handleClickSaturn = () => {
+        gsap.to(controlsRef.current.target, {
+        duration: 2,
+          x: 50,
+          y: 0,
+          z: 0,
+          onUpdate: () => {
+            controlsRef.current.update();
+          }
+        });
+      };
+      const handleClickUranus = () => {
+        gsap.to(controlsRef.current.target, {
+        duration: 2,
+          x: 60,
+          y: 0,
+          z: 0,
+          onUpdate: () => {
+            controlsRef.current.update();
+          }
+        });
+      };
+      const handleClickNeptune = () => {
+        gsap.to(controlsRef.current.target, {
+        duration: 2,
+          x: 70,
+          y: 0,
+          z: 0,
+          onUpdate: () => {
+            controlsRef.current.update();
+          }
+        });
+      };
+
+    useFrame(() => {
+        controlsRef.current.update();
+    });
+
     return (
       <group {...props} dispose={null}>
         {isHoveredSun && <Html position={[sun.current.position]}><div id='containerSun'><h1 id='name'>The Sun</h1><p id='planet'>The sun is a star, a hot ball of glowing gases at the heart of our solar system. Its influence extends far beyond the orbits of distant Neptune and Pluto. Without the sun’s intense energy and heat, there would be no life on Earth. And though it is special to us, there are billions of stars like our sun scattered across the Milky Way galaxy. If the sun were as tall as a typical front door, the Earth would be the size of a U.S. nickel. The temperature at the sun’s core is about 27 million degrees Fahrenheit.</p></div></Html>}
@@ -135,44 +237,46 @@ export default function Planets(props) {
         {isHoveredSaturn && <Html position={[saturn.current.position]}><div id='containerSat'><h1 id='name'>Saturn</h1><p id='planet'>Saturn isn’t the only planet to have rings, but it definitely has the most beautiful ones. The rings we see are made of groups of tiny ringlets that surround Saturn. They’re made of chunks of ice and rock. Like Jupiter, Saturn is mostly a ball of hydrogen and helium.</p></div></Html>}
         {isHoveredUranus && <Html position={[uranus.current.position]}><div id='containerUra'><h1 id='name'>Uranus</h1><p id='planet'>Uranus is made of water, methane, and ammonia fluids above a small rocky center. Its atmosphere is made of hydrogen and helium like Jupiter and Saturn, but it also has methane. The methane makes Uranus blue. Uranus also has faint rings. The inner rings are narrow and dark. The outer rings are brightly colored and easier to see. Like Venus, Uranus rotates in the opposite direction as most other planets. And unlike any other planet, Uranus rotates on its side.</p></div></Html>}
         {isHoveredNeptune && <Html position={[neptune.current.position]}><div id='containerNep'><h1 id='name'>Neptune</h1><p id='planet'>Neptune is dark, cold, and very windy. It’s the last of the planets in our solar system. It’s more than 30 times as far from the Sun as Earth is. Neptune is very similar to Uranus. It’s made of a thick soup of water, ammonia, and methane over an Earth-sized solid center. Its atmosphere is made of hydrogen, helium, and methane. The methane gives Neptune the same blue color as Uranus. Neptune has six rings, but they’re very hard to see.</p></div></Html>}
-
-        <mesh ref={sun}>
+        
+        
+        {/*Create objects*/}
+        <mesh ref={sun} onClick={handleClickSun}>
         <Sphere args={[1,100,200]} scale={8} position={[0,0,0]}>
-                <meshStandardMaterial map={sunTexture}/>
+                <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/sunMap.jpg'))}/>
             </Sphere>
         </mesh>
        
-        <mesh ref={mercury}>
-            <Sphere args={[1,100,200]} scale={1} position={[12,0,0]}>
+        <mesh ref={mercury} onClick={handleClickMercury}>
+            <Sphere args={[1,100,200]} scale={0.7} position={[12,0,0]}>
                 <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/mercMap.jpg'))}/>
             </Sphere>
         </mesh>
     
-        <mesh ref={venus}>
-            <Sphere args={[1,100,200]} scale={1.2} position={[18,0,0]}>
+        <mesh ref={venus} onClick={handleClickVenus}>
+            <Sphere args={[1,100,200]} scale={1.1} position={[18,0,0]}>
                 <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/venusTexture.jpg'))}/>
             </Sphere>
         </mesh>
         
-        <mesh ref={earth}>
-            <Sphere args={[1,100,200]} scale={1.4} position={[24,0,0]}>
+        <mesh ref={earth} onClick={handleClickEarth}>
+            <Sphere args={[1,100,200]} scale={1.4} position={[24,0,0]} rotation={[-Math.PI / 2, 1.8, Math.PI / 2]}>
                 <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/EarthTexture.jpg'))}/>
             </Sphere>
         </mesh>
         
-        <mesh ref={mars}>
-            <Sphere args={[1,100,200]} scale={1.3} position={[30,0,0]}>
+        <mesh ref={mars} onClick={handleClickMars}>
+            <Sphere args={[1,100,200]} scale={1.3} position={[30,0,0]} rotation={[-Math.PI / 2, 1.8, Math.PI / 2]}>
                 <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/marsTexture.jpg'))}/>
             </Sphere>
         </mesh>
         
-        <mesh ref={jupiter}>
-            <Sphere args={[1,100,200]} scale={3.8} position={[39,0,0]}>
+        <mesh ref={jupiter} onClick={handleClickJupiter}>
+            <Sphere args={[1,100,200]} scale={3.8} position={[39,0,0]} >
                 <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/jupiterTexture.jpg'))}/>
             </Sphere>
         </mesh>
         
-        <mesh ref={saturn}>
+        <mesh ref={saturn} onClick={handleClickSaturn}>
             <Sphere args={[1,100,200]} scale={2.2} position={[50,0,0]} rotation={[-Math.PI / 2, 1, Math.PI / 2]}>
                 <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/saturnMap.jpg'))}/>
             </Sphere>
@@ -213,20 +317,30 @@ export default function Planets(props) {
             <Ring args={[4.4,4.5,100]} position={[50,0,0]} rotation={[-Math.PI / 2, 5.8, Math.PI / 2]}>
                 <meshStandardMaterial color={'#e7e9e0'}/>
             </Ring>
+        <mesh>
+            <Ring args={[4.7,4.8,100]} position={[50,0,0]} rotation={[-Math.PI / 2, 5.8, Math.PI / 2]}>
+                <meshStandardMaterial color={'#242424'}/>
+            </Ring>
+        </mesh>
         </mesh>
         <mesh>
-            <Ring args={[4.5,5,100]} position={[50,0,0]} rotation={[-Math.PI / 2, 5.8, Math.PI / 2]}>
+            <Ring args={[4.5,4.7,100]} position={[50,0,0]} rotation={[-Math.PI / 2, 5.8, Math.PI / 2]}>
+                <meshStandardMaterial color={'#494945'}/>
+            </Ring>
+        </mesh>
+        <mesh>
+            <Ring args={[4.8,5,100]} position={[50,0,0]} rotation={[-Math.PI / 2, 5.8, Math.PI / 2]}>
                 <meshStandardMaterial color={'#494945'}/>
             </Ring>
         </mesh>
         <mesh>
             <Ring args={[5,5.1,100]} position={[50,0,0]} rotation={[-Math.PI / 2, 5.8, Math.PI / 2]}>
-                <meshStandardMaterial color={'#390181'}/>
+                <meshStandardMaterial color={'#250061'}/>
             </Ring>
         </mesh>
         </group>
 
-        <mesh ref={uranus}>
+        <mesh ref={uranus} onClick={handleClickUranus}>
             <Sphere args={[1,100,200]} scale={1.8} position={[60,0,0]} rotation={[-Math.PI / 2, 0.16, Math.PI / 2]}>
                 <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/uranusTexture.jpg'))}/>
             </Sphere>
@@ -235,23 +349,23 @@ export default function Planets(props) {
         <group ref={uranusRings}>
         <mesh>
             <Ring args={[3.05,3.14,100]} position={[60,0,0]} rotation={[-Math.PI / 2, 4.8, Math.PI / 2]}>
-                <meshStandardMaterial color={'#8aedff61'} />
+                <meshStandardMaterial color={'#4b4b4b'} />
             </Ring>
         </mesh>
         <mesh>
             <Ring args={[3.4,3.47,100]} position={[60,0,0]} rotation={[-Math.PI / 2, 4.8, Math.PI / 2]}>
-                <meshStandardMaterial color={'#c3f0ea63'}/>
+                <meshStandardMaterial color={'#00ffdd'}/>
             </Ring>
         </mesh>
         <mesh>
-            <Ring args={[3.7,3.9,100]} position={[60,0,0]} rotation={[-Math.PI / 2, 4.8, Math.PI / 2]}>
-                <meshStandardMaterial color={'#98fcff'}/>
+            <Ring args={[3.7,3.75,100]} position={[60,0,0]} rotation={[-Math.PI / 2, 4.8, Math.PI / 2]}>
+                <meshStandardMaterial color={'#444444'}/>
             </Ring>
         </mesh>
         </group>
         
-        <mesh ref={neptune}>
-            <Sphere args={[1,100,200]} scale={1.8} position={[70,0,0]}>
+        <mesh ref={neptune} onClick={handleClickNeptune}>
+            <Sphere args={[1,100,200]} scale={1.8} position={[70,0,0]} rotation={[-Math.PI / 2, 1.3, Math.PI / 2]}>
                 <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/neptuneTexture.jpg'))}/>
             </Sphere>
         </mesh>
@@ -268,6 +382,7 @@ export default function Planets(props) {
             </Ring>
         </mesh>
         </group>
+        <OrbitControls ref={controlsRef} enablePan={false} args={[camera, gl.domElement]} />
       </group>
       
       

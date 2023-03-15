@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import { Canvas} from "@react-three/fiber";
 import { MeshDistortMaterial, OrbitControls, Sphere } from "@react-three/drei";
-import axios from "axios"
+import NewsList from "./newItems/NewsList";
 
 
 const Section = styled.div`
@@ -61,26 +61,10 @@ animation: animate 2s infinite ease alternate;
 `
 
 const News = () => {
-    const [articles, setArticles] = useState([]);
-
-    const getArticles = async () => {
-        try {
-            const res = await axios.get("https://localhost:4000");
-            setArticles(res.data);
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
-    useEffect (() => {
-        getArticles();
-    })
     return (
         <Section id ='News'>
             <Container>
                 <Left>
-                    <Title>News.</Title>
-                    <Dis>To be built.</Dis>
                 </Left>
                 <Right>
                 <Canvas camera={{fov:25, position: [5,5,5]}}>
