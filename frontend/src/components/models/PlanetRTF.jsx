@@ -1,14 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { MeshDistortMaterial, Ring, Sphere, Torus } from "@react-three/drei";
+import { Ring, Sphere } from "@react-three/drei";
 import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 import { useLoader, useThree } from '@react-three/fiber'
-import { TextureLoader } from 'three/src/loaders/TextureLoader'
-import { useGLTF} from '@react-three/drei'
 import {Html} from '@react-three/drei'
 import gsap from 'gsap'
 import {OrbitControls} from "@react-three/drei";
-import { useKeyPress } from 'react-use';
+import styled from "styled-components";
+import { Canvas } from '@react-three/fiber'
 
 import '/src/index.css'
 
@@ -214,6 +213,7 @@ export default function Planets(props) {
         uranus.current.rotation.y += 0.003;
         neptune.current.rotation.y += 0.0022;
 
+
       }
     });
 
@@ -234,6 +234,7 @@ export default function Planets(props) {
 
 
     return (
+      
       <group {...props} dispose={null}>
         {isHoveredSun && <Html position={[null]}><div id='containerSun'><h1 id='name'>The Sun</h1><p id='planet'>The sun is a star, a hot ball of glowing gases at the heart of our solar system. Its influence extends far beyond the orbits of distant Neptune and Pluto. Without the sun’s intense energy and heat, there would be no life on Earth. And though it is special to us, there are billions of stars like our sun scattered across the Milky Way galaxy. If the sun were as tall as a typical front door, the Earth would be the size of a U.S. nickel. The temperature at the sun’s core is about 27 million degrees Fahrenheit.</p></div></Html>}
         
@@ -253,51 +254,108 @@ export default function Planets(props) {
         
         {isHoveredNeptune && <Html position={[null]}><div id='containerNep'><h1 id='name'>Neptune</h1><p id='planet'>Neptune is dark, cold, and very windy. It’s the last of the planets in our solar system. It’s more than 30 times as far from the Sun as Earth is. Neptune is very similar to Uranus. It’s made of a thick soup of water, ammonia, and methane over an Earth-sized solid center. Its atmosphere is made of hydrogen, helium, and methane. The methane gives Neptune the same blue color as Uranus. Neptune has six rings, but they’re very hard to see.</p></div></Html>}
         
-        {isRotating && <Html position={[null]}><div id='rotateBox'><h1 id='speedDis'>Orbit Speeds</h1><p>Mercury - 47.87 km/s</p><br/><p>Venus- 35.02 km/s</p><br/><p>Earth- 29.78 km/s</p><br/><p>Mars - 24.077 km/s</p><br/><p>Jupiter - 13.07 km/s</p><br/><p>Saturn - 9.69 km/s</p><br/><p>Uranus - 6.81 km/s</p><br/><p>Neptune - 5.43 km/s</p></div></Html>}
+        {isRotating && <Html position={[null]}><div id='speedBox'><h1 id='speedDis'>Orbit Speeds</h1><p>Mercury - 47.87 km/s</p><br/><p>Venus- 35.02 km/s</p><br/><p>Earth- 29.78 km/s</p><br/><p>Mars - 24.077 km/s</p><br/><p>Jupiter - 13.07 km/s</p><br/><p>Saturn - 9.69 km/s</p><br/><p>Uranus - 6.81 km/s</p><br/><p>Neptune - 5.43 km/s</p></div></Html>}
         
         <Html position={[null]}><button id='refresh'  onClick={handleClick}>Reset Orbit Position</button></Html>
         <Html position={[null]}><button id='rotate'  onClick={handleRotateClick}>Toggle Orbit</button></Html>
         
         {/*Create objects*/}
-        <mesh ref={sun} onClick={handleClickSun}>
+        <group ref={sun}>
+        <mesh  onClick={handleClickSun}>
         <Sphere args={[1,100,200]} scale={8} position={[0,0,0]}>
                 <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/sunMap.jpg'))}/>
             </Sphere>
         </mesh>
+        <mesh onClick={handleClickSun}>
+        <Sphere args={[1,100,200]} scale={8.01} position={[0,0,0]}>
+                <meshPhysicalMaterial 
+                roughness={0} metalness={0} transmission={1}/>
+            </Sphere>
+        </mesh>
+        </group>
        
-        <mesh ref={mercury} onClick={handleClickMercury}>
+        <group ref={mercury}>
+        <mesh onClick={handleClickMercury}>
             <Sphere args={[1,100,200]} scale={0.7} position={[12,0,0]}>
                 <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/mercMap.jpg'))}/>
             </Sphere>
         </mesh>
+        <mesh onClick={handleClickMercury}>
+        <Sphere args={[1,100,200]} scale={0.701} position={[12,0,0]}>
+                <meshPhysicalMaterial 
+                roughness={0} metalness={0} transmission={1}/>
+            </Sphere>
+        </mesh>
+        </group>
     
-        <mesh ref={venus} onClick={handleClickVenus}>
+        <group ref={venus}>
+        <mesh onClick={handleClickVenus}>
             <Sphere args={[1,100,200]} scale={1.1} position={[18,0,0]}>
-                <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/venusTexture.jpg'))}/>
+                <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/venusAtmos.jpg'))}/>
             </Sphere>
         </mesh>
-        
-        <mesh ref={earth} onClick={handleClickEarth}>
+        <mesh onClick={handleClickVenus}>
+        <Sphere args={[1,100,200]} scale={1.101} position={[18,0,0]}>
+                <meshPhysicalMaterial 
+                roughness={0} metalness={0} transmission={1} />
+            </Sphere>
+        </mesh>
+        </group>
+    
+        <group ref={earth}>
+        <mesh onClick={handleClickEarth}>
             <Sphere args={[1,100,200]} scale={1.4} position={[24,0,0]} rotation={[-Math.PI / 2, 1.8, Math.PI / 2]}>
-                <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/EarthTexture.jpg'))}/>
+                <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/earthTexture.jpg'))}/>
             </Sphere>
         </mesh>
-        
-        <mesh ref={mars} onClick={handleClickMars}>
+        <mesh onClick={handleClickEarth}>
+        <Sphere args={[1,100,200]} scale={1.401} position={[24,0,0]}>
+                <meshPhysicalMaterial 
+                roughness={0} metalness={0} transmission={1}   clearcoat={0.5}/>
+            </Sphere>
+        </mesh>
+        </group>
+    
+        <group ref={mars}>
+        <mesh onClick={handleClickMars}>
             <Sphere args={[1,100,200]} scale={1.3} position={[30,0,0]} rotation={[-Math.PI / 2, 1.8, Math.PI / 2]}>
                 <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/marsTexture.jpg'))}/>
             </Sphere>
         </mesh>
-        
-        <mesh ref={jupiter} onClick={handleClickJupiter}>
-            <Sphere args={[1,100,200]} scale={3.8} position={[43,0,0]} >
+        <mesh onClick={handleClickMars}>
+        <Sphere args={[1,100,200]} scale={1.301} position={[30,0,0]}>
+                <meshPhysicalMaterial 
+                roughness={0} metalness={0} transmission={1}/>
+            </Sphere>
+        </mesh>
+        </group>
+
+
+        <group ref={jupiter}>
+        <mesh onClick={handleClickJupiter}>
+            <Sphere args={[1,100,200]} scale={3.8} position={[43,0,0]} rotation={[-Math.PI / 2, 1.8, Math.PI / 2]} >
                 <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/jupiterTexture.jpg'))}/>
             </Sphere>
         </mesh>
+        <mesh onClick={handleClickJupiter}>
+        <Sphere args={[1,100,200]} scale={3.802} position={[43,0,0]}>
+                <meshPhysicalMaterial 
+                roughness={0} metalness={0} transmission={1}/>
+            </Sphere>
+        </mesh>
+        </group>
+
+
         <group ref={saturn}>
         <mesh onClick={handleClickSaturn}>
             <Sphere args={[1,100,200]} scale={2.2} position={[64,0,0]} rotation={[-Math.PI / 2, 1, Math.PI / 2]}>
                 <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/saturnMap.jpg'))}/>
+            </Sphere>
+        </mesh>
+        <mesh onClick={handleClickSaturn}>
+        <Sphere args={[1,100,200]} scale={2.201} position={[64,0,0]}>
+                <meshPhysicalMaterial 
+                roughness={0} metalness={0} transmission={1}/>
             </Sphere>
         </mesh>
         
@@ -364,6 +422,12 @@ export default function Planets(props) {
                 <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/uranusTexture.jpg'))}/>
             </Sphere>
         </mesh>
+        <mesh onClick={handleClickUranus}>
+        <Sphere args={[1,100,200]} scale={1.805} position={[83,0,0]}>
+                <meshPhysicalMaterial 
+                roughness={0} metalness={0} transmission={1}/>
+            </Sphere>
+        </mesh>
         
         
         <mesh>
@@ -373,7 +437,7 @@ export default function Planets(props) {
         </mesh>
         <mesh>
             <Ring args={[3.4,3.47,100]} position={[83,0,0]} rotation={[-Math.PI / 2, 4.8, Math.PI / 2]}>
-                <meshStandardMaterial color={'#00ffdd'}/>
+                <meshStandardMaterial color={'#81f8e8'}/>
             </Ring>
         </mesh>
         <mesh>
@@ -386,6 +450,12 @@ export default function Planets(props) {
         <mesh onClick={handleClickNeptune}>
             <Sphere args={[1,100,200]} position={[100,0,0]} scale={1.8} rotation={[-Math.PI / 2, 1.3, Math.PI / 2]}>
                 <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/neptuneTexture.jpg'))}/>
+            </Sphere>
+        </mesh>
+        <mesh onClick={handleClickNeptune}>
+        <Sphere args={[1,100,200]} scale={1.801} position={[100,0,0]}>
+                <meshPhysicalMaterial 
+                roughness={0} metalness={0} transmission={1}/>
             </Sphere>
         </mesh>
 
@@ -402,7 +472,6 @@ export default function Planets(props) {
         </group>
         <OrbitControls ref={controlsRef} enablePan={false} args={[camera, gl.domElement]} />
       </group>
-      
-      
+
     )
   }

@@ -161,11 +161,11 @@ color:white;
 cursor: pointer;
 border: none;
 border-radius: 5px;
-width: 13vh;
+width: 15vh;
 padding-top:2px;
 padding-bottom: 2px;
 position: relative;
-left:86vh;
+left:83vh;
 top:5vh;
 font-size: small;
 }
@@ -176,7 +176,7 @@ font-size: small;
     cursor: pointer;
     border: none;
     border-radius: 5px;
-    width: 13vh;
+    width: 15vh;
     padding-top:2px;
     padding-bottom: 2px;
     position: relative;
@@ -185,9 +185,9 @@ font-size: small;
     font-size: small;
 }
 
-#rotateBox{
+#speedBox{
     height:25vh;
-    width: 18vh;
+    width: 20vh;
     position: relative;
     display: flex;
     flex-direction: column;

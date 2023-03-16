@@ -1,8 +1,8 @@
 import React, { useState, useRef } from "react";
 import emailjs from '@emailjs/browser';
 import styled from "styled-components";
-import { Canvas, useFrame} from "@react-three/fiber";
-import { MeshDistortMaterial, OrbitControls, Sphere } from "@react-three/drei";
+import { Canvas} from "@react-three/fiber";
+import { OrbitControls} from "@react-three/drei";
 import Earth from '../models/Earth'
 import Map from "../map/Map";
 
@@ -17,16 +17,25 @@ justify-content: space-between;
 const Container = styled.div`
 width:100%;
 height: 100%;
+width: 100vw;
 display:flex;
 justify-content: center;
-gap: 50px;
 
 `
 
 const Left = styled.div`
-flex: 1.75;
+flex: 1;
 align-items: center;
 position: relative;
+`
+const Center = styled.div`
+flex:1;
+position: relative;
+display:flex;
+justify-content: center;
+flex-direction: column;
+align-items: center;
+text-align: center;
 `
 
 const Title = styled.h1`
@@ -66,11 +75,8 @@ color: white;
 `
 
 const Right = styled.div`
-flex:3;
-align-items: center;
-display: flex;
- justify-content: flex-start;
- gap: 20px;
+flex:1;
+
 `
 
 
@@ -103,15 +109,15 @@ const Contact = () => {
                     <Earth/>
                 </Canvas>
                 </Left>
-                <Right>
-                    <Form ref={ref} onSubmit={handleSubmit}>
+                <Center><Form ref={ref} onSubmit={handleSubmit}>
                         <Title>Contact.</Title>
                         <Input placeholder="Name" name="name"></Input>
                         <Input placeholder="Email" name="email"></Input>
                         <Message placeholder="Message" name="message" rows={10}></Message>
                         <Button>Send</Button>
                         <Sent>{success && "Your message has been sent. We'll get back to you ASAP :)"}</Sent>
-                    </Form>
+                    </Form></Center>
+                <Right>
                     <Map/>
                 </Right>
             </Container>

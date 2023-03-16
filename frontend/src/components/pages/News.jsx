@@ -32,7 +32,7 @@ text-align: center;
 const Title = styled.h1`
 font-size:50px;
 font-weight: bold;
-padding-bottom: 30px;
+padding-bottom: 20px;
 `
 const Dis = styled.p`
 font-size:24px;

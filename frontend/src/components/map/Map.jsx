@@ -14,9 +14,9 @@ const Map = () => {
       projectionConfig={{
         rotate: [-10.0, -52.0, 0],
         center: [-6, -2],
-        scale: 1500
+        scale: 1600
       }}
-      style={{width:'70%', height:'100%'}}
+      style={{width:'100%', height:'100%'}}
     >
       <Geographies
         geography="src/assets/map/feature.json"

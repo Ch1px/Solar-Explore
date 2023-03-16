@@ -12,7 +12,8 @@ const Container = styled.div`
   padding: 0px !important;;
   margin: 0px !important;;
   height: 100vh;
-  width: 100vw;
+  width: auto;
+  align-items: center;
 
 `
 
@@ -31,21 +32,23 @@ const Explore = () => {
                             </p>
                         </div>
                     </Html>
-                    <rectAreaLight lookAt={[0,0,0]} color={'orange'} intensity={10} position={[0,0,9.8]}/>
+                    <rectAreaLight lookAt={[0,0,0]} color={'yellow'} intensity={10} position={[0,0,9.8]}/>
                     <rectAreaLight rotation={[3,0,0]} color={'orange'} intensity={10} position={[0,0,-9.8]}/>
-                    <rectAreaLight rotation={[-1.5,0,0]} color={'orange'} intensity={10} position={[0,9.8,0]}/>
+                    <rectAreaLight rotation={[-1.5,0,0]} color={'white'} intensity={20} position={[0,9.8,0]}/>
                     <rectAreaLight rotation={[0,2,0]} color={'orange'} intensity={10} position={[9.8,0,0]}/>
-                    <rectAreaLight rotation={[0,-1,0]} color={'orange'} intensity={10} position={[-9.8,0,0]}/>
-                    <rectAreaLight rotation={[1,0,0]} color={'orange'} intensity={10} position={[0,-9.8,0]}/>
-                    <ambientLight intensity={0.02}/>
-                    <pointLight position={[14,0,0]} intensity={0.3}/>
-                    <pointLight position={[0,0,14]} intensity={0.3}/>
-                    <pointLight position={[0,0,-14]} intensity={0.3}/>
-                    <pointLight position={[14,0,14]} intensity={0.3}/>
-                    <pointLight position={[-14,0,0]} intensity={0.3}/>
-                    <pointLight position={[-14,0,-14]} intensity={0.3}/>
-                    <pointLight position={[0,14,0]} intensity={0.3}/>
-                    <pointLight position={[0,-14,0]} intensity={0.3}/>
+                    <rectAreaLight rotation={[0,-1,0]} color={'white'} intensity={25} position={[-9.8,0,0]}/>
+                    <rectAreaLight rotation={[1,0,0]} color={'orange'} intensity={20} position={[0,-9.8,0]}/>
+
+                    <rectAreaLight rotation={[0,5,0]} color={'orange'} intensity={4} position={[9.8,0,0]}/>
+                    <rectAreaLight rotation={[0,2,0]} color={'orange'} intensity={4} position={[-9.8,0,0]}/>
+                    <rectAreaLight rotation={[0,3,0]} color={'orange'} intensity={4} position={[0,0,9.8]}/>
+                    <rectAreaLight rotation={[0,0,0]} color={'orange'} intensity={4} position={[0,0,-9.8]}/>
+
+                    <ambientLight intensity={0.04}/>
+                    <pointLight position={[9.8,0,0]} intensity={0.}/>
+                    <pointLight position={[0,0,9.8]} intensity={.02}/>
+                    <pointLight position={[0,0,-9.8]} intensity={0.2}/>
+                    <pointLight position={[-9.8,0,0]} intensity={0.2}/>
                     <Planet/>
                 </Canvas>
             </Container>
