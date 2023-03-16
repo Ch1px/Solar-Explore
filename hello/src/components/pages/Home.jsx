@@ -11,13 +11,24 @@ display:flex;
 flex-direction: column;
 align-items: center;
 justify-content: space-between;
+
+@media only screen and (max-width:820px){
+    height: 200vh;
+}
 `
 const Container = styled.div`
-height: 100vh;
+height: 100%;
 scroll-snap-align: center;
 width:1400px;
 display: flex;
 justify-content: space-between;
+@media only screen and (max-width:820px){
+    width:100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 600px;
+}
 `
 
 const Left = styled.div`
@@ -26,13 +37,26 @@ const Left = styled.div`
  flex-direction: column;
  justify-content: center;
  gap: 20px;
+ @media only screen and (max-width:820px){
+    align-items: center;
+    flex:1;
+}
 `
 const Title = styled.h1`
 font-size:74px;
+@media only screen and (max-width:820px){
+    text-align:center;
+    font-size: 50px;
+}
 
 `
 const Subtitle = styled.p`
 font-size: 24px;
+padding-bottom: 10px;
+@media only screen and (max-width:820px){
+    padding:20px;
+    text-align: center;
+}
 `
 
 const Button = styled.button`
@@ -48,6 +72,9 @@ padding:7px;
 const Right = styled.div`
 flex:3;
 position: relative;
+@media only screen and (max-width:820px){
+    flex:1;
+}
 `
 const Img = styled.img`
 object-fit: contain;
@@ -63,9 +90,14 @@ animation: animate 2s infinite ease alternate;
 
 @keyframes animate {
     to{
-        transform: translateY(50px);
+        transform: translateY(20px);
     }
 }
+@media only screen and (max-width:820px){
+    width: 300px;
+    height:300px;
+}
+
 
 `
 
@@ -81,14 +113,14 @@ const Home = () => {
             <Container>
                 <Left>
                     <Title>Explore. Learn. Interact.</Title>
-                    <Subtitle>Immerse yourself in a 3-Dimensional space of our own Solar System.</Subtitle>
+                    <Subtitle>Prepare for lift off and immerse yourself in a 3-Dimensional space of our own Solar System.</Subtitle>
                     <Button><a href="#About" onClick={scrollToSection}>Learn more</a></Button>
                 </Left>
                 <Right>
                     <Canvas camera={{fov:25, position: [5,5,5]}}>
                         <ambientLight intensity={1}/>
                         <directionalLight position={[3,2,1]}/>
-                        <Sphere args={[1,100,200]} scale={1.3}>
+                        <Sphere args={[1,100,200]} scale={1}>
                         <MeshDistortMaterial color="#751947" attach="material" distort={0.5} speed={2}/>
                         </Sphere>
                     </Canvas>

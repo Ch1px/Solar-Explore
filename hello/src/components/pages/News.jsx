@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import { Canvas} from "@react-three/fiber";
 import { MeshDistortMaterial, OrbitControls, Sphere } from "@react-three/drei";
-import NewsList from "./newItems/NewsList";
+import NewsList from "../newItems/NewsList";
 
 
 const Section = styled.div`
@@ -14,20 +14,20 @@ align-items: center;
 justify-content: space-between;
 `
 const Container = styled.div`
-height: 100vh;
-scroll-snap-align: center;
-width:1400px;
-display: flex;
-justify-content: space-between;
+width:100%;
+height: 100%;
+display:flex;
+justify-content: center;
+gap: 50px;
+padding-left: 20px;
 `
 
 const Left = styled.div`
-flex:2;
+flex:3;
 position: relative;
 display: flex;
- flex-direction: column;
- justify-content: center;
- gap: 20px;
+align-items: center;
+justify-content: center;
 `
 const Title = styled.h1`
 font-size:74px;
@@ -37,8 +37,15 @@ font-size:24px;
 `
 
 const Right = styled.div`
-flex:3;
+flex:2;
 position: relative;
+`
+
+const Iframe = styled.iframe`
+height: 900px;
+width: 100%;
+opacity: 90%;
+
 `
 
 const News = () => {
@@ -46,7 +53,7 @@ const News = () => {
         <Section id ='News'>
             <Container>
                 <Left>
-                    <p>News<br/>To be built</p>
+                    <Iframe src="https://www.universetoday.com/" />
                 </Left>
                 <Right>
                 </Right>

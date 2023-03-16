@@ -1,10 +1,10 @@
 import React from "react";
-import Home from "./components/Home"
-import About from "./components/About";
-import Contact from "./components/Contact";
-import Explore from "./components/Explore";
-import News from "./components/News";
-import NavBar from "./components/NavBar";
+import Home from "./components/pages/Home"
+import About from "./components/pages/About";
+import Contact from "./components/pages/Contact";
+import Explore from "./components/pages/Explore";
+import News from "./components/pages/News";
+import NavBar from "./components/navbar/NavBar";
 import styled from 'styled-components';
 import './index.css'
 

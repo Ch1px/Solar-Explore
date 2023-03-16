@@ -1,9 +1,8 @@
 import React, {useRef}from "react";
 import styled from "styled-components";
 import { Canvas } from '@react-three/fiber'
-import Planet from './PlanetRTF'
+import Planet from '../models/PlanetRTF'
 import { Html } from "@react-three/drei";
-
 
 const Section = styled.div`
 height: 100vh;
@@ -14,39 +13,21 @@ const Container = styled.div`
   margin: 0px !important;;
   height: 100vh;
   width: 100vw;
-  background-color: black;
-`
-const P = styled.p`
-font-size: 12px;
- padding-top:40px;
- padding-left: 20px;
- display: flex;
- flex:1;
- justify-content: flex-start;
-`
-const P2 = styled.p`
-font-size: 14px;
- display: flex;
- align-items: center;
- justify-content: center;
- top: 0px;
- left: 0px;
 `
 
 const Explore = () => {
-    const controlsRef = useRef();
     return (
         <Section id='Explore'>
             <Container>
-                <Canvas camera={{fov:50, position: [-30,0,65]}}>
+                <Canvas camera={{fov:50, position: [-30,0,65]}} style={{background: '#040005'}}>
                     <Html position={[null]}><div id='titleContainer'><h1 id='solarTitle'>Solar Explore</h1></div></Html>
                     <Html position={[null]}>
                         <div id = 'containerText'>
                             <p>- Scroll to Zoom
+                            <br/>- Hover mouse over planets to learn some facts!
                             <br/>- Click on planet to focus
                             <br/>- Press 'O' to toggle Planet Orbit
-                            <br/>- Click 'The Sun' to center the camera
-                            <br/>- Hover mouse over planets to learn some facts!
+                            <br/>- Click 'The Sun' to recenter the camera
                             </p>
                         </div>
                     </Html>

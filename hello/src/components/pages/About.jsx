@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Canvas, useFrame} from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
-import Space from './SpaceBoy'
+import Space from '../models/SpaceBoy'
 
 const Section = styled.div`
 height: 100vh;
@@ -11,6 +11,9 @@ display:flex;
 flex-direction: column;
 align-items: center;
 justify-content: space-between;
+@media only screen and (max-width:820px){
+    height: 200vh;
+}
 `
 const Container = styled.div`
 height: 100vh;
@@ -18,26 +21,44 @@ scroll-snap-align: center;
 width:1400px;
 display: flex;
 justify-content: space-between;
+@media only screen and (max-width:820px){
+    width: '100%';
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 `
 
 const Left = styled.div`
 flex:3;
-position: relative;
+@media only screen and (max-width:820px){
+    display: none;
+}
 `
 const Title = styled.h1`
-font-size:74px;
+    font-size:74px;
+@media only screen and (max-width:820px){
+    font-size: 50px;
+}
 `
 const Disc = styled.div`
 font-size:24px;
+@media only screen and (max-width:820px){
+
+}
 `
 
 const Right = styled.div`
 flex:2;
 position: relative;
 display: flex;
- flex-direction: column;
- justify-content: center;
- gap: 20px;
+flex-direction: column;
+justify-content: center;
+gap: 20px;
+@media only screen and (max-width:820px){
+    align-items: center;
+    text-align: center;
+}
 `
 
 const Img = styled.img`
@@ -54,6 +75,9 @@ animation: animate 1s infinite ease alternate;
         transform: translateY(5px);
     }
 }
+@media only screen and (max-width:820px){
+    display: none;
+}
 
 `
 const ImgDis = styled.p`
@@ -68,6 +92,9 @@ animation: animate 1s infinite ease alternate;
     to{
         transform: translateY(5px);
     }
+}
+@media only screen and (max-width:820px){
+    display: none;
 }
 
 `

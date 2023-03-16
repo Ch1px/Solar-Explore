@@ -3,7 +3,8 @@ import emailjs from '@emailjs/browser';
 import styled from "styled-components";
 import { Canvas, useFrame} from "@react-three/fiber";
 import { MeshDistortMaterial, OrbitControls, Sphere } from "@react-three/drei";
-import Earth from './Earth'
+import Earth from '../models/Earth'
+import Map from "../map/Map";
 
 const Section = styled.div`
 height: 100vh;
@@ -23,7 +24,7 @@ gap: 50px;
 `
 
 const Left = styled.div`
-flex: 2;
+flex: 1.75;
 align-items: center;
 position: relative;
 `
@@ -65,8 +66,7 @@ color: white;
 `
 
 const Right = styled.div`
-flex:2;
-
+flex:3;
 align-items: center;
 display: flex;
  justify-content: flex-start;
@@ -112,6 +112,7 @@ const Contact = () => {
                         <Button>Send</Button>
                         <Sent>{success && "Your message has been sent. We'll get back to you ASAP :)"}</Sent>
                     </Form>
+                    <Map/>
                 </Right>
             </Container>
         </Section>
