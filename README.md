@@ -14,3 +14,8 @@ npm install
 
 To run the website use:
 npm run dev
+
+
+  var loader = document.getElementById('preloader');
+  window.addEventListener("load", function(){
+  loader.style.display = "none";
