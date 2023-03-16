@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Canvas } from "@react-three/fiber";
-import { MeshDistortMaterial, Sphere } from "@react-three/drei";
+import SphereDistort from "../models/sphereDistort";
 
 
 const Section = styled.div`
@@ -117,13 +116,7 @@ const Home = () => {
                     <Button><a href="#About" onClick={scrollToSection}>Learn more</a></Button>
                 </Left>
                 <Right>
-                    <Canvas camera={{fov:25, position: [5,5,5]}}>
-                        <ambientLight intensity={1}/>
-                        <directionalLight position={[3,2,1]}/>
-                        <Sphere args={[1,100,200]} scale={1}>
-                        <MeshDistortMaterial color="#751947" attach="material" distort={0.5} speed={2}/>
-                        </Sphere>
-                    </Canvas>
+                    <SphereDistort/>
                     <Img src="/src/assets/img/astroBook.png"/>
                 </Right>
             </Container>
