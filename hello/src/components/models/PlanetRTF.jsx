@@ -148,7 +148,7 @@ export default function Planets(props) {
     const handleClickJupiter = () => {
       gsap.to(controlsRef.current.target, {
       duration: 2,
-        x: 39,
+        x: 43,
         y: 0,
         z: 0,
         onUpdate: () => {
@@ -159,7 +159,7 @@ export default function Planets(props) {
     const handleClickSaturn = () => {
       gsap.to(controlsRef.current.target, {
       duration: 2,
-        x: 50,
+        x: 64,
         y: 0,
         z: 0,
         onUpdate: () => {
@@ -170,7 +170,7 @@ export default function Planets(props) {
     const handleClickUranus = () => {
       gsap.to(controlsRef.current.target, {
       duration: 2,
-        x: 70,
+        x: 83,
         y: 0,
         z: 0,
         onUpdate: () => {
@@ -181,7 +181,7 @@ export default function Planets(props) {
     const handleClickNeptune = () => {
       gsap.to(controlsRef.current.target, {
       duration: 2,
-        x: 70,
+        x: 100,
         y: 0,
         z: 0,
         onUpdate: () => {
@@ -244,7 +244,7 @@ export default function Planets(props) {
         {isHoveredSaturn && <Html position={[null]}><div id='containerSat'><h1 id='name'>Saturn</h1><p id='planet'>Saturn isn’t the only planet to have rings, but it definitely has the most beautiful ones. The rings we see are made of groups of tiny ringlets that surround Saturn. They’re made of chunks of ice and rock. Like Jupiter, Saturn is mostly a ball of hydrogen and helium.</p></div></Html>}
         {isHoveredUranus && <Html position={[null]}><div id='containerUra'><h1 id='name'>Uranus</h1><p id='planet'>Uranus is made of water, methane, and ammonia fluids above a small rocky center. Its atmosphere is made of hydrogen and helium like Jupiter and Saturn, but it also has methane. The methane makes Uranus blue. Uranus also has faint rings. The inner rings are narrow and dark. The outer rings are brightly colored and easier to see. Like Venus, Uranus rotates in the opposite direction as most other planets. And unlike any other planet, Uranus rotates on its side.</p></div></Html>}
         {isHoveredNeptune && <Html position={[null]}><div id='containerNep'><h1 id='name'>Neptune</h1><p id='planet'>Neptune is dark, cold, and very windy. It’s the last of the planets in our solar system. It’s more than 30 times as far from the Sun as Earth is. Neptune is very similar to Uranus. It’s made of a thick soup of water, ammonia, and methane over an Earth-sized solid center. Its atmosphere is made of hydrogen, helium, and methane. The methane gives Neptune the same blue color as Uranus. Neptune has six rings, but they’re very hard to see.</p></div></Html>}
-        <Html position={[null]}><button id='refresh'  onClick={handleClick}>Reset Position</button></Html>
+        <Html position={[null]}><button id='refresh'  onClick={handleClick}>Reset Orbit Position</button></Html>
         
         {/*Create objects*/}
         <mesh ref={sun} onClick={handleClickSun}>
