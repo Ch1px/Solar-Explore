@@ -317,7 +317,7 @@ export default function Planets(props) {
         <group ref={saturn}>
         <mesh onClick={handleClickSaturn}>
             <Sphere args={[1,80,80]} scale={2.2} position={[64,0,0]} rotation={[-Math.PI / 2, 1, Math.PI / 2]}>
-                <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/saturnMap.jpg'))}/>
+                <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/2k_saturn.jpg'))}/>
             </Sphere>
         </mesh>
         

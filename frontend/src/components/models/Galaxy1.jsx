@@ -17,7 +17,7 @@ export default function Model(props) {
   const { actions } = useAnimations(animations, group)
 
   useFrame(() => {
-    group.current.rotation.y += 0.003;
+    group.current.rotation.y += 0.002;
   })
   return (
     <group ref={group} {...props} dispose={null}>
