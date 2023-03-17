@@ -2,8 +2,7 @@ import RSSParser from "rss-parser"
 import cors from "cors"
 import express from "express"
 
-const feedURL1 = "https://www.nasa.gov/rss/dyn/solar_system.rss";
-const feedURL2 = "https://www.nasa.gov/rss/dyn/earth.rss";
+const feedURL1 = "https://www.space.com/feeds/all";
 
 const parser = new RSSParser();
 let articles = [];
@@ -16,7 +15,7 @@ const parse = async url => {
     })
 }
 
-parse(feedURL1, feedURL2);
+parse(feedURL1);
 
 let app = express();
 app.use(cors());
