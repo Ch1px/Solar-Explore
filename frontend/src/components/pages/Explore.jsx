@@ -12,7 +12,7 @@ scroll-snap-align: center;
 const Container = styled.div`
   padding: 0px !important;;
   margin: 0px !important;;
-  height: 100vh;
+  height: 100%;
   width: auto;
   align-items: center;
 

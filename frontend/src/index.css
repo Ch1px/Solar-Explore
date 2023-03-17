@@ -1,6 +1,4 @@
-* {
-    font: Verdana, Arial, 'sans-serif' !important;/* <-- fonts */
-}
+
 #preloader{
     position: fixed;
     top:0;
@@ -202,4 +200,7 @@ font-size: small;
 #speedDis{
     font-weight: bold;
     padding-bottom: 10px;
+}
+#speed{
+    padding-bottom: 5px;
 }

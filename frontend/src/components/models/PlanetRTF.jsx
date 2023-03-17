@@ -252,7 +252,7 @@ export default function Planets(props) {
         
         {isHoveredNeptune && <Html position={[null]}><div id='containerNep'><h1 id='name'>Neptune</h1><p id='planet'>Neptune is dark, cold, and very windy. It’s the last of the planets in our solar system. It’s more than 30 times as far from the Sun as Earth is. Neptune is very similar to Uranus. It’s made of a thick soup of water, ammonia, and methane over an Earth-sized solid center. Its atmosphere is made of hydrogen, helium, and methane. The methane gives Neptune the same blue color as Uranus. Neptune has six rings, but they’re very hard to see.</p></div></Html>}
         
-        {isRotating && <Html position={[null]}><div id='speedBox'><h1 id='speedDis'>Orbit Speeds</h1><p>Mercury - 47.87 km/s</p><br/><p>Venus- 35.02 km/s</p><br/><p>Earth- 29.78 km/s</p><br/><p>Mars - 24.077 km/s</p><br/><p>Jupiter - 13.07 km/s</p><br/><p>Saturn - 9.69 km/s</p><br/><p>Uranus - 6.81 km/s</p><br/><p>Neptune - 5.43 km/s</p></div></Html>}
+        {isRotating && <Html position={[null]}><div id='speedBox'><h1 id='speedDis'>Orbit Speeds</h1><p id="speed">Mercury - 47.87 km/s</p><p id="speed">Venus- 35.02 km/s</p><p id="speed">Earth- 29.78 km/s</p><p id="speed">Mars - 24.077 km/s</p><p id="speed">Jupiter - 13.07 km/s</p><p id="speed">Saturn - 9.69 km/s</p><p id="speed">Uranus - 6.81 km/s</p><p id="speed">Neptune - 5.43 km/s</p></div></Html>}
         
         <Html position={[null]}><button id='refresh'  onClick={handleClick}>Reset Orbit Position</button></Html>
         <Html position={[null]}><button id='rotate'  onClick={handleRotateClick}>Toggle Orbit</button></Html>
