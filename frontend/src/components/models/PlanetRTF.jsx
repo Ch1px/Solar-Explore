@@ -291,7 +291,7 @@ export default function Planets(props) {
         <group ref={earth}>
         <mesh onClick={handleClickEarth}>
             <Sphere args={[1,80,80]} scale={1.4} position={[24,0,0]} rotation={[-Math.PI / 2, 1.8, Math.PI / 2]}>
-                <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/earthTexture.jpg'))}/>
+                <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/EarthTexture.jpg'))}/>
             </Sphere>
         </mesh>
         </group>
