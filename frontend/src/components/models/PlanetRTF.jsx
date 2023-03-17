@@ -204,16 +204,14 @@ export default function Planets(props) {
       if (isRotating) {
         //set relative orbit speed
         sun.current.rotation.y += 0.0009;
-        mercury.current.rotation.y += 0.020;
+        mercury.current.rotation.y += 0.04;
         venus.current.rotation.y += 0.014;
-        earth.current.rotation.y += 0.012;
-        mars.current.rotation.y += 0.0105;
-        jupiter.current.rotation.y += 0.005;
-        saturn.current.rotation.y += 0.004;
-        uranus.current.rotation.y += 0.003;
-        neptune.current.rotation.y += 0.0022;
-
-
+        earth.current.rotation.y += 0.008;
+        mars.current.rotation.y += 0.002;
+        jupiter.current.rotation.y += 0.0009;
+        saturn.current.rotation.y += 0.0004;
+        uranus.current.rotation.y += 0.0001;
+        neptune.current.rotation.y += 0.00007;
       }
     });
 
@@ -262,70 +260,46 @@ export default function Planets(props) {
         {/*Create objects*/}
         <group ref={sun}>
         <mesh  onClick={handleClickSun}>
-        <Sphere args={[1,100,200]} scale={8} position={[0,0,0]}>
+        <Sphere args={[1,80,80]} scale={8} position={[0,0,0]}>
                 <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/sunMap.jpg'))}/>
             </Sphere>
         </mesh>
         <mesh onClick={handleClickSun}>
-        <Sphere args={[1,100,200]} scale={8.01} position={[0,0,0]}>
+        <Sphere args={[1,80,80]} scale={8.1} position={[0,0,0]}>
                 <meshPhysicalMaterial 
-                roughness={0} metalness={0} transmission={1}/>
+                roughness={0} reflectivity={1} metalness={0} transmission={1} clearcoat={1} clearcoatRoughness={0} ior={1}/>
             </Sphere>
         </mesh>
         </group>
        
         <group ref={mercury}>
         <mesh onClick={handleClickMercury}>
-            <Sphere args={[1,100,200]} scale={0.7} position={[12,0,0]}>
+            <Sphere args={[1,80,80]} scale={0.7} position={[12,0,0]}>
                 <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/mercMap.jpg'))}/>
-            </Sphere>
-        </mesh>
-        <mesh onClick={handleClickMercury}>
-        <Sphere args={[1,100,200]} scale={0.701} position={[12,0,0]}>
-                <meshPhysicalMaterial 
-                roughness={0} metalness={0} transmission={1}/>
             </Sphere>
         </mesh>
         </group>
     
         <group ref={venus}>
         <mesh onClick={handleClickVenus}>
-            <Sphere args={[1,100,200]} scale={1.1} position={[18,0,0]}>
+            <Sphere args={[1,80,80]} scale={1.1} position={[18,0,0]}>
                 <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/venusAtmos.jpg'))}/>
-            </Sphere>
-        </mesh>
-        <mesh onClick={handleClickVenus}>
-        <Sphere args={[1,100,200]} scale={1.101} position={[18,0,0]}>
-                <meshPhysicalMaterial 
-                roughness={0} metalness={0} transmission={1} />
             </Sphere>
         </mesh>
         </group>
     
         <group ref={earth}>
         <mesh onClick={handleClickEarth}>
-            <Sphere args={[1,100,200]} scale={1.4} position={[24,0,0]} rotation={[-Math.PI / 2, 1.8, Math.PI / 2]}>
+            <Sphere args={[1,80,80]} scale={1.4} position={[24,0,0]} rotation={[-Math.PI / 2, 1.8, Math.PI / 2]}>
                 <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/earthTexture.jpg'))}/>
-            </Sphere>
-        </mesh>
-        <mesh onClick={handleClickEarth}>
-        <Sphere args={[1,100,200]} scale={1.401} position={[24,0,0]}>
-                <meshPhysicalMaterial 
-                roughness={0} metalness={0} transmission={1}   clearcoat={0.5}/>
             </Sphere>
         </mesh>
         </group>
     
         <group ref={mars}>
         <mesh onClick={handleClickMars}>
-            <Sphere args={[1,100,200]} scale={1.3} position={[30,0,0]} rotation={[-Math.PI / 2, 1.8, Math.PI / 2]}>
+            <Sphere args={[1,80,80]} scale={1.3} position={[30,0,0]} rotation={[-Math.PI / 2, 1.8, Math.PI / 2]}>
                 <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/marsTexture.jpg'))}/>
-            </Sphere>
-        </mesh>
-        <mesh onClick={handleClickMars}>
-        <Sphere args={[1,100,200]} scale={1.301} position={[30,0,0]}>
-                <meshPhysicalMaterial 
-                roughness={0} metalness={0} transmission={1}/>
             </Sphere>
         </mesh>
         </group>
@@ -333,14 +307,8 @@ export default function Planets(props) {
 
         <group ref={jupiter}>
         <mesh onClick={handleClickJupiter}>
-            <Sphere args={[1,100,200]} scale={3.8} position={[43,0,0]} rotation={[-Math.PI / 2, 1.8, Math.PI / 2]} >
+            <Sphere args={[1,80,80]} scale={3.8} position={[43,0,0]} rotation={[-Math.PI / 2, 1.8, Math.PI / 2]} >
                 <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/jupiterTexture.jpg'))}/>
-            </Sphere>
-        </mesh>
-        <mesh onClick={handleClickJupiter}>
-        <Sphere args={[1,100,200]} scale={3.802} position={[43,0,0]}>
-                <meshPhysicalMaterial 
-                roughness={0} metalness={0} transmission={1}/>
             </Sphere>
         </mesh>
         </group>
@@ -348,125 +316,107 @@ export default function Planets(props) {
 
         <group ref={saturn}>
         <mesh onClick={handleClickSaturn}>
-            <Sphere args={[1,100,200]} scale={2.2} position={[64,0,0]} rotation={[-Math.PI / 2, 1, Math.PI / 2]}>
+            <Sphere args={[1,80,80]} scale={2.2} position={[64,0,0]} rotation={[-Math.PI / 2, 1, Math.PI / 2]}>
                 <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/saturnMap.jpg'))}/>
-            </Sphere>
-        </mesh>
-        <mesh onClick={handleClickSaturn}>
-        <Sphere args={[1,100,200]} scale={2.201} position={[64,0,0]}>
-                <meshPhysicalMaterial 
-                roughness={0} metalness={0} transmission={1}/>
             </Sphere>
         </mesh>
         
 
         <mesh>
             <Ring args={[3,3.2,100]} position={[64,0,0]} rotation={[-Math.PI / 2, 5.8, Math.PI / 2]}>
-                <meshStandardMaterial color={'#696b58'}/>
+                <meshStandardMaterial color={'#4f5048'} side={THREE.DoubleSide}/>
             </Ring>
         </mesh>
         <mesh>
-            <Ring args={[3.5,3.6,100]} position={[64,0,0]} rotation={[-Math.PI / 2, 5.8, Math.PI / 2]}>
-                <meshStandardMaterial color={'#e0e4c0'}/>
+            <Ring args={[3.3,3.6,100]} position={[64,0,0]} rotation={[-Math.PI / 2, 5.8, Math.PI / 2]}>
+                <meshStandardMaterial color={'#8f9183'}side={THREE.DoubleSide}/>
             </Ring>
         </mesh>
         <mesh>
-            <Ring args={[3.7,4.2,100]} position={[64,0,0]} rotation={[-Math.PI / 2, 5.8, Math.PI / 2]}>
-                <meshStandardMaterial color={'#60615b'}/>
+            <Ring args={[3.7,3.8,100]} position={[64,0,0]} rotation={[-Math.PI / 2, 5.8, Math.PI / 2]}>
+                <meshStandardMaterial color={'#60615b'}side={THREE.DoubleSide}/>
             </Ring>
         </mesh>
         <mesh>
             <Ring args={[3.8,3.9,100]} position={[64,0,0]} rotation={[-Math.PI / 2, 5.8, Math.PI / 2]}>
-                <meshStandardMaterial color={'#494945'}/>
+                <meshStandardMaterial color={'#494945'}side={THREE.DoubleSide}/>
             </Ring>
         </mesh>
         <mesh>
-            <Ring args={[4,4.1,100]} position={[64,0,0]} rotation={[-Math.PI / 2, 5.8, Math.PI / 2]}>
-                <meshStandardMaterial color={'#150061'}/>
+            <Ring args={[4,4.05,100]} position={[64,0,0]} rotation={[-Math.PI / 2, 5.8, Math.PI / 2]}>
+                <meshStandardMaterial color={'#130047'}side={THREE.DoubleSide}/>
             </Ring>
         </mesh>
         <mesh>
             <Ring args={[4.2,4.3,100]} position={[64,0,0]} rotation={[-Math.PI / 2, 5.8, Math.PI / 2]}>
-                <meshStandardMaterial color={'#64645f'}/>
+                <meshStandardMaterial color={'#64645f'}side={THREE.DoubleSide}/>
             </Ring>
         </mesh>
         <mesh>
             <Ring args={[4.4,4.5,100]} position={[64,0,0]} rotation={[-Math.PI / 2, 5.8, Math.PI / 2]}>
-                <meshStandardMaterial color={'#e7e9e0'}/>
+                <meshStandardMaterial color={'#e7e9e0'}side={THREE.DoubleSide}/>
             </Ring>
         <mesh>
             <Ring args={[4.7,4.8,100]} position={[64,0,0]} rotation={[-Math.PI / 2, 5.8, Math.PI / 2]}>
-                <meshStandardMaterial color={'#242424'}/>
+                <meshStandardMaterial color={'#242424'}side={THREE.DoubleSide}/>
             </Ring>
         </mesh>
         </mesh>
         <mesh>
             <Ring args={[4.5,4.7,100]} position={[64,0,0]} rotation={[-Math.PI / 2, 5.8, Math.PI / 2]}>
-                <meshStandardMaterial color={'#494945'}/>
+                <meshStandardMaterial color={'#494945'}side={THREE.DoubleSide}/>
             </Ring>
         </mesh>
         <mesh>
             <Ring args={[4.8,5,100]} position={[64,0,0]} rotation={[-Math.PI / 2, 5.8, Math.PI / 2]}>
-                <meshStandardMaterial color={'#494945'}/>
+                <meshStandardMaterial color={'#494945'}side={THREE.DoubleSide}/>
             </Ring>
         </mesh>
         <mesh>
-            <Ring args={[5,5.1,100]} position={[64,0,0]} rotation={[-Math.PI / 2, 5.8, Math.PI / 2]}>
-                <meshStandardMaterial color={'#250061'}/>
+            <Ring args={[5,5.05,100]} position={[64,0,0]} rotation={[-Math.PI / 2, 5.8, Math.PI / 2]}>
+                <meshStandardMaterial color={'#250061'}side={THREE.DoubleSide}/>
             </Ring>
         </mesh>
         </group>
         <group ref={uranus}>
         <mesh onClick={handleClickUranus}>
-            <Sphere args={[1,100,200]} scale={1.8} position={[83,0,0]} rotation={[-Math.PI / 2, 0.16, Math.PI / 2]}>
+            <Sphere args={[1,80,80]} scale={1.8} position={[83,0,0]} rotation={[-Math.PI / 2, 0.16, Math.PI / 2]}>
                 <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/uranusTexture.jpg'))}/>
-            </Sphere>
-        </mesh>
-        <mesh onClick={handleClickUranus}>
-        <Sphere args={[1,100,200]} scale={1.805} position={[83,0,0]}>
-                <meshPhysicalMaterial 
-                roughness={0} metalness={0} transmission={1}/>
             </Sphere>
         </mesh>
         
         
         <mesh>
             <Ring args={[3.05,3.14,100]} position={[83,0,0]} rotation={[-Math.PI / 2, 4.8, Math.PI / 2]}>
-                <meshStandardMaterial color={'#4b4b4b'} />
+                <meshStandardMaterial color={'#4b4b4b'}side={THREE.DoubleSide} />
             </Ring>
         </mesh>
         <mesh>
             <Ring args={[3.4,3.47,100]} position={[83,0,0]} rotation={[-Math.PI / 2, 4.8, Math.PI / 2]}>
-                <meshStandardMaterial color={'#81f8e8'}/>
+                <meshStandardMaterial color={'#81f8e8'}side={THREE.DoubleSide}/>
             </Ring>
         </mesh>
         <mesh>
             <Ring args={[3.7,3.75,100]} position={[83,0,0]} rotation={[-Math.PI / 2, 4.8, Math.PI / 2]}>
-                <meshStandardMaterial color={'#444444'}/>
+                <meshStandardMaterial color={'#444444'}side={THREE.DoubleSide}/>
             </Ring>
         </mesh>
         </group>
         <group ref={neptune}>
         <mesh onClick={handleClickNeptune}>
-            <Sphere args={[1,100,200]} position={[100,0,0]} scale={1.8} rotation={[-Math.PI / 2, 1.3, Math.PI / 2]}>
+            <Sphere args={[1,80,80]} position={[100,0,0]} scale={1.8} rotation={[-Math.PI / 2, 1.3, Math.PI / 2]}>
                 <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/neptuneTexture.jpg'))}/>
-            </Sphere>
-        </mesh>
-        <mesh onClick={handleClickNeptune}>
-        <Sphere args={[1,100,200]} scale={1.801} position={[100,0,0]}>
-                <meshPhysicalMaterial 
-                roughness={0} metalness={0} transmission={1}/>
             </Sphere>
         </mesh>
 
         <mesh>
             <Ring args={[3.4,3.45,100]} position={[100,0,0]} rotation={[-Math.PI / 2, 6.1, Math.PI / 2]}>
-                <meshStandardMaterial color={'#383838'} opacity={'0.5'}/>
+                <meshStandardMaterial color={'#383838'} opacity={'0.5'}side={THREE.DoubleSide}/>
             </Ring>
         </mesh>
         <mesh>
             <Ring args={[3.6,3.65,100]} position={[100,0,0]} rotation={[-Math.PI / 2, 6.1, Math.PI / 2]}>
-                <meshStandardMaterial color={'#313131'}opacity={'0.5'}/>
+                <meshStandardMaterial color={'#313131'}opacity={'0.5'}side={THREE.DoubleSide}/>
             </Ring>
         </mesh>
         </group>

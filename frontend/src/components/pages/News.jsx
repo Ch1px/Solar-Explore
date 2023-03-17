@@ -1,9 +1,7 @@
 import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import { Canvas} from "@react-three/fiber";
-import { MeshDistortMaterial, OrbitControls, Sphere } from "@react-three/drei";
 import Articles from "../newItems/Articles";
-
 
 const Section = styled.div`
 height: 100vh;

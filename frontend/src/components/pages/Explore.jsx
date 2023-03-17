@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Canvas } from '@react-three/fiber'
 import Planet from '../models/PlanetRTF'
 import { Html } from "@react-three/drei";
+import SunLight from "../models/sunlight";
 
 const Section = styled.div`
 height: 100vh;
@@ -21,7 +22,7 @@ const Explore = () => {
     return (
         <Section id='Explore'>
             <Container>
-                <Canvas camera={{fov:50, position: [-30,0,65]}} style={{background: '#040005'}}>
+                <Canvas camera={{fov:15, position: [-30,0,150]}} style={{background: '#040005'}}>
                     <Html position={[null]}><div id='titleContainer'><h1 id='solarTitle'>Solar Explore</h1></div></Html>
                     <Html position={[null]}>
                         <div id = 'containerText'>
@@ -32,23 +33,18 @@ const Explore = () => {
                             </p>
                         </div>
                     </Html>
-                    <rectAreaLight lookAt={[0,0,0]} color={'yellow'} intensity={10} position={[0,0,9.8]}/>
-                    <rectAreaLight rotation={[3,0,0]} color={'orange'} intensity={10} position={[0,0,-9.8]}/>
-                    <rectAreaLight rotation={[-1.5,0,0]} color={'white'} intensity={20} position={[0,9.8,0]}/>
-                    <rectAreaLight rotation={[0,2,0]} color={'orange'} intensity={10} position={[9.8,0,0]}/>
-                    <rectAreaLight rotation={[0,-1,0]} color={'white'} intensity={25} position={[-9.8,0,0]}/>
-                    <rectAreaLight rotation={[1,0,0]} color={'orange'} intensity={20} position={[0,-9.8,0]}/>
-
+                    <rectAreaLight rotation={[0,0,0]} color={'#f8f1e7'} intensity={10} position={[0,0,9.8]}/>
+                    <rectAreaLight rotation={[3,0,0]} color={'#fad400'} intensity={10} position={[0,0,-9.8]}/>
+                    <rectAreaLight rotation={[-1.5,0,0]} color={'#ff970f'} intensity={10} position={[0,9.8,0]}/>
+                    <rectAreaLight rotation={[0,2,0]} color={'#ffffff'} intensity={10} position={[9.8,0,0]}/>
+                    <rectAreaLight rotation={[0,-1,0]} color={'#ffffff'} intensity={10} position={[-9.8,0,0]}/>
+                    <rectAreaLight rotation={[1,0,0]} color={'#ffae00'} intensity={10} position={[0,-9.8,0]}/>
                     <rectAreaLight rotation={[0,5,0]} color={'orange'} intensity={4} position={[9.8,0,0]}/>
                     <rectAreaLight rotation={[0,2,0]} color={'orange'} intensity={4} position={[-9.8,0,0]}/>
                     <rectAreaLight rotation={[0,3,0]} color={'orange'} intensity={4} position={[0,0,9.8]}/>
                     <rectAreaLight rotation={[0,0,0]} color={'orange'} intensity={4} position={[0,0,-9.8]}/>
-
-                    <ambientLight intensity={0.04}/>
-                    <pointLight position={[9.8,0,0]} intensity={0.}/>
-                    <pointLight position={[0,0,9.8]} intensity={.02}/>
-                    <pointLight position={[0,0,-9.8]} intensity={0.2}/>
-                    <pointLight position={[-9.8,0,0]} intensity={0.2}/>
+                    <SunLight position={[0, 0, 0]} />
+                    <ambientLight intensity={0.03}/>
                     <Planet/>
                 </Canvas>
             </Container>

@@ -1,4 +1,6 @@
-
+* {
+    font: Verdana, Arial, 'sans-serif' !important;/* <-- fonts */
+}
 #preloader{
     position: fixed;
     top:0;
