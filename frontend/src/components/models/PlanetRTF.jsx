@@ -267,7 +267,7 @@ export default function Planets(props) {
         <mesh onClick={handleClickSun}>
         <Sphere args={[1,80,80]} scale={8.3} position={[0,0,0]}>
                 <meshPhysicalMaterial 
-                roughness={0} reflectivity={1} metalness={0} transmission={1} clearcoat={1} clearcoatRoughness={0} ior={1}/>
+                roughness={0} reflectivity={1} metalness={0} transmission={1} clearcoat={1} clearcoatRoughness={0} ior={1} color={'yellow'}/>
             </Sphere>
         </mesh>
         </group>
