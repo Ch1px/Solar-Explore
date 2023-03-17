@@ -185,6 +185,22 @@ font-size: small;
     font-size: small;
 }
 
+
+#close{
+    background-color: #ff0000;
+    color:white;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    width: 5vh;
+    padding-top:2px;
+    padding-bottom: 2px;
+    position: relative;
+    left:5vh;
+    top:5vh;
+    font-size: small;
+}
+
 #speedBox{
     height:25vh;
     width: 20vh;

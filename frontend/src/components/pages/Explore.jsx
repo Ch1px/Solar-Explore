@@ -1,27 +1,95 @@
-import React, {useRef}from "react";
+import React, {useRef, useState}from "react";
+import { useFrame } from '@react-three/fiber'
 import styled from "styled-components";
 import { Canvas } from '@react-three/fiber'
 import Planet from '../models/PlanetRTF'
 import { Html } from "@react-three/drei";
 import SunLight from "../models/sunlight";
+import Galaxy from "../models/Galaxy1";
+import {OrbitControls} from "@react-three/drei";
+
 
 const Section = styled.div`
 height: 100vh;
 scroll-snap-align: center;
 `
 const Container = styled.div`
-  padding: 0px !important;;
-  margin: 0px !important;;
-  height: 100%;
-  width: auto;
-  align-items: center;
+width:100%;
+height: 100vh;
+width: 100vw;
+display:flex;
+justify-content: center;
+`
+const Left = styled.div`
+flex:2;
+position: relative;
+display: flex;
+flex-direction: column;
+justify-content: center;
+gap: 50px;
+padding: 60px;
+`
+const Right = styled.div`
+flex:2;
+position: relative;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+@media only screen and (max-width:820px){
+    align-items: center;
+    text-align: center;
+}
+`
+const Title = styled.h1`
+    font-size:74px;
+@media only screen and (max-width:820px){
+    font-size: 50px;
+}
+`
+const Disc = styled.p`
+font-size:24px;
+@media only screen and (max-width:820px){
 
+}
+`
+const Dive = styled.p`
+font-size:24px;
+@media only screen and (max-width:820px){
+
+}
 `
 
 const Explore = () => {
+    const [isCanvasOpen, setIsCanvasOpen] = useState(false);
+
+    const handleOpenPlanets = () => {
+      setIsCanvasOpen(true);
+    };
+    const handleClosePlanets = () => {
+        setIsCanvasOpen(false);
+      };
     return (
         <Section id='Explore'>
-            <Container>
+
+                {!isCanvasOpen ? (
+                    <Container>
+                    <Right>
+                    {/*<button onClick={handleOpenCanvas}>Open Solar Explore</button>*/}
+                    <Canvas style={{background: '#020202d3'}} camera={{fov:40, position: [0,20,0]}}>
+                    <ambientLight intensity={1}/>
+                        <directionalLight position={[3,2,1]}/>
+                        <Galaxy onClick={handleOpenPlanets}/>
+                    </Canvas></Right>
+                    <Left>
+                        <Title>Solar Explorer</Title>
+                        <Disc>Welcome to Solar Explorer! Here we have built a 3D model of our own solar system. Immerse youself in the experience.
+                            Here you can Explore. Learn. Interact. with all of the planets contained within the solar system.
+                        </Disc>
+                        <Dive>Click on the Solar System to your left to Dive in!</Dive>
+                    </Left>
+                    </Container>
+                ) : (
                 <Canvas camera={{fov:15, position: [-30,0,150]}} style={{background: '#040005'}}>
                     <Html position={[null]}><div id='titleContainer'><h1 id='solarTitle'>Solar Explore</h1></div></Html>
                     <Html position={[null]}>
@@ -46,8 +114,9 @@ const Explore = () => {
                     <SunLight position={[0, 0, 0]} />
                     <ambientLight intensity={0.03}/>
                     <Planet/>
+                    <Html position={[null]}><button id='close'  onClick={handleClosePlanets}>Close</button></Html>
                 </Canvas>
-            </Container>
+                )}
         </Section>
     )
 }

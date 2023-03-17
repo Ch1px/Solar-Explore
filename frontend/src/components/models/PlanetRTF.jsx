@@ -265,7 +265,7 @@ export default function Planets(props) {
             </Sphere>
         </mesh>
         <mesh onClick={handleClickSun}>
-        <Sphere args={[1,80,80]} scale={8.1} position={[0,0,0]}>
+        <Sphere args={[1,80,80]} scale={8.3} position={[0,0,0]}>
                 <meshPhysicalMaterial 
                 roughness={0} reflectivity={1} metalness={0} transmission={1} clearcoat={1} clearcoatRoughness={0} ior={1}/>
             </Sphere>
@@ -283,7 +283,7 @@ export default function Planets(props) {
         <group ref={venus}>
         <mesh onClick={handleClickVenus}>
             <Sphere args={[1,80,80]} scale={1.1} position={[18,0,0]}>
-                <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/venusAtmos.jpg'))}/>
+                <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/2k_venus_atmosphere.jpg'))}/>
             </Sphere>
         </mesh>
         </group>
@@ -291,7 +291,7 @@ export default function Planets(props) {
         <group ref={earth}>
         <mesh onClick={handleClickEarth}>
             <Sphere args={[1,80,80]} scale={1.4} position={[24,0,0]} rotation={[-Math.PI / 2, 1.8, Math.PI / 2]}>
-                <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/EarthTexture.jpg'))}/>
+                <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/2k_earth.jpg'))}/>
             </Sphere>
         </mesh>
         </group>
@@ -299,7 +299,7 @@ export default function Planets(props) {
         <group ref={mars}>
         <mesh onClick={handleClickMars}>
             <Sphere args={[1,80,80]} scale={1.3} position={[30,0,0]} rotation={[-Math.PI / 2, 1.8, Math.PI / 2]}>
-                <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/marsTexture.jpg'))}/>
+                <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/2k_mars.jpg'))}/>
             </Sphere>
         </mesh>
         </group>
@@ -307,8 +307,8 @@ export default function Planets(props) {
 
         <group ref={jupiter}>
         <mesh onClick={handleClickJupiter}>
-            <Sphere args={[1,80,80]} scale={3.8} position={[43,0,0]} rotation={[-Math.PI / 2, 1.8, Math.PI / 2]} >
-                <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/jupiterTexture.jpg'))}/>
+            <Sphere args={[1,80,80]} scale={3.8} position={[43,0,0]} rotation={[-Math.PI / 2, 1.7, Math.PI / 2]} >
+                <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/2k_jupiter.jpg'))}/>
             </Sphere>
         </mesh>
         </group>
