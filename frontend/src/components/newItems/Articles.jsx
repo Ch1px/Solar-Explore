@@ -20,10 +20,18 @@ function Articles() {
     useEffect(() => {
         getArticles();
     }, [])
-    return(
+
+    return (
         <>
-        {articles.map((item, i) => 
-        <Feed key={i} title={item.item.title} link={item.item.link} date={item.item.pubDate}/>)}
+            {articles.map((item, i) => (
+                <Feed
+                    key={i}
+                    title={item.item.title}
+                    link={item.item.link}
+                    date={item.item.pubDate}
+                    image={item.item.enclosure?.url} // get the image URL from the item's enclosure object
+                />
+            ))}
         </>
     )
 }

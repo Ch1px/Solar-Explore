@@ -93,7 +93,7 @@
     border-radius: 20px;
     position: relative;
     left: 70px;
-    top:50px;
+    top:80px;
 }
 #containerNep{
     width: 40vh;
@@ -142,7 +142,7 @@
     position: relative;
     display: flex;
     justify-content: center;
-    top:87vh;
+    top:90vh;
     left:5vh;
 }
 
