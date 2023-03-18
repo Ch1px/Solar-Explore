@@ -19,6 +19,7 @@ import { Html, useCursor } from "@react-three/drei";
 import SunLight from "../models/sunlight";
 import { OrbitControls } from '@react-three/drei';
 import Camera from './camera';
+import Starfield from './StarField';
 
 
 function Galaxy(props) {
@@ -41,6 +42,7 @@ function Galaxy(props) {
         <>
           <Canvas style={{ background: '#020202d3' }} camera={{ fov: 15, position: [0, 50, 0] }}>
           <OrbitControls enableZoom={false} enablePan={false} enableRotate={false} autoRotate={true}/>
+          <Starfield/>
             <ambientLight intensity={1} />
             <directionalLight position={[3, 2, 1]} />
             <group ref={groupRef} onClick={handleOpenPlanets} position={props.position} {...props} dispose={null} onPointerOver={() => { document.body.style.cursor = 'pointer'; }} onPointerOut={() => { document.body.style.cursor = 'auto'; }}>
@@ -63,9 +65,9 @@ function Galaxy(props) {
             <Left><SolarTitle>Explore.</SolarTitle><br/><Disc>Welcome to Solar Explorer! Here we have built a 3D model of our own solar system. Immerse youself in the experience.
               Here you can Explore. Learn. Interact. with all of the planets contained within our Solar System.<Disc style={{fontWeight: '700'}}><br></br>Click on the Galaxy in the center to adventure deeper.</Disc>
             </Disc></Left>
-            <Right><SolarTitle>Why is it Called the Solar System?</SolarTitle><br/>
-              <Disc>There are many planetary systems like ours in the universe, with planets orbiting a host star. Our planetary system is called “the solar system” because we use the word “solar” to describe things related to our star, after the Latin word for Sun, "solis." </Disc><br/><br/>
-              <SolarTitle>Size and Distance</SolarTitle><br/>
+            <Right><SolarTitle>Why is it Called the Solar System?<br/><br/></SolarTitle>
+              <Disc>There are many planetary systems like ours in the universe, with planets orbiting a host star. Our planetary system is called “the solar system” because we use the word “solar” to describe things related to our star, after the Latin word for Sun, "solis." <br/><br/></Disc>
+              <SolarTitle>Size and Distance<br/><br/></SolarTitle>
               <Disc>Our solar system extends much farther than the eight planets that orbit the Sun. The solar system also includes the Kuiper Belt that lies past Neptune's orbit. This is a sparsely occupied ring of icy bodies, almost all smaller than the most popular Kuiper Belt Object – dwarf planet Pluto.</Disc>
             </Right></Html>
           </Canvas>
@@ -102,7 +104,7 @@ flex-direction: column;
 align-items: center;
 text-align: center;
 bottom:48vh;
-left:-117vh;
+left:-115vh;
 width: 100vh;
 `
 const Right = styled.div`
@@ -113,6 +115,7 @@ position: relative;
 display: flex;
 flex-direction: column;
 width: 50vh;
+height: 100%;
 
 @media only screen and (max-width:820px){
     align-items: center;
@@ -123,6 +126,7 @@ const Title = styled.h1`
     font-size:60px;
     padding-bottom: 10px;
     position: relative;
+    font-weight:bold;
 @media only screen and (max-width:820px){
     font-size: 50px;
 }
