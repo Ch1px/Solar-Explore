@@ -114,7 +114,7 @@ const Home = () => {
                 <Left>
                     <Title>Explore. Learn. Interact.</Title>
                     <Subtitle>Prepare for lift off and immerse yourself in a 3-Dimensional space of our own Solar System.</Subtitle>
-                    <Button><a href="#About" onClick={scrollToSection}>Learn more</a></Button>
+                    <Button><a href="#About" onClick={scrollToSection}>Get Started</a></Button>
                 </Left>
                 <Right>
                     <SphereDistort/>

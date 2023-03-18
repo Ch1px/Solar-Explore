@@ -27,13 +27,15 @@ justify-content: center;
 flex-direction: column;
 align-items: center;
 text-align: left;
+padding-top: 10px;
+left:20vh;
+bottom:1vh;
 `
 const Title = styled.h1`
 font-size:30px;
 font-weight: bold;
-padding-bottom: 20px;
+padding-bottom: 30px;
 text-align: left;
-
 `
 
 const Right = styled.div`
@@ -42,11 +44,11 @@ position: relative;
 display:flex;
 justify-content: center;
 flex-direction: column;
-align-items: left;
-top: 3vh;
+align-items: center;
 `
 const Center = styled.div`
 flex:1;
+top:-30px;
 position: relative;
 display:flex;
 justify-content: center;
@@ -55,16 +57,27 @@ align-items: center;
 text-align: left;
 `
 
+const Img = styled.img`
+    width:250px;
+    animation: animate 2s infinite ease alternate;
+    @keyframes animate {
+    to{
+        transform: translateY(20px);
+    }
+}
+`
+
 
 const News = () => {
     return (
         <Section id ='News'>
             <Container>
                 <Left>
+                <ImgArticles/>
                 </Left>
                 <Center><Title>Astronomy & Space News</Title>
                     <Articles/></Center>
-                <Right><ImgArticles/></Right>
+                <Right><Img src="/src/assets/img/astro2.png"/></Right>
             </Container>
         </Section>
     )

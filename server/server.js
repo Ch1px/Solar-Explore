@@ -25,7 +25,7 @@ app.get('/', (req, res) => {
 })
 
 const server = app.listen("5000", () => {
-    console.log("listining on port 5000")
+    console.log("Listening on port 5000")
 })
 
 export default server

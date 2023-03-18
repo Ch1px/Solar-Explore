@@ -6,7 +6,7 @@ const A = styled.a`
 `
 const Title = styled.h1`
     font-weight:bold;
-    width: 90vh;
+    width: 70vh;
     cursor: pointer;
     background: linear-gradient(to right, #3fb2ff, #eb42ce 50%, #ffffff 50%);
     background-clip: text;
@@ -23,7 +23,7 @@ const ADate = styled.p`
 padding-bottom: 30px;
 `
 
-const Feed = ({title, link, date, image}) => {
+const Feed = ({title, link, date}) => {
 
     let formatted = {day: "numeric", month: "long", year: "numeric"}
     let articleDate = new Date(date).toLocaleDateString("en-GB", formatted)

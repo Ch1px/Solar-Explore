@@ -17,3 +17,4 @@ npm install
 
 To run the website use in both backend and frontend terminal:
 npm run dev
+

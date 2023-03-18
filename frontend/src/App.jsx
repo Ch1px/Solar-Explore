@@ -6,7 +6,6 @@ import Explore from "./components/pages/Explore";
 import News from "./components/pages/News";
 import NavBar from "./components/navbar/NavBar";
 import styled from 'styled-components';
-import CanvasPlanets from "./components/pages/canvas";
 import './index.css'
 
 //preloader
