@@ -35,12 +35,13 @@ display:flex;
 justify-content: center;
 flex-direction: column;
 align-items: center;
-text-align: center;
+text-align: left;
+top:-3vh
 `
 
 const Title = styled.h1`
 color: white;
-font-weight: 200;
+font-weight: 700;
 font-size: 50px;
 `
 const Form = styled.form`
@@ -63,7 +64,7 @@ border-radius: 5px;
 `
 const Button = styled.button`
 padding:20px;
-background-color: #d10169;
+background-color: #6201d1;
 color: white;
 font-weight: bold;
 cursor:pointer;

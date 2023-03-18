@@ -30,10 +30,8 @@ text-align: center;
 const Title = styled.h1`
 font-size:50px;
 font-weight: bold;
-padding-bottom: 20px;
-`
-const Dis = styled.p`
-font-size:24px;
+padding-bottom: 40px;
+
 `
 
 const Right = styled.div`
@@ -46,16 +44,11 @@ position: relative;
 display:flex;
 justify-content: center;
 flex-direction: column;
-align-items: center;
-text-align: center;
+align-items: left;
+text-align: left;
+top:-3vh
 `
 
-const Iframe = styled.iframe`
-height: 900px;
-width: 100%;
-opacity: 90%;
-
-`
 
 const News = () => {
     return (
@@ -63,7 +56,7 @@ const News = () => {
             <Container>
                 <Left></Left>
                 <Center>
-                    <Title>Astronomy news</Title>
+                    <Title style={{textAlign:'center'}}>Astronomy news</Title>
                     <Articles/></Center>
                 <Right></Right>
             </Container>

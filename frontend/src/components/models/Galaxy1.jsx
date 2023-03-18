@@ -58,13 +58,15 @@ function Galaxy(props) {
                 </group>
               </group>
             </group>
-            <Html position={[null]}>
-            <Center><Title>Solar Explorer</Title></Center>
-            <Left><Disc>Welcome to Solar Explorer! Here we have built a 3D model of our own solar system. Immerse youself in the experience.
-              Here you can Explore. Learn. Interact. with all of the planets contained within our Solar System.<Disc><br></br>Click on the Solar System in the center to Dive in!</Disc>
+            <Html position={[0,0,0]}>
+            <Center><Title>Our Solar System</Title></Center>
+            <Left><SolarTitle>Explore.</SolarTitle><br/><Disc>Welcome to Solar Explorer! Here we have built a 3D model of our own solar system. Immerse youself in the experience.
+              Here you can Explore. Learn. Interact. with all of the planets contained within our Solar System.<Disc style={{fontWeight: '700'}}><br></br>Click on the Galaxy in the center to adventure deeper.</Disc>
             </Disc></Left>
-            <Right><SolarTitle>Why is it Called the Solar System?</SolarTitle>
-              <Disc>There are many planetary systems like ours in the universe, with planets orbiting a host star. Our planetary system is called “the solar system” because we use the word “solar” to describe things related to our star, after the Latin word for Sun, "solis." </Disc>
+            <Right><SolarTitle>Why is it Called the Solar System?</SolarTitle><br/>
+              <Disc>There are many planetary systems like ours in the universe, with planets orbiting a host star. Our planetary system is called “the solar system” because we use the word “solar” to describe things related to our star, after the Latin word for Sun, "solis." </Disc><br/><br/>
+              <SolarTitle>Size and Distance</SolarTitle><br/>
+              <Disc>Our solar system extends much farther than the eight planets that orbit the Sun. The solar system also includes the Kuiper Belt that lies past Neptune's orbit. This is a sparsely occupied ring of icy bodies, almost all smaller than the most popular Kuiper Belt Object – dwarf planet Pluto.</Disc>
             </Right></Html>
           </Canvas>
         </>
@@ -82,20 +84,15 @@ function Galaxy(props) {
 export default Galaxy
 
 //style
-const Container = styled.div`
-width:100%;
-height: 100vh;
-display:flex;
-justify-content: center;
-`
+
 
 const Left = styled.div`
 flex: 1;
 align-items: center;
 position: relative;
 width: 50vh;
-left: 8vh;
-top: 5vh;
+left: -90vh;
+bottom: 35vh;
 `
 const Center = styled.div`
 position: relative;
@@ -104,19 +101,17 @@ justify-content: center;
 flex-direction: column;
 align-items: center;
 text-align: center;
-top:2vh;
-left:50vh;
+bottom:48vh;
+left:-117vh;
 width: 100vh;
 `
 const Right = styled.div`
-left:143vh;
-bottom:20vh;
+left:40vh;
+bottom:80vh;
 flex:1;
 position: relative;
 display: flex;
 flex-direction: column;
-justify-content: center;
-align-items: center;
 width: 50vh;
 
 @media only screen and (max-width:820px){
@@ -125,7 +120,7 @@ width: 50vh;
 }
 `
 const Title = styled.h1`
-    font-size:74px;
+    font-size:60px;
     padding-bottom: 10px;
     position: relative;
 @media only screen and (max-width:820px){
@@ -141,7 +136,6 @@ font-size:24px;
 const SolarTitle = styled.p`
 font-size:30px;
 font-weight: bold;
-padding-bottom: 5px;
 @media only screen and (max-width:820px){
 
 }

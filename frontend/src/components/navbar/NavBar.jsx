@@ -89,10 +89,10 @@ const NavBar = () => {
             </List>
             </Links>
             <Icons>
-                <a href="https://github.com/Ch1px/Solar-Explorer">
+                <a href="https://github.com/Ch1px/Solar-Explorer" target="_blank">
                     <Icon src="./src/assets/img/gitLogo2.png" />
                 </a>
-                <a href="https://www.instagram.com/dan_glancy/">
+                <a href="https://www.instagram.com/dan_glancy/" target="_blank">
                     <Icon2 src="./src/assets/img/insta.png"/>
                 </a>
             </Icons>
