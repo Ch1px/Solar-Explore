@@ -62,7 +62,7 @@ const News = () => {
             <Container>
                 <Left>
                 </Left>
-                <Center><Title>Astronomy News</Title>
+                <Center><Title>Astronomy & Space News</Title>
                     <Articles/></Center>
                 <Right><ImgArticles/></Right>
             </Container>

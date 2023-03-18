@@ -14,13 +14,14 @@ import HandleExplore from "../models/Galaxy1";
 const Section = styled.div`
 height: 100vh;
 scroll-snap-align: center;
+top:0px;
 `
 const Container = styled.div`
 width:100%;
 height: 100vh;
 display:flex;
 justify-content: center;
-
+top:0px;
 `
 
 const Explore = () => {
