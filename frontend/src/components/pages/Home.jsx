@@ -60,13 +60,19 @@ padding-bottom: 10px;
 `
 
 const Button = styled.button`
-background-color: #0099ff;
 color:white;
 cursor: pointer;
 border: none;
 border-radius: 5px;
 width: 15vh;
 padding:7px;
+background: linear-gradient(to right, #eb42ce ,  #0099ff 50%, #0099ff 50%);
+  background-size: 200% 100%;
+  background-position: 100%;
+  transition: background-position 275ms ease;
+  &:hover{
+    background-position: 0 100%;
+  }
 `
 
 const Right = styled.div`

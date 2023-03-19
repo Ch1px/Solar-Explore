@@ -1,8 +1,10 @@
 import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import { Canvas} from "@react-three/fiber";
+import { OrbitControls} from "@react-three/drei";
 import Articles from "../newItems/Articles";
 import ImgArticles from "../newItems/ImgArticle";
+import Earth from '../models/Earth'
 
 const Section = styled.div`
 height: 100vh;
@@ -29,7 +31,7 @@ align-items: center;
 text-align: left;
 padding-top: 10px;
 left:20vh;
-bottom:1vh;
+top:2vh;
 `
 const Title = styled.h1`
 font-size:30px;
@@ -48,7 +50,7 @@ align-items: center;
 `
 const Center = styled.div`
 flex:1;
-top:-30px;
+
 position: relative;
 display:flex;
 justify-content: center;
@@ -77,7 +79,12 @@ const News = () => {
                 </Left>
                 <Center><Title>Astronomy & Space News</Title>
                     <Articles/></Center>
-                <Right><Img src="/src/assets/img/astro2.png"/></Right>
+                <Right><Canvas camera={{fov:50, position: [5,5,5]}}>
+                    <OrbitControls enableZoom = {false} autoRotate enablePan={false}/>
+                    <ambientLight intensity={1}/>
+                    <directionalLight position={[3,2,1]}/>
+                    <Earth/>
+                </Canvas></Right>
             </Container>
         </Section>
     )

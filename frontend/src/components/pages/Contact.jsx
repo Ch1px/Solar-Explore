@@ -5,6 +5,7 @@ import { Canvas} from "@react-three/fiber";
 import { OrbitControls} from "@react-three/drei";
 import Earth from '../models/Earth'
 import Map from "../map/Map";
+import Map2 from "../map/Map2";
 
 const Section = styled.div`
 height: 100vh;
@@ -25,8 +26,6 @@ justify-content: center;
 
 const Left = styled.div`
 flex: 1;
-align-items: center;
-position: relative;
 `
 const Center = styled.div`
 flex:1;
@@ -77,7 +76,6 @@ color: white;
 
 const Right = styled.div`
 flex:1;
-
 `
 
 
@@ -103,12 +101,13 @@ const Contact = () => {
         <Section id='Contact'>
             <Container>
                 <Left>
-                <Canvas camera={{fov:50, position: [5,5,5]}}>
+                <Map2/>
+                {/*<Canvas camera={{fov:50, position: [5,5,5]}}>
                     <OrbitControls enableZoom = {false} autoRotate enablePan={false}/>
                     <ambientLight intensity={1}/>
                     <directionalLight position={[3,2,1]}/>
                     <Earth/>
-                </Canvas>
+                </Canvas>*/}
                 </Left>
                 <Center><Form ref={ref} onSubmit={handleSubmit}>
                         <Title>Contact.</Title>

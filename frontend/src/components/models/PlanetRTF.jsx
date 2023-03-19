@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import { Ring, Sphere } from "@react-three/drei";
 import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
+import { TextureLoader } from 'three';
 import { useLoader, useThree } from '@react-three/fiber'
 import { Html } from '@react-three/drei'
 import gsap from 'gsap'
@@ -54,6 +55,7 @@ import plutoAVertexShader from '/src/assets/shaders/pluto/plutoAV.glsl'; import 
 export default function Planets(props) {
 
   const sun = useRef();
+  const kuiperBelt = useRef();
   const mercury = useRef();
   const venus = useRef();
   const earth = useRef();
@@ -62,6 +64,7 @@ export default function Planets(props) {
   const saturn = useRef();
   const uranus = useRef();
   const neptune = useRef();
+  const Ven = useRef();
 
 
   const { camera, gl } = useThree();
@@ -78,6 +81,7 @@ export default function Planets(props) {
   const [isHoveredSaturn, setIsHoveredSaturn] = useState(false);
   const [isHoveredUranus, setIsHoveredUranus] = useState(false);
   const [isHoveredNeptune, setIsHoveredNeptune] = useState(false);
+  const [isHoveredBelt, setIsHoveredBelt] = useState(false);
 
 
   useFrame(({ mouse }) => {
@@ -92,12 +96,12 @@ export default function Planets(props) {
     const intersects6 = raycaster.intersectObject(saturn.current); setIsHoveredSaturn(intersects6.length > 0);
     const intersects7 = raycaster.intersectObject(uranus.current); setIsHoveredUranus(intersects7.length > 0);
     const intersects8 = raycaster.intersectObject(neptune.current); setIsHoveredNeptune(intersects8.length > 0);
+    const intersects9 = raycaster.intersectObject(kuiperBelt.current); setIsHoveredBelt(intersects9.length > 0);
   });
 
   const controlsRef = useRef();
 
   const handleClickSun = () => {
-
     gsap.to(controlsRef.current.target, {
       duration: 2,
       x: 0,
@@ -110,6 +114,7 @@ export default function Planets(props) {
   };
 
   function handleClickMercury() {
+    if(!isRotating) {
     gsap.to(controlsRef.current.target, {
       duration: 2,
       x: 16,
@@ -119,83 +124,98 @@ export default function Planets(props) {
         controlsRef.current.update();
       }
     });
+  }
   };
   const handleClickVenus = () => {
+    if(!isRotating) {
     gsap.to(controlsRef.current.target, {
       duration: 2,
-      x: 24,
+      x: 22,
       y: 0,
       z: 0,
       onUpdate: () => {
         controlsRef.current.update();
       }
     });
+  }
   };
   const handleClickEarth = () => {
+    if(!isRotating) {
     gsap.to(controlsRef.current.target, {
       duration: 2,
-      x: 34,
+      x: 28,
       y: 0,
       z: 0,
       onUpdate: () => {
         controlsRef.current.update();
       }
     });
+  }
   };
   const handleClickMars = () => {
+    if(!isRotating) {
     gsap.to(controlsRef.current.target, {
       duration: 2,
-      x: 43,
+      x: 36,
       y: 0,
       z: 0,
       onUpdate: () => {
         controlsRef.current.update();
       }
     });
+  }
   };
   const handleClickJupiter = () => {
+    if(!isRotating) {
     gsap.to(controlsRef.current.target, {
       duration: 2,
-      x: 55,
+      x: 62,
       y: 0,
       z: 0,
       onUpdate: () => {
         controlsRef.current.update();
       }
     });
+  }
   };
   const handleClickSaturn = () => {
+    if(!isRotating) {
     gsap.to(controlsRef.current.target, {
       duration: 2,
-      x: 72,
+      x: 85,
       y: 0,
       z: 0,
       onUpdate: () => {
         controlsRef.current.update();
       }
     });
+  }
   };
   const handleClickUranus = () => {
+    if(!isRotating) {
     gsap.to(controlsRef.current.target, {
       duration: 2,
-      x: 90,
+      x: 105,
       y: 0,
       z: 0,
       onUpdate: () => {
         controlsRef.current.update();
       }
     });
+  }
   };
   const handleClickNeptune = () => {
+    if(!isRotating) {
     gsap.to(controlsRef.current.target, {
       duration: 2,
-      x: 108,
+      x: 125,
       y: 0,
       z: 0,
       onUpdate: () => {
         controlsRef.current.update();
       }
     });
+  }
   };
 
 
@@ -208,7 +228,8 @@ export default function Planets(props) {
   useFrame((state) => {
     if (isRotating) {
       //set relative orbit speed
-      sun.current.rotation.y += 0.0009;
+      sun.current.rotation.y += 0.0004;
+      kuiperBelt.current.rotation.z += 0.0004;
       mercury.current.rotation.y += 0.03;
       venus.current.rotation.y += 0.014;
       earth.current.rotation.y += 0.008;
@@ -233,6 +254,17 @@ export default function Planets(props) {
     neptune.current.rotation.set(0, 0, 0)
     invalidate();
   }
+
+  const textureBelt = useLoader(TextureLoader, './src/assets/img/kBelt.png');
+
+  textureBelt.magFilter = THREE.NearestFilter;
+  textureBelt.minFilter = THREE.NearestFilter;
+
+  const beltMaterial = new THREE.MeshBasicMaterial({
+    map: textureBelt,
+    transparent: true,
+    side: THREE.DoubleSide,
+  });
 
   return (
 
@@ -278,6 +310,10 @@ export default function Planets(props) {
 
       {isHoveredNeptune && <Html position={[null]}><div id='containerNep'><h1 id='name'>Neptune</h1><p id='planet'>Neptune is dark, cold, and very windy. It’s the last of the planets in our solar system. It’s more than 30 times as far from the Sun as Earth is. Neptune is very similar to Uranus. It’s made of a thick soup of water, ammonia, and methane over an Earth-sized solid center. Its atmosphere is made of hydrogen, helium, and methane. The methane gives Neptune the same blue color as Uranus. Neptune has six rings, but they’re very hard to see.</p><h1 id='subtitle'>Neptune’s Great Dark Spot</h1><p id='planet'>The Great Dark Spot in the southern atmosphere of Neptune was first discovered in 1989 by the Voyager 2 spacecraft. It was an incredibly large rotating storm system with winds of up to 1,500 miles per hour, the strongest winds recorded on any planet. How such powerful winds were discovered on a planet so far from the sun is still considered a mystery to this day. Data from the Voyager 2 spacecraft also showed that the Great Dark Spot varied significantly in size during their brief pass of the planet. When Neptune was viewed by the Hubble Space telescope in 1994 the Great Dark Spot had vanished, although a different dark spot had appeared in Neptune’s northern hemisphere.</p></div></Html>}
 
+      {isHoveredSun && <Html position={[null]}><div id='containerSun'><h1 id='name'>The Sun</h1><p id='planet'>The sun is a star, a hot ball of glowing gases at the heart of our solar system. Its influence extends far beyond the orbits of distant Neptune and Pluto. Without the sun’s intense energy and heat, there would be no life on Earth. And though it is special to us, there are billions of stars like our sun scattered across the Milky Way galaxy. If the sun were as tall as a typical front door, the Earth would be the size of a U.S. nickel. The temperature at the sun’s core is about 27 million degrees Fahrenheit.</p></div></Html>}
+
+      {isHoveredBelt && <Html position={[null]}><div id='containerNep'><h1 id='name'>Kuiper Belt</h1><p id='planet'></p></div></Html>}
+      
       {isRotating && <Html position={[null]}><div id='speedBox'><h1 id='speedDis'>Orbit Speeds</h1><p id="speed">Mercury - 47.87 km/s</p><p id="speed">Venus- 35.02 km/s</p><p id="speed">Earth- 29.78 km/s</p><p id="speed">Mars - 24.077 km/s</p><p id="speed">Jupiter - 13.07 km/s</p><p id="speed">Saturn - 9.69 km/s</p><p id="speed">Uranus - 6.81 km/s</p><p id="speed">Neptune - 5.43 km/s</p></div></Html>}
 
       <Html position={[null]}><button id='refresh' onClick={handleClick}>Reset Orbit Position</button></Html>
@@ -298,17 +334,23 @@ export default function Planets(props) {
         </mesh>
       </group>
 
+      <mesh ref={kuiperBelt} position={[0,0,0]} rotation={[-Math.PI / 2, 0, Math.PI / 2]}>
+        <Ring args={[45, 52, 100]} material={beltMaterial}>
+
+        </Ring>
+      </mesh>
+
       <group ref={mercury}>
         <mesh onClick={handleClickMercury} onPointerOver={() => { document.body.style.cursor = 'pointer'; }} onPointerOut={() => { document.body.style.cursor = 'auto'; }}>
-          <Sphere args={[1, 80, 80]} scale={0.5} position={[16, 0, 0]}>
+          <Sphere args={[1, 80, 80]} scale={0.1} position={[16, 0, 0]}>
             <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/mercMap.jpg'))} />
           </Sphere>
         </mesh>
       </group>
 
-      <group ref={venus}>
-        <mesh onClick={handleClickVenus} onPointerOver={() => { document.body.style.cursor = 'pointer'; }} onPointerOut={() => { document.body.style.cursor = 'auto'; }}>
-          <Sphere args={[1, 80, 80]} scale={1.2} position={[24, 0, 0]}>
+      <group ref={Ven} position={[0,0,0]}>
+        <mesh ref={venus} onClick={handleClickVenus} onPointerOver={() => { document.body.style.cursor = 'pointer'; }} onPointerOut={() => { document.body.style.cursor = 'auto'; }}>
+          <Sphere args={[1, 80, 80]} scale={0.3} position={[22, 0, 0]}>
             <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/2k_venus_atmosphere.jpg'))} />
           </Sphere>
         </mesh>
@@ -316,7 +358,7 @@ export default function Planets(props) {
 
       <group ref={earth}>
         <mesh onClick={handleClickEarth} onPointerOver={() => { document.body.style.cursor = 'pointer'; }} onPointerOut={() => { document.body.style.cursor = 'auto'; }}>
-          <Sphere args={[1, 80, 80]} scale={1.4} position={[34, 0, 0]} rotation={[-Math.PI / 2, 1.8, Math.PI / 2]}>
+          <Sphere args={[1, 80, 80]} scale={0.4} position={[28, 0, 0]} rotation={[-Math.PI / 2, 1.8, Math.PI / 2]}>
             <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/2k_earth.jpg'))} />
           </Sphere>
         </mesh>
@@ -324,7 +366,7 @@ export default function Planets(props) {
 
       <group ref={mars}>
         <mesh onClick={handleClickMars} onPointerOver={() => { document.body.style.cursor = 'pointer'; }} onPointerOut={() => { document.body.style.cursor = 'auto'; }}>
-          <Sphere args={[1, 80, 80]} scale={0.7} position={[43, 0, 0]} rotation={[-Math.PI / 2, 1.8, Math.PI / 2]}>
+          <Sphere args={[1, 80, 80]} scale={0.2} position={[36, 0, 0]} rotation={[-Math.PI / 2, 1.8, Math.PI / 2]}>
             <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/2k_mars.jpg'))} />
           </Sphere>
         </mesh>
@@ -333,115 +375,129 @@ export default function Planets(props) {
 
       <group ref={jupiter}>
         <mesh onClick={handleClickJupiter} onPointerOver={() => { document.body.style.cursor = 'pointer'; }} onPointerOut={() => { document.body.style.cursor = 'auto'; }}>
-          <Sphere args={[1, 80, 80]} scale={4} position={[55, 0, 0]} rotation={[-Math.PI / 2, 1.7, Math.PI / 2]} >
+          <Sphere args={[1, 80, 80]} scale={2} position={[62, 0, 0]} rotation={[-Math.PI / 2, 1.7, Math.PI / 2]} >
             <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/2k_jupiter.jpg'))} />
           </Sphere>
         </mesh>
       </group>
 
 
-      <group ref={saturn}>
+      <group ref={saturn} >
         <mesh onClick={handleClickSaturn} onPointerOver={() => { document.body.style.cursor = 'pointer'; }} onPointerOut={() => { document.body.style.cursor = 'auto'; }}>
-          <Sphere args={[1, 80, 80]} scale={2.2} position={[72, 0, 0]} rotation={[-Math.PI / 2, 1, Math.PI / 2]}>
+          <Sphere args={[1, 80, 80]} scale={1.3} rotation={[-Math.PI / 2, 1, Math.PI / 2]} position={[85,0,0]}>
             <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/2k_saturn.jpg'))} />
           </Sphere>
         </mesh>
 
 
         <mesh>
-          <Ring args={[3, 3.2, 100]} position={[72, 0, 0]} rotation={[-Math.PI / 2, 5.8, Math.PI / 2]}>
-            <meshStandardMaterial color={'#4f5048'} side={THREE.DoubleSide} />
+          <Ring args={[3, 3.2, 100]} rotation={[-Math.PI / 2, 5.8, Math.PI / 2]}position={[85,0,0]}>
+          <meshPhysicalMaterial
+              roughness={0} reflectivity={1} metalness={0} transmission={0.9} clearcoat={1} clearcoatRoughness={0} ior={1} color={'#8a673a'} side={THREE.DoubleSide}/>
           </Ring>
         </mesh>
         <mesh>
-          <Ring args={[3.3, 3.6, 100]} position={[72, 0, 0]} rotation={[-Math.PI / 2, 5.8, Math.PI / 2]}>
-            <meshStandardMaterial color={'#8f9183'} side={THREE.DoubleSide} />
+          <Ring args={[3.3, 3.6, 100]} rotation={[-Math.PI / 2, 5.8, Math.PI / 2]}position={[85,0,0]}>
+          <meshPhysicalMaterial
+              roughness={0} reflectivity={1} metalness={0} transmission={0.9} clearcoat={1} clearcoatRoughness={0} ior={1} color={'#fff0e2'} side={THREE.DoubleSide}/>
           </Ring>
         </mesh>
         <mesh>
-          <Ring args={[3.7, 3.8, 100]} position={[72, 0, 0]} rotation={[-Math.PI / 2, 5.8, Math.PI / 2]}>
-            <meshStandardMaterial color={'#60615b'} side={THREE.DoubleSide} />
+          <Ring args={[3.7, 3.8, 100]} rotation={[-Math.PI / 2, 5.8, Math.PI / 2]}position={[85,0,0]}>
+            <meshPhysicalMaterial
+              roughness={0} reflectivity={1} metalness={0} transmission={0.9} clearcoat={1} clearcoatRoughness={0} ior={1} color={'#d8c08c'} side={THREE.DoubleSide}/>
           </Ring>
         </mesh>
         <mesh>
-          <Ring args={[3.8, 3.9, 100]} position={[72, 0, 0]} rotation={[-Math.PI / 2, 5.8, Math.PI / 2]}>
-            <meshStandardMaterial color={'#494945'} side={THREE.DoubleSide} />
+          <Ring args={[3.8, 3.9, 100]} rotation={[-Math.PI / 2, 5.8, Math.PI / 2]}position={[85,0,0]}>
+          <meshPhysicalMaterial
+              roughness={0} reflectivity={1} metalness={0} transmission={0.9} clearcoat={1} clearcoatRoughness={0} ior={1} color={'#68572a'} side={THREE.DoubleSide}/>
           </Ring>
         </mesh>
         <mesh>
-          <Ring args={[4, 4.05, 100]} position={[72, 0, 0]} rotation={[-Math.PI / 2, 5.8, Math.PI / 2]}>
-            <meshStandardMaterial color={'#130047'} side={THREE.DoubleSide} />
+          <Ring args={[4, 4.05, 100]} rotation={[-Math.PI / 2, 5.8, Math.PI / 2]}position={[85,0,0]}>
+          <meshPhysicalMaterial
+              roughness={0} reflectivity={1} metalness={0} transmission={0.95} clearcoat={1} clearcoatRoughness={0} ior={1} color={'#4c00ff'} side={THREE.DoubleSide}/>
           </Ring>
         </mesh>
         <mesh>
-          <Ring args={[4.2, 4.3, 100]} position={[72, 0, 0]} rotation={[-Math.PI / 2, 5.8, Math.PI / 2]}>
-            <meshStandardMaterial color={'#64645f'} side={THREE.DoubleSide} />
+          <Ring args={[4.2, 4.3, 100]} rotation={[-Math.PI / 2, 5.8, Math.PI / 2]}position={[85,0,0]}>
+          <meshPhysicalMaterial
+              roughness={0} reflectivity={1} metalness={0} transmission={0.9} clearcoat={1} clearcoatRoughness={0} ior={1} color={'#f0da9f'} side={THREE.DoubleSide}/>
           </Ring>
         </mesh>
         <mesh>
-          <Ring args={[4.4, 4.5, 100]} position={[72, 0, 0]} rotation={[-Math.PI / 2, 5.8, Math.PI / 2]}>
-            <meshStandardMaterial color={'#e7e9e0'} side={THREE.DoubleSide} />
+          <Ring args={[4.4, 4.5, 100]} rotation={[-Math.PI / 2, 5.8, Math.PI / 2]}position={[85,0,0]}>
+          <meshPhysicalMaterial
+              roughness={0} reflectivity={1} metalness={0} transmission={0.9} clearcoat={1} clearcoatRoughness={0} ior={1} color={'#fffbf1'} side={THREE.DoubleSide}/>
           </Ring>
           <mesh>
-            <Ring args={[4.7, 4.8, 100]} position={[72, 0, 0]} rotation={[-Math.PI / 2, 5.8, Math.PI / 2]}>
-              <meshStandardMaterial color={'#242424'} side={THREE.DoubleSide} />
+            <Ring args={[4.7, 4.8, 100]} rotation={[-Math.PI / 2, 5.8, Math.PI / 2]}position={[85,0,0]}>
+            <meshPhysicalMaterial
+              roughness={0} reflectivity={1} metalness={0} transmission={0.9} clearcoat={1} clearcoatRoughness={0} ior={1} color={'#cebfa3'} side={THREE.DoubleSide}/>
             </Ring>
           </mesh>
         </mesh>
         <mesh>
-          <Ring args={[4.5, 4.7, 100]} position={[72, 0, 0]} rotation={[-Math.PI / 2, 5.8, Math.PI / 2]}>
-            <meshStandardMaterial color={'#494945'} side={THREE.DoubleSide} />
+          <Ring args={[4.5, 4.7, 100]} rotation={[-Math.PI / 2, 5.8, Math.PI / 2]}position={[85,0,0]}>
+          <meshPhysicalMaterial
+              roughness={0} reflectivity={1} metalness={0} transmission={0.9} clearcoat={1} clearcoatRoughness={0} ior={1} color={'#4d3d1c'} side={THREE.DoubleSide}/>
           </Ring>
         </mesh>
         <mesh>
-          <Ring args={[4.8, 5, 100]} position={[72, 0, 0]} rotation={[-Math.PI / 2, 5.8, Math.PI / 2]}>
-            <meshStandardMaterial color={'#494945'} side={THREE.DoubleSide} />
+          <Ring args={[4.8, 5, 100]} rotation={[-Math.PI / 2, 5.8, Math.PI / 2]}position={[85,0,0]}>
+          <meshPhysicalMaterial
+              roughness={0} reflectivity={1} metalness={0} transmission={0.9} clearcoat={1} clearcoatRoughness={0} ior={1} color={'#8f8067'} side={THREE.DoubleSide}/>
           </Ring>
         </mesh>
         <mesh>
-          <Ring args={[5, 5.05, 100]} position={[72, 0, 0]} rotation={[-Math.PI / 2, 5.8, Math.PI / 2]}>
-            <meshStandardMaterial color={'#250061'} side={THREE.DoubleSide} />
+          <Ring args={[5, 5.05, 100]} rotation={[-Math.PI / 2, 5.8, Math.PI / 2]}position={[85,0,0]}>
+          <meshPhysicalMaterial
+              roughness={0} reflectivity={1} metalness={0} transmission={0.95} clearcoat={1} clearcoatRoughness={0} ior={1} color={'#5900ff'} side={THREE.DoubleSide}/>
           </Ring>
         </mesh>
       </group>
       <group ref={uranus}>
         <mesh onClick={handleClickUranus} onPointerOver={() => { document.body.style.cursor = 'pointer'; }} onPointerOut={() => { document.body.style.cursor = 'auto'; }}>
-          <Sphere args={[1, 80, 80]} scale={1.8} position={[90, 0, 0]} rotation={[-Math.PI / 2, 0.16, Math.PI / 2]}>
+          <Sphere args={[1, 80, 80]} scale={1}  rotation={[-Math.PI / 2, 0.16, Math.PI / 2]} position={[105,0,0]}>
             <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/uranusTexture.jpg'))} />
           </Sphere>
         </mesh>
 
 
         <mesh>
-          <Ring args={[3.05, 3.14, 100]} position={[90, 0, 0]} rotation={[-Math.PI / 2, 4.8, Math.PI / 2]}>
-            <meshStandardMaterial color={'#4b4b4b'} side={THREE.DoubleSide} />
+          <Ring args={[3.05, 3.14, 100]}  rotation={[-Math.PI / 2, 4.8, Math.PI / 2]}position={[105,0,0]}>
+          <meshPhysicalMaterial
+              roughness={0} reflectivity={0} metalness={0} transmission={0.98} clearcoat={0} clearcoatRoughness={0} ior={1} color={'#ffffff'} side={THREE.DoubleSide}/>
           </Ring>
         </mesh>
         <mesh>
-          <Ring args={[3.4, 3.47, 100]} position={[90, 0, 0]} rotation={[-Math.PI / 2, 4.8, Math.PI / 2]}>
-            <meshStandardMaterial color={'#81f8e8'} side={THREE.DoubleSide} />
+          <Ring args={[3.4, 3.47, 100]}  rotation={[-Math.PI / 2, 4.8, Math.PI / 2]}position={[105,0,0]}>
+          <meshPhysicalMaterial
+              roughness={0} reflectivity={0} metalness={0} transmission={0.95} clearcoat={0} clearcoatRoughness={0} ior={1} color={'#d0fcff'} side={THREE.DoubleSide}/>
           </Ring>
         </mesh>
         <mesh>
-          <Ring args={[3.7, 3.75, 100]} position={[90, 0, 0]} rotation={[-Math.PI / 2, 4.8, Math.PI / 2]}>
-            <meshStandardMaterial color={'#444444'} side={THREE.DoubleSide} />
+          <Ring args={[3.7, 3.75, 100]}  rotation={[-Math.PI / 2, 4.8, Math.PI / 2]}position={[105,0,0]}>
+          <meshPhysicalMaterial
+              roughness={0} reflectivity={0} metalness={0} transmission={0.98} clearcoat={0} clearcoatRoughness={0} ior={1} color={'#ffffff'} side={THREE.DoubleSide}/>
           </Ring>
         </mesh>
       </group>
       <group ref={neptune}>
         <mesh onClick={handleClickNeptune} onPointerOver={() => { document.body.style.cursor = 'pointer'; }} onPointerOut={() => { document.body.style.cursor = 'auto'; }}>
-          <Sphere args={[1, 80, 80]} position={[108, 0, 0]} scale={1.8} rotation={[-Math.PI / 2, 1.3, Math.PI / 2]}>
+          <Sphere args={[1, 80, 80]}  scale={1} rotation={[-Math.PI / 2, 1.3, Math.PI / 2]} position={[125, 0, 0]}>
             <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/neptuneTexture.jpg'))} />
           </Sphere>
         </mesh>
 
         <mesh>
-          <Ring args={[3.4, 3.45, 100]} position={[108, 0, 0]} rotation={[-Math.PI / 2, 6.1, Math.PI / 2]}>
+          <Ring args={[3.4, 3.45, 100]} rotation={[-Math.PI / 2, 6.1, Math.PI / 2]} position={[125, 0, 0]}>
             <meshStandardMaterial color={'#383838'} opacity={'0.5'} side={THREE.DoubleSide} />
           </Ring>
         </mesh>
         <mesh>
-          <Ring args={[3.6, 3.65, 100]} position={[108, 0, 0]} rotation={[-Math.PI / 2, 6.1, Math.PI / 2]}>
+          <Ring args={[3.6, 3.65, 100]} rotation={[-Math.PI / 2, 6.1, Math.PI / 2]} position={[125, 0, 0]}>
             <meshStandardMaterial color={'#313131'} opacity={'0.5'} side={THREE.DoubleSide} />
           </Ring>
         </mesh>

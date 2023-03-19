@@ -64,7 +64,7 @@ function Galaxy(props) {
             <Center><Title>Our Solar System</Title></Center>
             <Left><SolarTitle>Explore.</SolarTitle><br/><Disc>Welcome to Solar Explorer! Here we have built a 3D model of our own solar system. Immerse youself in the experience.
               Here you can Explore. Learn. Interact. with all of the planets contained within our Solar System.<Disc style={{fontWeight: '700'}}><br></br>Click on the Galaxy in the center to adventure deeper.</Disc>
-            </Disc></Left>
+            </Disc><Img src="/src/assets/img/arrowRight.png"></Img></Left>
             <Right><SolarTitle>Why is it Called the Solar System?<br/><br/></SolarTitle>
               <Disc>There are many planetary systems like ours in the universe, with planets orbiting a host star. Our planetary system is called “the solar system” because we use the word “solar” to describe things related to our star, after the Latin word for Sun, "solis." <br/><br/></Disc>
               <SolarTitle>Size and Distance<br/><br/></SolarTitle>
@@ -73,7 +73,7 @@ function Galaxy(props) {
           </Canvas>
         </>
       ) : (
-        <Canvas style={{ background: '#040005' }} camera={{position:[0,0,200], fov:15}}>
+        <Canvas style={{ background: '#02020292' }} camera={{position:[0,30,300], fov:15}}>
           <Camera/>
           <Html position={[null]}><button id='close' onClick={handleClosePlanets}>Close</button></Html>
           <Planet />
@@ -86,7 +86,14 @@ function Galaxy(props) {
 export default Galaxy
 
 //style
-
+const Img = styled.img`
+object-fit: contain;
+position: absolute;
+margin: auto;
+max-width: 70px;
+height: auto;
+bottom: -20px;
+left:25vh;`
 
 const Left = styled.div`
 flex: 1;

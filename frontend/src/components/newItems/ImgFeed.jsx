@@ -7,7 +7,7 @@ const Img = styled.div`
 `
 
 
-const Feed = ({image}) => {
+const ImgFeed = ({image}) => {
 
 
     return(
@@ -19,4 +19,4 @@ const Feed = ({image}) => {
     )
 }
 
-export default Feed;
+export default ImgFeed;
