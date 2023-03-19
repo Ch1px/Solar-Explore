@@ -105,6 +105,27 @@
     top:80px;
 }
 
+#containerBelt{
+    width: 40vh;
+    background: rgba(97, 62, 33, 0.5);
+    padding:15px;    
+    border-radius: 20px;
+    position: relative;
+    left: 70px;
+    top:80px;
+}
+
+#containerMoon{
+    width: 40vh;
+    background: rgba(100, 100, 100, 0.5);
+    padding:15px;    
+    border-radius: 20px;
+    position: relative;
+    left: 70px;
+    top:80px;
+}
+
+
 #containerText{
     width: 35vh;
     padding:12px;    

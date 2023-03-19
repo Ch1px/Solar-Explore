@@ -65,6 +65,9 @@ export default function Planets(props) {
   const uranus = useRef();
   const neptune = useRef();
   const Ven = useRef();
+  const moon = useRef()
+  const moon2 = useRef()
+  const moonPos = useRef()
 
 
   const { camera, gl } = useThree();
@@ -82,6 +85,8 @@ export default function Planets(props) {
   const [isHoveredUranus, setIsHoveredUranus] = useState(false);
   const [isHoveredNeptune, setIsHoveredNeptune] = useState(false);
   const [isHoveredBelt, setIsHoveredBelt] = useState(false);
+  const [isHoveredMoon, setIsHoveredMoon] = useState(false);
+
 
 
   useFrame(({ mouse }) => {
@@ -97,6 +102,7 @@ export default function Planets(props) {
     const intersects7 = raycaster.intersectObject(uranus.current); setIsHoveredUranus(intersects7.length > 0);
     const intersects8 = raycaster.intersectObject(neptune.current); setIsHoveredNeptune(intersects8.length > 0);
     const intersects9 = raycaster.intersectObject(kuiperBelt.current); setIsHoveredBelt(intersects9.length > 0);
+    const intersects10 = raycaster.intersectObject(moonPos.current); setIsHoveredMoon(intersects10.length > 0);
   });
 
   const controlsRef = useRef();
@@ -145,6 +151,19 @@ export default function Planets(props) {
       duration: 2,
       x: 28,
       y: 0,
+      z: 0,
+      onUpdate: () => {
+        controlsRef.current.update();
+      }
+    });
+  }
+  };
+  const handleClickMoon = () => {
+    if(!isRotating) {
+    gsap.to(controlsRef.current.target, {
+      duration: 2,
+      x: 29,
+      y: 0.5,
       z: 0,
       onUpdate: () => {
         controlsRef.current.update();
@@ -238,6 +257,8 @@ export default function Planets(props) {
       saturn.current.rotation.y += 0.0004;
       uranus.current.rotation.y += 0.0001;
       neptune.current.rotation.y += 0.00007;
+      moonPos.current.rotation.y += 0.008;
+      moon2.current.rotation.y += 0.02;
     }
   });
 
@@ -252,6 +273,8 @@ export default function Planets(props) {
     saturn.current.rotation.set(0, 0, 0)
     uranus.current.rotation.set(0, 0, 0)
     neptune.current.rotation.set(0, 0, 0)
+    moonPos.current.rotation.set(0,0,0)
+    moon2.current.rotation.set(0,0,0)
     invalidate();
   }
 
@@ -312,7 +335,9 @@ export default function Planets(props) {
 
       {isHoveredSun && <Html position={[null]}><div id='containerSun'><h1 id='name'>The Sun</h1><p id='planet'>The sun is a star, a hot ball of glowing gases at the heart of our solar system. Its influence extends far beyond the orbits of distant Neptune and Pluto. Without the sun’s intense energy and heat, there would be no life on Earth. And though it is special to us, there are billions of stars like our sun scattered across the Milky Way galaxy. If the sun were as tall as a typical front door, the Earth would be the size of a U.S. nickel. The temperature at the sun’s core is about 27 million degrees Fahrenheit.</p></div></Html>}
 
-      {isHoveredBelt && <Html position={[null]}><div id='containerNep'><h1 id='name'>Kuiper Belt</h1><p id='planet'></p></div></Html>}
+      {isHoveredBelt && <Html position={[null]}><div id='containerBelt'><h1 id='name'>Kuiper Belt</h1><p id='planet'></p></div></Html>}
+
+      {isHoveredMoon && <Html position={[null]}><div id='containerMoon'><h1 id='name'>The Moon</h1><p id='planet'></p></div></Html>}
       
       {isRotating && <Html position={[null]}><div id='speedBox'><h1 id='speedDis'>Orbit Speeds</h1><p id="speed">Mercury - 47.87 km/s</p><p id="speed">Venus- 35.02 km/s</p><p id="speed">Earth- 29.78 km/s</p><p id="speed">Mars - 24.077 km/s</p><p id="speed">Jupiter - 13.07 km/s</p><p id="speed">Saturn - 9.69 km/s</p><p id="speed">Uranus - 6.81 km/s</p><p id="speed">Neptune - 5.43 km/s</p></div></Html>}
 
@@ -335,9 +360,7 @@ export default function Planets(props) {
       </group>
 
       <mesh ref={kuiperBelt} position={[0,0,0]} rotation={[-Math.PI / 2, 0, Math.PI / 2]}>
-        <Ring args={[45, 52, 100]} material={beltMaterial}>
-
-        </Ring>
+        <Ring args={[45, 52, 100]} material={beltMaterial}/>
       </mesh>
 
       <group ref={mercury}>
@@ -362,6 +385,16 @@ export default function Planets(props) {
             <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/2k_earth.jpg'))} />
           </Sphere>
         </mesh>
+      </group>
+
+      <group ref={moonPos} position={[0,0,0]}>
+      <group ref={moon} position={[28,0,0]}>
+      <mesh ref={moon2} onClick={handleClickMoon} onPointerOver={() => { document.body.style.cursor = 'pointer'; }} onPointerOut={() => { document.body.style.cursor = 'auto'; }}>
+      <Sphere args={[1, 80, 80]} scale={0.08} position={[1, 0.5, 0]} rotation={[-Math.PI / 2, 1.8, Math.PI / 2]}>
+            <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/moonTexture.jpg'))} />
+          </Sphere>
+          </mesh>
+      </group>
       </group>
 
       <group ref={mars}>
