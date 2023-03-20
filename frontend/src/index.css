@@ -15,7 +15,7 @@
 }
 #containerSun{
     width: 40vh;
-    background: rgba(255, 187, 0, 0.719);
+    background: rgb(248, 163, 35);
     padding:15px;    
     border-radius: 20px;
     position: relative;
@@ -24,7 +24,7 @@
 }
 #containerMer{
     width: 40vh;
-    background: rgba(63, 0, 163, 0.7);
+    background: rgb(114, 78, 31);
     padding:15px;    
     border-radius: 20px;
     position: relative;
@@ -34,7 +34,7 @@
 
 #mercFact{
     width: 40vh;
-    background: rgba(63, 0, 163, 0.7);
+    background: rgb(114, 78, 31);
     padding:15px;    
     border-radius: 20px;
     position: relative;
@@ -43,7 +43,7 @@
 }
 #containerVen{
     width: 40vh;
-    background: rgba(139, 28, 0, 0.7);
+    background: rgb(184, 162, 104);
     padding:15px;    
     border-radius: 20px;
     position: relative;
@@ -52,7 +52,7 @@
 }
 #containerEarth{
     width: 40vh;
-    background: rgba(0, 153, 255,0.5);
+    background: rgb(0, 101, 168);
     padding:15px;    
     border-radius: 20px;
     position: relative;
@@ -61,7 +61,7 @@
 }
 #containerMars{
     width: 40vh;
-    background: rgba(255, 136, 0, 0.5);
+    background: rgb(190, 82, 10);
     padding:15px;    
     border-radius: 20px;
     position: relative;
@@ -70,7 +70,7 @@
 }
 #containerJup{
     width: 40vh;
-    background: rgba(187, 148, 75, 0.5);
+    background: rgb(131, 109, 67);
     padding:15px;    
     border-radius: 20px;
     position: relative;
@@ -79,7 +79,7 @@
 }
 #containerSat{
     width: 40vh;
-    background: rgba(76, 0, 255, 0.5);
+    background: rgb(46, 1, 151);
     padding:15px;    
     border-radius: 20px;
     position: relative;
@@ -88,7 +88,7 @@
 }
 #containerUra{
     width: 40vh;
-    background: rgba(87, 184, 248, 0.5);
+    background: rgb(84, 153, 199);
     padding:15px;    
     border-radius: 20px;
     position: relative;
@@ -97,7 +97,7 @@
 }
 #containerNep{
     width: 40vh;
-    background: rgba(0, 4, 255, 0.5);
+    background: rgb(0, 3, 156);
     padding:15px;    
     border-radius: 20px;
     position: relative;
@@ -107,7 +107,7 @@
 
 #containerBelt{
     width: 40vh;
-    background: rgba(97, 62, 33, 0.5);
+    background: rgb(66, 50, 37);
     padding:15px;    
     border-radius: 20px;
     position: relative;
@@ -117,7 +117,7 @@
 
 #containerMoon{
     width: 40vh;
-    background: rgba(100, 100, 100, 0.5);
+    background: rgb(100, 100, 100);
     padding:15px;    
     border-radius: 20px;
     position: relative;
@@ -208,7 +208,7 @@ font-size: small;
 
 
 #close{
-    background-color: #ff0000;
+    background-color: #b31818;
     color:white;
     cursor: pointer;
     border: none;
