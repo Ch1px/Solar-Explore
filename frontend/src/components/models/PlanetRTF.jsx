@@ -427,7 +427,7 @@ export default function Planets(props) {
       uranusGroup.current.rotation.y += 0.0001;
       neptuneGroup.current.rotation.y += 0.00007;
       moonPos.current.rotation.y += 0.008;
-      moonObject.current.rotation.y += 0.02;
+      moonObject.current.rotation.y += 0.05;
     }
   });
 

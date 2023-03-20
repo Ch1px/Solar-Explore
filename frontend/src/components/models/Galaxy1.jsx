@@ -22,14 +22,15 @@ import Camera from './camera';
 import Starfield from './StarField';
 
 
-function Galaxy(props) {
-  const { nodes, materials, animations } = useGLTF('/src/assets/models/galaxy1-transformed.glb')
+export default function Galaxy(props) {
+  const { nodes, materials } = useGLTF('/src/assets/models/gal-transformed.glb')
+
   const [isCanvasOpen, setIsCanvasOpen] = useState(false);
   const groupRef = useRef();
 
   const handleOpenPlanets = async () => {
     const group = groupRef.current;
-    gsap.to(group.position, { y: "+=55", duration: 3 });
+    gsap.to(group.position, { y: "+=50", duration: 4 });
     setTimeout(() => setIsCanvasOpen(true), 3000);
   }
   const handleClosePlanets = () => {
@@ -40,24 +41,15 @@ function Galaxy(props) {
     <>
       {!isCanvasOpen ? (
         <>
-          <Canvas style={{ background: '#000000d1' }} camera={{ fov: 15, position: [0, 50, 0] }}>
+          <Canvas style={{ background: '#0000000' }} camera={{ fov: 15, position: [0, 50, 0] }}>
           <OrbitControls enableZoom={false} enablePan={false} enableRotate={false} autoRotate={true}/>
           <Starfield/>
             <ambientLight intensity={1} />
             <directionalLight position={[3, 2, 1]} />
             <group ref={groupRef} onClick={handleOpenPlanets} position={props.position} {...props} dispose={null} onPointerOver={() => { document.body.style.cursor = 'pointer'; }} onPointerOut={() => { document.body.style.cursor = 'auto'; }}>
-              <group name="Sketchfab_Scene">
-                <group name="Sketchfab_model" rotation={[-Math.PI / 2, 0, 0]} scale={0.06}>
-                  <group name="a76a404306c24e12b5edf6421ae7203ffbx" rotation={[Math.PI / 2, 0, 0]}>
-                    <group name="Object_2">
-                      <group name="RootNode">
-                        <group name="Galaxy" rotation={[-Math.PI / 2, 0, 0]}>
-                          <mesh name="Galaxy_Material_#65_0" geometry={nodes['Galaxy_Material_#65_0'].geometry} material={materials.Material_65} />
-                        </group>
-                      </group>
-                    </group>
-                  </group>
-                </group>
+              <group position={[-0.85, 11.24, 0]} rotation={[-Math.PI / 2, -0.11, 0]} scale={0.004}>
+                <points geometry={nodes.Object_2.geometry} material={materials.nuages} />
+                <points geometry={nodes.Object_3.geometry} material={materials.nuages} />
               </group>
             </group>
             <Html position={[0,0,0]}>
@@ -73,7 +65,7 @@ function Galaxy(props) {
           </Canvas>
         </>
       ) : (
-        <Canvas antialias={false} style={{ background: '#02020292' }} camera={{position:[0,30,300], fov:15}}>
+        <Canvas frameloop="always" style={{ background: '#0202020' }} camera={{position:[0,50,570], fov:15}}>
           <Planet/>
           <Html position={[null]}><button id='close' onClick={handleClosePlanets}>Close</button></Html>
         </Canvas>
@@ -81,8 +73,8 @@ function Galaxy(props) {
     </>
   )
 }
+useGLTF.preload('/src/assets/models/galaxy1-transformed.glb')
 
-export default Galaxy
 
 //style
 const Img = styled.img`
