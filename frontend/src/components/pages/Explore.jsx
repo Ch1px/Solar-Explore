@@ -9,6 +9,7 @@ import Galaxy from "../models/Galaxy1";
 import {OrbitControls} from "@react-three/drei";
 import gsap from "gsap";
 import HandleExplore from "../models/Galaxy1";
+import Test from "../models/test";
 
 
 const Section = styled.div`

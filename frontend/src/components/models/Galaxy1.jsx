@@ -74,8 +74,8 @@ function Galaxy(props) {
         </>
       ) : (
         <Canvas antialias={false} style={{ background: '#02020292' }} camera={{position:[0,30,300], fov:15}}>
+          <Planet/>
           <Html position={[null]}><button id='close' onClick={handleClosePlanets}>Close</button></Html>
-          <Planet />
         </Canvas>
       )}
     </>

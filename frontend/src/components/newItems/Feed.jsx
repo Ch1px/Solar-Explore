@@ -20,7 +20,7 @@ const Title = styled.h1`
     }
 `
 const ADate = styled.p`
-padding-bottom: 30px;
+padding-bottom: 20px;
 `
 
 const Feed = ({title, link, date}) => {

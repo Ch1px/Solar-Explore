@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const Img = styled.div`
     width:130px;
-    padding-bottom: 5px;
+    padding-bottom: 7px;
 `
 
 

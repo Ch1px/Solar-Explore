@@ -217,8 +217,22 @@ font-size: small;
     padding-top:2px;
     padding-bottom: 2px;
     position: relative;
-    left:5vh;
-    top:5vh;
+    left:185vh;
+    top:3vh;
+    font-size: small;
+}
+
+#hideFact{
+    color:white;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    width: 7vh;
+    padding-top:2px;
+    padding-bottom: 2px;
+    position: relative;
+    left:40vh;
+    top:3vh;
     font-size: small;
 }
 
@@ -241,3 +255,4 @@ font-size: small;
 #speed{
     padding-bottom: 5px;
 }
+
