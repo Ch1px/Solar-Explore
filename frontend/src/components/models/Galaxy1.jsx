@@ -40,7 +40,7 @@ function Galaxy(props) {
     <>
       {!isCanvasOpen ? (
         <>
-          <Canvas style={{ background: '#020202d3' }} camera={{ fov: 15, position: [0, 50, 0] }}>
+          <Canvas style={{ background: '#000000d1' }} camera={{ fov: 15, position: [0, 50, 0] }}>
           <OrbitControls enableZoom={false} enablePan={false} enableRotate={false} autoRotate={true}/>
           <Starfield/>
             <ambientLight intensity={1} />
@@ -73,7 +73,7 @@ function Galaxy(props) {
           </Canvas>
         </>
       ) : (
-        <Canvas style={{ background: '#02020292' }} camera={{position:[0,30,300], fov:15}}>
+        <Canvas antialias={false} style={{ background: '#02020292' }} camera={{position:[0,30,300], fov:15}}>
           <Html position={[null]}><button id='close' onClick={handleClosePlanets}>Close</button></Html>
           <Planet />
         </Canvas>
