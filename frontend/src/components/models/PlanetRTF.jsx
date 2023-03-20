@@ -103,6 +103,8 @@ export default function Planets(props) {
   const [isClickedBelt, setIsClickedBelt] = useState(false);
   const [isClickedMoon, setIsClickedMoon] = useState(false);
 
+  const [isClickedFact, setIsClickedFact] = useState(false);
+
 
   useFrame(({ mouse }) => {
     const raycaster = new THREE.Raycaster();
@@ -123,6 +125,7 @@ export default function Planets(props) {
     setIsClickedUranus(false)
     setIsClickedBelt(false)
     setIsClickedSun(true)
+    setIsClickedFact(true)
     gsap.to(controlsRef.current.target, {
       duration: 2,
       x: 0,
@@ -146,6 +149,7 @@ export default function Planets(props) {
     setIsClickedUranus(false)
     setIsClickedBelt(true)
     setIsClickedSun(false)
+    setIsClickedFact(true)
   }
 
   function handleClickMercury() {
@@ -160,6 +164,7 @@ export default function Planets(props) {
     setIsClickedUranus(false)
     setIsClickedBelt(false)
     setIsClickedSun(false)
+    setIsClickedFact(true)
 
     if (!isRotating) {
       // Get the updated position of the mercuryObject after the rotation has been applied
@@ -187,6 +192,7 @@ export default function Planets(props) {
     setIsClickedUranus(false)
     setIsClickedBelt(false)
     setIsClickedSun(false)
+    setIsClickedFact(true)
 
     if (!isRotating) {
       const { x, y, z } = venus.current.getWorldPosition(new THREE.Vector3());
@@ -213,6 +219,7 @@ export default function Planets(props) {
     setIsClickedUranus(false)
     setIsClickedBelt(false)
     setIsClickedSun(false)
+    setIsClickedFact(true)
 
     if (!isRotating) {
       // Get the updated position of the mercuryObject after the rotation has been applied
@@ -240,6 +247,7 @@ export default function Planets(props) {
     setIsClickedUranus(false)
     setIsClickedBelt(false)
     setIsClickedSun(false)
+    setIsClickedFact(true)
 
     if (!isRotating) {
       // Get the updated position of the mercuryObject after the rotation has been applied
@@ -268,6 +276,7 @@ export default function Planets(props) {
     setIsClickedUranus(false)
     setIsClickedBelt(false)
     setIsClickedSun(false)
+    setIsClickedFact(true)
 
     if (!isRotating) {
       // Get the updated position of the mercuryObject after the rotation has been applied
@@ -295,6 +304,7 @@ export default function Planets(props) {
     setIsClickedUranus(false)
     setIsClickedBelt(false)
     setIsClickedSun(false)
+    setIsClickedFact(true)
 
     if (!isRotating) {
       // Get the updated position of the mercuryObject after the rotation has been applied
@@ -322,6 +332,7 @@ export default function Planets(props) {
     setIsClickedUranus(false)
     setIsClickedBelt(false)
     setIsClickedSun(false)
+    setIsClickedFact(true)
 
     if (!isRotating) {
       // Get the updated position of the mercuryObject after the rotation has been applied
@@ -349,6 +360,7 @@ export default function Planets(props) {
     setIsClickedUranus(true)
     setIsClickedBelt(false)
     setIsClickedSun(false)
+    setIsClickedFact(true)
 
     if (!isRotating) {
       // Get the updated position of the mercuryObject after the rotation has been applied
@@ -376,6 +388,7 @@ export default function Planets(props) {
     setIsClickedUranus(false)
     setIsClickedBelt(false)
     setIsClickedSun(false)
+    setIsClickedFact(true)
 
     if (!isRotating) {
       // Get the updated position of the mercuryObject after the rotation has been applied
@@ -445,6 +458,7 @@ export default function Planets(props) {
     setIsClickedUranus(false)
     setIsClickedBelt(false)
     setIsClickedSun(false)
+    setIsClickedFact(false)
   }
 
   const textureBelt = useLoader(TextureLoader, './src/assets/img/kBelt.png');
@@ -511,7 +525,7 @@ export default function Planets(props) {
 
       <Html position={[null]}><button id='refresh' onClick={handleClick}>Reset Orbit Position</button></Html>
       <Html position={[null]}><button id='rotate' onClick={handleRotateClick}>Toggle Orbit</button></Html>
-      <Html position={[null]}><button id='hideFact' onClick={handleHideFact}>Hide Facts</button></Html>
+      {isClickedFact && <Html position={[null]}><button id='hideFact' onClick={handleHideFact}>Hide Fact</button></Html>}
 
       {/*Create objects*/}
       <group ref={sun}>
