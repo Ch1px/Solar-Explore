@@ -274,7 +274,6 @@ export default function Planets(props) {
     neptune.current.rotation.set(0, 0, 0)
     moonPos.current.rotation.set(0,0,0)
     moonPosEarth.current.rotation.set(0,0,0)
-    invalidate();
   }
 
   const textureBelt = useLoader(TextureLoader, './src/assets/img/kBelt.png');
@@ -347,7 +346,7 @@ export default function Planets(props) {
       <group ref={sun}>
         <mesh onClick={handleClickSun}>
           <Sphere args={[1, 80, 80]} scale={10} position={[0, 0, 0]}>
-            <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/sunMap.jpg'))} />
+            <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/700_sunMap.jpg'))} />
           </Sphere>
         </mesh>
         <mesh onClick={handleClickSun} onPointerOver={() => { document.body.style.cursor = 'pointer'; }} onPointerOut={() => { document.body.style.cursor = 'auto'; }}>
@@ -381,7 +380,7 @@ export default function Planets(props) {
       <group ref={earth}>
         <mesh onClick={handleClickEarth} onPointerOver={() => { document.body.style.cursor = 'pointer'; }} onPointerOut={() => { document.body.style.cursor = 'auto'; }}>
           <Sphere args={[1, 80, 80]} scale={0.4} position={[28, 0, 0]} rotation={[-Math.PI / 2, 1.8, Math.PI / 2]}>
-            <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/700_earth.jpg'))} />
+            <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/2k_earth.jpg'))} />
           </Sphere>
         </mesh>
       </group>
