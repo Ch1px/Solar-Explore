@@ -485,12 +485,12 @@ export default function Planets(props) {
         </div>
 
       </Html>
-      <rectAreaLight rotation={[0, 0, 0]} color={'#f8f1e7'} intensity={10} position={[0, 0, 13.8]} />
-      <rectAreaLight rotation={[3, 0, 0]} color={'#fad400'} intensity={10} position={[0, 0, -13.8]} />
-      <rectAreaLight rotation={[-1.5, 0, 0]} color={'#ff970f'} intensity={10} position={[0, 13.8, 0]} />
-      <rectAreaLight rotation={[0, 2, 0]} color={'#ffffff'} intensity={10} position={[13.8, 0, 0]} />
-      <rectAreaLight rotation={[0, -1, 0]} color={'#ffffff'} intensity={10} position={[-13.8, 0, 0]} />
-      <rectAreaLight rotation={[1, 0, 0]} color={'#ffae00'} intensity={10} position={[0, -13.8, 0]} />
+      <rectAreaLight rotation={[0, 0, 0]} color={'#f8f1e7'} intensity={20} position={[0, 0, 13.8]} />
+      <rectAreaLight rotation={[3, 0, 0]} color={'#fad400'} intensity={20} position={[0, 0, -13.8]} />
+      <rectAreaLight rotation={[-1.5, 0, 0]} color={'#ff970f'} intensity={20} position={[0, 13.8, 0]} />
+      <rectAreaLight rotation={[0, 2, 0]} color={'#ffffff'} intensity={20} position={[13.8, 0, 0]} />
+      <rectAreaLight rotation={[0, -1, 0]} color={'#ffffff'} intensity={20} position={[-13.8, 0, 0]} />
+      <rectAreaLight rotation={[1, 0, 0]} color={'#ffae00'} intensity={20} position={[0, -13.8, 0]} />
       <rectAreaLight rotation={[0, 5, 0]} color={'orange'} intensity={4} position={[13.8, 0, 0]} />
       <rectAreaLight rotation={[0, 2, 0]} color={'orange'} intensity={4} position={[-13.8, 0, 0]} />
       <rectAreaLight rotation={[0, 3, 0]} color={'orange'} intensity={4} position={[0, 0, 13.8]} />
@@ -594,7 +594,7 @@ export default function Planets(props) {
         <group ref={marsObject} position={[36, 0, 0]}>
           <mesh onPointerOver={() => { document.body.style.cursor = 'pointer'; }} onPointerOut={() => { document.body.style.cursor = 'auto'; }}>
             <Sphere ref={mars} args={[1, 80, 80]} scale={0.2} rotation={[-Math.PI / 2, 1.8, Math.PI / 2]} onClick={handleClickMars} >
-              <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/700_mars.jpg'))} />
+              <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/2k_mars.jpg'))} />
             </Sphere>
           </mesh>
         </group>
