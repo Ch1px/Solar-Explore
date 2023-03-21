@@ -20,10 +20,20 @@ import SunLight from "../models/sunlight";
 import { OrbitControls } from '@react-three/drei';
 import Camera from './camera';
 import Starfield from './StarField';
+import * as THREE from 'three'
+import { TextureLoader } from 'three';
+import { useLoader} from '@react-three/fiber'
+import { Circle} from "@react-three/drei";
 
 
 export default function Galaxy(props) {
   const { nodes, materials } = useGLTF('/src/assets/models/gal-transformed.glb')
+
+  const textureGalaxy = useLoader(TextureLoader, './src/assets/img/Space-Transparent.png');
+  console.log(textureGalaxy)
+
+  textureGalaxy.magFilter = THREE.NearestFilter;
+  textureGalaxy.minFilter = THREE.NearestFilter;
 
   const [isCanvasOpen, setIsCanvasOpen] = useState(false);
   const groupRef = useRef();
@@ -41,16 +51,17 @@ export default function Galaxy(props) {
     <>
       {!isCanvasOpen ? (
         <>
-          <Canvas style={{ background: '#0000000' }} camera={{ fov: 15, position: [0, 50, 0] }}>
+          <Canvas style={{ background: '#0000000' }} camera={{ fov: 15, position: [0, 40, 0] }}>
           <OrbitControls enableZoom={false} enablePan={false} enableRotate={false} autoRotate={true}/>
           <Starfield/>
             <ambientLight intensity={1} />
             <directionalLight position={[3, 2, 1]} />
-            <group ref={groupRef} onClick={handleOpenPlanets} position={props.position} {...props} dispose={null} onPointerOver={() => { document.body.style.cursor = 'pointer'; }} onPointerOut={() => { document.body.style.cursor = 'auto'; }}>
-              <group position={[-0.85, 11.24, 0]} rotation={[-Math.PI / 2, -0.11, 0]} scale={0.004}>
-                <points geometry={nodes.Object_2.geometry} material={materials.nuages} />
-                <points geometry={nodes.Object_3.geometry} material={materials.nuages} />
-              </group>
+            <group ref={groupRef}  onClick={handleOpenPlanets} position={props.position} {...props} dispose={null} onPointerOver={() => { document.body.style.cursor = 'pointer'; }} onPointerOut={() => { document.body.style.cursor = 'auto'; }}>
+            <mesh position={[0, 0, 0]} rotation={[-Math.PI / 2, 0, Math.PI / 2]}>
+                <Circle args={[5, 32]}>
+                    <meshStandardMaterial map={textureGalaxy} transparent={true} doubleSide={true}/>
+                </Circle>
+            </mesh>
             </group>
             <Html position={[0,0,0]}>
             <Center><Title>Our Solar System</Title></Center>
