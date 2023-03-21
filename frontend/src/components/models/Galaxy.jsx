@@ -14,9 +14,9 @@ import { gsap } from 'gsap';
 import Planets from './PlanetRTF';
 import styled from "styled-components";
 import { Canvas } from '@react-three/fiber'
-import Planet from '../models/PlanetRTF'
+import Planet from './PlanetRTF'
 import { Html, useCursor } from "@react-three/drei";
-import SunLight from "../models/sunlight";
+import SunLight from "./sunlight";
 import { OrbitControls } from '@react-three/drei';
 import Camera from './camera';
 import Starfield from './StarField';
@@ -27,7 +27,6 @@ import { Circle} from "@react-three/drei";
 
 
 export default function Galaxy(props) {
-  const { nodes, materials } = useGLTF('/src/assets/models/gal-transformed.glb')
 
   const textureGalaxy = useLoader(TextureLoader, './src/assets/img/Space-Transparent.png');
   console.log(textureGalaxy)
@@ -41,7 +40,7 @@ export default function Galaxy(props) {
   const handleOpenPlanets = async () => {
     const group = groupRef.current;
     gsap.to(group.position, { y: "+=50", duration: 4 });
-    setTimeout(() => setIsCanvasOpen(true), 3000);
+    setTimeout(() => setIsCanvasOpen(true), 2000);
   }
   const handleClosePlanets = () => {
     setIsCanvasOpen(false);
@@ -84,7 +83,6 @@ export default function Galaxy(props) {
     </>
   )
 }
-useGLTF.preload('/src/assets/models/galaxy1-transformed.glb')
 
 
 //style

@@ -223,6 +223,7 @@ font-size: small;
 }
 
 #hideFact{
+    background-color: #b31818;
     color:white;
     cursor: pointer;
     border: none;
