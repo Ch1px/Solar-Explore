@@ -11,6 +11,7 @@ import styled from "styled-components";
 import { Canvas } from '@react-three/fiber'
 import SunLight from './sunlight';
 import { Vector3 } from 'three';
+import earthAVertexShader from '/src/assets/shaders/earth/earthAV.glsl'; import earthAFragmentShader from '/src/assets/shaders/earth/earthAF.glsl';
 
 import '/src/index.css'
 
@@ -20,6 +21,7 @@ export default function Test(props) {
     const mercuryGroup = useRef();
     const mercuryObjectGroup = useRef();
     const mercuryObject = useRef();
+    const mercAtmosObject = useRef();
     const venusGroup = useRef();
     const venusObject = useRef();
     const venus = useRef();
@@ -29,12 +31,20 @@ export default function Test(props) {
 
     const [isClickedMercury, setIsClickedMercury] = useState(false);
     const [isClickedVenus, setIsClickedVenus] = useState(false);
+
+    const [isHovered, setIsHovered] = useState(false)
+    useFrame(({ mouse }) => {
+      const raycaster = new THREE.Raycaster();
+      raycaster.setFromCamera(mouse, camera);
+
+      const intersects1= raycaster.intersectObject(mercuryGroup.current); setIsHovered(intersects1.length > 0);
+    });
+
   
     function handleClickMercury() {
         setIsClickedMercury(true)
         setIsClickedVenus(false)
        
-        // Get the updated position of the mercuryObject after the rotation has been applied
         const { x, y, z } = mercuryObject.current.getWorldPosition(new THREE.Vector3());
       
         gsap.to(controlsRef.current.target, {
@@ -52,8 +62,6 @@ export default function Test(props) {
       function handleClickVenus() {
         setIsClickedMercury(false)
         setIsClickedVenus(true)
-       
-        // Get the updated position of the mercuryObject after the rotation has been applied
         const { x, y, z } = venus.current.getWorldPosition(new THREE.Vector3());
       
         gsap.to(controlsRef.current.target, {
@@ -70,22 +78,30 @@ export default function Test(props) {
   
     useFrame(() => {
       mercuryGroup.current.rotation.y += 0.0005;
-      venusGroup.current.rotation.y += 0.0005;
+      venusGroup.current.rotation.y += 0.000;
     });
   
     return (
       <group {...props} dispose={null}>
-        {!isClickedMercury && <Html position={[null]}><div id='containerMoon'><h1 id='name'>The M</h1><p id='planet'></p></div></Html>}
-        {!isClickedVenus && <Html position={[null]}><div id='containerMoon'><h1 id='name'>The Moon</h1><p id='planet'></p></div></Html>}
-        {/*Create objects*/}
+      
+        {isClickedMercury && <Html position={[null]}><div id='containerMoon'><h1 id='name'>The M</h1><p id='planet'></p></div></Html>}
+        {isClickedVenus && <Html position={[null]}><div id='containerMoon'><h1 id='name'>The Moon</h1><p id='planet'></p></div></Html>}
         <group ref={mercuryGroup} position={[0, 0, 0]}>
           <group ref={mercuryObjectGroup} position={[16, 0, 0]}>
-            <mesh onPointerOver={() => { document.body.style.cursor = "pointer";}} onPointerOut={() => {document.body.style.cursor = "auto";}}>
+            <mesh onPointerOver={() => { document.body.style.cursor = "pointer"; }} onPointerOut={() => { document.body.style.cursor = "auto"; }}>
               <Sphere ref={mercuryObject} args={[1, 80, 80]} scale={1} onClick={handleClickMercury}>
-                <meshStandardMaterial map={useLoader(THREE.TextureLoader, "./src/assets/img/700_mercMap.jpg")}/>
+                <meshStandardMaterial map={useLoader(THREE.TextureLoader, "./src/assets/img/700_mercMap.jpg")} />
               </Sphere>
             </mesh>
           </group>
+          {isHovered &&
+            <group ref={mercAtmosObject} position={[16, 0, 0]}>
+              <mesh onPointerOver={() => { document.body.style.cursor = 'pointer'; }} onPointerOut={() => { document.body.style.cursor = 'auto'; }}>
+                <Sphere args={[1, 80, 80]} scale={1.1}>
+                  <shaderMaterial vertexShader={earthAVertexShader} fragmentShader={earthAFragmentShader} blending={THREE.AdditiveBlending} side={THREE.BackSide} />
+                </Sphere>
+              </mesh>
+            </group>}
         </group>
 
         <group ref={venusGroup} position={[0, 0, 0]}>

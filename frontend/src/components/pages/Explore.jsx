@@ -15,7 +15,11 @@ const Section = styled.div`
 height: 100vh;
 scroll-snap-align: center;
 top:0px;
+@media only screen and (max-width:900px){
+    display: none;
+}
 `
+
 const Container = styled.div`
 width:100%;
 height: 100%;

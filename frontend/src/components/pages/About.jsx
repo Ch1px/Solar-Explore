@@ -11,8 +11,8 @@ display:flex;
 flex-direction: column;
 align-items: center;
 justify-content: space-between;
-@media only screen and (max-width:820px){
-    height: 200vh;
+@media only screen and (max-width:900px){
+    height: 100vh;
 }
 `
 const Container = styled.div`
@@ -21,29 +21,30 @@ scroll-snap-align: center;
 width:1400px;
 display: flex;
 justify-content: space-between;
-@media only screen and (max-width:820px){
-    width: '100%';
+@media only screen and (max-width:900px){
+    width:170vh;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding: 550px;
 }
 `
 
 const Left = styled.div`
 flex:3;
-@media only screen and (max-width:820px){
+@media only screen and (max-width:900px){
     display: none;
 }
 `
 const Title = styled.h1`
     font-size:74px;
-@media only screen and (max-width:820px){
+@media only screen and (max-width:900px){
     font-size: 50px;
 }
 `
 const Disc = styled.div`
 font-size:24px;
-@media only screen and (max-width:820px){
+@media only screen and (max-width:900px){
 
 }
 `
@@ -55,7 +56,7 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 gap: 20px;
-@media only screen and (max-width:820px){
+@media only screen and (max-width:900px){
     align-items: center;
     text-align: center;
 }
@@ -75,7 +76,7 @@ animation: animate 1s infinite ease alternate;
         transform: translateY(5px);
     }
 }
-@media only screen and (max-width:820px){
+@media only screen and (max-width:900px){
     display: none;
 }
 
@@ -93,7 +94,7 @@ animation: animate 1s infinite ease alternate;
         transform: translateY(5px);
     }
 }
-@media only screen and (max-width:820px){
+@media only screen and (max-width:900px){
     display: none;
 }
 

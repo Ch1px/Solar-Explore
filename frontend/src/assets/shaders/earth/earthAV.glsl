@@ -1,3 +1,4 @@
+varying vec2 vertexUV;
 varying vec3 vertexNormal;
 
 void main() {

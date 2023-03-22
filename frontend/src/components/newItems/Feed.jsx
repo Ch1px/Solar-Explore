@@ -18,9 +18,16 @@ const Title = styled.h1`
     &:hover{
         background-position: 0 100%;
     }
+    @media only screen and (max-width:900px){
+    width: 40vh;
+}
 `
 const ADate = styled.p`
 padding-bottom: 30px;
+@media only screen and (max-width:900px){
+    padding-bottom:10px;
+}
+
 `
 
 const Feed = ({title, link, date}) => {

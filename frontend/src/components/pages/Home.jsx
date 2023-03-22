@@ -11,22 +11,23 @@ flex-direction: column;
 align-items: center;
 justify-content: space-between;
 
-@media only screen and (max-width:820px){
+@media only screen and (max-width:900px){
     height: 200vh;
 }
 `
 const Container = styled.div`
 height: 100%;
 scroll-snap-align: center;
-width:1400px;
+
 display: flex;
 justify-content: space-between;
-@media only screen and (max-width:820px){
-    width:100%;
+@media only screen and (max-width:900px){
+    width:180vh;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 600px;
+    padding: 550px;
+
 }
 `
 
@@ -36,15 +37,17 @@ const Left = styled.div`
  flex-direction: column;
  justify-content: center;
  gap: 20px;
- @media only screen and (max-width:820px){
+ padding-left: 270px;
+ @media only screen and (max-width:900px){
     align-items: center;
+    padding-left: 0px;
     flex:1;
 }
 `
 const Title = styled.h1`
 font-size:74px;
 font-weight: 600;
-@media only screen and (max-width:820px){
+@media only screen and (max-width:900px){
     text-align:center;
     font-size: 50px;
 }
@@ -53,7 +56,8 @@ font-weight: 600;
 const Subtitle = styled.p`
 font-size: 24px;
 padding-bottom: 10px;
-@media only screen and (max-width:820px){
+padding-right: 50px;
+@media only screen and (max-width:900px){
     padding:20px;
     text-align: center;
 }
@@ -78,8 +82,12 @@ background: linear-gradient(to right, #eb42ce ,  #0099ff 50%, #0099ff 50%);
 const Right = styled.div`
 flex:3;
 position: relative;
-@media only screen and (max-width:820px){
+@media only screen and (max-width:900px){
     flex:1;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 `
 const Img = styled.img`
@@ -99,7 +107,7 @@ animation: animate 2s infinite ease alternate;
         transform: translateY(20px);
     }
 }
-@media only screen and (max-width:820px){
+@media only screen and (max-width:900px){
     width: 300px;
     height:300px;
 }

@@ -14,6 +14,9 @@ display:flex;
 flex-direction: column;
 align-items: center;
 justify-content: space-between;
+@media only screen and (max-width:900px){
+    height: 100vh;
+}
 `
 const Container = styled.div`
 width:100%;
@@ -21,11 +24,17 @@ height: 100%;
 width: 100vw;
 display:flex;
 justify-content: center;
+@media only screen and (max-width:900px){
+    
+}
 
 `
 
 const Left = styled.div`
 flex: 1;
+@media only screen and (max-width:900px){
+    display:none;
+}
 `
 const Center = styled.div`
 flex:1;
@@ -35,7 +44,9 @@ justify-content: center;
 flex-direction: column;
 align-items: center;
 text-align: left;
-top:-3vh
+top:-3vh;
+@media only screen and (max-width:900px){
+}
 `
 
 const Title = styled.h1`
@@ -49,6 +60,9 @@ display: flex;
 flex-direction: column;
 gap:25px;
 color: black;
+@media only screen and (max-width:900px){
+    width:40vh;
+}
 
 `
 const Input = styled.input`
@@ -76,6 +90,9 @@ color: white;
 
 const Right = styled.div`
 flex:1;
+@media only screen and (max-width:900px){
+    display:none;
+}
 `
 
 
