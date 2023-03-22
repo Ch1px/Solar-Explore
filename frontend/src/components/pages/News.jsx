@@ -103,6 +103,7 @@ const News = () => {
                     <ambientLight intensity={1}/>
                     <directionalLight position={[3,2,1]}/>
                     <Model/>
+                    <Earth/>
                     <Starfield/>
                 </Canvas></Right>
             </Container>

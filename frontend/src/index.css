@@ -183,11 +183,11 @@ cursor: pointer;
 border: none;
 border-radius: 5px;
 width: 15vh;
-padding-top:2px;
+padding-top:5px;
 padding-bottom: 5px;
 position: relative;
 left:80vh;
-top:5vh;
+top:3vh;
 font-size: small;
 }
 
@@ -198,11 +198,11 @@ font-size: small;
     border: none;
     border-radius: 5px;
     width: 15vh;
-    padding-top:2px;
+    padding-top:5px;
     padding-bottom: 5px;
     position: relative;
     left:97vh;
-    top:5vh;
+    top:3vh;
     font-size: small;
 }
 

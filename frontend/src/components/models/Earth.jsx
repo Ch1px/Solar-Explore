@@ -16,40 +16,14 @@ export default function Model(props) {
   const { nodes, materials } = useGLTF('/src/assets/models/earth-transformed.glb')
   const earth = useRef();
 
-  const { camera } = useThree();
-
-  useEffect(() => {
-    function handleMouseMove(event) {
-      const { clientX, clientY } = event;
-
-      // Calculate the rotation and scale based on mouse position
-      const mouse = {
-        x: (clientY / window.innerHeight) * Math.PI - Math.PI / 2,
-        y: (clientX / window.innerWidth) * Math.PI * 2,
-        z: 0,
-      };
-
-      // Use GSAP to animate the rotation and scale
-      gsap.to(earth.current.rotation, {
-        x: -mouse.y * 0.3,
-        duration: 3
-      });
-    }
-
-    window.addEventListener('mousemove', handleMouseMove);
-
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-    };
-  }, []);
 
   useFrame(() => {
     earth.current.rotation.y += 0.001
   });
 
   return (
-    <group ref={earth} {...props} dispose={null}>
-      <group scale={0.2}>
+    <group ref={earth} {...props} dispose={null} position={[15,0,10]} rotation={[-Math.PI / 2, 0, Math.PI / 22]}>
+      <group scale={1}>
       <mesh geometry={nodes.earth4_blinn1_0.geometry} material={materials.blinn1} />
       <mesh geometry={nodes.earth4_lambert1_0.geometry} material={materials.lambert1} />
       </group>
