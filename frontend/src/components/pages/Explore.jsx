@@ -27,6 +27,13 @@ display:flex;
 justify-content: center;
 top:0px;
 -webkit-appearance: none;
+@media only screen and (max-width:900px){
+    width:170vh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 550px;
+}
 `
 
 const Explore = () => {

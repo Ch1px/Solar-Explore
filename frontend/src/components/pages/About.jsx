@@ -18,7 +18,6 @@ justify-content: space-between;
 const Container = styled.div`
 height: 100vh;
 scroll-snap-align: center;
-width:1400px;
 display: flex;
 justify-content: space-between;
 @media only screen and (max-width:900px){
@@ -31,13 +30,20 @@ justify-content: space-between;
 `
 
 const Left = styled.div`
-flex:3;
+ flex: 2;
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ position: relative;
+padding-left: 270px;
+
 @media only screen and (max-width:900px){
     display: none;
 }
 `
 const Title = styled.h1`
-    font-size:74px;
+    font-size:50px;
+    padding-bottom: 30px;
 @media only screen and (max-width:900px){
     font-size: 50px;
 }
@@ -50,12 +56,8 @@ font-size:24px;
 `
 
 const Right = styled.div`
-flex:2;
+flex:3;
 position: relative;
-display: flex;
-flex-direction: column;
-justify-content: center;
-gap: 20px;
 @media only screen and (max-width:900px){
     align-items: center;
     text-align: center;
@@ -68,7 +70,8 @@ position: absolute;
 margin: auto;
 max-width: 50px;
 height: auto;
-bottom:220px;
+bottom:9.6vh;
+left:80vh;
 animation: animate 1s infinite ease alternate;
 
 @keyframes animate {
@@ -85,8 +88,8 @@ const ImgDis = styled.p`
 object-fit: contain;
 position: absolute;
 margin: auto;
-bottom:229px;
-left:50px;
+bottom:11vh;
+left:70vh;
 animation: animate 1s infinite ease alternate;
 
 @keyframes animate {
@@ -105,19 +108,24 @@ const About = () => {
         <Section id='About'>
             <Container>
                 <Left>
-                    <Space/>
+                <Title>What we do.</Title><br/>
+                    <Disc>
+                    Welcome to our website! We are passionate about space and the wonders of the universe. 
+                    Our website is dedicated to providing you with an interactive and immersive experience of the solar system. 
+                    We use 3D models to display facts about each planet in the solar system. 
+                    Our aim is to make learning about space fun and engaging for everyone. 
+                    Our 3D models are designed to be interactive and informative.<br/><br/>You can explore each planet in detail and learn about its unique features. 
+                    We have included a range of information about each planet, including its size, distance from the sun, and composition. 
+                    Our website is perfect for anyone who is interested in space, from students to space enthusiasts.
+                    <br/><br/>We hope you enjoy exploring our website and learning about the wonders of the solar system. 
+                    This project was created using ThreeJS, to get the most out of your interactive planetary experience.
+                    </Disc>
+                    <Img src="/src/assets/img/arrowRight.png"></Img>
+                    <ImgDis>Give it a whirl!</ImgDis>
+                    
                 </Left>
                 <Right>
-                    <Title>What we do.</Title><br/>
-                    <Disc>
-                        We have created an immersive 3D environment of all the planets in our Solar System.
-                         You will make your way around the planets in our Solar System, and interact with all it has to offer.
-                          Not only will you learn, you will have fun whilst doing it!<br></br><br></br>
-
-                          This project was created using ThreeJS, to get the most out of your interactive planetary experience.
-                    </Disc>
-                    <Img src="/src/assets/img/arrow.png"></Img>
-                    <ImgDis>Give it a whirl!</ImgDis>
+                <Space/>
                 </Right>
             </Container>
         </Section>

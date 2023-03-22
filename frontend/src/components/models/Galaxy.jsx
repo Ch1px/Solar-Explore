@@ -28,7 +28,7 @@ import { Circle} from "@react-three/drei";
 
 export default function Galaxy(props) {
 
-  const textureGalaxy = useLoader(TextureLoader, './src/assets/img/Space-Transparent.png');
+  const textureGalaxy = useLoader(TextureLoader, './src/assets/img/milkyway.png');
   console.log(textureGalaxy)
 
   textureGalaxy.magFilter = THREE.NearestFilter;
@@ -39,8 +39,8 @@ export default function Galaxy(props) {
 
   const handleOpenPlanets = async () => {
     const group = groupRef.current;
-    gsap.to(group.position, { y: "+=50", duration: 4 });
-    setTimeout(() => setIsCanvasOpen(true), 2000);
+    gsap.to(group.position, { y: "+=10", duration: 3 });
+    setTimeout(() => setIsCanvasOpen(true), 3000);
   }
   const handleClosePlanets = () => {
     setIsCanvasOpen(false);
@@ -50,29 +50,36 @@ export default function Galaxy(props) {
     <>
       {!isCanvasOpen ? (
         <>
-          <Canvas style={{ background: '#0000000' }} camera={{ fov: 15, position: [0, 40, 0] }}>
+        <Left>
+          <Title>Our Solar System</Title>
+          <SolarTitle>Explore. Learn. Interact</SolarTitle><Disc1>Welcome to Solar Explorer! Here we have built a 3D model of our own solar system. Immerse youself in the experience.
+              Here you can Explore. Learn. Interact. with all of the planets contained within our Solar System.
+            </Disc1>
+            <SolarTitle>Why is it Called the Solar System?</SolarTitle>
+              <Disc>There are many planetary systems like ours in the universe, with planets orbiting a host star. Our planetary system is called “the solar system” because we use the word “solar” to describe things related to our star, after the Latin word for Sun, "solis." <br/><br/></Disc>
+              <SolarTitle>Size and Distance</SolarTitle>
+              <Disc>Our solar system extends much farther than the eight planets that orbit the Sun. The solar system also includes the Kuiper Belt that lies past Neptune's orbit. This is a sparsely occupied ring of icy bodies, almost all smaller than the most popular Kuiper Belt Object – dwarf planet Pluto.</Disc>
+              <Disc style={{fontWeight: '700'}}>Click on the Milky Way  to adventure deeper.<Img src="/src/assets/img/arrowRight.png"></Img></Disc>
+
+        </Left>
+        <Right>
+          <Canvas style={{ background: '#0000000' }} camera={{position: [0, 10, 0] }}>
           <OrbitControls enableZoom={false} enablePan={false} enableRotate={false} autoRotate={true}/>
           <Starfield/>
             <ambientLight intensity={1} />
-            <directionalLight position={[3, 2, 1]} />
+            <directionalLight position={[0, 1, 0]} color={'orange'} intensity={1.2}/>
+            <directionalLight position={[0, 1, 0]} color={'purple'} intensity={1}/>
+            <directionalLight position={[0, 1, 0]} color={'blue'} intensity={1}/>
             <group ref={groupRef}  onClick={handleOpenPlanets} position={props.position} {...props} dispose={null} onPointerOver={() => { document.body.style.cursor = 'pointer'; }} onPointerOut={() => { document.body.style.cursor = 'auto'; }}>
             <mesh position={[0, 0, 0]} rotation={[-Math.PI / 2, 0, Math.PI / 2]}>
-                <Circle args={[5, 32]}>
+                <Circle args={[5, 32]} scale={1.3}>
                     <meshStandardMaterial map={textureGalaxy} transparent={true} doubleSide={true}/>
                 </Circle>
             </mesh>
             </group>
-            <Html position={[0,0,0]}>
-            <Center><Title>Our Solar System</Title></Center>
-            <Left><SolarTitle>Explore.</SolarTitle><br/><Disc>Welcome to Solar Explorer! Here we have built a 3D model of our own solar system. Immerse youself in the experience.
-              Here you can Explore. Learn. Interact. with all of the planets contained within our Solar System.<Disc style={{fontWeight: '700'}}><br></br>Click on the Galaxy in the center to adventure deeper.</Disc>
-            </Disc><Img src="/src/assets/img/arrowRight.png"></Img></Left>
-            <Right><SolarTitle>Why is it Called the Solar System?<br/><br/></SolarTitle>
-              <Disc>There are many planetary systems like ours in the universe, with planets orbiting a host star. Our planetary system is called “the solar system” because we use the word “solar” to describe things related to our star, after the Latin word for Sun, "solis." <br/><br/></Disc>
-              <SolarTitle>Size and Distance<br/><br/></SolarTitle>
-              <Disc>Our solar system extends much farther than the eight planets that orbit the Sun. The solar system also includes the Kuiper Belt that lies past Neptune's orbit. This is a sparsely occupied ring of icy bodies, almost all smaller than the most popular Kuiper Belt Object – dwarf planet Pluto.</Disc>
-            </Right></Html>
+            
           </Canvas>
+          </Right>
         </>
       ) : (
         <Canvas frameloop="always" style={{ background: '#0000000' }} camera={{position:[0,50,570], fov:15}}>
@@ -87,67 +94,78 @@ export default function Galaxy(props) {
 
 //style
 const Img = styled.img`
-object-fit: contain;
 position: absolute;
 margin: auto;
 max-width: 70px;
 height: auto;
-bottom: -20px;
-left:25vh;`
+bottom: 12.8vh;
+left:70vh;
+`
+
+
 
 const Left = styled.div`
-flex: 1;
-align-items: center;
-position: relative;
-width: 50vh;
-left: -90vh;
-bottom: 35vh;
-`
-const Center = styled.div`
-position: relative;
-display:flex;
-justify-content: center;
-flex-direction: column;
-align-items: center;
-text-align: center;
-bottom:48vh;
-left:-115vh;
-width: 100vh;
-`
-const Right = styled.div`
-left:40vh;
-bottom:80vh;
-flex:1;
-position: relative;
-display: flex;
-flex-direction: column;
-width: 50vh;
-height: 100%;
-
-@media only screen and (max-width:820px){
+ flex: 2;
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ padding-left: 270px;
+ position: relative;
+ @media only screen and (max-width:900px){
+  @media only screen and (max-width:900px){
     align-items: center;
     text-align: center;
 }
+}
+`
+const Right = styled.div`
+flex:3;
+position: relative;
+@media only screen and (max-width:900px){
+    display: none;
+}
 `
 const Title = styled.h1`
-    font-size:60px;
-    padding-bottom: 10px;
+    font-size:50px;
+    padding-bottom: 40px;
     position: relative;
     font-weight:bold;
 @media only screen and (max-width:820px){
     font-size: 50px;
 }
 `
+
+const Disc1 = styled.p`
+font-size:20px;
+padding-bottom: 70px;
+@media only screen and (max-width:820px){
+
+}
+`
+
 const Disc = styled.p`
-font-size:24px;
+font-size:20px;
+padding-bottom: 10px;
 @media only screen and (max-width:820px){
 
 }
 `
 const SolarTitle = styled.p`
-font-size:30px;
+font-size:25px;
 font-weight: bold;
 @media only screen and (max-width:820px){
 
 }
 `
+
+
+{/*<Html position={[0,0,0]}>
+            <Center><Title>Our Solar System</Title></Center>
+            <Left><SolarTitle>Explore.</SolarTitle><br/><Disc>Welcome to Solar Explorer! Here we have built a 3D model of our own solar system. Immerse youself in the experience.
+              Here you can Explore. Learn. Interact. with all of the planets contained within our Solar System.<Disc style={{fontWeight: '700'}}><br></br>Click on the Galaxy in the center to adventure deeper.</Disc>
+            </Disc><Img src="/src/assets/img/arrowRight.png"></Img></Left>
+            <Right><SolarTitle>Why is it Called the Solar System?<br/><br/></SolarTitle>
+              <Disc>There are many planetary systems like ours in the universe, with planets orbiting a host star. Our planetary system is called “the solar system” because we use the word “solar” to describe things related to our star, after the Latin word for Sun, "solis." <br/><br/></Disc>
+              <SolarTitle>Size and Distance<br/><br/></SolarTitle>
+              <Disc>Our solar system extends much farther than the eight planets that orbit the Sun. The solar system also includes the Kuiper Belt that lies past Neptune's orbit. This is a sparsely occupied ring of icy bodies, almost all smaller than the most popular Kuiper Belt Object – dwarf planet Pluto.</Disc>
+            </Right></Html>*/}

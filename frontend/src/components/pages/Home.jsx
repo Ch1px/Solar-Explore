@@ -104,7 +104,7 @@ animation: animate 2s infinite ease alternate;
 
 @keyframes animate {
     to{
-        transform: translateY(20px);
+        transform: translateY(30px);
     }
 }
 @media only screen and (max-width:900px){
@@ -127,7 +127,7 @@ const Home = () => {
             <Container>
                 <Left>
                     <Title>Explore. Learn. Interact.</Title>
-                    <Subtitle>Prepare for lift off and immerse yourself in a 3-Dimensional space of our own Solar System.</Subtitle>
+                    <Subtitle>Challenging the standard of Space exploration. Prepare for lift off and immerse yourself in a 3-Dimensional space of our own Solar System.</Subtitle>
                     <Button><a href="#About" onClick={scrollToSection}>Get Started</a></Button>
                 </Left>
                 <Right>

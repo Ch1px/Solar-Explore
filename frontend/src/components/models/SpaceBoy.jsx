@@ -12,6 +12,7 @@ import { useGLTF } from '@react-three/drei'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { OrbitControls } from "@react-three/drei";
 import { Mesh } from 'three'
+import Starfield from './StarField';
 
 
 function Model(props) {
@@ -19,7 +20,7 @@ function Model(props) {
   const meshRef = useRef();
 
   useFrame(() => {
-    meshRef.current.rotation.y += 0.003;
+    meshRef.current.rotation.y -= 0.0003;
   })
 
   return (
@@ -60,9 +61,10 @@ function Model(props) {
 
 export default function draw(){
   return (
-    <Canvas camera={{ fov: 75, position: [0, 3, 5]}}>
+    <Canvas camera={{position: [0, 3, 5]}}>
       <Model/>
-      <OrbitControls enableZoom={false} enablePan={false}/>
+      <Starfield/>
+      <OrbitControls enableZoom={false} enablePan={false} autoRotate/>
     </Canvas>
   )
 }

@@ -23,7 +23,7 @@ export default function Model(props) {
 
   return (
     <group ref={earth} {...props} dispose={null} position={[15,0,10]} rotation={[-Math.PI / 2, 0, Math.PI / 22]}>
-      <group scale={1}>
+      <group scale={1.2}>
       <mesh geometry={nodes.earth4_blinn1_0.geometry} material={materials.blinn1} />
       <mesh geometry={nodes.earth4_lambert1_0.geometry} material={materials.lambert1} />
       </group>

@@ -95,6 +95,16 @@ flex:1;
 }
 `
 
+const Footer = styled.div`
+width: 100%;
+padding: 40px;
+position: relative;
+background-color: #190035;
+@media only screen and (max-width:900px){
+    display:none;
+}
+`
+
 
 const Contact = () => {
     const ref = useRef()
