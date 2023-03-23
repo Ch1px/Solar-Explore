@@ -92,6 +92,7 @@ export default function Planets(props) {
   const [isClickedUranus, setIsClickedUranus] = useState(false);
   const [isClickedNeptune, setIsClickedNeptune] = useState(false);
   const [isClickedBelt, setIsClickedBelt] = useState(false);
+  const [isClickedAstroidBelt, setIsClickedAstroidBelt] = useState(false);
   const [isClickedMoon, setIsClickedMoon] = useState(false);
 
   const [isHoveredMerc, setIsHoveredMerc] = useState(false)
@@ -135,6 +136,7 @@ export default function Planets(props) {
     setIsClickedVenus(false)
     setIsClickedUranus(false)
     setIsClickedBelt(false)
+    setIsClickedAstroidBelt(false)
     setIsClickedSun(true)
     setIsClickedFact(true)
     gsap.to(controlsRef.current.target, {
@@ -159,6 +161,23 @@ export default function Planets(props) {
     setIsClickedVenus(false)
     setIsClickedUranus(false)
     setIsClickedBelt(true)
+    setIsClickedAstroidBelt(false)
+    setIsClickedSun(false)
+    setIsClickedFact(true)
+  }
+
+  function handleAstroidBeltClick() {
+    setIsClickedEarth(false)
+    setIsClickedJupiter(false)
+    setIsClickedSaturn(false)
+    setIsClickedMars(false)
+    setIsClickedMercury(false)
+    setIsClickedMoon(false)
+    setIsClickedNeptune(false)
+    setIsClickedVenus(false)
+    setIsClickedUranus(false)
+    setIsClickedBelt(false)
+    setIsClickedAstroidBelt(true)
     setIsClickedSun(false)
     setIsClickedFact(true)
   }
@@ -174,6 +193,7 @@ export default function Planets(props) {
     setIsClickedVenus(false)
     setIsClickedUranus(false)
     setIsClickedBelt(false)
+    setIsClickedAstroidBelt(false)
     setIsClickedSun(false)
     setIsClickedFact(true)
 
@@ -202,6 +222,7 @@ export default function Planets(props) {
     setIsClickedVenus(true)
     setIsClickedUranus(false)
     setIsClickedBelt(false)
+    setIsClickedAstroidBelt(false)
     setIsClickedSun(false)
     setIsClickedFact(true)
 
@@ -229,6 +250,7 @@ export default function Planets(props) {
     setIsClickedVenus(false)
     setIsClickedUranus(false)
     setIsClickedBelt(false)
+    setIsClickedAstroidBelt(false)
     setIsClickedSun(false)
     setIsClickedFact(true)
 
@@ -257,6 +279,7 @@ export default function Planets(props) {
     setIsClickedVenus(false)
     setIsClickedUranus(false)
     setIsClickedBelt(false)
+    setIsClickedAstroidBelt(false)
     setIsClickedSun(false)
     setIsClickedFact(true)
 
@@ -286,6 +309,7 @@ export default function Planets(props) {
     setIsClickedVenus(false)
     setIsClickedUranus(false)
     setIsClickedBelt(false)
+    setIsClickedAstroidBelt(false)
     setIsClickedSun(false)
     setIsClickedFact(true)
 
@@ -314,6 +338,7 @@ export default function Planets(props) {
     setIsClickedVenus(false)
     setIsClickedUranus(false)
     setIsClickedBelt(false)
+    setIsClickedAstroidBelt(false)
     setIsClickedSun(false)
     setIsClickedFact(true)
 
@@ -342,6 +367,7 @@ export default function Planets(props) {
     setIsClickedVenus(false)
     setIsClickedUranus(false)
     setIsClickedBelt(false)
+    setIsClickedAstroidBelt(false)
     setIsClickedSun(false)
     setIsClickedFact(true)
 
@@ -370,6 +396,7 @@ export default function Planets(props) {
     setIsClickedVenus(false)
     setIsClickedUranus(true)
     setIsClickedBelt(false)
+    setIsClickedAstroidBelt(false)
     setIsClickedSun(false)
     setIsClickedFact(true)
 
@@ -398,6 +425,7 @@ export default function Planets(props) {
     setIsClickedVenus(false)
     setIsClickedUranus(false)
     setIsClickedBelt(false)
+    setIsClickedAstroidBelt(false)
     setIsClickedSun(false)
     setIsClickedFact(true)
 
@@ -468,6 +496,7 @@ export default function Planets(props) {
     setIsClickedVenus(false)
     setIsClickedUranus(false)
     setIsClickedBelt(false)
+    setIsClickedAstroidBelt(false)
     setIsClickedSun(false)
     setIsClickedFact(false)
   }
@@ -534,6 +563,9 @@ export default function Planets(props) {
 
       {isClickedNeptune && <Html position={[null]}><div id='containerNep'><h1 id='name'>Neptune</h1><p id='planet'>Neptune is dark, cold, and very windy. It’s the last of the planets in our solar system. It’s more than 30 times as far from the Sun as Earth is. Neptune is very similar to Uranus. It’s made of a thick soup of water, ammonia, and methane over an Earth-sized solid center. Its atmosphere is made of hydrogen, helium, and methane. The methane gives Neptune the same blue color as Uranus. Neptune has six rings, but they’re very hard to see.</p><h1 id='subtitle'>Neptune’s Great Dark Spot</h1><p id='planet'>The Great Dark Spot in the southern atmosphere of Neptune was first discovered in 1989 by the Voyager 2 spacecraft. It was an incredibly large rotating storm system with winds of up to 1,500 miles per hour, the strongest winds recorded on any planet. How such powerful winds were discovered on a planet so far from the sun is still considered a mystery to this day. Data from the Voyager 2 spacecraft also showed that the Great Dark Spot varied significantly in size during their brief pass of the planet. When Neptune was viewed by the Hubble Space telescope in 1994 the Great Dark Spot had vanished, although a different dark spot had appeared in Neptune’s northern hemisphere.</p></div></Html>}
 
+      {isClickedAstroidBelt && <Html position={[null]}><div id='containerBelt'><h1 id='name'>Asteroid Belt</h1><p id='planet'>Early in the life of the solar system, dust and rock circling the sun were pulled together by gravity into planets. But not all of the ingredients created new worlds. A region between Mars and Jupiter became the asteroid belt.
+
+<br /><br />Occasionally people wonder whether the belt was made up of the remains of a destroyed planet, or a world that didn't quite get started. However, according to NASA(opens in new tab), the total mass of the belt is less than the moon, far too small to weigh in as a planet. Instead, the debris is shepherded by Jupiter, which kept it from coalescing onto other growing planets.<br /><br />Some asteroids are large, solid bodies — there are more than 16 in the belt with a diameter greater than 150 miles (240 km). The largest asteroids, Vesta, Pallas and Hygiea, are 250 miles (400 km) long and bigger. The region also contains the dwarf planet Ceres. At 590 miles (950 km) in diameter, or about a quarter of the size of our moon, Ceres is round yet is considered too small to be a full-fledged planet. However, it makes up approximately a third of the mass of the asteroid belt.</p></div></Html>}
 
       {isClickedBelt && <Html position={[null]}><div id='containerBelt'><h1 id='name'>Kuiper Belt</h1><p id='planet'>Similar to the asteroid belt between Mars and Jupiter, the Kuiper Belt is a region of leftovers from the solar system's early history. Like the asteroid belt, it has also been shaped by a giant planet, although it's more of a thick disk (like a donut) than a thin belt<br /><br />The Kuiper Belt is truly a frontier in space – it's a place we're still just beginning to explore and our understanding is still evolving.<br /><br />In 1930, Pluto became the first Kuiper Belt object to be discovered. It was found at a time before astronomers had reason to expect a large population of icy worlds beyond Neptune. Today it's known as the "King of the Kuiper Belt" – and it's the largest object in the region.</p></div></Html>}
 
@@ -559,7 +591,7 @@ export default function Planets(props) {
         </mesh>
       </group>
 
-      <mesh ref={astroidBelt} position={[0, 0, 0]} rotation={[-Math.PI / 2, 0, Math.PI / 2]}>
+      <mesh ref={astroidBelt} position={[0, 0, 0]} rotation={[-Math.PI / 2, 0, Math.PI / 2]} onClick={handleAstroidBeltClick} onPointerOver={() => { document.body.style.cursor = 'pointer'; }} onPointerOut={() => { document.body.style.cursor = 'auto'; }}>
         <Ring args={[45, 52, 100]} material={beltMaterial} />
       </mesh>
 
