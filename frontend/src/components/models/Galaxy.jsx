@@ -7,7 +7,7 @@ Source: https://sketchfab.com/3d-models/galaxy-dbb2f075329747a09cc8add2ad05acad
 Title: Galaxy
 */
 
-import React, { useRef, useEffect, useState} from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import { useGLTF, useAnimations } from '@react-three/drei'
 import { useFrame, useThree } from '@react-three/fiber'
 import { gsap } from 'gsap';
@@ -22,8 +22,8 @@ import Camera from './camera';
 import Starfield from './StarField';
 import * as THREE from 'three'
 import { TextureLoader } from 'three';
-import { useLoader} from '@react-three/fiber'
-import { Circle} from "@react-three/drei";
+import { useLoader } from '@react-three/fiber'
+import { Circle } from "@react-three/drei";
 
 
 export default function Galaxy(props) {
@@ -50,40 +50,39 @@ export default function Galaxy(props) {
     <>
       {!isCanvasOpen ? (
         <>
-        <Left>
-          <Title>Our Solar System</Title>
-          <SolarTitle>Explore. Learn. Interact</SolarTitle><Disc1>Welcome to Solar Explorer! Here we have built a 3D model of our own solar system. Immerse youself in the experience.
+          <Left>
+            <Title>Our Solar System</Title>
+            <SolarTitle>Explore. Learn. Interact</SolarTitle><Disc1>Welcome to Solar Explorer! Here we have built a 3D model of our own solar system. Immerse youself in the experience.
               Here you can Explore. Learn. Interact. with all of the planets contained within our Solar System.
             </Disc1>
             <SolarTitle>Why is it Called the Solar System?</SolarTitle>
-              <Disc>There are many planetary systems like ours in the universe, with planets orbiting a host star. Our planetary system is called “the solar system” because we use the word “solar” to describe things related to our star, after the Latin word for Sun, "solis." <br/><br/></Disc>
-              <SolarTitle>Size and Distance</SolarTitle>
-              <Disc>Our solar system extends much farther than the eight planets that orbit the Sun. The solar system also includes the Kuiper Belt that lies past Neptune's orbit. This is a sparsely occupied ring of icy bodies, almost all smaller than the most popular Kuiper Belt Object – dwarf planet Pluto.</Disc>
-              <Disc style={{fontWeight: '700'}}>Click on the Milky Way  to adventure deeper.<Img src="/src/assets/img/arrowRight.png"></Img></Disc>
+            <Disc>There are many planetary systems like ours in the universe, with planets orbiting a host star. Our planetary system is called “the solar system” because we use the word “solar” to describe things related to our star, after the Latin word for Sun, "solis." <br /><br /></Disc>
+            <SolarTitle>Size and Distance</SolarTitle>
+            <Disc>Our solar system extends much farther than the eight planets that orbit the Sun. The solar system also includes the Kuiper Belt that lies past Neptune's orbit. This is a sparsely occupied ring of icy bodies, almost all smaller than the most popular Kuiper Belt Object – dwarf planet Pluto.</Disc>
+            <ImgDisc>Click on the Milky Way  to adventure deeper.<Img src="/src/assets/img/arrowRight.png"></Img></ImgDisc>
+          </Left>
+          <Right>
+            <Canvas style={{ background: '#0000000' }} camera={{ position: [0, 10, 0] }}>
+              <OrbitControls enableZoom={false} enablePan={false} enableRotate={false} autoRotate={true} />
+              <Starfield />
+              <ambientLight intensity={1} />
+              <directionalLight position={[0, 1, 0]} color={'orange'} intensity={1.2} />
+              <directionalLight position={[0, 1, 0]} color={'purple'} intensity={1} />
+              <directionalLight position={[0, 1, 0]} color={'blue'} intensity={1} />
+              <group ref={groupRef} onClick={handleOpenPlanets} position={props.position} {...props} dispose={null} onPointerOver={() => { document.body.style.cursor = 'pointer'; }} onPointerOut={() => { document.body.style.cursor = 'auto'; }}>
+                <mesh position={[0, 0, 0]} rotation={[-Math.PI / 2, 0, Math.PI / 2]}>
+                  <Circle args={[5, 32]} scale={1.3}>
+                    <meshStandardMaterial map={textureGalaxy} transparent={true} doubleSide={true} />
+                  </Circle>
+                </mesh>
+              </group>
 
-        </Left>
-        <Right>
-          <Canvas style={{ background: '#0000000' }} camera={{position: [0, 10, 0] }}>
-          <OrbitControls enableZoom={false} enablePan={false} enableRotate={false} autoRotate={true}/>
-          <Starfield/>
-            <ambientLight intensity={1} />
-            <directionalLight position={[0, 1, 0]} color={'orange'} intensity={1.2}/>
-            <directionalLight position={[0, 1, 0]} color={'purple'} intensity={1}/>
-            <directionalLight position={[0, 1, 0]} color={'blue'} intensity={1}/>
-            <group ref={groupRef}  onClick={handleOpenPlanets} position={props.position} {...props} dispose={null} onPointerOver={() => { document.body.style.cursor = 'pointer'; }} onPointerOut={() => { document.body.style.cursor = 'auto'; }}>
-            <mesh position={[0, 0, 0]} rotation={[-Math.PI / 2, 0, Math.PI / 2]}>
-                <Circle args={[5, 32]} scale={1.3}>
-                    <meshStandardMaterial map={textureGalaxy} transparent={true} doubleSide={true}/>
-                </Circle>
-            </mesh>
-            </group>
-            
-          </Canvas>
+            </Canvas>
           </Right>
         </>
       ) : (
-        <Canvas frameloop="always" style={{ background: '#0000000' }} camera={{position:[0,50,570], fov:15}}>
-          <Planet/>
+        <Canvas frameloop="always" style={{ background: '#0000000' }} camera={{ position: [0, 50, 570], fov: 15 }}>
+          <Planet />
           <Html position={[null]}><button id='close' onClick={handleClosePlanets}>Close</button></Html>
         </Canvas>
       )}
@@ -100,6 +99,17 @@ max-width: 70px;
 height: auto;
 bottom: 12.8vh;
 left:70vh;
+@media only screen and (max-width:900px){
+    display: none;
+}
+`
+const ImgDisc = styled.p`
+font-size:20px;
+padding-bottom: 10px;
+font-weight: 700;
+@media only screen and (max-width:820px){
+display:none;
+}
 `
 
 
@@ -111,12 +121,12 @@ const Left = styled.div`
  justify-content: center;
  padding-left: 270px;
  position: relative;
- @media only screen and (max-width:900px){
   @media only screen and (max-width:900px){
     align-items: center;
     text-align: center;
+    padding-left: 0px;
 }
-}
+
 `
 const Right = styled.div`
 flex:3;
@@ -130,7 +140,7 @@ const Title = styled.h1`
     padding-bottom: 40px;
     position: relative;
     font-weight:bold;
-@media only screen and (max-width:820px){
+@media only screen and (max-width:900px){
     font-size: 50px;
 }
 `

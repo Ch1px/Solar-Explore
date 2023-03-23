@@ -7,14 +7,14 @@ const Img = styled.div`
 `
 
 
-const ImgFeed = ({image}) => {
+const ImgFeed = ({ image }) => {
 
 
-    return(
+    return (
         <>
-            <Img>{image && <img src={image} alt="article"/>}</Img>
+            <Img>{image && <img src={image} alt="article" />}</Img>
         </>
-            
+
 
     )
 }

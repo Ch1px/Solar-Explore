@@ -14,7 +14,7 @@ import gsap from 'gsap';
 
 export default function Model(props) {
   const { nodes, materials } = useGLTF('/src/assets/models/satellite-transformed.glb')
-  
+
   const earth = useRef();
 
   const { camera } = useThree();
@@ -33,7 +33,7 @@ export default function Model(props) {
       // Use GSAP to animate the rotation and scale
       gsap.to(earth.current.rotation, {
         y: -mouse.y * 0.4,
-        x: mouse.x  * 0.2,
+        x: mouse.x * 0.2,
         duration: 3
       });
     }

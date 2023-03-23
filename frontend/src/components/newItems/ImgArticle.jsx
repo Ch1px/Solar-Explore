@@ -1,5 +1,5 @@
 import axios from "axios";
-import react, {useEffect, useState} from "react"
+import react, { useEffect, useState } from "react"
 import Imgfeed from "./ImgFeed";
 
 
@@ -16,7 +16,7 @@ function ImgArticles() {
             console.log(error);
         }
     }
-    
+
     useEffect(() => {
         getArticles();
     }, [])

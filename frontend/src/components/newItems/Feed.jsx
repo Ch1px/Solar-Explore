@@ -30,16 +30,16 @@ padding-bottom: 30px;
 
 `
 
-const Feed = ({title, link, date}) => {
+const Feed = ({ title, link, date }) => {
 
-    let formatted = {day: "numeric", month: "long", year: "numeric"}
+    let formatted = { day: "numeric", month: "long", year: "numeric" }
     let articleDate = new Date(date).toLocaleDateString("en-GB", formatted)
 
-    return(
+    return (
         <>
             <A href={link} target="_blank" rel="noopener noreferrer">
-            <Title>{title}</Title>
-            <ADate>{articleDate}</ADate></A>
+                <Title>{title}</Title>
+                <ADate>{articleDate}</ADate></A>
         </>
     )
 }

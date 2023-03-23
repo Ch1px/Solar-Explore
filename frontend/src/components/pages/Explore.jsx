@@ -1,11 +1,11 @@
-import React, {useRef, useState}from "react";
+import React, { useRef, useState } from "react";
 import { useFrame, useThree } from '@react-three/fiber'
 import styled from "styled-components";
 import { Canvas } from '@react-three/fiber'
 import Planet from '../models/PlanetRTF'
 import { Html, useCursor } from "@react-three/drei";
 import SunLight from "../models/sunlight";
-import {OrbitControls} from "@react-three/drei";
+import { OrbitControls } from "@react-three/drei";
 import gsap from "gsap";
 import HandleExplore from "../models/Galaxy";
 import Test from "../models/test2";
@@ -16,7 +16,8 @@ height: 100vh;
 scroll-snap-align: center;
 top:0px;
 @media only screen and (max-width:900px){
-    display: none;
+    height: 200vh;
+
 }
 `
 
@@ -28,11 +29,11 @@ justify-content: center;
 top:0px;
 -webkit-appearance: none;
 @media only screen and (max-width:900px){
-    width:170vh;
+    width: 100%;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 550px;
+    padding: 570px;
 }
 `
 
@@ -41,7 +42,7 @@ const Explore = () => {
     return (
         <Section id='Explore'>
             <Container>
-                <HandleExplore/>
+                <HandleExplore />
             </Container>
         </Section>
     )

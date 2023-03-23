@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { Canvas} from "@react-three/fiber";
-import { OrbitControls} from "@react-three/drei";
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls } from "@react-three/drei";
 import Articles from "../newItems/Articles";
 import ImgArticles from "../newItems/ImgArticle";
 import Earth from '../models/Earth'
@@ -91,20 +91,20 @@ const Img = styled.img`
 
 const News = () => {
     return (
-        <Section id ='News'>
+        <Section id='News'>
             <Container>
                 <Left>
-                <ImgArticles/>
+                    <ImgArticles />
                 </Left>
                 <Center><Title>Astronomy & Space News</Title>
-                    <Articles/></Center>
-                <Right><Canvas camera={{fov:50, position: [0,80,0]}}>
-                    <OrbitControls enableZoom = {false} enablePan={false}/>
-                    <ambientLight intensity={1}/>
-                    <directionalLight position={[3,2,1]}/>
-                    <Model/>
-                    <Earth/>
-                    <Starfield/>
+                    <Articles /></Center>
+                <Right><Canvas camera={{ fov: 50, position: [0, 80, 0] }}>
+                    <OrbitControls enableZoom={false} enablePan={false} enableRotate={false} />
+                    <ambientLight intensity={1} />
+                    <directionalLight position={[3, 2, 1]} />
+                    <Model />
+                    <Earth />
+                    <Starfield />
                 </Canvas></Right>
             </Container>
         </Section>

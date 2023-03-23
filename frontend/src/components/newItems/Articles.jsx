@@ -1,5 +1,5 @@
 import axios from "axios";
-import react, {useEffect, useState} from "react"
+import react, { useEffect, useState } from "react"
 import Feed from "./Feed";
 
 
@@ -16,7 +16,7 @@ function Articles() {
             console.log(error);
         }
     }
-    
+
     useEffect(() => {
         getArticles();
     }, [])

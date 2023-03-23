@@ -1,150 +1,159 @@
-
-#preloader{
+#preloader {
     position: fixed;
-    top:0;
-    left:0;
+    top: 0;
+    left: 0;
     background: rgb(12, 0, 34) url(assets/img/1476.gif) no-repeat center center;
     background-size: 5%;
     height: 100%;
-    width:100%;
+    width: 100%;
     z-index: 100;
 }
 
 #button {
     color: rgb(255, 255, 255);
 }
-#containerSun{
+
+#containerSun {
     width: 40vh;
     background: rgb(248, 163, 35);
-    padding:15px;    
+    padding: 15px;
     border-radius: 20px;
     position: relative;
     left: 70px;
-    top:80px;
-}
-#containerMer{
-    width: 40vh;
-    background: rgb(114, 78, 31);
-    padding:15px;    
-    border-radius: 20px;
-    position: relative;
-    left: 70px;
-    top:80px;
+    top: 80px;
 }
 
-#mercFact{
+#containerMer {
     width: 40vh;
     background: rgb(114, 78, 31);
-    padding:15px;    
+    padding: 15px;
     border-radius: 20px;
     position: relative;
     left: 70px;
-    top:80px;
+    top: 80px;
 }
-#containerVen{
+
+#mercFact {
+    width: 40vh;
+    background: rgb(114, 78, 31);
+    padding: 15px;
+    border-radius: 20px;
+    position: relative;
+    left: 70px;
+    top: 80px;
+}
+
+#containerVen {
     width: 40vh;
     background: rgb(184, 162, 104);
-    padding:15px;    
+    padding: 15px;
     border-radius: 20px;
     position: relative;
     left: 70px;
-    top:80px;
+    top: 80px;
 }
-#containerEarth{
+
+#containerEarth {
     width: 40vh;
     background: rgb(0, 101, 168);
-    padding:15px;    
+    padding: 15px;
     border-radius: 20px;
     position: relative;
     left: 70px;
-    top:80px;
+    top: 80px;
 }
-#containerMars{
+
+#containerMars {
     width: 40vh;
     background: rgb(190, 82, 10);
-    padding:15px;    
+    padding: 15px;
     border-radius: 20px;
     position: relative;
     left: 70px;
-    top:80px;
+    top: 80px;
 }
-#containerJup{
+
+#containerJup {
     width: 40vh;
     background: rgb(131, 109, 67);
-    padding:15px;    
+    padding: 15px;
     border-radius: 20px;
     position: relative;
     left: 70px;
-    top:80px;
+    top: 80px;
 }
-#containerSat{
+
+#containerSat {
     width: 40vh;
     background: rgb(46, 1, 151);
-    padding:15px;    
+    padding: 15px;
     border-radius: 20px;
     position: relative;
     left: 70px;
-    top:80px;
+    top: 80px;
 }
-#containerUra{
+
+#containerUra {
     width: 40vh;
     background: rgb(84, 153, 199);
-    padding:15px;    
+    padding: 15px;
     border-radius: 20px;
     position: relative;
     left: 70px;
-    top:80px;
+    top: 80px;
 }
-#containerNep{
+
+#containerNep {
     width: 40vh;
     background: rgb(0, 3, 156);
-    padding:15px;    
+    padding: 15px;
     border-radius: 20px;
     position: relative;
     left: 70px;
-    top:80px;
+    top: 80px;
 }
 
-#containerBelt{
+#containerBelt {
     width: 40vh;
     background: rgb(66, 50, 37);
-    padding:15px;    
+    padding: 15px;
     border-radius: 20px;
     position: relative;
     left: 70px;
-    top:80px;
+    top: 80px;
 }
 
-#containerMoon{
+#containerMoon {
     width: 40vh;
     background: rgb(100, 100, 100);
-    padding:15px;    
+    padding: 15px;
     border-radius: 20px;
     position: relative;
     left: 70px;
-    top:80px;
+    top: 80px;
 }
 
 
-#containerText{
+#containerText {
     width: 35vh;
-    padding:12px;    
+    padding: 12px;
     border-radius: 20px;
     position: absolute;
     justify-content: center;
     left: 155vh;
-    top:5vh;
+    top: 5vh;
     font-size: small;
 }
 
-#name{
+#name {
     color: white;
     font-size: 25px;
     font-weight: bold;
     padding-bottom: 15px;
     text-align: center;
 }
-#subtitle{
+
+#subtitle {
     color: white;
     font-size: 17px;
     font-weight: bold;
@@ -152,22 +161,22 @@
     padding-top: 18px;
 }
 
-#planet{
+#planet {
     color: white;
     font-size: 17px;
 
 }
 
-#titleContainer{
-    width: 20vh;  
+#titleContainer {
+    width: 20vh;
     position: relative;
     display: flex;
     justify-content: center;
-    top:90vh;
-    left:5vh;
+    top: 90vh;
+    left: 5vh;
 }
 
-#solarTitle{
+#solarTitle {
     color: white;
     font-size: 25px;
     font-weight: bold;
@@ -176,82 +185,82 @@
     position: absolute;
 }
 
-#refresh{
-background-color: #0099ff;
-color:white;
-cursor: pointer;
-border: none;
-border-radius: 5px;
-width: 15vh;
-padding-top:5px;
-padding-bottom: 5px;
-position: relative;
-left:80vh;
-top:3vh;
-font-size: small;
-}
-
-#rotate{
-    background-color: #0099ff;
-    color:white;
+#refresh {
+    background-color: #4003b1;
+    color: white;
     cursor: pointer;
     border: none;
     border-radius: 5px;
     width: 15vh;
-    padding-top:5px;
-    padding-bottom: 5px;
+    padding-top: 7px;
+    padding-bottom: 7px;
     position: relative;
-    left:97vh;
-    top:3vh;
+    left: 80vh;
+    top: 3vh;
     font-size: small;
 }
 
-
-#close{
-    background-color: #b31818;
-    color:white;
+#rotate {
+    background-color: #4003b1;
+    color: white;
     cursor: pointer;
     border: none;
     border-radius: 5px;
-    width: 5vh;
-    padding:7px;
+    width: 15vh;
+    padding-top: 7px;
+    padding-bottom: 7px;
     position: relative;
-    left:182vh;
-    top:3vh;
+    left: 97vh;
+    top: 3vh;
     font-size: small;
 }
 
-#hideFact{
+
+#close {
     background-color: #b31818;
-    color:white;
+    color: white;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    width: 6vh;
+    padding: 7px;
+    position: relative;
+    left: 182vh;
+    top: 3vh;
+    font-size: small;
+}
+
+#hideFact {
+    background-color: #b31818;
+    color: white;
     cursor: pointer;
     border: none;
     border-radius: 5px;
     width: 7vh;
-    padding:7px;
+    padding: 7px;
     position: relative;
-    left:40vh;
-    top:3vh;
+    left: 40vh;
+    top: 3vh;
     font-size: small;
 }
 
-#speedBox{
-    height:25vh;
+#speedBox {
+    height: 25vh;
     width: 20vh;
     position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding-left: 10px;
-    top:65vh;
-    left:160vh;
+    top: 65vh;
+    left: 160vh;
 }
 
-#speedDis{
+#speedDis {
     font-weight: bold;
     padding-bottom: 10px;
 }
-#speed{
+
+#speed {
     padding-bottom: 5px;
 }
-

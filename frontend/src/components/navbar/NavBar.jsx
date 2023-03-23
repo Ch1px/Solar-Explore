@@ -79,24 +79,24 @@ const NavBar = () => {
     return (
         <Section>
             <Container>
-            <Links>
-            <Logo src="./src/assets/img/logo.png"/>
-            <List>
-                <ListItem><a href="#Home" onClick={scrollToSection}>Home</a></ListItem>
-                <ListItem><a href="#About" onClick={scrollToSection}>About</a></ListItem>
-                <ListItem><a href="#Explore" onClick={scrollToSection}>Our Solar System</a></ListItem>
-                <ListItem><a href="#News" onClick={scrollToSection}>Astronomy News</a></ListItem>
-                <ListItem><a href="#Contact" onClick={scrollToSection}>Contact</a></ListItem>
-            </List>
-            </Links>
-            <Icons>
-                <a href="https://github.com/Ch1px/Solar-Explorer" target="_blank">
-                    <Icon src="./src/assets/img/gitLogo2.png" />
-                </a>
-                <a href="https://www.instagram.com/dan_glancy/" target="_blank">
-                    <Icon2 src="./src/assets/img/insta.png"/>
-                </a>
-            </Icons>
+                <Links>
+                    <Logo src="./src/assets/img/logo.png" />
+                    <List>
+                        <ListItem><a href="#Home" onClick={scrollToSection}>Home</a></ListItem>
+                        <ListItem><a href="#About" onClick={scrollToSection}>About</a></ListItem>
+                        <ListItem><a href="#Explore" onClick={scrollToSection}>Our Solar System</a></ListItem>
+                        <ListItem><a href="#News" onClick={scrollToSection}>Astronomy News</a></ListItem>
+                        <ListItem><a href="#Contact" onClick={scrollToSection}>Contact</a></ListItem>
+                    </List>
+                </Links>
+                <Icons>
+                    <a href="https://github.com/Ch1px/Solar-Explorer" target="_blank">
+                        <Icon src="./src/assets/img/gitLogo2.png" />
+                    </a>
+                    <a href="https://www.instagram.com/dan_glancy/" target="_blank">
+                        <Icon2 src="./src/assets/img/insta.png" />
+                    </a>
+                </Icons>
             </Container>
         </Section>
     )

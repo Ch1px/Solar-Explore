@@ -110,8 +110,8 @@ export default function Planets(props) {
   useFrame(({ mouse }) => {
     const raycaster = new THREE.Raycaster();
     raycaster.setFromCamera(mouse, camera);
-    
-    const intersects1= raycaster.intersectObject(mercuryGroup.current); setIsHoveredMerc(intersects1.length > 0);
+
+    const intersects1 = raycaster.intersectObject(mercuryGroup.current); setIsHoveredMerc(intersects1.length > 0);
     const intersects2 = raycaster.intersectObject(venusGroup.current); setIsHoveredVen(intersects2.length > 0);
     const intersects3 = raycaster.intersectObject(earthGroup.current); setIsHoveredEarth(intersects3.length > 0);
     const intersects4 = raycaster.intersectObject(marsGroup.current); setIsHoveredMars(intersects4.length > 0);
@@ -553,8 +553,8 @@ export default function Planets(props) {
           </Sphere>
         </mesh>
         <mesh onClick={handleClickSun} onPointerOver={() => { document.body.style.cursor = 'pointer'; }} onPointerOut={() => { document.body.style.cursor = 'auto'; }}>
-          <Sphere args={[1, 80, 80]} scale={10.7} position={[0, 0, 0]}>
-            <shaderMaterial vertexShader={sunAVertexShader} fragmentShader={sunAFragmentShader} blending={THREE.AdditiveBlending} side={THREE.BackSide}/>
+          <Sphere args={[1, 80, 80]} scale={11.5} position={[0, 0, 0]}>
+            <shaderMaterial vertexShader={sunAVertexShader} fragmentShader={sunAFragmentShader} blending={THREE.AdditiveBlending} side={THREE.BackSide} />
           </Sphere>
         </mesh>
       </group>
@@ -576,13 +576,13 @@ export default function Planets(props) {
           </mesh>
         </group>
         {isHoveredMerc &&
-            <group ref={mercAtmos} position={[16, 0, 0]}>
-              <mesh onPointerOver={() => { document.body.style.cursor = 'pointer'; }} onPointerOut={() => { document.body.style.cursor = 'auto'; }}>
-                <Sphere args={[1, 80, 80]} scale={0.12}>
-                  <shaderMaterial vertexShader={merAVertexShader} fragmentShader={merAFragmentShader} blending={THREE.AdditiveBlending} side={THREE.BackSide} />
-                </Sphere>
-              </mesh>
-            </group>}
+          <group ref={mercAtmos} position={[16, 0, 0]}>
+            <mesh onPointerOver={() => { document.body.style.cursor = 'pointer'; }} onPointerOut={() => { document.body.style.cursor = 'auto'; }}>
+              <Sphere args={[1, 80, 80]} scale={0.12}>
+                <shaderMaterial vertexShader={merAVertexShader} fragmentShader={merAFragmentShader} blending={THREE.AdditiveBlending} side={THREE.BackSide} />
+              </Sphere>
+            </mesh>
+          </group>}
       </group>
 
       <group ref={venusGroup} position={[0, 0, 0]}>
@@ -594,13 +594,13 @@ export default function Planets(props) {
           </mesh>
         </group>
         {isHoveredVen &&
-            <group ref={venAtmos} position={[22, 0, 0]}>
-              <mesh onPointerOver={() => { document.body.style.cursor = 'pointer'; }} onPointerOut={() => { document.body.style.cursor = 'auto'; }}>
-                <Sphere args={[1, 80, 80]} scale={0.33}>
-                  <shaderMaterial vertexShader={venusAVertexShader} fragmentShader={venusAFragmentShader} blending={THREE.AdditiveBlending} side={THREE.BackSide} />
-                </Sphere>
-              </mesh>
-            </group>}
+          <group ref={venAtmos} position={[22, 0, 0]}>
+            <mesh onPointerOver={() => { document.body.style.cursor = 'pointer'; }} onPointerOut={() => { document.body.style.cursor = 'auto'; }}>
+              <Sphere args={[1, 80, 80]} scale={0.33}>
+                <shaderMaterial vertexShader={venusAVertexShader} fragmentShader={venusAFragmentShader} blending={THREE.AdditiveBlending} side={THREE.BackSide} />
+              </Sphere>
+            </mesh>
+          </group>}
       </group>
 
       <group ref={earthGroup} position={[0, 0, 0]}>
@@ -612,31 +612,31 @@ export default function Planets(props) {
           </mesh>
         </group>
         {isHoveredEarth &&
-            <group ref={earthAtmos} position={[28, 0, 0]}>
-              <mesh onPointerOver={() => { document.body.style.cursor = 'pointer'; }} onPointerOut={() => { document.body.style.cursor = 'auto'; }}>
-                <Sphere args={[1, 80, 80]} scale={0.43}>
-                  <shaderMaterial vertexShader={earthAVertexShader} fragmentShader={earthAFragmentShader} blending={THREE.AdditiveBlending} side={THREE.BackSide} />
-                </Sphere>
-              </mesh>
-            </group>}
+          <group ref={earthAtmos} position={[28, 0, 0]}>
+            <mesh onPointerOver={() => { document.body.style.cursor = 'pointer'; }} onPointerOut={() => { document.body.style.cursor = 'auto'; }}>
+              <Sphere args={[1, 80, 80]} scale={0.43}>
+                <shaderMaterial vertexShader={earthAVertexShader} fragmentShader={earthAFragmentShader} blending={THREE.AdditiveBlending} side={THREE.BackSide} />
+              </Sphere>
+            </mesh>
+          </group>}
       </group>
 
       <group ref={moonPos} position={[0, 0, 0]}>
         <group ref={moonObject} position={[28, 0, 0]}>
           <group ref={moonPosEarth} position={[1, 0.5, 0]}>
-          <mesh onPointerOver={() => { document.body.style.cursor = 'pointer'; }} onPointerOut={() => { document.body.style.cursor = 'auto'; }}>
-            <Sphere onClick={handleClickMoon} args={[1, 80, 80]} scale={0.08} rotation={[-Math.PI / 2, 1.8, Math.PI / 2]}>
-              <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/moonTexture.jpg'))} />
-            </Sphere>
-          </mesh>
-          {isHoveredMoon &&
-            <group ref={moonAtmos}>
-              <mesh onPointerOver={() => { document.body.style.cursor = 'pointer'; }} onPointerOut={() => { document.body.style.cursor = 'auto'; }}>
-                <Sphere args={[1, 80, 80]} scale={0.1}>
-                  <shaderMaterial vertexShader={moonAVertexShader} fragmentShader={moonAFragmentShader} blending={THREE.AdditiveBlending} side={THREE.BackSide} />
-                </Sphere>
-              </mesh>
-            </group>}
+            <mesh onPointerOver={() => { document.body.style.cursor = 'pointer'; }} onPointerOut={() => { document.body.style.cursor = 'auto'; }}>
+              <Sphere onClick={handleClickMoon} args={[1, 80, 80]} scale={0.08} rotation={[-Math.PI / 2, 1.8, Math.PI / 2]}>
+                <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/moonTexture.jpg'))} />
+              </Sphere>
+            </mesh>
+            {isHoveredMoon &&
+              <group ref={moonAtmos}>
+                <mesh onPointerOver={() => { document.body.style.cursor = 'pointer'; }} onPointerOut={() => { document.body.style.cursor = 'auto'; }}>
+                  <Sphere args={[1, 80, 80]} scale={0.1}>
+                    <shaderMaterial vertexShader={moonAVertexShader} fragmentShader={moonAFragmentShader} blending={THREE.AdditiveBlending} side={THREE.BackSide} />
+                  </Sphere>
+                </mesh>
+              </group>}
           </group>
         </group>
       </group>
@@ -696,7 +696,7 @@ export default function Planets(props) {
         </group>
 
         <mesh>
-          <Ring args={[2, 4, 100]} rotation={[-Math.PI / 2, 5.8, Math.PI / 2]} position={[85, 0, 0]} material={ringMaterial}/>
+          <Ring args={[2, 4, 100]} rotation={[-Math.PI / 2, 5.8, Math.PI / 2]} position={[85, 0, 0]} material={ringMaterial} />
         </mesh>
       </group>
 

@@ -26,7 +26,7 @@ export default function Test() {
             <directionalLight position={[3, 2, 1]} />
             <mesh position={[0, 0, 0]} onPointerOver={() => { document.body.style.cursor = 'pointer'; }} onPointerOut={() => { document.body.style.cursor = 'auto'; }}>
                 <Circle args={[5, 32]}>
-                    <meshStandardMaterial map={textureGalaxy} transparent={true} doubleSide={true}/>
+                    <meshStandardMaterial map={textureGalaxy} transparent={true} doubleSide={true} />
                 </Circle>
             </mesh>
         </Canvas>

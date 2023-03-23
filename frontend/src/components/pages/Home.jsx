@@ -131,8 +131,8 @@ const Home = () => {
                     <Button><a href="#About" onClick={scrollToSection}>Get Started</a></Button>
                 </Left>
                 <Right>
-                    <SphereDistort/>
-                    <Img src="/src/assets/img/astroBook.png"/>
+                    <SphereDistort />
+                    <Img src="/src/assets/img/astroBook.png" />
                 </Right>
             </Container>
         </Section>

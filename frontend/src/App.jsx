@@ -1,4 +1,4 @@
-import React, {useEffect, useState}from "react";
+import React, { useEffect, useState } from "react";
 import Home from "./components/pages/Home"
 import About from "./components/pages/About";
 import Contact from "./components/pages/Contact";
@@ -32,23 +32,24 @@ const Container = styled.div`
 `
 
 function App() {
-    
-    var loader = document.getElementById('preloader');
-    window.addEventListener("load", function(){
-    loader.style.display = "none";})
+
+  var loader = document.getElementById('preloader');
+  window.addEventListener("load", function () {
+    loader.style.display = "none";
+  })
 
   return (
     <>
-    <Section>
-    <NavBar/>
-    <Container>
-      <Home/>
-      <About/>
-      <Explore/>
-      <News/>
-      <Contact/>
-    </Container>
-    </Section>
+      <Section>
+        <NavBar />
+        <Container>
+          <Home />
+          <About />
+          <Explore />
+          <News />
+          <Contact />
+        </Container>
+      </Section>
     </>
 
   )

@@ -1,8 +1,8 @@
 import React, { useState, useRef } from "react";
 import emailjs from '@emailjs/browser';
 import styled from "styled-components";
-import { Canvas} from "@react-three/fiber";
-import { OrbitControls} from "@react-three/drei";
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls } from "@react-three/drei";
 import Earth from '../models/Earth'
 import Map from "../map/Map";
 import Map2 from "../map/Map2";
@@ -109,43 +109,37 @@ background-color: #190035;
 const Contact = () => {
     const ref = useRef()
 
-    const [success,setSuccess] = useState(null)
+    const [success, setSuccess] = useState(null)
 
-    const handleSubmit =e=>{
+    const handleSubmit = e => {
         e.preventDefault()
 
-    emailjs.sendForm('service_g2ggs8p', 'template_jw2gizm', ref.current, 'SiI49mnog4ZAd1Qyh')
-      .then((result) => {
-          console.log(result.text);
-          setSuccess(true)
-      }, (error) => {
-          console.log(error.text);
-          setSuccess(false)
-    });
+        emailjs.sendForm('service_g2ggs8p', 'template_jw2gizm', ref.current, 'SiI49mnog4ZAd1Qyh')
+            .then((result) => {
+                console.log(result.text);
+                setSuccess(true)
+            }, (error) => {
+                console.log(error.text);
+                setSuccess(false)
+            });
 
-}
+    }
     return (
         <Section id='Contact'>
             <Container>
                 <Left>
-                <Map2/>
-                {/*<Canvas camera={{fov:50, position: [5,5,5]}}>
-                    <OrbitControls enableZoom = {false} autoRotate enablePan={false}/>
-                    <ambientLight intensity={1}/>
-                    <directionalLight position={[3,2,1]}/>
-                    <Earth/>
-                </Canvas>*/}
+                    <Map2/>
                 </Left>
                 <Center><Form ref={ref} onSubmit={handleSubmit}>
-                        <Title>Contact.</Title>
-                        <Input placeholder="Name" name="name"></Input>
-                        <Input placeholder="Email" name="email"></Input>
-                        <Message placeholder="Message" name="message" rows={10}></Message>
-                        <Button>Send</Button>
-                        <Sent>{success && "Your message has been sent. We'll get back to you ASAP :)"}</Sent>
-                    </Form></Center>
+                    <Title>Contact.</Title>
+                    <Input placeholder="Name" name="name"></Input>
+                    <Input placeholder="Email" name="email"></Input>
+                    <Message placeholder="Message" name="message" rows={10}></Message>
+                    <Button>Send</Button>
+                    <Sent>{success && "Your message has been sent. We'll get back to you ASAP :)"}</Sent>
+                </Form></Center>
                 <Right>
-                    <Map/>
+                    <Map />
                 </Right>
             </Container>
         </Section>
