@@ -8,7 +8,7 @@ import SunLight from "../models/sunlight";
 import { OrbitControls } from "@react-three/drei";
 import gsap from "gsap";
 import HandleExplore from "../models/Galaxy";
-import Test from "../models/test2";
+import Test from "../models/Tests/test2";
 
 
 const Section = styled.div`

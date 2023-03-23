@@ -12,6 +12,7 @@ import { Canvas } from '@react-three/fiber'
 import SunLight from './sunlight';
 import { Vector3 } from 'three';
 import '/src/index.css'
+import { useGLTF} from '@react-three/drei'
 
 import sunAVertexShader from '/src/assets/shaders/sun/sunAVertex.glsl'; import sunAFragmentShader from '/src/assets/shaders/sun/sunAFragment.glsl';
 
@@ -36,6 +37,7 @@ import neptuneAVertexShader from '/src/assets/shaders/neptune/neptuneAV.glsl'; i
 
 
 export default function Planets(props) {
+  const { nodes, materials, animations } = useGLTF('/src/assets/models/asteroid-transformed.glb')
 
   const sun = useRef();
   const kuiperBelt = useRef();
@@ -455,8 +457,8 @@ export default function Planets(props) {
     if (isRotating) {
       //set relative orbit speed
       sun.current.rotation.y += 0.0004;
-      kuiperBelt.current.rotation.z += 0.00004;
-      astroidBelt.current.rotation.z += 0.0004;
+      kuiperBelt.current.rotation.y += 0.00004;
+      astroidBelt.current.rotation.y += 0.0004;
       mercuryGroup.current.rotation.y += 0.026;
       venusGroup.current.rotation.y += 0.014;
       earthGroup.current.rotation.y += 0.008;
@@ -501,17 +503,6 @@ export default function Planets(props) {
     setIsClickedFact(false)
   }
   const textureRing = useLoader(TextureLoader, './src/assets/img/Ring.png');
-  const textureBelt = useLoader(TextureLoader, './src/assets/img/kBelt.png');
-
-
-  textureBelt.magFilter = THREE.NearestFilter;
-  textureBelt.minFilter = THREE.NearestFilter;
-
-  const beltMaterial = new THREE.MeshBasicMaterial({
-    map: textureBelt,
-    transparent: true,
-    side: THREE.DoubleSide,
-  });
 
   const ringMaterial = new THREE.MeshBasicMaterial({
     map: textureRing,
@@ -565,7 +556,7 @@ export default function Planets(props) {
 
       {isClickedAstroidBelt && <Html position={[null]}><div id='containerBelt'><h1 id='name'>Asteroid Belt</h1><p id='planet'>Early in the life of the solar system, dust and rock circling the sun were pulled together by gravity into planets. But not all of the ingredients created new worlds. A region between Mars and Jupiter became the asteroid belt.
 
-<br /><br />Occasionally people wonder whether the belt was made up of the remains of a destroyed planet, or a world that didn't quite get started. However, according to NASA(opens in new tab), the total mass of the belt is less than the moon, far too small to weigh in as a planet. Instead, the debris is shepherded by Jupiter, which kept it from coalescing onto other growing planets.<br /><br />Some asteroids are large, solid bodies — there are more than 16 in the belt with a diameter greater than 150 miles (240 km). The largest asteroids, Vesta, Pallas and Hygiea, are 250 miles (400 km) long and bigger. The region also contains the dwarf planet Ceres. At 590 miles (950 km) in diameter, or about a quarter of the size of our moon, Ceres is round yet is considered too small to be a full-fledged planet. However, it makes up approximately a third of the mass of the asteroid belt.</p></div></Html>}
+<br /><br />Occasionally people wonder whether the belt was made up of the remains of a destroyed planet, or a world that didn't quite get started. However, according to NASA, the total mass of the belt is less than the moon, far too small to weigh in as a planet. Instead, the debris is shepherded by Jupiter, which kept it from coalescing onto other growing planets.<br /><br />Some asteroids are large, solid bodies — there are more than 16 in the belt with a diameter greater than 150 miles (240 km). The largest asteroids, Vesta, Pallas and Hygiea, are 250 miles (400 km) long and bigger. The region also contains the dwarf planet Ceres. At 590 miles (950 km) in diameter, or about a quarter of the size of our moon, Ceres is round yet is considered too small to be a full-fledged planet. However, it makes up approximately a third of the mass of the asteroid belt.</p></div></Html>}
 
       {isClickedBelt && <Html position={[null]}><div id='containerBelt'><h1 id='name'>Kuiper Belt</h1><p id='planet'>Similar to the asteroid belt between Mars and Jupiter, the Kuiper Belt is a region of leftovers from the solar system's early history. Like the asteroid belt, it has also been shaped by a giant planet, although it's more of a thick disk (like a donut) than a thin belt<br /><br />The Kuiper Belt is truly a frontier in space – it's a place we're still just beginning to explore and our understanding is still evolving.<br /><br />In 1930, Pluto became the first Kuiper Belt object to be discovered. It was found at a time before astronomers had reason to expect a large population of icy worlds beyond Neptune. Today it's known as the "King of the Kuiper Belt" – and it's the largest object in the region.</p></div></Html>}
 
@@ -591,13 +582,13 @@ export default function Planets(props) {
         </mesh>
       </group>
 
-      <mesh ref={astroidBelt} position={[0, 0, 0]} rotation={[-Math.PI / 2, 0, Math.PI / 2]} onClick={handleAstroidBeltClick} onPointerOver={() => { document.body.style.cursor = 'pointer'; }} onPointerOut={() => { document.body.style.cursor = 'auto'; }}>
-        <Ring args={[45, 52, 100]} material={beltMaterial} />
-      </mesh>
-
-      <mesh ref={kuiperBelt} position={[0, 0, 0]} rotation={[-Math.PI / 2, 0, Math.PI / 2]} onClick={handleBeltClick} onPointerOver={() => { document.body.style.cursor = 'pointer'; }} onPointerOut={() => { document.body.style.cursor = 'auto'; }}>
-        <Ring args={[135, 210, 100]} material={beltMaterial} />
-      </mesh>
+      <group name="asteroid_field_32" scale={0.08} ref={astroidBelt} onClick={handleAstroidBeltClick} onPointerOver={() => { document.body.style.cursor = 'pointer'; }} onPointerOut={() => { document.body.style.cursor = 'auto'; }}>
+        <mesh name="Object_46" geometry={nodes.Object_46.geometry} material={materials['asteroid.002']} />
+      </group>
+  <group ref={kuiperBelt} name="asteroid_field_32"onClick={handleBeltClick} onPointerOver={() => { document.body.style.cursor = 'pointer'; }} onPointerOut={() => { document.body.style.cursor = 'auto'; }}>
+        <mesh name="Object_46" scale={0.27} geometry={nodes.Object_46.geometry} material={materials['asteroid.002']} />
+        <mesh name="Object_46" scale={0.3} geometry={nodes.Object_46.geometry} material={materials['asteroid.002']} rotation={[-Math.PI / 2, 1.55, Math.PI / 2]}/>
+    </group>
 
       <group ref={mercuryGroup} position={[0, 0, 0]}>
         <group ref={mercuryObject} position={[16, 0, 0]}>

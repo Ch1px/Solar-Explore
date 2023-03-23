@@ -9,7 +9,7 @@ import gsap from 'gsap'
 import { OrbitControls } from "@react-three/drei";
 import styled from "styled-components";
 import { Canvas } from '@react-three/fiber'
-import SunLight from './sunlight';
+import SunLight from '../sunlight';
 import { Vector3 } from 'three';
 
 
