@@ -29,8 +29,7 @@ export default function Test(props) {
   const cameraRef = useRef(camera);
   const controlsRef = useRef();
 
-  const [isClickedMercury, setIsClickedMercury] = useState(false);
-  const [isClickedVenus, setIsClickedVenus] = useState(false);
+  const [isClicked, setIsClicked] = useState(Array(2).fill(false));
 
   const [isHovered, setIsHovered] = useState(false)
   useFrame(({ mouse }) => {
@@ -42,13 +41,10 @@ export default function Test(props) {
 
 
   function handleClickMercury() {
-    setIsClickedMercury(true)
-    setIsClickedVenus(false)
-
+    setIsClicked[0](true)
+    setIsClicked[1](false)
     const { x, y, z } = mercuryObject.current.getWorldPosition(new THREE.Vector3());
-
     gsap.to(controlsRef.current.target, {
-
       duration: 2,
       x: x,
       y: y,
@@ -60,8 +56,8 @@ export default function Test(props) {
   }
 
   function handleClickVenus() {
-    setIsClickedMercury(false)
-    setIsClickedVenus(true)
+    setIsClicked[0](false)
+    setIsClicked[1](true)
     const { x, y, z } = venus.current.getWorldPosition(new THREE.Vector3());
 
     gsap.to(controlsRef.current.target, {
@@ -84,8 +80,8 @@ export default function Test(props) {
   return (
     <group {...props} dispose={null}>
 
-      {isClickedMercury && <Html position={[null]}><div id='containerMoon'><h1 id='name'>The M</h1><p id='planet'></p></div></Html>}
-      {isClickedVenus && <Html position={[null]}><div id='containerMoon'><h1 id='name'>The Moon</h1><p id='planet'></p></div></Html>}
+      {isClicked[0] && <Html position={[null]}><div id='containerMoon'><h1 id='name'>The M</h1><p id='planet'></p></div></Html>}
+      {isClicked[1] && <Html position={[null]}><div id='containerMoon'><h1 id='name'>The Moon</h1><p id='planet'></p></div></Html>}
       <group ref={mercuryGroup} position={[0, 0, 0]}>
         <group ref={mercuryObjectGroup} position={[16, 0, 0]}>
           <mesh onPointerOver={() => { document.body.style.cursor = "pointer"; }} onPointerOut={() => { document.body.style.cursor = "auto"; }}>

@@ -12,7 +12,7 @@ import { Canvas } from '@react-three/fiber'
 import SunLight from './sunlight';
 import { Vector3 } from 'three';
 import '/src/index.css'
-import { useGLTF} from '@react-three/drei'
+import { useGLTF } from '@react-three/drei'
 
 import sunAVertexShader from '/src/assets/shaders/sun/sunAVertex.glsl'; import sunAFragmentShader from '/src/assets/shaders/sun/sunAFragment.glsl';
 
@@ -39,7 +39,7 @@ import plutoAVertexShader from '/src/assets/shaders/pluto/plutoAV.glsl'; import 
 
 
 export default function Planets(props) {
-  const { nodes, materials, animations } = useGLTF('/src/assets/models/asteroid-transformed.glb')
+  const { nodes, materials } = useGLTF('/src/assets/models/asteroid-transformed.glb')
 
   const sun = useRef();
   const kuiperBelt = useRef();
@@ -103,16 +103,7 @@ export default function Planets(props) {
   const [isClickedMoon, setIsClickedMoon] = useState(false);
   const [isClickedPlu, setIsClickedPlu] = useState(false);
 
-  const [isHoveredMerc, setIsHoveredMerc] = useState(false)
-  const [isHoveredVen, setIsHoveredVen] = useState(false)
-  const [isHoveredEarth, setIsHoveredEarth] = useState(false)
-  const [isHoveredMoon, setIsHoveredMoon] = useState(false)
-  const [isHoveredMars, setIsHoveredMars] = useState(false)
-  const [isHoveredJup, setIsHoveredJup] = useState(false)
-  const [isHoveredSat, setIsHoveredSat] = useState(false)
-  const [isHoveredUra, setIsHoveredUra] = useState(false)
-  const [isHoveredNep, setIsHoveredNep] = useState(false)
-  const [isHoveredPlu, setIsHoveredPlu] = useState(false)
+  const [isHovered, setIsHovered] = useState(Array(10).fill(false));
 
   const [isClickedFact, setIsClickedFact] = useState(false);
 
@@ -121,16 +112,135 @@ export default function Planets(props) {
     const raycaster = new THREE.Raycaster();
     raycaster.setFromCamera(mouse, camera);
 
-    const intersects1 = raycaster.intersectObject(mercuryGroup.current); setIsHoveredMerc(intersects1.length > 0);
-    const intersects2 = raycaster.intersectObject(venusGroup.current); setIsHoveredVen(intersects2.length > 0);
-    const intersects3 = raycaster.intersectObject(earthGroup.current); setIsHoveredEarth(intersects3.length > 0);
-    const intersects4 = raycaster.intersectObject(marsGroup.current); setIsHoveredMars(intersects4.length > 0);
-    const intersects5 = raycaster.intersectObject(jupiterGroup.current); setIsHoveredJup(intersects5.length > 0);
-    const intersects6 = raycaster.intersectObject(saturnGroup.current); setIsHoveredSat(intersects6.length > 0);
-    const intersects7 = raycaster.intersectObject(uranusGroup.current); setIsHoveredUra(intersects7.length > 0);
-    const intersects8 = raycaster.intersectObject(neptuneGroup.current); setIsHoveredNep(intersects8.length > 0);
-    const intersects9 = raycaster.intersectObject(moonPosEarth.current); setIsHoveredMoon(intersects9.length > 0);
-    const intersects10 = raycaster.intersectObject(plutoGroup.current); setIsHoveredPlu(intersects10.length > 0);
+    const groups = [mercuryGroup, venusGroup, earthGroup, moonPosEarth, marsGroup, jupiterGroup, saturnGroup, uranusGroup, neptuneGroup, plutoGroup];
+
+    for (let i = 0; i < groups.length; i++) {
+      const intersects = raycaster.intersectObject(groups[i].current);
+      setIsHovered(prevState => {
+        const newState = [...prevState];
+        newState[i] = intersects.length > 0;
+        return newState;
+      });
+    }
+
+    if (isClickedSun) {
+      gsap.to(controlsRef.current.target, {
+        duration: 2,
+        x: 0,
+        y: 0,
+        z: 0,
+        onUpdate: () => {
+          controlsRef.current.update();
+        }
+      });
+    }
+    if (isClickedMercury) {
+      const { x, y, z } = mercury.current.getWorldPosition(new THREE.Vector3());
+      gsap.to(controlsRef.current.target, {
+        duration: 2,
+        x: x,
+        y: y,
+        z: z,
+      });
+    }
+    if (isClickedVenus) {
+      const { x, y, z } = venus.current.getWorldPosition(new THREE.Vector3());
+      gsap.to(controlsRef.current.target, {
+        duration: 2,
+        x: x,
+        y: y,
+        z: z,
+      });
+    }
+    if (isClickedEarth) {
+      const { x, y, z } = earth.current.getWorldPosition(new THREE.Vector3());
+      gsap.to(controlsRef.current.target, {
+        duration: 2,
+        x: x,
+        y: y,
+        z: z,
+      });
+    }
+    if (isClickedMoon) {
+      const { x, y, z } = moonPosEarth.current.getWorldPosition(new THREE.Vector3());
+      gsap.to(controlsRef.current.target, {
+        duration: 2,
+        x: x,
+        y: y,
+        z: z,
+      });
+    }
+    if (isClickedMars) {
+      const { x, y, z } = mars.current.getWorldPosition(new THREE.Vector3());
+      gsap.to(controlsRef.current.target, {
+        duration: 2,
+        x: x,
+        y: y,
+        z: z,
+      });
+    }
+    if (isClickedJupiter) {
+      const { x, y, z } = jupiter.current.getWorldPosition(new THREE.Vector3());
+      gsap.to(controlsRef.current.target, {
+        duration: 2,
+        x: x,
+        y: y,
+        z: z,
+      });
+    }
+    if (isClickedSaturn) {
+      const { x, y, z } = saturn.current.getWorldPosition(new THREE.Vector3());
+      gsap.to(controlsRef.current.target, {
+        duration: 2,
+        x: x,
+        y: y,
+        z: z,
+      });
+    }
+    if (isClickedUranus) {
+      const { x, y, z } = uranus.current.getWorldPosition(new THREE.Vector3());
+      gsap.to(controlsRef.current.target, {
+        duration: 2,
+        x: x,
+        y: y,
+        z: z,
+      });
+    }
+    if (isClickedNeptune) {
+      const { x, y, z } = neptune.current.getWorldPosition(new THREE.Vector3());
+      gsap.to(controlsRef.current.target, {
+        duration: 2,
+        x: x,
+        y: y,
+        z: z,
+      });
+    }
+    if (isClickedPlu) {
+      const { x, y, z } = pluto.current.getWorldPosition(new THREE.Vector3());
+      gsap.to(controlsRef.current.target, {
+        duration: 2,
+        x: x,
+        y: y,
+        z: z,
+      });
+    }
+    if (isRotating) {
+      //set relative orbit speed
+      sun.current.rotation.y += 0.0004;
+      kuiperBelt.current.rotation.y += 0.00001;
+      astroidBelt.current.rotation.y += 0.0004;
+      mercuryGroup.current.rotation.y += 0.026;
+      venusGroup.current.rotation.y += 0.014;
+      earthGroup.current.rotation.y += 0.008;
+      marsGroup.current.rotation.y += 0.004;
+      jupiterGroup.current.rotation.y += 0.0009;
+      saturnGroup.current.rotation.y += 0.0004;
+      uranusGroup.current.rotation.y += 0.0001;
+      neptuneGroup.current.rotation.y += 0.00007;
+      plutoGroup.current.rotation.y += 0.00003;
+      moonPos.current.rotation.y += 0.008;
+      moonObject.current.rotation.y += 0.05;
+    }
   });
 
   const controlsRef = useRef();
@@ -152,19 +262,6 @@ export default function Planets(props) {
     setIsClickedPlu(false)
 
   };
-  useFrame(() => {
-    if (isClickedSun) {
-      gsap.to(controlsRef.current.target, {
-        duration: 2,
-        x: 0,
-        y: 0,
-        z: 0,
-        onUpdate: () => {
-          controlsRef.current.update();
-        }
-      });
-    }
-  })
 
 
   function handleBeltClick() {
@@ -217,20 +314,6 @@ export default function Planets(props) {
     setIsClickedFact(true)
     setIsClickedPlu(false)
   };
-  useFrame(() => {
-    if (isClickedMercury) {
-      const { x, y, z } = mercury.current.getWorldPosition(new THREE.Vector3());
-      gsap.to(controlsRef.current.target, {
-        duration: 2,
-        x: x,
-        y: y,
-        z: z,
-        onUpdate: () => {
-          controlsRef.current.update(x, y, z);
-        },// add some distance from the object
-      });
-    }
-  })
 
 
   const handleClickVenus = () => {
@@ -249,20 +332,6 @@ export default function Planets(props) {
     setIsClickedFact(true)
     setIsClickedPlu(false)
   };
-  useFrame(() => {
-    if (isClickedVenus) {
-      const { x, y, z } = venus.current.getWorldPosition(new THREE.Vector3());
-      gsap.to(controlsRef.current.target, {
-        duration: 2,
-        x: x,
-        y: y,
-        z: z,
-        onUpdate: () => {
-          controlsRef.current.update(x, y, z);
-        },// add some distance from the object
-      });
-    }
-  })
 
 
   const handleClickEarth = () => {
@@ -281,20 +350,6 @@ export default function Planets(props) {
     setIsClickedFact(true)
     setIsClickedPlu(false)
   };
-  useFrame(() => {
-    if (isClickedEarth) {
-      const { x, y, z } = earth.current.getWorldPosition(new THREE.Vector3());
-      gsap.to(controlsRef.current.target, {
-        duration: 2,
-        x: x,
-        y: y,
-        z: z,
-        onUpdate: () => {
-          controlsRef.current.update(x, y, z);
-        },// add some distance from the object
-      });
-    }
-  });
 
 
   const handleClickMoon = () => {
@@ -313,20 +368,6 @@ export default function Planets(props) {
     setIsClickedFact(true)
     setIsClickedPlu(false)
   };
-  useFrame(() => {
-    if (isClickedMoon) {
-      const { x, y, z } = moonPosEarth.current.getWorldPosition(new THREE.Vector3());
-      gsap.to(controlsRef.current.target, {
-        duration: 2,
-        x: x,
-        y: y,
-        z: z,
-        onUpdate: () => {
-          controlsRef.current.update(x, y, z);
-        },// add some distance from the object
-      });
-    }
-  });
 
 
   const handleClickMars = () => {
@@ -345,20 +386,6 @@ export default function Planets(props) {
     setIsClickedFact(true)
     setIsClickedPlu(false)
   };
-  useFrame(() => {
-    if (isClickedMars) {
-      const { x, y, z } = mars.current.getWorldPosition(new THREE.Vector3());
-      gsap.to(controlsRef.current.target, {
-        duration: 2,
-        x: x,
-        y: y,
-        z: z,
-        onUpdate: () => {
-          controlsRef.current.update(x, y, z);
-        },// add some distance from the object
-      });
-    }
-  })
 
 
   const handleClickJupiter = () => {
@@ -377,20 +404,6 @@ export default function Planets(props) {
     setIsClickedFact(true)
     setIsClickedPlu(false)
   };
-  useFrame(() => {
-    if (isClickedJupiter) {
-      const { x, y, z } = jupiter.current.getWorldPosition(new THREE.Vector3());
-      gsap.to(controlsRef.current.target, {
-        duration: 2,
-        x: x,
-        y: y,
-        z: z,
-        onUpdate: () => {
-          controlsRef.current.update(x, y, z);
-        },// add some distance from the object
-      });
-    }
-  })
 
 
   const handleClickSaturn = () => {
@@ -409,20 +422,6 @@ export default function Planets(props) {
     setIsClickedFact(true)
     setIsClickedPlu(false)
   };
-  useFrame(() => {
-    if (isClickedSaturn) {
-      const { x, y, z } = saturn.current.getWorldPosition(new THREE.Vector3());
-      gsap.to(controlsRef.current.target, {
-        duration: 2,
-        x: x,
-        y: y,
-        z: z,
-        onUpdate: () => {
-          controlsRef.current.update(x, y, z);
-        },// add some distance from the object
-      });
-    }
-  })
 
 
   const handleClickUranus = () => {
@@ -441,20 +440,6 @@ export default function Planets(props) {
     setIsClickedFact(true)
     setIsClickedPlu(false)
   };
-  useFrame(() => {
-    if (isClickedUranus) {
-      const { x, y, z } = uranus.current.getWorldPosition(new THREE.Vector3());
-      gsap.to(controlsRef.current.target, {
-        duration: 2,
-        x: x,
-        y: y,
-        z: z,
-        onUpdate: () => {
-          controlsRef.current.update(x, y, z);
-        },// add some distance from the object
-      });
-    }
-  })
 
 
   const handleClickNeptune = () => {
@@ -473,20 +458,6 @@ export default function Planets(props) {
     setIsClickedFact(true)
     setIsClickedPlu(false)
   };
-  useFrame(() => {
-    if (isClickedNeptune) {
-      const { x, y, z } = neptune.current.getWorldPosition(new THREE.Vector3());
-      gsap.to(controlsRef.current.target, {
-        duration: 2,
-        x: x,
-        y: y,
-        z: z,
-        onUpdate: () => {
-          controlsRef.current.update(x, y, z);
-        },// add some distance from the object
-      });
-    }
-  })
 
 
   function handleClickPlu() {
@@ -505,45 +476,11 @@ export default function Planets(props) {
     setIsClickedFact(true)
     setIsClickedPlu(true)
   };
-  useFrame(() => {
-    if (isClickedPlu) {
-      const { x, y, z } = pluto.current.getWorldPosition(new THREE.Vector3());
-      gsap.to(controlsRef.current.target, {
-        duration: 2,
-        x: x,
-        y: y,
-        z: z,
-        onUpdate: () => {
-          controlsRef.current.update(x, y, z);
-        },// add some distance from the object
-      });
-    }
-  })
-  
+
 
   const handleRotateClick = () => {
     setIsRotating(!isRotating);
   };
-
-  useFrame(() => {
-    if (isRotating) {
-      //set relative orbit speed
-      sun.current.rotation.y += 0.0004;
-      kuiperBelt.current.rotation.y += 0.00001;
-      astroidBelt.current.rotation.y += 0.0004;
-      mercuryGroup.current.rotation.y += 0.026;
-      venusGroup.current.rotation.y += 0.014;
-      earthGroup.current.rotation.y += 0.008;
-      marsGroup.current.rotation.y += 0.004;
-      jupiterGroup.current.rotation.y += 0.0009;
-      saturnGroup.current.rotation.y += 0.0004;
-      uranusGroup.current.rotation.y += 0.0001;
-      neptuneGroup.current.rotation.y += 0.00007;
-      plutoGroup.current.rotation.y += 0.00003;
-      moonPos.current.rotation.y += 0.008;
-      moonObject.current.rotation.y += 0.05;
-    }
-  });
 
 
 
@@ -577,6 +514,9 @@ export default function Planets(props) {
     setIsClickedFact(false)
     setIsClickedPlu(false)
   }
+
+
+
   const saturnTextureRing = useLoader(TextureLoader, './src/assets/img/Ring2.png');
   const nepTextureRing = useLoader(TextureLoader, './src/assets/img/neptuneRing.png');
   const uraTextureRing = useLoader(TextureLoader, './src/assets/img/uranusRing.png');
@@ -645,13 +585,13 @@ export default function Planets(props) {
 
       {isClickedAstroidBelt && <Html position={[null]}><div id='containerBelt'><h1 id='name'>Asteroid Belt</h1><p id='planet'>Early in the life of the solar system, dust and rock circling the sun were pulled together by gravity into planets. But not all of the ingredients created new worlds. A region between Mars and Jupiter became the asteroid belt.
 
-<br /><br />Occasionally people wonder whether the belt was made up of the remains of a destroyed planet, or a world that didn't quite get started. However, according to NASA, the total mass of the belt is less than the moon, far too small to weigh in as a planet. Instead, the debris is shepherded by Jupiter, which kept it from coalescing onto other growing planets.<br /><br />Some asteroids are large, solid bodies — there are more than 16 in the belt with a diameter greater than 150 miles (240 km). The largest asteroids, Vesta, Pallas and Hygiea, are 250 miles (400 km) long and bigger. The region also contains the dwarf planet Ceres. At 590 miles (950 km) in diameter, or about a quarter of the size of our moon, Ceres is round yet is considered too small to be a full-fledged planet. However, it makes up approximately a third of the mass of the asteroid belt.</p></div></Html>}
+        <br /><br />Occasionally people wonder whether the belt was made up of the remains of a destroyed planet, or a world that didn't quite get started. However, according to NASA, the total mass of the belt is less than the moon, far too small to weigh in as a planet. Instead, the debris is shepherded by Jupiter, which kept it from coalescing onto other growing planets.<br /><br />Some asteroids are large, solid bodies — there are more than 16 in the belt with a diameter greater than 150 miles (240 km). The largest asteroids, Vesta, Pallas and Hygiea, are 250 miles (400 km) long and bigger. The region also contains the dwarf planet Ceres. At 590 miles (950 km) in diameter, or about a quarter of the size of our moon, Ceres is round yet is considered too small to be a full-fledged planet. However, it makes up approximately a third of the mass of the asteroid belt.</p></div></Html>}
 
       {isClickedBelt && <Html position={[null]}><div id='containerBelt'><h1 id='name'>Kuiper Belt</h1><p id='planet'>Similar to the asteroid belt between Mars and Jupiter, the Kuiper Belt is a region of leftovers from the solar system's early history. Like the asteroid belt, it has also been shaped by a giant planet, although it's more of a thick disk (like a donut) than a thin belt<br /><br />The Kuiper Belt is truly a frontier in space – it's a place we're still just beginning to explore and our understanding is still evolving.<br /><br />In 1930, Pluto became the first Kuiper Belt object to be discovered. It was found at a time before astronomers had reason to expect a large population of icy worlds beyond Neptune. Today it's known as the "King of the Kuiper Belt" – and it's the largest object in the region.</p></div></Html>}
 
       {isClickedMoon && <Html position={[null]}><div id='containerMoon'><h1 id='name'>The Moon</h1><p id='planet'>“The prevailing idea is that the Moon was formed in a violent event between the proto-Earth – an early-stage Earth that was much bigger than it is today – and an object (labelled ‘Theia’) about the size of Mars,” explains Robert Massey, deputy executive director of the Royal Astronomical Society. “Debris was ejected into space and then coalesced to form the Moon.” Modern research seems to confirm the Moon is made of material from the early Earth’s crust. Dubbed the ‘Giant Impact Hypothesis,’ this collision is believed to have happened 4.5 billion years ago and would have been 100 million times larger than the event which wiped out the dinosaurs.<br /><br />“Because the Moon has no protective atmosphere, the surface experiences extreme temperatures, from incredibly cold on the far ‘night’ side and above boiling on the ‘sunny’ near side,” explains Massey. According to NASA, the Moon’s temperature can span from 123 degrees Celsius to -233 degrees Celsius. Its mean surface temperature is 107 degrees Celsius in the day and -153 degrees Celsius at night.</p></div></Html>}
 
-      {isClickedPlu && <Html position={[null]}><div id='containerMoon'><h1 id='name'>Pluto</h1><p id='planet'>Well Done! You found Pluto!<br /><br /></p></div></Html>}
+      {isClickedPlu && <Html position={[null]}><div id='containerMoon'><h1 id='name'>Pluto</h1><p id='planet'>Well Done! You found Pluto!<br /><br />Pluto was reclassified from a planet to a dwarf planet in 2006.<br/><br/>Pluto – which is smaller than Earth’s Moon – has a heart-shaped glacier that’s the size of Texas and Oklahoma. This fascinating world has blue skies, spinning moons, mountains as high as the Rockies, and it snows – but the snow is red.<br/><br/>A year on Pluto is 248 Earth years. A day on Pluto lasts 153 hours, or about 6 Earth days.<br/><br/>Pluto’s surface is far too cold, -378 to -396 degrees F (-228 to -238 C), to sustain life as we know it.</p></div></Html>}
 
       {isRotating && <Html position={[null]}><div id='speedBox'><h1 id='speedDis'>Orbit Speeds</h1><p id="speed">Mercury - 47.87 km/s</p><p id="speed">Venus- 35.02 km/s</p><p id="speed">Earth- 29.78 km/s</p><p id="speed">Mars - 24.077 km/s</p><p id="speed">Jupiter - 13.07 km/s</p><p id="speed">Saturn - 9.69 km/s</p><p id="speed">Uranus - 6.81 km/s</p><p id="speed">Neptune - 5.43 km/s</p></div></Html>}
 
@@ -676,10 +616,10 @@ export default function Planets(props) {
       <group name="asteroid_field_32" scale={0.08} ref={astroidBelt} onClick={handleAstroidBeltClick} onPointerOver={() => { document.body.style.cursor = 'pointer'; }} onPointerOut={() => { document.body.style.cursor = 'auto'; }}>
         <mesh name="Object_46" geometry={nodes.Object_46.geometry} material={materials['asteroid.002']} />
       </group>
-  <group ref={kuiperBelt} name="asteroid_field_32"onClick={handleBeltClick} onPointerOver={() => { document.body.style.cursor = 'pointer'; }} onPointerOut={() => { document.body.style.cursor = 'auto'; }}>
+      <group ref={kuiperBelt} name="asteroid_field_32" onClick={handleBeltClick} onPointerOver={() => { document.body.style.cursor = 'pointer'; }} onPointerOut={() => { document.body.style.cursor = 'auto'; }}>
         <mesh name="Object_46" scale={0.27} geometry={nodes.Object_46.geometry} material={materials['asteroid.002']} />
-        <mesh name="Object_46" scale={0.3} geometry={nodes.Object_46.geometry} material={materials['asteroid.002']} rotation={[-Math.PI / 2, 1.55, Math.PI / 2]}/>
-    </group>
+        <mesh name="Object_46" scale={0.3} geometry={nodes.Object_46.geometry} material={materials['asteroid.002']} rotation={[-Math.PI / 2, 1.55, Math.PI / 2]} />
+      </group>
 
       <group ref={mercuryGroup} position={[0, 0, 0]}>
         <group ref={mercuryObject} position={[16, 0, 0]}>
@@ -689,7 +629,7 @@ export default function Planets(props) {
             </Sphere>
           </mesh>
         </group>
-        {isHoveredMerc &&
+        {isHovered[0] &&
           <group ref={mercAtmos} position={[16, 0, 0]}>
             <mesh onPointerOver={() => { document.body.style.cursor = 'pointer'; }} onPointerOut={() => { document.body.style.cursor = 'auto'; }}>
               <Sphere args={[1, 25, 25]} scale={0.12}>
@@ -707,7 +647,7 @@ export default function Planets(props) {
             </Sphere>
           </mesh>
         </group>
-        {isHoveredVen &&
+        {isHovered[1] &&
           <group ref={venAtmos} position={[22, 0, 0]}>
             <mesh onPointerOver={() => { document.body.style.cursor = 'pointer'; }} onPointerOut={() => { document.body.style.cursor = 'auto'; }}>
               <Sphere args={[1, 25, 25]} scale={0.33}>
@@ -725,7 +665,7 @@ export default function Planets(props) {
             </Sphere>
           </mesh>
         </group>
-        {isHoveredEarth &&
+        {isHovered[2] &&
           <group ref={earthAtmos} position={[28, 0, 0]}>
             <mesh onPointerOver={() => { document.body.style.cursor = 'pointer'; }} onPointerOut={() => { document.body.style.cursor = 'auto'; }}>
               <Sphere args={[1, 25, 25]} scale={0.43}>
@@ -743,7 +683,7 @@ export default function Planets(props) {
                 <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/moonTexture.jpg'))} />
               </Sphere>
             </mesh>
-            {isHoveredMoon &&
+            {isHovered[3] &&
               <group ref={moonAtmos}>
                 <mesh onPointerOver={() => { document.body.style.cursor = 'pointer'; }} onPointerOut={() => { document.body.style.cursor = 'auto'; }}>
                   <Sphere args={[1, 25, 25]} scale={0.1}>
@@ -762,7 +702,7 @@ export default function Planets(props) {
               <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/2k_mars.jpg'))} />
             </Sphere>
           </mesh>
-          {isHoveredMars &&
+          {isHovered[4] &&
             <group ref={marsAtmos}>
               <mesh onPointerOver={() => { document.body.style.cursor = 'pointer'; }} onPointerOut={() => { document.body.style.cursor = 'auto'; }}>
                 <Sphere args={[1, 25, 25]} scale={0.22}>
@@ -780,7 +720,7 @@ export default function Planets(props) {
               <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/2k_jupiter.jpeg'))} />
             </Sphere>
           </mesh>
-          {isHoveredJup &&
+          {isHovered[5] &&
             <group ref={jupAtmos}>
               <mesh onPointerOver={() => { document.body.style.cursor = 'pointer'; }} onPointerOut={() => { document.body.style.cursor = 'auto'; }}>
                 <Sphere args={[1, 25, 25]} scale={2.1}>
@@ -789,18 +729,18 @@ export default function Planets(props) {
               </mesh>
             </group>}
         </group>
-        <Ring args={[1.5, 4.2, 50]} rotation={[-Math.PI / 2, 0.14, Math.PI / 2]} position={[62, 0, 0]} material={nepRingMaterial}/>
+        <Ring args={[1.5, 4.2, 50]} rotation={[-Math.PI / 2, 0.14, Math.PI / 2]} position={[62, 0, 0]} material={nepRingMaterial} />
       </group>
 
 
       <group ref={saturnGroup} position={[0, 0, 0]}>
         <group ref={saturnObject} position={[85, 0, 0]}>
           <mesh onPointerOver={() => { document.body.style.cursor = 'pointer'; }} onPointerOut={() => { document.body.style.cursor = 'auto'; }}>
-            <Sphere ref={saturn} args={[1, 25, 25]} scale={1.3} rotation={[-Math.PI / 2, 1, Math.PI / 2]} onClick={handleClickSaturn}>
+            <Sphere ref={saturn} args={[1, 25, 25]} scale={1.3} rotation={[-Math.PI / 2, 1.1, Math.PI / 2]} onClick={handleClickSaturn}>
               <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/700_saturn.jpg'))} />
             </Sphere>
           </mesh>
-          {isHoveredSat &&
+          {isHovered[6] &&
             <group ref={satAtmos}>
               <mesh onPointerOver={() => { document.body.style.cursor = 'pointer'; }} onPointerOut={() => { document.body.style.cursor = 'auto'; }}>
                 <Sphere args={[1, 25, 25]} scale={1.4}>
@@ -823,7 +763,7 @@ export default function Planets(props) {
               <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/uranus.png'))} />
             </Sphere>
           </mesh>
-          {isHoveredUra &&
+          {isHovered[7] &&
             <group ref={uraAtmos}>
               <mesh onPointerOver={() => { document.body.style.cursor = 'pointer'; }} onPointerOut={() => { document.body.style.cursor = 'auto'; }}>
                 <Sphere args={[1, 25, 25]} scale={0.9}>
@@ -832,7 +772,7 @@ export default function Planets(props) {
               </mesh>
             </group>}
         </group>
-        <Ring args={[1.2, 1.65, 50]} rotation={[-Math.PI / 2, 4.85, Math.PI / 2]} position={[105, 0, 0]} material={uraRingMaterial}/>
+        <Ring args={[1.2, 1.65, 50]} rotation={[-Math.PI / 2, 4.85, Math.PI / 2]} position={[105, 0, 0]} material={uraRingMaterial} />
       </group>
 
 
@@ -843,7 +783,7 @@ export default function Planets(props) {
               <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/700_neptuneTexture.jpg'))} />
             </Sphere>
           </mesh>
-          {isHoveredNep &&
+          {isHovered[8] &&
             <group ref={nepAtmos}>
               <mesh onPointerOver={() => { document.body.style.cursor = 'pointer'; }} onPointerOut={() => { document.body.style.cursor = 'auto'; }}>
                 <Sphere args={[1, 25, 25]} scale={0.9}>
@@ -852,7 +792,7 @@ export default function Planets(props) {
               </mesh>
             </group>}
         </group>
-        <Ring args={[1.3, 1.55, 50]} rotation={[-Math.PI / 2, 0.45, Math.PI / 2]} position={[125, 0, 0]} material={nepRingMaterial}/>
+        <Ring args={[1.3, 1.55, 50]} rotation={[-Math.PI / 2, 0.45, Math.PI / 2]} position={[125, 0, 0]} material={nepRingMaterial} />
       </group>
 
       <group ref={plutoGroup} position={[35, 0, 0]} onClick={handleClickPlu}>
@@ -862,14 +802,14 @@ export default function Planets(props) {
               <meshStandardMaterial map={useLoader(THREE.TextureLoader, "./src/assets/img/pluto.jpg")} />
             </Sphere>
           </mesh>
-          {isHoveredPlu &&
-          <group>
-            <mesh onPointerOver={() => { document.body.style.cursor = 'pointer'; }} onPointerOut={() => { document.body.style.cursor = 'auto'; }}>
-              <Sphere args={[1, 25, 25]} scale={0.09}>
-                <shaderMaterial vertexShader={plutoAVertexShader} fragmentShader={plutoAFragmentShader} blending={THREE.AdditiveBlending} side={THREE.BackSide} />
-              </Sphere>
-            </mesh>
-          </group>}
+          {isHovered[9] &&
+            <group>
+              <mesh onPointerOver={() => { document.body.style.cursor = 'pointer'; }} onPointerOut={() => { document.body.style.cursor = 'auto'; }}>
+                <Sphere args={[1, 25, 25]} scale={0.09}>
+                  <shaderMaterial vertexShader={plutoAVertexShader} fragmentShader={plutoAFragmentShader} blending={THREE.AdditiveBlending} side={THREE.BackSide} />
+                </Sphere>
+              </mesh>
+            </group>}
         </group>
       </group>
       <OrbitControls ref={controlsRef} enablePan={false} args={[camera, gl.domElement]} />
