@@ -83,6 +83,7 @@ export default function Galaxy(props) {
       ) : (
         <Canvas frameloop="always" style={{ background: '#0000000' }} camera={{ position: [0, 50, 570], fov: 15 }}>
           <Planet />
+          <Starfield/>
           <Html position={[null]}><button id='close' onClick={handleClosePlanets}>Close</button></Html>
         </Canvas>
       )}
