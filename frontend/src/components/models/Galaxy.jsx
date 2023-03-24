@@ -25,6 +25,7 @@ import * as THREE from 'three'
 import { TextureLoader } from 'three';
 import { useLoader } from '@react-three/fiber'
 import { Circle } from "@react-three/drei";
+import SunFlare from './SunFlare';
 
 
 export default function Galaxy(props) {
@@ -85,6 +86,7 @@ export default function Galaxy(props) {
         <Canvas frameloop="always" style={{ background: '#0000000' }} camera={{ position: [0, 50, 570], fov: 15 }}>
           <Planet />
           <SolarStar/>
+          <SunFlare/>
           <Html position={[null]}><button id='close' onClick={handleClosePlanets}>Close</button></Html>
         </Canvas>
       )}

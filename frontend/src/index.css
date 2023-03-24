@@ -13,126 +13,14 @@
     color: rgb(255, 255, 255);
 }
 
-#containerSun {
+#container {
     width: 40vh;
-    background: rgb(248, 138, 35);
     padding: 15px;
-    border-radius: 20px;
     position: relative;
-    left: 30px;
-    top: 80px;
+    left: 5vh;
+    top: 8vh;
+    text-align: left;
 }
-
-#containerMer {
-    width: 40vh;
-    background: rgb(114, 78, 31);
-    padding: 15px;
-    border-radius: 20px;
-    position: relative;
-    left: 30px;
-    top: 80px;
-}
-
-#mercFact {
-    width: 40vh;
-    background: rgb(114, 78, 31);
-    padding: 15px;
-    border-radius: 20px;
-    position: relative;
-    left: 30px;
-    top: 80px;
-}
-
-#containerVen {
-    width: 40vh;
-    background: rgb(184, 162, 104);
-    padding: 15px;
-    border-radius: 20px;
-    position: relative;
-    left: 30px;
-    top: 80px;
-}
-
-#containerEarth {
-    width: 40vh;
-    background: rgb(0, 101, 168);
-    padding: 15px;
-    border-radius: 20px;
-    position: relative;
-    left: 30px;
-    top: 80px;
-}
-
-#containerMars {
-    width: 40vh;
-    background: rgb(190, 82, 10);
-    padding: 15px;
-    border-radius: 20px;
-    position: relative;
-    left: 30px;
-    top: 80px;
-}
-
-#containerJup {
-    width: 40vh;
-    background: rgb(131, 109, 67);
-    padding: 15px;
-    border-radius: 20px;
-    position: relative;
-    left: 30px;
-    top: 80px;
-}
-
-#containerSat {
-    width: 40vh;
-    background: rgb(46, 1, 151);
-    padding: 15px;
-    border-radius: 20px;
-    position: relative;
-    left: 30px;
-    top: 80px;
-}
-
-#containerUra {
-    width: 40vh;
-    background: rgb(84, 153, 199);
-    padding: 15px;
-    border-radius: 20px;
-    position: relative;
-    left: 30px;
-    top: 80px;
-}
-
-#containerNep {
-    width: 40vh;
-    background: rgb(0, 3, 156);
-    padding: 15px;
-    border-radius: 20px;
-    position: relative;
-    left: 30px;
-    top: 80px;
-}
-
-#containerBelt {
-    width: 40vh;
-    background: rgb(66, 50, 37);
-    padding: 15px;
-    border-radius: 20px;
-    position: relative;
-    left: 30px;
-    top: 80px;
-}
-
-#containerMoon {
-    width: 40vh;
-    background: rgb(100, 100, 100);
-    padding: 15px;
-    border-radius: 20px;
-    position: relative;
-    left: 30px;
-    top: 80px;
-}
-
 
 #containerText {
     width: 35vh;
@@ -150,7 +38,7 @@
     font-size: 25px;
     font-weight: bold;
     padding-bottom: 15px;
-    text-align: center;
+    text-align: left;
 }
 
 #subtitle {
@@ -240,8 +128,8 @@
     width: 7.5vh;
     padding: 7px;
     position: relative;
-    left: 35vh;
-    top: 8vh;
+    left: 34vh;
+    top: 10vh;
     font-size: small;
 }
 

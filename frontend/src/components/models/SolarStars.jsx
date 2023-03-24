@@ -22,7 +22,7 @@ export default function SolarStar(){
   return (
     <points ref={stars}>
       <bufferGeometry attach="geometry" {...geometry} />
-      <pointsMaterial attach="material" size={0.01} sizeAttenuation color="white" />
+      <pointsMaterial attach="material" size={0.001} sizeAttenuation color="white" />
     </points>
   )
 }
