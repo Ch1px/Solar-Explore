@@ -150,16 +150,22 @@ export default function Planets(props) {
     setIsClickedSun(true)
     setIsClickedFact(true)
     setIsClickedPlu(false)
-    gsap.to(controlsRef.current.target, {
-      duration: 2,
-      x: 0,
-      y: 0,
-      z: 0,
-      onUpdate: () => {
-        controlsRef.current.update();
-      }
-    });
+
   };
+  useFrame(() => {
+    if (isClickedSun) {
+      gsap.to(controlsRef.current.target, {
+        duration: 2,
+        x: 0,
+        y: 0,
+        z: 0,
+        onUpdate: () => {
+          controlsRef.current.update();
+        }
+      });
+    }
+  })
+
 
   function handleBeltClick() {
     setIsClickedEarth(false)
@@ -210,9 +216,9 @@ export default function Planets(props) {
     setIsClickedSun(false)
     setIsClickedFact(true)
     setIsClickedPlu(false)
-
-    if (!isRotating) {
-      // Get the updated position of the mercuryObject after the rotation has been applied
+  };
+  useFrame(() => {
+    if (isClickedMercury) {
       const { x, y, z } = mercury.current.getWorldPosition(new THREE.Vector3());
       gsap.to(controlsRef.current.target, {
         duration: 2,
@@ -224,7 +230,9 @@ export default function Planets(props) {
         },// add some distance from the object
       });
     }
-  };
+  })
+
+
   const handleClickVenus = () => {
     setIsClickedEarth(false)
     setIsClickedJupiter(false)
@@ -240,8 +248,9 @@ export default function Planets(props) {
     setIsClickedSun(false)
     setIsClickedFact(true)
     setIsClickedPlu(false)
-
-    if (!isRotating) {
+  };
+  useFrame(() => {
+    if (isClickedVenus) {
       const { x, y, z } = venus.current.getWorldPosition(new THREE.Vector3());
       gsap.to(controlsRef.current.target, {
         duration: 2,
@@ -253,7 +262,9 @@ export default function Planets(props) {
         },// add some distance from the object
       });
     }
-  };
+  })
+
+
   const handleClickEarth = () => {
     setIsClickedEarth(true)
     setIsClickedJupiter(false)
@@ -269,9 +280,9 @@ export default function Planets(props) {
     setIsClickedSun(false)
     setIsClickedFact(true)
     setIsClickedPlu(false)
-
-    if (!isRotating) {
-      // Get the updated position of the mercuryObject after the rotation has been applied
+  };
+  useFrame(() => {
+    if (isClickedEarth) {
       const { x, y, z } = earth.current.getWorldPosition(new THREE.Vector3());
       gsap.to(controlsRef.current.target, {
         duration: 2,
@@ -283,7 +294,9 @@ export default function Planets(props) {
         },// add some distance from the object
       });
     }
-  };
+  });
+
+
   const handleClickMoon = () => {
     setIsClickedEarth(false)
     setIsClickedJupiter(false)
@@ -299,9 +312,9 @@ export default function Planets(props) {
     setIsClickedSun(false)
     setIsClickedFact(true)
     setIsClickedPlu(false)
-
-    if (!isRotating) {
-      // Get the updated position of the mercuryObject after the rotation has been applied
+  };
+  useFrame(() => {
+    if (isClickedMoon) {
       const { x, y, z } = moonPosEarth.current.getWorldPosition(new THREE.Vector3());
       gsap.to(controlsRef.current.target, {
         duration: 2,
@@ -313,9 +326,10 @@ export default function Planets(props) {
         },// add some distance from the object
       });
     }
-  };
-  const handleClickMars = () => {
+  });
 
+
+  const handleClickMars = () => {
     setIsClickedEarth(false)
     setIsClickedJupiter(false)
     setIsClickedSaturn(false)
@@ -330,9 +344,9 @@ export default function Planets(props) {
     setIsClickedSun(false)
     setIsClickedFact(true)
     setIsClickedPlu(false)
-
-    if (!isRotating) {
-      // Get the updated position of the mercuryObject after the rotation has been applied
+  };
+  useFrame(() => {
+    if (isClickedMars) {
       const { x, y, z } = mars.current.getWorldPosition(new THREE.Vector3());
       gsap.to(controlsRef.current.target, {
         duration: 2,
@@ -344,7 +358,9 @@ export default function Planets(props) {
         },// add some distance from the object
       });
     }
-  };
+  })
+
+
   const handleClickJupiter = () => {
     setIsClickedEarth(false)
     setIsClickedJupiter(true)
@@ -360,9 +376,9 @@ export default function Planets(props) {
     setIsClickedSun(false)
     setIsClickedFact(true)
     setIsClickedPlu(false)
-
-    if (!isRotating) {
-      // Get the updated position of the mercuryObject after the rotation has been applied
+  };
+  useFrame(() => {
+    if (isClickedJupiter) {
       const { x, y, z } = jupiter.current.getWorldPosition(new THREE.Vector3());
       gsap.to(controlsRef.current.target, {
         duration: 2,
@@ -374,7 +390,9 @@ export default function Planets(props) {
         },// add some distance from the object
       });
     }
-  };
+  })
+
+
   const handleClickSaturn = () => {
     setIsClickedEarth(false)
     setIsClickedJupiter(false)
@@ -390,9 +408,9 @@ export default function Planets(props) {
     setIsClickedSun(false)
     setIsClickedFact(true)
     setIsClickedPlu(false)
-
-    if (!isRotating) {
-      // Get the updated position of the mercuryObject after the rotation has been applied
+  };
+  useFrame(() => {
+    if (isClickedSaturn) {
       const { x, y, z } = saturn.current.getWorldPosition(new THREE.Vector3());
       gsap.to(controlsRef.current.target, {
         duration: 2,
@@ -404,7 +422,9 @@ export default function Planets(props) {
         },// add some distance from the object
       });
     }
-  };
+  })
+
+
   const handleClickUranus = () => {
     setIsClickedEarth(false)
     setIsClickedJupiter(false)
@@ -420,9 +440,9 @@ export default function Planets(props) {
     setIsClickedSun(false)
     setIsClickedFact(true)
     setIsClickedPlu(false)
-
-    if (!isRotating) {
-      // Get the updated position of the mercuryObject after the rotation has been applied
+  };
+  useFrame(() => {
+    if (isClickedUranus) {
       const { x, y, z } = uranus.current.getWorldPosition(new THREE.Vector3());
       gsap.to(controlsRef.current.target, {
         duration: 2,
@@ -434,7 +454,9 @@ export default function Planets(props) {
         },// add some distance from the object
       });
     }
-  };
+  })
+
+
   const handleClickNeptune = () => {
     setIsClickedEarth(false)
     setIsClickedJupiter(false)
@@ -450,9 +472,9 @@ export default function Planets(props) {
     setIsClickedSun(false)
     setIsClickedFact(true)
     setIsClickedPlu(false)
-
-    if (!isRotating) {
-      // Get the updated position of the mercuryObject after the rotation has been applied
+  };
+  useFrame(() => {
+    if (isClickedNeptune) {
       const { x, y, z } = neptune.current.getWorldPosition(new THREE.Vector3());
       gsap.to(controlsRef.current.target, {
         duration: 2,
@@ -464,7 +486,8 @@ export default function Planets(props) {
         },// add some distance from the object
       });
     }
-  };
+  })
+
 
   function handleClickPlu() {
     setIsClickedEarth(false)
@@ -481,9 +504,9 @@ export default function Planets(props) {
     setIsClickedSun(false)
     setIsClickedFact(true)
     setIsClickedPlu(true)
-
-    if (!isRotating) {
-      // Get the updated position of the mercuryObject after the rotation has been applied
+  };
+  useFrame(() => {
+    if (isClickedPlu) {
       const { x, y, z } = pluto.current.getWorldPosition(new THREE.Vector3());
       gsap.to(controlsRef.current.target, {
         duration: 2,
@@ -495,10 +518,8 @@ export default function Planets(props) {
         },// add some distance from the object
       });
     }
-  };
-
-
-
+  })
+  
 
   const handleRotateClick = () => {
     setIsRotating(!isRotating);
@@ -645,7 +666,7 @@ export default function Planets(props) {
             <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/700_sunMap.jpg'))} />
           </Sphere>
         </mesh>
-        <mesh onClick={handleClickSun} onPointerOver={() => { document.body.style.cursor = 'pointer'; }} onPointerOut={() => { document.body.style.cursor = 'auto'; }}>
+        <mesh onPointerOver={() => { document.body.style.cursor = 'pointer'; }} onPointerOut={() => { document.body.style.cursor = 'auto'; }}>
           <Sphere args={[1, 40, 40]} scale={11.5} position={[0, 0, 0]}>
             <shaderMaterial vertexShader={sunAVertexShader} fragmentShader={sunAFragmentShader} blending={THREE.AdditiveBlending} side={THREE.BackSide} />
           </Sphere>
