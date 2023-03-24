@@ -31,7 +31,6 @@ import SunFlare from './SunFlare';
 export default function Galaxy(props) {
 
   const textureGalaxy = useLoader(TextureLoader, './src/assets/img/milkyway.png');
-  console.log(textureGalaxy)
 
   textureGalaxy.magFilter = THREE.NearestFilter;
   textureGalaxy.minFilter = THREE.NearestFilter;
@@ -57,11 +56,11 @@ export default function Galaxy(props) {
             <SolarTitle>Explore. Learn. Interact</SolarTitle><Disc1>Welcome to Solar Explorer! Here we have built a 3D model of our own solar system. Immerse youself in the experience.
               Here you can Explore. Learn. Interact. with all of the planets contained within our Solar System.
             </Disc1>
+            <SolarTitle>Location?</SolarTitle>
+            <Disc>The planetary system we call home is located in an outer spiral arm of the Milky Way galaxy, with our closet neighbour being the Andromeda Galaxy. At the center of our galaxy there is a super massive blackhole in which everything rotates around. This is what creates that spiral effect<br /><br /></Disc>
             <SolarTitle>Why is it Called the Solar System?</SolarTitle>
-            <Disc>There are many planetary systems like ours in the universe, with planets orbiting a host star. Our planetary system is called “the solar system” because we use the word “solar” to describe things related to our star, after the Latin word for Sun, "solis." <br /><br /></Disc>
-            <SolarTitle>Size and Distance</SolarTitle>
-            <Disc>Our solar system extends much farther than the eight planets that orbit the Sun. The solar system also includes the Kuiper Belt that lies past Neptune's orbit. This is a sparsely occupied ring of icy bodies, almost all smaller than the most popular Kuiper Belt Object – dwarf planet Pluto.</Disc>
-            <ImgDisc>Click on the Milky Way  to adventure deeper.<Img src="/src/assets/img/arrowRight.png"></Img></ImgDisc>
+            <Disc>There are many planetary systems like ours in the universe, with planets orbiting a host star. Our planetary system is called “the solar system” because we use the word “solar” to describe things related to our star, after the Latin word for Sun, "solis."<br /><br /></Disc>
+            <ImgDisc>Click on the Milky Way to adventure deeper.<Img src="/src/assets/img/arrowRight.png"></Img></ImgDisc>
           </Left>
           <Right>
             <Canvas style={{ background: '#0000000' }} camera={{ position: [0, 10, 0] }}>
@@ -83,7 +82,7 @@ export default function Galaxy(props) {
           </Right>
         </>
       ) : (
-        <Canvas frameloop="always" style={{ background: '#0000000' }} camera={{ position: [0, 50, 570], fov: 15 }}>
+        <Canvas frameloop="always"  camera={{ position: [0, 50, 570], fov: 15 }}>
           <Planet />
           <SolarStar/>
           <SunFlare/>
@@ -101,7 +100,7 @@ position: absolute;
 margin: auto;
 max-width: 70px;
 height: auto;
-bottom: 12.8vh;
+bottom: 12vh;
 left:70vh;
 @media only screen and (max-width:900px){
     display: none;

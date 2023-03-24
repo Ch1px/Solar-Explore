@@ -54,7 +54,7 @@ font-weight: 600;
 
 `
 const Subtitle = styled.p`
-font-size: 24px;
+font-size: 20px;
 padding-bottom: 10px;
 padding-right: 50px;
 @media only screen and (max-width:900px){
@@ -127,7 +127,7 @@ const Home = () => {
             <Container>
                 <Left>
                     <Title>Explore. Learn. Interact.</Title>
-                    <Subtitle>Challenging the standard of Space exploration. Prepare for lift off and immerse yourself in a 3-Dimensional space of our own Solar System.</Subtitle>
+                    <Subtitle>Submerse yourself and explore the wonders of our solar system in an interactive 3-Dimensional learning environment. Discover the secrets that each planet has to offer, in including the Sun and the Moon.</Subtitle>
                     <Button><a href="#About" onClick={scrollToSection}>Get Started</a></Button>
                 </Left>
                 <Right>
