@@ -12,7 +12,7 @@ const Starfield = () => {
       (Math.random() - 0.5) * 1000,
     ])
 
-  const geometry = new THREE.BufferGeometry(1, 20, 20)
+  const geometry = new THREE.BufferGeometry(1, 1, 1)
   geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions.flat(), 3))
 
   useFrame(() => {
