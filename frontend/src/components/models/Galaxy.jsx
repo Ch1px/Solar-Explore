@@ -26,11 +26,13 @@ import { TextureLoader } from 'three';
 import { useLoader } from '@react-three/fiber'
 import { Circle } from "@react-three/drei";
 import SunFlare from './SunFlare';
+import MilkyWay from '/src/assets/img/milkyway.png'
+import ArrowR from '/src/assets/img/arrowRight.png'
 
 
 export default function Galaxy(props) {
 
-  const textureGalaxy = useLoader(TextureLoader, './src/assets/img/milkyway.png');
+  const textureGalaxy = useLoader(TextureLoader, MilkyWay);
 
   textureGalaxy.magFilter = THREE.NearestFilter;
   textureGalaxy.minFilter = THREE.NearestFilter;
@@ -60,7 +62,7 @@ export default function Galaxy(props) {
             <Disc>The planetary system we call home is located in an outer spiral arm of the Milky Way galaxy, with our closet neighbour being the Andromeda Galaxy. At the center of our galaxy there is a super massive blackhole in which everything rotates around. This is what creates that spiral effect<br /><br /></Disc>
             <SolarTitle>Why is it Called the Solar System?</SolarTitle>
             <Disc>There are many planetary systems like ours in the universe, with planets orbiting a host star. Our planetary system is called “the solar system” because we use the word “solar” to describe things related to our star, after the Latin word for Sun, "solis."<br /><br /></Disc>
-            <ImgDisc>Click on the Milky Way to adventure deeper.<Img src="/src/assets/img/arrowRight.png"></Img></ImgDisc>
+            <ImgDisc>Click on the Milky Way to adventure deeper.<Img src={ArrowR}></Img></ImgDisc>
           </Left>
           <Right>
             <Canvas style={{ background: '#0000000' }} camera={{ position: [0, 10, 0] }}>

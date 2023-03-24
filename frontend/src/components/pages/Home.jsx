@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import SphereDistort from "../models/sphereDistort";
+import Astro from "/src/assets/img/astroBook.png"
 
 
 const Section = styled.div`
@@ -132,7 +133,7 @@ const Home = () => {
                 </Left>
                 <Right>
                     <SphereDistort />
-                    <Img src="/src/assets/img/astroBook.png" />
+                    <Img src={Astro} />
                 </Right>
             </Container>
         </Section>

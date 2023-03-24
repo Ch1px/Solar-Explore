@@ -11,9 +11,10 @@ import React, { useRef, useEffect } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
 import { useGLTF } from '@react-three/drei'
 import gsap from 'gsap';
+import e from '/src/assets/models/earth-transformed.glb'
 
 export default function Model(props) {
-  const { nodes, materials } = useGLTF('/src/assets/models/earth-transformed.glb')
+  const { nodes, materials } = useGLTF(e)
   const earth = useRef();
 
 

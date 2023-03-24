@@ -14,6 +14,21 @@ import { Vector3 } from 'three';
 import '/src/index.css'
 import { useGLTF } from '@react-three/drei'
 
+import SunTexture from '/src/assets/img/700_sunMap.jpg'
+import MercTexture from '/src/assets/img/700_mercMap.jpg'
+import VenTexture from '/src/assets/img/700_venus_atmosphere.jpg'
+import EarthTexture from '/src/assets/img/2k_earth.jpg'
+import MoonTexture from '/src/assets/img/moonTexture.jpg'
+import MarsTexture from '/src/assets/img/2k_mars.jpg'
+import JupiterTexture from '/src/assets/img/2k_jupiter.jpeg'
+import SaturnTexture from '/src/assets/img/700_saturn.jpg'
+import SatRingTexture from '/src/assets/img/Ring2.png';
+import UraTexture from '/src/assets/img/uranus.png'
+import UraRingTexture from '/src/assets/img/uranusRing.png'
+import NepTexture from '/src/assets/img/700_neptuneTexture.jpg'
+import NepRingTexture from '/src/assets/img/neptuneRing.png'
+import PluTexture from '/src/assets/img/pluto.jpg'
+
 import merAVertexShader from '/src/assets/shaders/mercury/merAVertex.glsl'; import merAFragmentShader from '/src/assets/shaders/mercury/merAFragment.glsl';
 
 import venusAVertexShader from '/src/assets/shaders/venus/venusAV.glsl'; import venusAFragmentShader from '/src/assets/shaders/venus/venusAF.glsl';
@@ -34,10 +49,10 @@ import neptuneAVertexShader from '/src/assets/shaders/neptune/neptuneAV.glsl'; i
 
 import plutoAVertexShader from '/src/assets/shaders/pluto/plutoAV.glsl'; import plutoAFragmentShader from '/src/assets/shaders/pluto/plutoAF.glsl';
 
-
+import Asteroid from '/src/assets/models/asteroid-transformed.glb';
 
 export default function Planets(props) {
-  const { nodes, materials } = useGLTF('/src/assets/models/asteroid-transformed.glb')
+  const { nodes, materials } = useGLTF(Asteroid)
 
   const sun = useRef();
   const kuiperBelt = useRef();
@@ -512,9 +527,9 @@ export default function Planets(props) {
 
 
 
-  const saturnTextureRing = useLoader(TextureLoader, './src/assets/img/Ring2.png');
-  const nepTextureRing = useLoader(TextureLoader, './src/assets/img/neptuneRing.png');
-  const uraTextureRing = useLoader(TextureLoader, './src/assets/img/uranusRing.png');
+  const saturnTextureRing = useLoader(TextureLoader, SatRingTexture);
+  const nepTextureRing = useLoader(TextureLoader, NepRingTexture);
+  const uraTextureRing = useLoader(TextureLoader, UraRingTexture);
 
   const saturnRingMaterial = new THREE.MeshBasicMaterial({
     map: saturnTextureRing,
@@ -598,7 +613,7 @@ export default function Planets(props) {
       <group ref={sun} onPointerOver={() => { document.body.style.cursor = 'pointer'; }} onPointerOut={() => { document.body.style.cursor = 'auto'; }}>
         <mesh onClick={handleClickSun}>
           <Sphere args={[1, 25, 25]} scale={10} position={[0, 0, 0]}>
-            <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/700_sunMap.jpg'))} />
+            <meshStandardMaterial map={useLoader(THREE.TextureLoader, SunTexture)} />
           </Sphere>
         </mesh>
       </group>
@@ -615,7 +630,7 @@ export default function Planets(props) {
         <group ref={mercuryObject} position={[16, 0, 0]}>
           <mesh onPointerOver={() => { document.body.style.cursor = "pointer"; }} onPointerOut={() => { document.body.style.cursor = "auto"; }}>
             <Sphere ref={mercury} args={[1, 25, 25]} scale={0.1} onClick={handleClickMercury}>
-              <meshStandardMaterial map={useLoader(THREE.TextureLoader, "./src/assets/img/700_mercMap.jpg")} />
+              <meshStandardMaterial map={useLoader(THREE.TextureLoader, MercTexture)} />
             </Sphere>
           </mesh>
         </group>
@@ -633,7 +648,7 @@ export default function Planets(props) {
         <group ref={venusObject} position={[22, 0, 0]}>
           <mesh onPointerOver={() => { document.body.style.cursor = 'pointer'; }} onPointerOut={() => { document.body.style.cursor = 'auto'; }}>
             <Sphere ref={venus} args={[1, 25, 25]} scale={0.3} onClick={handleClickVenus}>
-              <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/700_venus_atmosphere.jpg'))} />
+              <meshStandardMaterial map={useLoader(THREE.TextureLoader, VenTexture)} />
             </Sphere>
           </mesh>
         </group>
@@ -651,7 +666,7 @@ export default function Planets(props) {
         <group ref={earthObject} position={[28, 0, 0]}>
           <mesh onPointerOver={() => { document.body.style.cursor = 'pointer'; }} onPointerOut={() => { document.body.style.cursor = 'auto'; }}>
             <Sphere ref={earth} args={[1, 25, 25]} scale={0.4} rotation={[-Math.PI / 2, 1.8, Math.PI / 2]} onClick={handleClickEarth}>
-              <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/2k_earth.jpg'))} />
+              <meshStandardMaterial map={useLoader(THREE.TextureLoader, (EarthTexture))} />
             </Sphere>
           </mesh>
         </group>
@@ -670,7 +685,7 @@ export default function Planets(props) {
           <group ref={moonPosEarth} position={[1, 0.5, 0]}>
             <mesh onPointerOver={() => { document.body.style.cursor = 'pointer'; }} onPointerOut={() => { document.body.style.cursor = 'auto'; }}>
               <Sphere onClick={handleClickMoon} args={[1, 25, 25]} scale={0.08} rotation={[-Math.PI / 2, 1.8, Math.PI / 2]}>
-                <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/moonTexture.jpg'))} />
+                <meshStandardMaterial map={useLoader(THREE.TextureLoader, (MoonTexture))} />
               </Sphere>
             </mesh>
             {isHovered[3] &&
@@ -689,7 +704,7 @@ export default function Planets(props) {
         <group ref={marsObject} position={[36, 0, 0]}>
           <mesh onPointerOver={() => { document.body.style.cursor = 'pointer'; }} onPointerOut={() => { document.body.style.cursor = 'auto'; }}>
             <Sphere ref={mars} args={[1, 25, 25]} scale={0.2} rotation={[-Math.PI / 2, 1.8, Math.PI / 2]} onClick={handleClickMars} >
-              <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/2k_mars.jpg'))} />
+              <meshStandardMaterial map={useLoader(THREE.TextureLoader, (MarsTexture))} />
             </Sphere>
           </mesh>
           {isHovered[4] &&
@@ -707,7 +722,7 @@ export default function Planets(props) {
         <group ref={jupiterObject} position={[62, 0, 0]}>
           <mesh onPointerOver={() => { document.body.style.cursor = 'pointer'; }} onPointerOut={() => { document.body.style.cursor = 'auto'; }}>
             <Sphere ref={jupiter} args={[1, 25, 25]} scale={2} rotation={[-Math.PI / 2, 1.7, Math.PI / 2]} onClick={handleClickJupiter}>
-              <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/2k_jupiter.jpeg'))} />
+              <meshStandardMaterial map={useLoader(THREE.TextureLoader, (JupiterTexture))} />
             </Sphere>
           </mesh>
           {isHovered[5] &&
@@ -727,7 +742,7 @@ export default function Planets(props) {
         <group ref={saturnObject} position={[85, 0, 0]}>
           <mesh onPointerOver={() => { document.body.style.cursor = 'pointer'; }} onPointerOut={() => { document.body.style.cursor = 'auto'; }}>
             <Sphere ref={saturn} args={[1, 25, 25]} scale={1.3} rotation={[-Math.PI / 2, 1.1, Math.PI / 2]} onClick={handleClickSaturn}>
-              <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/700_saturn.jpg'))} />
+              <meshStandardMaterial map={useLoader(THREE.TextureLoader, (SaturnTexture))} />
             </Sphere>
           </mesh>
           {isHovered[6] &&
@@ -750,7 +765,7 @@ export default function Planets(props) {
         <group ref={uranusObject} position={[105, 0, 0]}>
           <mesh onPointerOver={() => { document.body.style.cursor = 'pointer'; }} onPointerOut={() => { document.body.style.cursor = 'auto'; }}>
             <Sphere ref={uranus} args={[1, 25, 25]} scale={0.8} rotation={[-Math.PI / 2, 0.16, Math.PI / 2]} onClick={handleClickUranus}>
-              <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/uranus.png'))} />
+              <meshStandardMaterial map={useLoader(THREE.TextureLoader, (UraTexture))} />
             </Sphere>
           </mesh>
           {isHovered[7] &&
@@ -770,7 +785,7 @@ export default function Planets(props) {
         <group ref={neptuneObject} position={[125, 0, 0]}>
           <mesh onPointerOver={() => { document.body.style.cursor = 'pointer'; }} onPointerOut={() => { document.body.style.cursor = 'auto'; }}>
             <Sphere ref={neptune} args={[1, 25, 25]} scale={0.8} rotation={[-Math.PI / 2, 2, Math.PI / 2]} onClick={handleClickNeptune} >
-              <meshStandardMaterial map={useLoader(THREE.TextureLoader, ('./src/assets/img/700_neptuneTexture.jpg'))} />
+              <meshStandardMaterial map={useLoader(THREE.TextureLoader, (NepTexture))} />
             </Sphere>
           </mesh>
           {isHovered[8] &&
@@ -789,7 +804,7 @@ export default function Planets(props) {
         <group ref={plutoObject} position={[165, 0, 0]}>
           <mesh onPointerOver={() => { document.body.style.cursor = "pointer"; }} onPointerOut={() => { document.body.style.cursor = "auto"; }}>
             <Sphere ref={pluto} args={[1, 25, 25]} scale={0.07} >
-              <meshStandardMaterial map={useLoader(THREE.TextureLoader, "./src/assets/img/pluto.jpg")} />
+              <meshStandardMaterial map={useLoader(THREE.TextureLoader, PluTexture)} />
             </Sphere>
           </mesh>
           {isHovered[9] &&

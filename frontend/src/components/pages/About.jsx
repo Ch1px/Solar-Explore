@@ -4,6 +4,8 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import Space from '../models/SpaceBoy'
 
+import ArrowR from "/src/assets/img/arrowRight.png"
+
 const Section = styled.div`
 height: 100vh;
 scroll-snap-align: center;
@@ -120,7 +122,7 @@ const About = () => {
                         <br /><br />We hope you enjoy exploring our website and learning about the wonders of the solar system.
                         This project was created using ThreeJS, to get the most out of your interactive planetary experience.
                     </Disc>
-                    <Img src="/src/assets/img/arrowRight.png"></Img>
+                    <Img src={ArrowR}></Img>
                     <ImgDis>Give it a whirl!</ImgDis>
 
                 </Left>

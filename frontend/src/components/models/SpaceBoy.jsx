@@ -13,10 +13,11 @@ import { Canvas, useFrame } from '@react-three/fiber'
 import { OrbitControls } from "@react-three/drei";
 import { Mesh } from 'three'
 import Starfield from './StarField';
+import SpaceBoi from '/src/assets/models/space-transformed.glb'
 
 
 function Model(props) {
-  const { nodes, materials } = useGLTF('/src/assets/models/space-transformed.glb')
+  const { nodes, materials } = useGLTF(SpaceBoi)
   const meshRef = useRef();
 
   useFrame(() => {

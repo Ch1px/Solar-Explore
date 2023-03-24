@@ -1,6 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 
+import GitLogo from "/src/assets/img/gitLogo2.png"
+import InstaLogo from "/src/assets/img/insta.png"
+import LogoPng from "/src/assets/img/logo.png"
+
 const Section = styled.div`
 display: flex;
 justify-content: center;
@@ -80,7 +84,7 @@ const NavBar = () => {
         <Section>
             <Container>
                 <Links>
-                    <Logo src="./src/assets/img/logo.png" />
+                    <Logo src={LogoPng} />
                     <List>
                         <ListItem><a href="#Home" onClick={scrollToSection}>Home</a></ListItem>
                         <ListItem><a href="#About" onClick={scrollToSection}>About</a></ListItem>
@@ -91,10 +95,10 @@ const NavBar = () => {
                 </Links>
                 <Icons>
                     <a href="https://github.com/Ch1px/Solar-Explorer" target="_blank">
-                        <Icon src="./src/assets/img/gitLogo2.png" />
+                        <Icon src={GitLogo} />
                     </a>
                     <a href="https://www.instagram.com/dan_glancy/" target="_blank">
-                        <Icon2 src="./src/assets/img/insta.png" />
+                        <Icon2 src={InstaLogo} />
                     </a>
                 </Icons>
             </Container>

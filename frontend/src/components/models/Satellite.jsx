@@ -11,9 +11,10 @@ import React, { useRef, useEffect } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
 import { useGLTF } from '@react-three/drei'
 import gsap from 'gsap';
+import Sat from '/src/assets/models/satellite-transformed.glb'
 
 export default function Model(props) {
-  const { nodes, materials } = useGLTF('/src/assets/models/satellite-transformed.glb')
+  const { nodes, materials } = useGLTF(Sat)
 
   const earth = useRef();
 
@@ -447,5 +448,3 @@ export default function Model(props) {
     </group>
   )
 }
-
-useGLTF.preload('/src/assets/models/satellite-transformed.glb')
