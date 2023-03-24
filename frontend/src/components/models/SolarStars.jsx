@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 
-const Starfield = () => {
+export default function SolarStar(){
   const stars = useRef()
   const positions = new Array(5000)
     .fill()
@@ -16,15 +16,13 @@ const Starfield = () => {
   geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions.flat(), 3))
 
   useFrame(() => {
-    stars.current.rotation.y += 0.0001
+    stars.current.rotation.y += 0.00002
   })
 
   return (
     <points ref={stars}>
       <bufferGeometry attach="geometry" {...geometry} />
-      <pointsMaterial attach="material" size={1} sizeAttenuation color="white" />
+      <pointsMaterial attach="material" size={0.01} sizeAttenuation color="white" />
     </points>
   )
 }
-
-export default Starfield

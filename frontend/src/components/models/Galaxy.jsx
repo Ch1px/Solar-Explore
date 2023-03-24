@@ -20,6 +20,7 @@ import SunLight from "./sunlight";
 import { OrbitControls } from '@react-three/drei';
 import Camera from './camera';
 import Starfield from './StarField';
+import SolarStar from './SolarStars';
 import * as THREE from 'three'
 import { TextureLoader } from 'three';
 import { useLoader } from '@react-three/fiber'
@@ -83,7 +84,7 @@ export default function Galaxy(props) {
       ) : (
         <Canvas frameloop="always" style={{ background: '#0000000' }} camera={{ position: [0, 50, 570], fov: 15 }}>
           <Planet />
-          <Starfield/>
+          <SolarStar/>
           <Html position={[null]}><button id='close' onClick={handleClosePlanets}>Close</button></Html>
         </Canvas>
       )}

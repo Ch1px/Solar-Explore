@@ -227,7 +227,7 @@ export default function Planets(props) {
     if (isRotating) {
       //set relative orbit speed
       sun.current.rotation.y += 0.0004;
-      kuiperBelt.current.rotation.y += 0.00001;
+      kuiperBelt.current.rotation.y += 0.00002;
       astroidBelt.current.rotation.y += 0.0004;
       mercuryGroup.current.rotation.y += 0.026;
       venusGroup.current.rotation.y += 0.014;
@@ -237,7 +237,7 @@ export default function Planets(props) {
       saturnGroup.current.rotation.y += 0.0004;
       uranusGroup.current.rotation.y += 0.0001;
       neptuneGroup.current.rotation.y += 0.00007;
-      plutoGroup.current.rotation.y += 0.00003;
+      plutoGroup.current.rotation.y += 0.00004;
       moonPos.current.rotation.y += 0.008;
       moonObject.current.rotation.y += 0.05;
     }
