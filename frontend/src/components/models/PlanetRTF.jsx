@@ -49,7 +49,7 @@ import neptuneAVertexShader from '/src/assets/shaders/neptune/neptuneAV.glsl'; i
 
 import plutoAVertexShader from '/src/assets/shaders/pluto/plutoAV.glsl'; import plutoAFragmentShader from '/src/assets/shaders/pluto/plutoAF.glsl';
 
-import Asteroid from '/src/assets/models/asteroid-transformed.glb';
+import Asteroid from '/src/assets/models/ass.gltf'
 
 export default function Planets(props) {
   const { nodes, materials } = useGLTF(Asteroid)

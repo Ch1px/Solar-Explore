@@ -6,7 +6,8 @@ import Explore from "./components/pages/Explore";
 import News from "./components/pages/News";
 import NavBar from "./components/navbar/NavBar";
 import styled from 'styled-components';
-import './index.css'
+import './index.css' 
+import Wallpaper from "/src/assets/img/wallpaper.jpg"
 
 //preloader
 
@@ -16,7 +17,7 @@ scroll-snap-align: center;
 display:flex;
 flex-direction: column;
 align-items: center;
-background: url("/src/assets/img/wallpaper.jpg");
+background: url(${Wallpaper});
 `
 
 const Container = styled.div`

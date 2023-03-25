@@ -1,4 +1,5 @@
 import React from "react";
+import festures from '/src/assets/map/feature.json'
 import {
   ComposableMap,
   Geographies,
@@ -19,7 +20,7 @@ const Map = () => {
       style={{ width: '100%', height: '100%' }}
     >
       <Geographies
-        geography="src/assets/map/feature.json"
+        geography={festures}
         fill="#5858582b"
         stroke="#00c3ff"
         strokeWidth={1}
