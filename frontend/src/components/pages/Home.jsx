@@ -21,6 +21,7 @@ height: 100%;
 scroll-snap-align: center;
 
 display: flex;
+flex-wrap: wrap;
 justify-content: space-between;
 @media only screen and (max-width:900px){
     width:180vh;
@@ -128,7 +129,7 @@ const Home = () => {
             <Container>
                 <Left>
                     <Title>Explore. Learn. Interact.</Title>
-                    <Subtitle>Submerse yourself and explore the wonders of our solar system in an interactive 3-Dimensional learning environment. Discover the secrets that each planet has to offer, in including the Sun and the Moon.</Subtitle>
+                    <Subtitle>Submerse yourself and explore the wonders of our Solar System in an interactive 3-Dimensional learning environment. Discover the secrets that each planet has to offer, and what lies beyond the outer edges.</Subtitle>
                     <Button><a href="#About" onClick={scrollToSection}>Get Started</a></Button>
                 </Left>
                 <Right>

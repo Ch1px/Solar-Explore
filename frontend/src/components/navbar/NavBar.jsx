@@ -20,6 +20,7 @@ justify-content: space-between;
 align-items: center;
 padding:10px,0px;
 padding-bottom: 5px;
+object-fit: contain;
 @media only screen and (max-width:768px){
     width: 100%;
     padding: 10px;

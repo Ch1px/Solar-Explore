@@ -2,6 +2,7 @@ import axios from "axios";
 import react, { useEffect, useState } from "react"
 import Feed from "./Feed";
 
+const backendURL = 'http://localhost:80'
 
 function Articles() {
     const [articles, setArticles] = useState([]);
@@ -10,7 +11,7 @@ function Articles() {
 
     const getArticles = async () => {
         try {
-            const res = await axios.get("http://localhost:5000/");
+            const res = await axios.get(`${backendURL}/`);
             setArticles(res.data);
         } catch (error) {
             console.log(error);

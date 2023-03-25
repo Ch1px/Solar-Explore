@@ -23,6 +23,7 @@ const Container = styled.div`
 width:100%;
 height: 100%;
 display:flex;
+flex-wrap: wrap;
 justify-content: center;
 @media only screen and (max-width:900px){
 
@@ -33,6 +34,7 @@ const Left = styled.div`
 flex:1;
 position: relative;
 display:flex;
+flex-wrap: wrap;
 justify-content: center;
 flex-direction: column;
 align-items: center;
@@ -56,6 +58,7 @@ const Right = styled.div`
 flex:2;
 position: relative;
 display:flex;
+flex-wrap: wrap;
 justify-content: center;
 flex-direction: column;
 align-items: center;
@@ -69,6 +72,7 @@ flex:2;
 padding-left: 10px;
 position: relative;
 display:flex;
+flex-wrap: wrap;
 justify-content: center;
 flex-direction: column;
 align-items: center;
