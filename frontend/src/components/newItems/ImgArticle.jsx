@@ -2,7 +2,7 @@ import axios from "axios";
 import react, { useEffect, useState } from "react"
 import Imgfeed from "./ImgFeed";
 
-const backendURL = 'http://localhost:80'
+const backendURL = 'https://backend-server-solar.onrender.com'
 
 function ImgArticles() {
     const [articles, setArticles] = useState([]);

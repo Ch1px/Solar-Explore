@@ -2,7 +2,7 @@ import axios from "axios";
 import react, { useEffect, useState } from "react"
 import Feed from "./Feed";
 
-const backendURL = 'http://localhost:80'
+const backendURL = 'https://backend-server-solar.onrender.com'
 
 function Articles() {
     const [articles, setArticles] = useState([]);
