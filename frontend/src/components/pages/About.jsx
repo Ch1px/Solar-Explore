@@ -8,25 +8,36 @@ import ArrowR from "/src/assets/img/arrowRight.png"
 
 const Section = styled.div`
 height: 100vh;
+
 scroll-snap-align: center;
-display:flex;
-flex-direction: column;
-align-items: center;
-justify-content: space-between;
+display: flex;
+justify-content: center;
+overflow-x: auto;
+overflow-y: auto;
 @media only screen and (max-width:900px){
     height: 200vh;
 }
 `
 const Container = styled.div`
-height: 100vh;
-scroll-snap-align: center;
+width: 1420px;
 display: flex;
 justify-content: space-between;
+
+padding:10px,0px;
+padding-bottom: 5px;
+padding-left: 10px;
+padding-right: 10px;
+@media only screen and (max-width:1440px){
+    width: 1000px;
+}
+
 @media only screen and (max-width:900px){
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 570px;
+    width:50vh;
+    padding: 30px;
+    
 }
 `
 
@@ -36,74 +47,40 @@ const Left = styled.div`
  flex-direction: column;
  justify-content: center;
  position: relative;
-padding-left: 270px;
-
+ text-align: left;
 @media only screen and (max-width:900px){
     align-items: center;
     text-align: center;
-    padding-left: 0px;
 }
 `
 const Title = styled.h1`
     font-size:50px;
     padding-bottom: 20px;
+    
 @media only screen and (max-width:900px){
     font-size: 50px;
 }
 `
 const Disc = styled.div`
-font-size:24px;
-@media only screen and (max-width:900px){
+font-size:18px;
 
+@media only screen and (max-width:900px){
+font-size: 15px;
 }
 `
 
 const Right = styled.div`
-flex:3;
+flex:2;
+display:flex;
+justify-content: center;
+align-items: center;
 position: relative;
-@media only screen and (max-width:900px){
+
+@media only screen and (max-width:1440px){
     display: none;
 }
 `
 
-const Img = styled.img`
-object-fit: contain;
-position: absolute;
-margin: auto;
-max-width: 50px;
-height: auto;
-bottom:9.6vh;
-left:80vh;
-animation: animate 1s infinite ease alternate;
-
-@keyframes animate {
-    to{
-        transform: translateY(5px);
-    }
-}
-@media only screen and (max-width:900px){
-    display: none;
-}
-
-`
-const ImgDis = styled.p`
-object-fit: contain;
-position: absolute;
-margin: auto;
-bottom:11vh;
-left:70vh;
-animation: animate 1s infinite ease alternate;
-
-@keyframes animate {
-    to{
-        transform: translateY(5px);
-    }
-}
-@media only screen and (max-width:900px){
-    display: none;
-}
-
-`
 
 const About = () => {
     return (
@@ -122,12 +99,11 @@ const About = () => {
                         <br /><br />We hope you enjoy exploring our website and learning about the wonders of the solar system.
                         This project was created using ThreeJS, to get the most out of your interactive planetary experience.
                     </Disc>
-                    <Img src={ArrowR}></Img>
-                    <ImgDis>Give it a whirl!</ImgDis>
 
                 </Left>
                 <Right>
                     <Space />
+                    {/**/}
                 </Right>
             </Container>
         </Section>

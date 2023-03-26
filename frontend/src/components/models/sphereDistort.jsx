@@ -5,7 +5,7 @@ import Starfield from "./StarField";
 const SphereDistort = () => {
 
     return (
-        <Canvas camera={{ fov: 25, position: [5, 5, 5] }}>
+        <Canvas camera={{ fov: 25, position: [5, 5, 5] }}  style={{width:'100%', height:'100%'}}>
             <Starfield />
             <ambientLight intensity={1} />
             <directionalLight position={[3, 2, 1]} />

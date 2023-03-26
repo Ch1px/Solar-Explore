@@ -6,29 +6,35 @@ import Astro from "/src/assets/img/astroBook.png"
 
 const Section = styled.div`
 height: 100vh;
+width: 100%;
 scroll-snap-align: center;
 display:flex;
 flex-direction: column;
 align-items: center;
-justify-content: space-between;
 
-@media only screen and (max-width:900px){
-    height: 200vh;
+@media only screen and (max-width:800px){
+    height: 100vh;
 }
 `
 const Container = styled.div`
+padding:10px,0px;
+padding-bottom: 5px;
+padding-left: 10px;
+padding-right: 10px;
 height: 100%;
 scroll-snap-align: center;
-
 display: flex;
-flex-wrap: wrap;
 justify-content: space-between;
-@media only screen and (max-width:900px){
-    width:180vh;
+@media only screen and (max-width:1440px){
+    width: 1000px;
+    padding: 50px;
+}
+@media only screen and (max-width:800px){
+    width: 50vh;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 550px;
+    
 
 }
 `
@@ -39,17 +45,18 @@ const Left = styled.div`
  flex-direction: column;
  justify-content: center;
  gap: 20px;
- padding-left: 270px;
- @media only screen and (max-width:900px){
+ padding-left: 260px;
+ @media only screen and (max-width:1440px){
     align-items: center;
-    padding-left: 0px;
+    text-align: center;
     flex:1;
+    padding-left: 0px;
 }
 `
 const Title = styled.h1`
 font-size:74px;
 font-weight: 600;
-@media only screen and (max-width:900px){
+@media only screen and (max-width:800px){
     text-align:center;
     font-size: 50px;
 }
@@ -59,7 +66,7 @@ const Subtitle = styled.p`
 font-size: 20px;
 padding-bottom: 10px;
 padding-right: 50px;
-@media only screen and (max-width:900px){
+@media only screen and (max-width:800px){
     padding:20px;
     text-align: center;
 }
@@ -84,12 +91,8 @@ background: linear-gradient(to right, #eb42ce ,  #0099ff 50%, #0099ff 50%);
 const Right = styled.div`
 flex:3;
 position: relative;
-@media only screen and (max-width:900px){
-    flex:1;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: flex-start;
+@media only screen and (max-width:1450px){
+    display:none;
 }
 `
 const Img = styled.img`
@@ -109,7 +112,7 @@ animation: animate 2s infinite ease alternate;
         transform: translateY(30px);
     }
 }
-@media only screen and (max-width:900px){
+@media only screen and (max-width:800px){
     width: 300px;
     height:300px;
 }

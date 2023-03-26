@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 
 const Img = styled.div`
-    width:130px;
-    padding-bottom: 7px;
+    width:120px;
+    padding-bottom: 3px;
 `
 
 

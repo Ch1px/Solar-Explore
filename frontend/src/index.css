@@ -9,12 +9,8 @@
     z-index: 100;
 }
 
-#button {
-    color: rgb(255, 255, 255);
-}
-
 #container {
-    width: 40vh;
+    width: 45vh;
     padding: 15px;
     position: relative;
     left: 5vh;
@@ -82,7 +78,7 @@
     width: 15vh;
     padding-top: 7px;
     padding-bottom: 7px;
-    position: relative;
+    position: absolute;
     left: 80vh;
     top: 3vh;
     font-size: small;
@@ -128,7 +124,7 @@
     width: 7.5vh;
     padding: 7px;
     position: relative;
-    left: 34vh;
+    left: 38vh;
     top: 10vh;
     font-size: small;
 }

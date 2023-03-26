@@ -525,8 +525,6 @@ export default function Planets(props) {
     setIsClickedPlu(false)
   }
 
-
-
   const saturnTextureRing = useLoader(TextureLoader, SatRingTexture);
   const nepTextureRing = useLoader(TextureLoader, NepRingTexture);
   const uraTextureRing = useLoader(TextureLoader, UraRingTexture);

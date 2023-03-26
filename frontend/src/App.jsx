@@ -13,6 +13,7 @@ import Wallpaper from "/src/assets/img/wallpaper.jpg"
 
 const Section = styled.div`
 height: 100vh;
+margin: 0px;
 scroll-snap-align: center;
 display:flex;
 flex-direction: column;
@@ -21,10 +22,11 @@ background: url(${Wallpaper});
 `
 
 const Container = styled.div`
-  height: 100vh;
+margin: 0px;
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
   overflow-y: auto;
+  overflow-x: auto;
   scrollbar-width: none;
   color: #ffffff;
   &::-webkit-scrollbar{

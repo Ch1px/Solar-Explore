@@ -22,11 +22,9 @@ top:0px;
 `
 
 const Container = styled.div`
-width:100%;
 height: 100%;
 display:flex;
 justify-content: center;
-top:0px;
 -webkit-appearance: none;
 @media only screen and (max-width:900px){
     width: 100%;

@@ -8,20 +8,22 @@ import LogoPng from "/src/assets/img/logo.png"
 const Section = styled.div`
 display: flex;
 justify-content: center;
+width: 100%;
 
 @media only screen and (max-width:768px){
     width: 100%;
 }
 `
 const Container = styled.div`
-width: 1400px;
+width: 1420px;
 display: flex;
 justify-content: space-between;
 align-items: center;
 padding:10px,0px;
 padding-bottom: 5px;
-object-fit: contain;
-@media only screen and (max-width:768px){
+padding-left: 10px;
+padding-right: 10px;
+@media only screen and (max-width:800px){
     width: 100%;
     padding: 10px;
 }
@@ -41,7 +43,7 @@ padding-top:10px;
 display: flex;
 gap:50px;
 list-style: none;
-@media only screen and (max-width:768px){
+@media only screen and (max-width:820px){
     display: none;
 }
 `

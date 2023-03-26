@@ -20,10 +20,12 @@ const Title = styled.h1`
     }
     @media only screen and (max-width:900px){
     width: 40vh;
+  font-size: 15px;
+
 }
 `
 const ADate = styled.p`
-padding-bottom: 30px;
+padding-bottom: 20px;
 @media only screen and (max-width:900px){
     padding-bottom:10px;
 }

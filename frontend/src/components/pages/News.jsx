@@ -11,22 +11,24 @@ import Model from "../models/Satellite";
 const Section = styled.div`
 height: 100vh;
 scroll-snap-align: center;
-display:flex;
-flex-direction: column;
-align-items: center;
-justify-content: space-between;
+display: flex;
+justify-content: center;
 @media only screen and (max-width:900px){
     height: 200vh;
 }
 `
 const Container = styled.div`
-width:100%;
+width:1420px;
+padding:10px,0px;
+padding-bottom: 5px;
+padding-left: 10px;
+padding-right: 10px;
 height: 100%;
 display:flex;
 flex-wrap: wrap;
 justify-content: center;
-@media only screen and (max-width:900px){
-
+@media only screen and (max-width:1450px){
+    width: 1200px;
 }
 `
 
@@ -34,14 +36,11 @@ const Left = styled.div`
 flex:1;
 position: relative;
 display:flex;
-flex-wrap: wrap;
 justify-content: center;
 flex-direction: column;
-align-items: center;
-text-align: left;
+align-items: end;
+padding-right: 20px;
 padding-top: 10px;
-left:15vh;
-top:2vh;
 @media only screen and (max-width:900px){
     display: none;
 }
@@ -49,36 +48,30 @@ top:2vh;
 `
 const Title = styled.h1`
 font-size:30px;
-font-weight: bold;
 padding-bottom: 30px;
 text-align: left;
 `
 
 const Right = styled.div`
 flex:2;
-position: relative;
 display:flex;
-flex-wrap: wrap;
-justify-content: center;
-flex-direction: column;
-align-items: center;
-@media only screen and (max-width:900px){
-    display:none;
-}
 
+align-items: center;
+ @media only screen and (max-width:1440px){
+    display: none;
+}
 `
 const Center = styled.div`
 flex:2;
-padding-left: 10px;
+top: -15px;
 position: relative;
 display:flex;
-flex-wrap: wrap;
 justify-content: center;
 flex-direction: column;
-align-items: center;
+align-items: left;
 text-align: left;
 @media only screen and (max-width:900px){
-    width: 20vh;
+    align-items: center;
 }
 `
 
@@ -102,14 +95,6 @@ const News = () => {
                 </Left>
                 <Center><Title>Astronomy & Space News</Title>
                     <Articles /></Center>
-                <Right><Canvas camera={{ fov: 50, position: [0, 80, 0] }}>
-                    <OrbitControls enableZoom={false} enablePan={false} enableRotate={false} />
-                    <ambientLight intensity={1} />
-                    <directionalLight position={[3, 2, 1]} />
-                    <Model />
-                    <Earth />
-                    <Starfield />
-                </Canvas></Right>
             </Container>
         </Section>
     )

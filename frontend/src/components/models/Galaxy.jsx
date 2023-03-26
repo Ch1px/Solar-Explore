@@ -7,7 +7,7 @@ Source: https://sketchfab.com/3d-models/galaxy-dbb2f075329747a09cc8add2ad05acad
 Title: Galaxy
 */
 
-import React, { useRef, useEffect, useState } from 'react'
+import React, { useRef, useEffect, useState, useLayoutEffect } from 'react'
 import { useGLTF, useAnimations } from '@react-three/drei'
 import { useFrame, useThree } from '@react-three/fiber'
 import { gsap } from 'gsap';
@@ -29,7 +29,6 @@ import SunFlare from './SunFlare';
 import MilkyWay from '/src/assets/img/milkyway.png'
 import ArrowR from '/src/assets/img/arrowRight.png'
 
-
 export default function Galaxy(props) {
 
   const textureGalaxy = useLoader(TextureLoader, MilkyWay);
@@ -48,24 +47,12 @@ export default function Galaxy(props) {
   const handleClosePlanets = () => {
     setIsCanvasOpen(false);
   };
-
   return (
     <>
       {!isCanvasOpen ? (
-        <>
+        <OriginalCont>
           <Left>
-            <Title>Our Solar System</Title>
-            <SolarTitle>Explore. Learn. Interact</SolarTitle><Disc1>Welcome to Solar Explorer! Here we have built a 3D model of our own solar system. Immerse youself in the experience.
-              Here you can Explore. Learn. Interact. with all of the planets contained within our Solar System.
-            </Disc1>
-            <SolarTitle>Location?</SolarTitle>
-            <Disc>The planetary system we call home is located in an outer spiral arm of the Milky Way galaxy, with our closet neighbour being the Andromeda Galaxy. At the center of our galaxy there is a super massive blackhole in which everything rotates around. This is what creates that spiral effect<br /><br /></Disc>
-            <SolarTitle>Why is it Called the Solar System?</SolarTitle>
-            <Disc>There are many planetary systems like ours in the universe, with planets orbiting a host star. Our planetary system is called “the solar system” because we use the word “solar” to describe things related to our star, after the Latin word for Sun, "solis."<br /><br /></Disc>
-            <ImgDisc>Click on the Milky Way to adventure deeper.<Img src={ArrowR}></Img></ImgDisc>
-          </Left>
-          <Right>
-            <Canvas style={{ background: '#0000000' }} camera={{ position: [0, 10, 0] }}>
+            <Canvas camera={{ position: [0, 10, 0] }} style={{width:'100%', height:'90%'}}>
               <OrbitControls enableZoom={false} enablePan={false} enableRotate={false} autoRotate={true} />
               <Starfield />
               <ambientLight intensity={1} />
@@ -74,22 +61,36 @@ export default function Galaxy(props) {
               <directionalLight position={[0, 1, 0]} color={'blue'} intensity={1} />
               <group ref={groupRef} onClick={handleOpenPlanets} position={props.position} {...props} dispose={null} onPointerOver={() => { document.body.style.cursor = 'pointer'; }} onPointerOut={() => { document.body.style.cursor = 'auto'; }}>
                 <mesh position={[0, 0, 0]} rotation={[-Math.PI / 2, 0, Math.PI / 2]}>
-                  <Circle args={[5, 32]} scale={1.3}>
+                  <Circle args={[5, 32]} scale={1.1}>
                     <meshStandardMaterial map={textureGalaxy} transparent={true} doubleSide={true} />
                   </Circle>
                 </mesh>
               </group>
 
-            </Canvas>
+      </Canvas>
+          </Left>
+          <Right>
+            <Title>Our Solar System</Title>
+            <SolarTitle>Explore. Learn. Interact</SolarTitle><Disc1>Welcome to Solar Explorer! Here we have built a 3D model of our own solar system. Immerse youself in the experience.
+              Here you can Explore. Learn. Interact. with all of the planets contained within our Solar System.
+            </Disc1>
+            <SolarTitle>Location?</SolarTitle>
+            <Disc>The planetary system we call home is located in an outer spiral arm of the Milky Way galaxy, with our closet neighbour being the Andromeda Galaxy. At the center of our galaxy there is a super massive blackhole in which everything rotates around. This is what creates that spiral effect</Disc>
+            <SolarTitle>Why is it Called the Solar System?</SolarTitle>
+            <Disc>There are many planetary systems like ours in the universe, with planets orbiting a host star. Our planetary system is called “the solar system” because we use the word “solar” to describe things related to our star, after the Latin word for Sun, "solis."</Disc>
+            <ImgDisc>Click on the Milky Way to adventure deeper.</ImgDisc>
           </Right>
-        </>
+
+        </OriginalCont>
       ) : (
-        <Canvas frameloop="always"  camera={{ position: [0, 50, 570], fov: 15 }}>
+        <SolarContainer>
+        <Canvas frameloop="always" camera={{ position: [0, 50, 570], fov: 15 }} style={{ width: '99%', height: '100%' }}>
           <Planet />
-          <SolarStar/>
-          <SunFlare/>
+          <SolarStar />
+          <SunFlare />
           <Html position={[null]}><button id='close' onClick={handleClosePlanets}>Close</button></Html>
         </Canvas>
+        </SolarContainer>
       )}
     </>
   )
@@ -97,17 +98,6 @@ export default function Galaxy(props) {
 
 
 //style
-const Img = styled.img`
-position: absolute;
-margin: auto;
-max-width: 70px;
-height: auto;
-bottom: 12vh;
-left:70vh;
-@media only screen and (max-width:900px){
-    display: none;
-}
-`
 const ImgDisc = styled.p`
 font-size:20px;
 padding-bottom: 10px;
@@ -118,50 +108,84 @@ display:none;
 `
 
 
+const OriginalCont = styled.div`
+height: 100%;
+width: 1420px;
+display: flex;
+gap: 20px;
+padding:10px,0px;
+padding-bottom: 5px;
+padding-left: 10px;
+padding-right: 10px;
+@media only screen and (max-width:1440px){
+    width: 1000px;
+}
+@media only screen and (max-width:900px){
+    width: 50vh;
+    padding: 30px;
+}
+`
+
+const SolarContainer = styled.div`
+height: 100%;
+width: 100%;
+@media only screen and (max-width:1440px){
+    width: 1000px;
+}
+`
+
 
 const Left = styled.div`
+display: flex;
  flex: 2;
- display: flex;
- flex-direction: column;
- justify-content: center;
- padding-left: 270px;
  position: relative;
-  @media only screen and (max-width:900px){
+ justify-content: center;
+ align-items: center;
+ @media only screen and (max-width:1440px){
+    display: none;
+}
+ @media only screen and (max-width:900px){
+    display: none;
+}
+
+`
+const Right = styled.div`
+flex:2;
+display: flex;
+flex-direction: column;
+justify-content: center;
+position: relative;
+@media only screen and (max-width:900px){
     align-items: center;
     text-align: center;
     padding-left: 0px;
 }
 
 `
-const Right = styled.div`
-flex:3;
-position: relative;
-@media only screen and (max-width:900px){
-    display: none;
-}
-`
 const Title = styled.h1`
     font-size:50px;
-    padding-bottom: 40px;
     position: relative;
-    font-weight:bold;
+    padding-bottom: 30px;
 @media only screen and (max-width:900px){
-    font-size: 50px;
+    font-size: 45px;
+  
 }
 `
 
 const Disc1 = styled.p`
-font-size:20px;
-padding-bottom: 70px;
-@media only screen and (max-width:820px){
+font-size:18px;
+padding-bottom: 15px;
+@media only screen and (max-width:900px){
+  font-size: 15px;
 
 }
 `
 
 const Disc = styled.p`
-font-size:20px;
-padding-bottom: 10px;
-@media only screen and (max-width:820px){
+font-size:18px;
+padding-bottom: 15px;
+@media only screen and (max-width:900px){
+  font-size: 15px;
 
 }
 `
@@ -172,15 +196,3 @@ font-weight: bold;
 
 }
 `
-
-
-{/*<Html position={[0,0,0]}>
-            <Center><Title>Our Solar System</Title></Center>
-            <Left><SolarTitle>Explore.</SolarTitle><br/><Disc>Welcome to Solar Explorer! Here we have built a 3D model of our own solar system. Immerse youself in the experience.
-              Here you can Explore. Learn. Interact. with all of the planets contained within our Solar System.<Disc style={{fontWeight: '700'}}><br></br>Click on the Galaxy in the center to adventure deeper.</Disc>
-            </Disc><Img src="/src/assets/img/arrowRight.png"></Img></Left>
-            <Right><SolarTitle>Why is it Called the Solar System?<br/><br/></SolarTitle>
-              <Disc>There are many planetary systems like ours in the universe, with planets orbiting a host star. Our planetary system is called “the solar system” because we use the word “solar” to describe things related to our star, after the Latin word for Sun, "solis." <br/><br/></Disc>
-              <SolarTitle>Size and Distance<br/><br/></SolarTitle>
-              <Disc>Our solar system extends much farther than the eight planets that orbit the Sun. The solar system also includes the Kuiper Belt that lies past Neptune's orbit. This is a sparsely occupied ring of icy bodies, almost all smaller than the most popular Kuiper Belt Object – dwarf planet Pluto.</Disc>
-            </Right></Html>*/}
