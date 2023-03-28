@@ -55,7 +55,7 @@ export default function Galaxy(props) {
       {!isCanvasOpen ? (
         <OriginalCont>
           <Left>
-            <Canvas camera={{ position: [0, 10, 0] }} style={{ width: '100%', height: '90%' }}>
+            <Canvas camera={{ position: [0, 10, 0] }} style={{ width: '100%', height: '100%' }}>
               <OrbitControls enableZoom={false} enablePan={false} enableRotate={false} autoRotate={true} />
               <Starfield />
               <ambientLight intensity={1} />

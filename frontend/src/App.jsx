@@ -12,7 +12,9 @@ import Wallpaper from "/src/assets/img/wallpaper.jpg"
 //preloader
 
 const Section = styled.div`
-height: 100vh;
+height: 100vh !important;
+overflow-y: hidden;
+overflow-x: hidden;
 margin: 0px;
 width:100%;
 scroll-snap-align: center;
