@@ -8,49 +8,45 @@ import ArrowR from "/src/assets/img/arrowRight.png"
 
 const Section = styled.div`
 height: 100vh;
-
+width: 100%;
 scroll-snap-align: center;
-display: flex;
+display:flex;
+align-items: center;
 justify-content: center;
-overflow-x: auto;
-overflow-y: auto;
-@media only screen and (max-width:900px){
+@media only screen and (max-width:768px){
     height: 200vh;
+}
+@media only screen and (max-height:650px){
+    display:none;
 }
 `
 const Container = styled.div`
-width: 1420px;
-display: flex;
-justify-content: space-between;
-
+max-width: 1400px;
+margin: 0 auto;
 padding:10px,0px;
 padding-bottom: 5px;
 padding-left: 10px;
 padding-right: 10px;
-@media only screen and (max-width:1440px){
-    width: 1000px;
-}
-
-@media only screen and (max-width:900px){
+height: 100%;
+display: flex;
+justify-content: space-between;
+@media only screen and (max-width:768px){
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width:50vh;
-    padding: 30px;
-    
 }
 `
 
 const Left = styled.div`
- flex: 2;
+ flex: 1;
  display: flex;
  flex-direction: column;
  justify-content: center;
- position: relative;
- text-align: left;
-@media only screen and (max-width:900px){
+ @media only screen and (max-width:768px){
     align-items: center;
     text-align: center;
+    flex:1;
+    padding-left: 0px;  
 }
 `
 const Title = styled.h1`
@@ -70,14 +66,10 @@ font-size: 15px;
 `
 
 const Right = styled.div`
-flex:2;
-display:flex;
-justify-content: center;
-align-items: center;
+flex:1;
 position: relative;
-
-@media only screen and (max-width:1440px){
-    display: none;
+@media only screen and (max-width:768px){
+    display:none;
 }
 `
 

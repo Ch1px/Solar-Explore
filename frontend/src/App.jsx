@@ -14,6 +14,7 @@ import Wallpaper from "/src/assets/img/wallpaper.jpg"
 const Section = styled.div`
 height: 100vh;
 margin: 0px;
+width:100%;
 scroll-snap-align: center;
 display:flex;
 flex-direction: column;

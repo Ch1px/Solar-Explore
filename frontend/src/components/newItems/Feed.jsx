@@ -5,8 +5,10 @@ const A = styled.a`
     
 `
 const Title = styled.h1`
-    font-weight:bold;
-    width: 70vh;
+    font-weight:600;
+    font-size: 15px;
+    max-width: 100%;
+    text-align: left;
     cursor: pointer;
     background: linear-gradient(to right, #3fb2ff, #eb42ce 50%, #ffffff 50%);
     background-clip: text;
@@ -18,16 +20,16 @@ const Title = styled.h1`
     &:hover{
         background-position: 0 100%;
     }
-    @media only screen and (max-width:900px){
-    width: 40vh;
-  font-size: 15px;
+    @media only screen and (max-width:768px){
+  font-size: 10px;
 
 }
 `
 const ADate = styled.p`
 padding-bottom: 20px;
-@media only screen and (max-width:900px){
+@media only screen and (max-width:768px){
     padding-bottom:10px;
+    font-size: 10px;
 }
 
 `

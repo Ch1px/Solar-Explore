@@ -9,26 +9,33 @@ import Starfield from "../models/StarField";
 import Model from "../models/Satellite";
 
 const Section = styled.div`
-height: 100vh;
+height: 150vh;
+width: 100%;
 scroll-snap-align: center;
-display: flex;
+display:flex;
+align-items: center;
 justify-content: center;
-@media only screen and (max-width:900px){
-    height: 200vh;
+@media only screen and (max-width:768px){
+    height: 110vh;
+}
+@media only screen and (max-height:650px){
+    display:none;
 }
 `
 const Container = styled.div`
-width:1420px;
+max-width: 1400px;
+margin: 0 auto;
 padding:10px,0px;
 padding-bottom: 5px;
 padding-left: 10px;
 padding-right: 10px;
 height: 100%;
-display:flex;
-flex-wrap: wrap;
-justify-content: center;
-@media only screen and (max-width:1450px){
-    width: 1200px;
+display: flex;
+justify-content: space-between;
+@media only screen and (max-width:768px){
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 `
 
@@ -41,10 +48,9 @@ flex-direction: column;
 align-items: end;
 padding-right: 20px;
 padding-top: 10px;
-@media only screen and (max-width:900px){
+@media only screen and (max-width:768px){
     display: none;
 }
-
 `
 const Title = styled.h1`
 font-size:30px;
@@ -52,15 +58,6 @@ padding-bottom: 30px;
 text-align: left;
 `
 
-const Right = styled.div`
-flex:2;
-display:flex;
-
-align-items: center;
- @media only screen and (max-width:1440px){
-    display: none;
-}
-`
 const Center = styled.div`
 flex:2;
 top: -15px;
@@ -70,19 +67,6 @@ justify-content: center;
 flex-direction: column;
 align-items: left;
 text-align: left;
-@media only screen and (max-width:900px){
-    align-items: center;
-}
-`
-
-const Img = styled.img`
-    width:250px;
-    animation: animate 2s infinite ease alternate;
-    @keyframes animate {
-    to{
-        transform: translateY(20px);
-    }
-}
 `
 
 

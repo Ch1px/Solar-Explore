@@ -13,7 +13,6 @@ import SunLight from './sunlight';
 import { Vector3 } from 'three';
 import '/src/index.css'
 import { useGLTF } from '@react-three/drei'
-
 import SunTexture from '/src/assets/img/700_sunMap.jpg'
 import MercTexture from '/src/assets/img/700_mercMap.jpg'
 import VenTexture from '/src/assets/img/700_venus_atmosphere.jpg'
@@ -50,8 +49,9 @@ import neptuneAVertexShader from '/src/assets/shaders/neptune/neptuneAV.glsl'; i
 import plutoAVertexShader from '/src/assets/shaders/pluto/plutoAV.glsl'; import plutoAFragmentShader from '/src/assets/shaders/pluto/plutoAF.glsl';
 
 import Asteroid from '/src/assets/models/ass.gltf'
+import SolarStar from './SolarStars';
 
-export default function Planets(props) {
+export default function Planets() {
   const { nodes, materials } = useGLTF(Asteroid)
 
   const sun = useRef();
@@ -96,6 +96,8 @@ export default function Planets(props) {
   const satAtmos = useRef()
   const uraAtmos = useRef()
   const nepAtmos = useRef()
+
+  const planets = useRef()
 
 
   const { camera, gl } = useThree();
@@ -488,25 +490,8 @@ export default function Planets(props) {
   };
 
 
-  const handleRotateClick = () => {
-    setIsRotating(!isRotating);
-  };
 
 
-
-  function handleClick() {
-    mercuryGroup.current.rotation.set(0, 0, 0)
-    venusGroup.current.rotation.set(0, 0, 0)
-    earthGroup.current.rotation.set(0, 0, 0)
-    marsGroup.current.rotation.set(0, 0, 0)
-    jupiterGroup.current.rotation.set(0, 0, 0)
-    saturnGroup.current.rotation.set(0, 0, 0)
-    uranusGroup.current.rotation.set(0, 0, 0)
-    neptuneGroup.current.rotation.set(0, 0, 0)
-    plutoGroup.current.rotation.set(0, 0, 0)
-    moonPos.current.rotation.set(0, 0, 0)
-    moonObject.current.rotation.set(0, 0, 0)
-  }
 
   function handleHideFact() {
     setIsClickedEarth(false)
@@ -523,6 +508,24 @@ export default function Planets(props) {
     setIsClickedSun(false)
     setIsClickedFact(false)
     setIsClickedPlu(false)
+  }
+
+  const handleRotateClick = () => {
+    setIsRotating(!isRotating);
+  };
+
+  function handleClick() {
+    mercuryGroup.current.rotation.set(0, 0, 0)
+    venusGroup.current.rotation.set(0, 0, 0)
+    earthGroup.current.rotation.set(0, 0, 0)
+    marsGroup.current.rotation.set(0, 0, 0)
+    jupiterGroup.current.rotation.set(0, 0, 0)
+    saturnGroup.current.rotation.set(0, 0, 0)
+    uranusGroup.current.rotation.set(0, 0, 0)
+    neptuneGroup.current.rotation.set(0, 0, 0)
+    plutoGroup.current.rotation.set(0, 0, 0)
+    moonPos.current.rotation.set(0, 0, 0)
+    moonObject.current.rotation.set(0, 0, 0)
   }
 
   const saturnTextureRing = useLoader(TextureLoader, SatRingTexture);
@@ -549,17 +552,13 @@ export default function Planets(props) {
 
   return (
 
-    <group {...props} dispose={null}>
-      <Html position={[null]}><div id='titleContainer'><h1 id='solarTitle'>Solar Explore</h1></div></Html>
-      <Html position={[null]}>
-        <div id='containerText'>
-          <p>- Scroll to Zoom
-            <br />- Click on planet to focus and learn!
-            <br />- Click 'The Sun' to recenter the camera
-          </p>
-        </div>
+    <group dispose={null}>
+      <Html position={[null]}><div id='titleContainer'><h1 id='solarTitle'>Solar Explore</h1></div>
 
-      </Html>
+
+        <Refresh onClick={handleClick}>Refresh Orbit</Refresh>
+        <Rotate onClick={handleRotateClick}>Toggle Orbit</Rotate></Html>
+
       <rectAreaLight rotation={[0, 0, 0]} color={'#f8f1e7'} intensity={20} position={[0, 0, 13.8]} />
       <rectAreaLight rotation={[3, 0, 0]} color={'#fad400'} intensity={20} position={[0, 0, -13.8]} />
       <rectAreaLight rotation={[-1.5, 0, 0]} color={'#ff970f'} intensity={20} position={[0, 13.8, 0]} />
@@ -573,41 +572,39 @@ export default function Planets(props) {
       <SunLight position={[0, 0, 0]} />
       <ambientLight intensity={0.05} />
 
-      {isClickedSun && <Html position={[null]}><div id='container'><h1 id='name'>The Sun</h1><p id='planet'>The sun is a star, a hot ball of glowing gases at the heart of our solar system. Its influence extends far beyond the orbits of distant Neptune and Pluto. Without the sun’s intense energy and heat, there would be no life on Earth. And though it is special to us, there are billions of stars like our sun scattered across the Milky Way galaxy. If the sun were as tall as a typical front door, the Earth would be the size of a U.S. nickel. The temperature at the sun’s core is about 27 million degrees Fahrenheit.<br /><br />Our Sun is a medium-sized star with a radius of about 435,000 miles (700,000 kilometers). Many stars are much larger – but the Sun is far more massive than our home planet: it would take more than 330,000 Earths to match the mass of the Sun, and it would take 1.3 million Earths to fill the Sun's volume.<br /><br />The Sun could not harbor life as we know it because of its extreme temperatures and radiation. Yet life on Earth is only possible because of the Sun’s light and energy.</p></div></Html>}
+      {isClickedSun && <Html position={[null]}><FactContainer><PlanetName>The Sun</PlanetName><Fact>The sun is a star, a hot ball of glowing gases at the heart of our solar system. Its influence extends far beyond the orbits of distant Neptune and Pluto. Without the sun’s intense energy and heat, there would be no life on Earth. And though it is special to us, there are billions of stars like our sun scattered across the Milky Way galaxy. If the sun were as tall as a typical front door, the Earth would be the size of a U.S. nickel. The temperature at the sun’s core is about 27 million degrees Fahrenheit.<br /><br />Our Sun is a medium-sized star with a radius of about 435,000 miles (700,000 kilometers). Many stars are much larger – but the Sun is far more massive than our home planet: it would take more than 330,000 Earths to match the mass of the Sun, and it would take 1.3 million Earths to fill the Sun's volume.<br /><br />The Sun could not harbor life as we know it because of its extreme temperatures and radiation. Yet life on Earth is only possible because of the Sun’s light and energy.</Fact></FactContainer></Html>}
 
-      {isClickedMercury && <Html position={[null]}><div id='container'><h1 id='name'>Mercury</h1><p id='planet'>The smallest planet in our solar system and nearest to the Sun, Mercury is only slightly larger than Earth’s Moon. From the surface of Mercury, the Sun would appear more than three times as large as it does when viewed from Earth, and the sunlight would be as much as seven times brighter. Despite its proximity to the Sun, Mercury is not the hottest planet in our solar system – that title belongs to nearby Venus, thanks to its dense atmosphere.</p><h1 id='subtitle'>A year on Mercury is just 88 days long.</h1><p id='planet'>One solar day (the time from noon to noon on the planet’s surface) on Mercury lasts the equivalent of 176 Earth days while the sidereal day (the time for 1 rotation in relation to a fixed point) lasts 59 Earth days. Mercury is nearly tidally locked to the Sun and over time this has slowed the rotation of the planet to almost match its orbit around the Sun. Mercury also has the highest orbital eccentricity of all the planets with its distance from the Sun ranging from 46 to 70 million km.</p></div></Html>}
+      {isClickedMercury && <Html position={[null]}><FactContainer><PlanetName>Mercury</PlanetName><Fact>The smallest planet in our solar system and nearest to the Sun, Mercury is only slightly larger than Earth’s Moon. From the surface of Mercury, the Sun would appear more than three times as large as it does when viewed from Earth, and the sunlight would be as much as seven times brighter. Despite its proximity to the Sun, Mercury is not the hottest planet in our solar system – that title belongs to nearby Venus, thanks to its dense atmosphere.</Fact><Subtitle>A year on Mercury is just 88 days long.</Subtitle><Fact>One solar day (the time from noon to noon on the planet’s surface) on Mercury lasts the equivalent of 176 Earth days while the sidereal day (the time for 1 rotation in relation to a fixed point) lasts 59 Earth days. Mercury is nearly tidally locked to the Sun and over time this has slowed the rotation of the planet to almost match its orbit around the Sun. Mercury also has the highest orbital eccentricity of all the planets with its distance from the Sun ranging from 46 to 70 million km.</Fact></FactContainer></Html>}
 
-      {isClickedVenus && <Html position={[null]}><div id='container'><h1 id='name'>Venus</h1><p id='planet'>Venus is a dim world of intense heat and volcanic activity. Similar in structure and size to Earth, Venus’ thick, toxic atmosphere traps heat in a runaway ‘greenhouse effect.’ The scorched world has temperatures hot enough to melt lead. Glimpses below the clouds reveal volcanoes and deformed mountains. Venus spins slowly in the opposite direction of most planet</p><h1 id='subtitle'>A day on Venus lasts longer than a year. </h1><p id='planet'>It takes 243 Earth days to rotate once on its axis (sidereal day). The planet’s orbit around the Sun takes 225 Earth days, compared to the Earth’s 365. A day on the surface of Venus (solar day) takes 117 Earth days.</p><h1 id='subtitle'>Venus is the second brightest object in the night sky.</h1><p id='planet'>Only the Moon is brighter. With a magnitude of between -3.8 to -4.6 Venus is so bright it can be seen during daytime on a clear day.</p></div></Html>}
+      {isClickedVenus && <Html position={[null]}><FactContainer><PlanetName>Venus</PlanetName><Fact>Venus is a dim world of intense heat and volcanic activity. Similar in structure and size to Earth, Venus’ thick, toxic atmosphere traps heat in a runaway ‘greenhouse effect.’ The scorched world has temperatures hot enough to melt lead. Glimpses below the clouds reveal volcanoes and deformed mountains. Venus spins slowly in the opposite direction of most planet</Fact><Subtitle>A day on Venus lasts longer than a year. </Subtitle><Fact>It takes 243 Earth days to rotate once on its axis (sidereal day). The planet’s orbit around the Sun takes 225 Earth days, compared to the Earth’s 365. A day on the surface of Venus (solar day) takes 117 Earth days.</Fact><Subtitle>Venus is the second brightest object in the night sky.</Subtitle><Fact>Only the Moon is brighter. With a magnitude of between -3.8 to -4.6 Venus is so bright it can be seen during daytime on a clear day.</Fact></FactContainer></Html>}
 
-      {isClickedEarth && <Html position={[null]}><div id='container'><h1 id='name'>Earth</h1><p id='planet'>Our home planet Earth is a rocky, terrestrial planet. It has a solid and active surface with mountains, valleys, canyons, plains and so much more. Earth is special because it is an ocean planet. Water covers 70% of Earth’s surface. Earth’s atmosphere is made mostly of nitrogen and has plenty of oxygen for us to breathe. The atmosphere also protects us from incoming meteoroids, most of which break up before they can hit the surface.</p><h1 id='subtitle'>The Earth was once believed to be the centre of the universe.</h1><p id='planet'>Due to the apparent movements of the Sun and planets in relation to their viewpoint, ancient scientists insisted that the Earth remained static, whilst other celestial bodies travelled in circular orbits around it. Eventually, the view that the Sun was at the centre of the universe was postulated by Copernicus, though this is also not the case.</p></div></Html>}
+      {isClickedEarth && <Html position={[null]}><FactContainer><PlanetName>Earth</PlanetName><Fact>Our home planet Earth is a rocky, terrestrial planet. It has a solid and active surface with mountains, valleys, canyons, plains and so much more. Earth is special because it is an ocean planet. Water covers 70% of Earth’s surface. Earth’s atmosphere is made mostly of nitrogen and has plenty of oxygen for us to breathe. The atmosphere also protects us from incoming meteoroids, most of which break up before they can hit the surface.</Fact><Subtitle>The Earth was once believed to be the centre of the universe.</Subtitle><Fact>Due to the apparent movements of the Sun and planets in relation to their viewpoint, ancient scientists insisted that the Earth remained static, whilst other celestial bodies travelled in circular orbits around it. Eventually, the view that the Sun was at the centre of the universe was postulated by Copernicus, though this is also not the case.</Fact></FactContainer></Html>}
 
-      {isClickedMars && <Html position={[null]}><div id='container'><h1 id='name'>Mars</h1><p id='planet'>Mars is a cold desert world. It is half the size of Earth. Mars is sometimes called the Red Planet. It’s red because of rusty iron in the ground. Like Earth, Mars has seasons, polar ice caps, volcanoes, canyons, and weather. It has a very thin atmosphere made of carbon dioxide, nitrogen, and argon. There are signs of ancient floods on Mars, but now water mostly exists in icy dirt and thin clouds. On some Martian hillsides, there is evidence of liquid salty water in the ground.</p><h1 id='subtitle'>Olympus Mons</h1><p id='planet'>Mars has the largest volcano in the solar system – Olympus Mons. It measures some 600 kilometres across and rises nearly 27 kilometres above the surrounding terrain. It is a shield volcano built by the continuous action of flowing lava over millions and millions of years that began some 3 billion years ago. Olympus Mons is part of a complex of volcanoes that lie along a volcanic plateau called the Tharsis Bulge. This entire region lies over a hotspot, a place in the planet’s crust that allows magma from deep inside to flow out to the surface. </p></div></Html>}
+      {isClickedMars && <Html position={[null]}><FactContainer><PlanetName>Mars</PlanetName><Fact>Mars is a cold desert world. It is half the size of Earth. Mars is sometimes called the Red Planet. It’s red because of rusty iron in the ground. Like Earth, Mars has seasons, polar ice caps, volcanoes, canyons, and weather. It has a very thin atmosphere made of carbon dioxide, nitrogen, and argon. There are signs of ancient floods on Mars, but now water mostly exists in icy dirt and thin clouds. On some Martian hillsides, there is evidence of liquid salty water in the ground.</Fact><Subtitle>Olympus Mons</Subtitle><Fact>Mars has the largest volcano in the solar system – Olympus Mons. It measures some 600 kilometres across and rises nearly 27 kilometres above the surrounding terrain. It is a shield volcano built by the continuous action of flowing lava over millions and millions of years that began some 3 billion years ago. Olympus Mons is part of a complex of volcanoes that lie along a volcanic plateau called the Tharsis Bulge. This entire region lies over a hotspot, a place in the planet’s crust that allows magma from deep inside to flow out to the surface. </Fact></FactContainer></Html>}
 
-      {isClickedJupiter && <Html position={[null]}><div id='container'><h1 id='name'>Jupiter</h1><p id='planet'>Jupiter is the biggest planet in our solar system. It’s similar to a star, but it never got big enough to start burning. Jupiter is covered in swirling cloud stripes. It has big storms like the Great Red Spot, which has been going for hundreds of years. Jupiter is a gas giant and doesn’t have a solid surface, but it may have a solid inner core about the size of Earth. Jupiter also has rings, but they’re too faint to see very well.</p><h1 id='subtitle'>Jupiter’s Great Red Spot</h1><p id='planet'>Situated 22° south of Jupiter’s equator, the Great Red Spot is a storm that has been raging for at least 186 years. Upper estimates suggest the storm could have been in existence for over three and a half centuries. The first observation of the Great Red Spot was in the seventeenth century, when telescopes first started to be used. However, it is unknown whether this is the same red spot that we see today, or whether Jupiter has had many such storms that have come and gone. The red spot spins anticlockwise and takes six (Earth) days to rotate completely. Another mystery surrounding the red spot is what makes it red. Scientists have several theories, for instance, the presence of red organic compounds. </p></div></Html>}
+      {isClickedJupiter && <Html position={[null]}><FactContainer><PlanetName>Jupiter</PlanetName><Fact>Jupiter is the biggest planet in our solar system. It’s similar to a star, but it never got big enough to start burning. Jupiter is covered in swirling cloud stripes. It has big storms like the Great Red Spot, which has been going for hundreds of years. Jupiter is a gas giant and doesn’t have a solid surface, but it may have a solid inner core about the size of Earth. Jupiter also has rings, but they’re too faint to see very well.</Fact><Subtitle>Jupiter’s Great Red Spot</Subtitle><Fact>Situated 22° south of Jupiter’s equator, the Great Red Spot is a storm that has been raging for at least 186 years. Upper estimates suggest the storm could have been in existence for over three and a half centuries. The first observation of the Great Red Spot was in the seventeenth century, when telescopes first started to be used. However, it is unknown whether this is the same red spot that we see today, or whether Jupiter has had many such storms that have come and gone. The red spot spins anticlockwise and takes six (Earth) days to rotate completely. Another mystery surrounding the red spot is what makes it red. Scientists have several theories, for instance, the presence of red organic compounds. </Fact></FactContainer></Html>}
 
-      {isClickedSaturn && <Html position={[null]}><div id='container'><h1 id='name'>Saturn</h1><p id='planet'>Saturn isn’t the only planet to have rings, but it definitely has the most beautiful ones. The rings we see are made of groups of tiny ringlets that surround Saturn. They’re made of chunks of ice and rock. Like Jupiter, Saturn is mostly a ball of hydrogen and helium.</p><h1 id='subtitle'>Saturn’s Rings</h1><p id='planet'>While all the gas giants in our solar system have rings none of them are as extensive or distinctive as Saturn’s. The rings were discovered by Galileo Galilei 1610 who observed them with a telescope. The first ‘up close’ view of the rings were by Pioneer 11 spacecraft which flew by Saturn on September 1, 1971. Saturn’s rings are made up of are billions of particles that range in size from tiny dust grains to objects as large as mountains. These are made up of chunks of ice and rock, believed to have come from asteroids comets or even moons, that broke apart before they reached the planet.</p></div></Html>}
+      {isClickedSaturn && <Html position={[null]}><FactContainer><PlanetName>Saturn</PlanetName><Fact>Saturn isn’t the only planet to have rings, but it definitely has the most beautiful ones. The rings we see are made of groups of tiny ringlets that surround Saturn. They’re made of chunks of ice and rock. Like Jupiter, Saturn is mostly a ball of hydrogen and helium.</Fact><Subtitle>Saturn’s Rings</Subtitle><Fact>While all the gas giants in our solar system have rings none of them are as extensive or distinctive as Saturn’s. The rings were discovered by Galileo Galilei 1610 who observed them with a telescope. The first ‘up close’ view of the rings were by Pioneer 11 spacecraft which flew by Saturn on September 1, 1971. Saturn’s rings are made up of are billions of particles that range in size from tiny dust grains to objects as large as mountains. These are made up of chunks of ice and rock, believed to have come from asteroids comets or even moons, that broke apart before they reached the planet.</Fact></FactContainer></Html>}
 
-      {isClickedUranus && <Html position={[null]}><div id='container'><h1 id='name'>Uranus</h1><p id='planet'>Uranus is made of water, methane, and ammonia fluids above a small rocky center. Its atmosphere is made of hydrogen and helium like Jupiter and Saturn, but it also has methane. The methane makes Uranus blue. Uranus also has faint rings. The inner rings are narrow and dark. The outer rings are brightly colored and easier to see. Like Venus, Uranus rotates in the opposite direction as most other planets. And unlike any other planet, Uranus rotates on its side.</p><h1 id='subtitle'>Uranus hits the coldest temperatures of any planet.</h1><p id='planet'>With minimum atmospheric temperature of -224°C Uranus is nearly coldest planet in the solar system. While Neptune doesn’t get as cold as Uranus it is on average colder. The upper atmosphere of Uranus is covered by a methane haze which hides the storms that take place in the cloud decks.</p></div></Html>}
+      {isClickedUranus && <Html position={[null]}><FactContainer><PlanetName>Uranus</PlanetName><Fact>Uranus is made of water, methane, and ammonia fluids above a small rocky center. Its atmosphere is made of hydrogen and helium like Jupiter and Saturn, but it also has methane. The methane makes Uranus blue. Uranus also has faint rings. The inner rings are narrow and dark. The outer rings are brightly colored and easier to see. Like Venus, Uranus rotates in the opposite direction as most other planets. And unlike any other planet, Uranus rotates on its side.</Fact><Subtitle>Uranus hits the coldest temperatures of any planet.</Subtitle><Fact>With minimum atmospheric temperature of -224°C Uranus is nearly coldest planet in the solar system. While Neptune doesn’t get as cold as Uranus it is on average colder. The upper atmosphere of Uranus is covered by a methane haze which hides the storms that take place in the cloud decks.</Fact></FactContainer></Html>}
 
-      {isClickedNeptune && <Html position={[null]}><div id='container'><h1 id='name'>Neptune</h1><p id='planet'>Neptune is dark, cold, and very windy. It’s the last of the planets in our solar system. It’s more than 30 times as far from the Sun as Earth is. Neptune is very similar to Uranus. It’s made of a thick soup of water, ammonia, and methane over an Earth-sized solid center. Its atmosphere is made of hydrogen, helium, and methane. The methane gives Neptune the same blue color as Uranus. Neptune has six rings, but they’re very hard to see.</p><h1 id='subtitle'>Neptune’s Great Dark Spot</h1><p id='planet'>The Great Dark Spot in the southern atmosphere of Neptune was first discovered in 1989 by the Voyager 2 spacecraft. It was an incredibly large rotating storm system with winds of up to 1,500 miles per hour, the strongest winds recorded on any planet. How such powerful winds were discovered on a planet so far from the sun is still considered a mystery to this day. Data from the Voyager 2 spacecraft also showed that the Great Dark Spot varied significantly in size during their brief pass of the planet. When Neptune was viewed by the Hubble Space telescope in 1994 the Great Dark Spot had vanished, although a different dark spot had appeared in Neptune’s northern hemisphere.</p></div></Html>}
+      {isClickedNeptune && <Html position={[null]}><FactContainer><PlanetName>Neptune</PlanetName><Fact>Neptune is dark, cold, and very windy. It’s the last of the planets in our solar system. It’s more than 30 times as far from the Sun as Earth is. Neptune is very similar to Uranus. It’s made of a thick soup of water, ammonia, and methane over an Earth-sized solid center. Its atmosphere is made of hydrogen, helium, and methane. The methane gives Neptune the same blue color as Uranus. Neptune has six rings, but they’re very hard to see.</Fact><Subtitle>Neptune’s Great Dark Spot</Subtitle><Fact>The Great Dark Spot in the southern atmosphere of Neptune was first discovered in 1989 by the Voyager 2 spacecraft. It was an incredibly large rotating storm system with winds of up to 1,500 miles per hour, the strongest winds recorded on any planet. How such powerful winds were discovered on a planet so far from the sun is still considered a mystery to this day. Data from the Voyager 2 spacecraft also showed that the Great Dark Spot varied significantly in size during their brief pass of the planet. When Neptune was viewed by the Hubble Space telescope in 1994 the Great Dark Spot had vanished, although a different dark spot had appeared in Neptune’s northern hemisphere.</Fact></FactContainer></Html>}
 
-      {isClickedAstroidBelt && <Html position={[null]}><div id='container'><h1 id='name'>Asteroid Belt</h1><p id='planet'>Early in the life of the solar system, dust and rock circling the sun were pulled together by gravity into planets. But not all of the ingredients created new worlds. A region between Mars and Jupiter became the asteroid belt.
+      {isClickedAstroidBelt && <Html position={[null]}><FactContainer><PlanetName>Asteroid Belt</PlanetName><Fact>Early in the life of the solar system, dust and rock circling the sun were pulled together by gravity into planets. But not all of the ingredients created new worlds. A region between Mars and Jupiter became the asteroid belt.
 
-        <br /><br />Occasionally people wonder whether the belt was made up of the remains of a destroyed planet, or a world that didn't quite get started. However, according to NASA, the total mass of the belt is less than the moon, far too small to weigh in as a planet. Instead, the debris is shepherded by Jupiter, which kept it from coalescing onto other growing planets.<br /><br />Some asteroids are large, solid bodies — there are more than 16 in the belt with a diameter greater than 150 miles (240 km). The largest asteroids, Vesta, Pallas and Hygiea, are 250 miles (400 km) long and bigger. The region also contains the dwarf planet Ceres. At 590 miles (950 km) in diameter, or about a quarter of the size of our moon, Ceres is round yet is considered too small to be a full-fledged planet. However, it makes up approximately a third of the mass of the asteroid belt.</p></div></Html>}
+        <br /><br />Occasionally people wonder whether the belt was made up of the remains of a destroyed planet, or a world that didn't quite get started. However, according to NASA, the total mass of the belt is less than the moon, far too small to weigh in as a planet. Instead, the debris is shepherded by Jupiter, which kept it from coalescing onto other growing planets.<br /><br />Some asteroids are large, solid bodies — there are more than 16 in the belt with a diameter greater than 150 miles (240 km). The largest asteroids, Vesta, Pallas and Hygiea, are 250 miles (400 km) long and bigger. The region also contains the dwarf planet Ceres. At 590 miles (950 km) in diameter, or about a quarter of the size of our moon, Ceres is round yet is considered too small to be a full-fledged planet. However, it makes up approximately a third of the mass of the asteroid belt.</Fact></FactContainer></Html>}
 
-      {isClickedBelt && <Html position={[null]}><div id='container'><h1 id='name'>Kuiper Belt</h1><p id='planet'>Similar to the asteroid belt between Mars and Jupiter, the Kuiper Belt is a region of leftovers from the solar system's early history. Like the asteroid belt, it has also been shaped by a giant planet, although it's more of a thick disk (like a donut) than a thin belt<br /><br />The Kuiper Belt is truly a frontier in space – it's a place we're still just beginning to explore and our understanding is still evolving.<br /><br />In 1930, Pluto became the first Kuiper Belt object to be discovered. It was found at a time before astronomers had reason to expect a large population of icy worlds beyond Neptune. Today it's known as the "King of the Kuiper Belt" – and it's the largest object in the region.</p></div></Html>}
+      {isClickedBelt && <Html position={[null]}><FactContainer><PlanetName>Kuiper Belt</PlanetName><Fact>Similar to the asteroid belt between Mars and Jupiter, the Kuiper Belt is a region of leftovers from the solar system's early history. Like the asteroid belt, it has also been shaped by a giant planet, although it's more of a thick disk (like a donut) than a thin belt<br /><br />The Kuiper Belt is truly a frontier in space – it's a place we're still just beginning to explore and our understanding is still evolving.<br /><br />In 1930, Pluto became the first Kuiper Belt object to be discovered. It was found at a time before astronomers had reason to expect a large population of icy worlds beyond Neptune. Today it's known as the "King of the Kuiper Belt" – and it's the largest object in the region.</Fact></FactContainer></Html>}
 
-      {isClickedMoon && <Html position={[null]}><div id='container'><h1 id='name'>The Moon</h1><p id='planet'>“The prevailing idea is that the Moon was formed in a violent event between the proto-Earth – an early-stage Earth that was much bigger than it is today – and an object (labelled ‘Theia’) about the size of Mars,” explains Robert Massey, deputy executive director of the Royal Astronomical Society. “Debris was ejected into space and then coalesced to form the Moon.” Modern research seems to confirm the Moon is made of material from the early Earth’s crust. Dubbed the ‘Giant Impact Hypothesis,’ this collision is believed to have happened 4.5 billion years ago and would have been 100 million times larger than the event which wiped out the dinosaurs.<br /><br />“Because the Moon has no protective atmosphere, the surface experiences extreme temperatures, from incredibly cold on the far ‘night’ side and above boiling on the ‘sunny’ near side,” explains Massey. According to NASA, the Moon’s temperature can span from 123 degrees Celsius to -233 degrees Celsius. Its mean surface temperature is 107 degrees Celsius in the day and -153 degrees Celsius at night.</p></div></Html>}
+      {isClickedMoon && <Html position={[null]}><FactContainer><PlanetName>The Moon</PlanetName><Fact>“The prevailing idea is that the Moon was formed in a violent event between the proto-Earth – an early-stage Earth that was much bigger than it is today – and an object (labelled ‘Theia’) about the size of Mars,” explains Robert Massey, deputy executive director of the Royal Astronomical Society. “Debris was ejected into space and then coalesced to form the Moon.” Modern research seems to confirm the Moon is made of material from the early Earth’s crust. Dubbed the ‘Giant Impact Hypothesis,’ this collision is believed to have happened 4.5 billion years ago and would have been 100 million times larger than the event which wiped out the dinosaurs.<br /><br />“Because the Moon has no protective atmosphere, the surface experiences extreme temperatures, from incredibly cold on the far ‘night’ side and above boiling on the ‘sunny’ near side,” explains Massey. According to NASA, the Moon’s temperature can span from 123 degrees Celsius to -233 degrees Celsius. Its mean surface temperature is 107 degrees Celsius in the day and -153 degrees Celsius at night.</Fact></FactContainer></Html>}
 
-      {isClickedPlu && <Html position={[null]}><div id='container'><h1 id='name'>Pluto</h1><p id='planet'>Well Done! You found Pluto!<br /><br />Pluto was reclassified from a planet to a dwarf planet in 2006.<br /><br />Pluto – which is smaller than Earth’s Moon – has a heart-shaped glacier that’s the size of Texas and Oklahoma. This fascinating world has blue skies, spinning moons, mountains as high as the Rockies, and it snows – but the snow is red.<br /><br />A year on Pluto is 248 Earth years. A day on Pluto lasts 153 hours, or about 6 Earth days.<br /><br />Pluto’s surface is far too cold, -378 to -396 degrees F (-228 to -238 C), to sustain life as we know it.</p></div></Html>}
+      {isClickedPlu && <Html position={[null]}><FactContainer><PlanetName>Pluto</PlanetName><Fact>Well Done! You found Pluto!<br /><br />Pluto was reclassified from a planet to a dwarf planet in 2006.<br /><br />Pluto – which is smaller than Earth’s Moon – has a heart-shaped glacier that’s the size of Texas and Oklahoma. This fascinating world has blue skies, spinning moons, mountains as high as the Rockies, and it snows – but the snow is red.<br /><br />A year on Pluto is 248 Earth years. A day on Pluto lasts 153 hours, or about 6 Earth days.<br /><br />Pluto’s surface is far too cold, -378 to -396 degrees F (-228 to -238 C), to sustain life as we know it.</Fact></FactContainer></Html>}
 
-      {isRotating && <Html position={[null]}><div id='speedBox'><h1 id='speedDis'>Orbit Speeds</h1><p id="speed">Mercury - 47.87 km/s</p><p id="speed">Venus- 35.02 km/s</p><p id="speed">Earth- 29.78 km/s</p><p id="speed">Mars - 24.077 km/s</p><p id="speed">Jupiter - 13.07 km/s</p><p id="speed">Saturn - 9.69 km/s</p><p id="speed">Uranus - 6.81 km/s</p><p id="speed">Neptune - 5.43 km/s</p></div></Html>}
-
-      <Html position={[null]}><button id='refresh' onClick={handleClick}>Reset Orbit Position</button></Html>
-      <Html position={[null]}><button id='rotate' onClick={handleRotateClick}>Toggle Orbit</button></Html>
-      {isClickedFact && <Html position={[null]}><button id='hideFact' onClick={handleHideFact}>Hide Fact</button></Html>}
+      {isRotating && <Html position={[null]}><SpeedBox><SpeedDis>Orbit Speeds</SpeedDis><Speed>Mercury - 47.87 km/s</Speed><Speed>Venus- 35.02 km/s</Speed><Speed>Earth- 29.78 km/s</Speed><Speed>Mars - 24.077 km/s</Speed><Speed>Jupiter - 13.07 km/s</Speed><Speed>Saturn - 9.69 km/s</Speed><Speed>Uranus - 6.81 km/s</Speed><Speed>Neptune - 5.43 km/s</Speed></SpeedBox></Html>}
+      {isClickedFact && <Html position={[null]}><HideFact onClick={handleHideFact}>Hide Fact</HideFact></Html>}
 
       {/*Create objects*/}
+
       <group ref={sun} onPointerOver={() => { document.body.style.cursor = 'pointer'; }} onPointerOut={() => { document.body.style.cursor = 'auto'; }}>
         <mesh onClick={handleClickSun}>
           <Sphere args={[1, 25, 25]} scale={10} position={[0, 0, 0]}>
@@ -818,5 +815,148 @@ export default function Planets(props) {
       <OrbitControls ref={controlsRef} enablePan={false} args={[camera, gl.domElement]} />
     </group>
 
+
   )
 }
+
+const Refresh = styled.button`
+    position:absolute;
+    background-color: #4003b1;
+    color: white;
+    cursor: pointer;
+    font-weight: 700;
+    border: none;
+    border-radius: 5px;
+    width: auto;
+    padding:7px;
+    font-size: small;
+    left: 30px;
+    z-index: 1000;
+    @media only screen and (max-height:650px){
+        left:10px;
+        top:10px;
+        width:auto;
+        font-size: 10px;
+        padding: 5px;
+    }
+`
+
+const Rotate = styled.button`
+    position:absolute;
+    background-color: #4003b1;
+    color: white;
+    cursor: pointer;
+    font-weight: 700;
+    border: none;
+    border-radius: 5px;
+    width: auto;
+    padding:7px;
+    font-size: small;
+    left: 150px;
+    z-index: 1000;
+    @media only screen and (max-height:650px){
+        left:100px;
+        top:10px;
+        width:auto;
+        font-size: 10px;
+        padding: 5px;
+    }
+`
+
+const FactContainer = styled.div`
+    width: 50vh;
+    padding: 15px;
+    position: relative;
+    left: 2vh;
+    top: 10vh;
+    text-align: left;
+    @media only screen and (max-height:650px){
+      width: 80vh;
+      left: 1vh;
+    }
+`
+const PlanetName = styled.h1`
+    color: white;
+    font-size: 25px;
+    font-weight: bold;
+    padding-bottom: 15px;
+    text-align: left;
+    @media only screen and (max-height:650px){
+      font-size: 13px;
+      padding-bottom: 7px;
+
+    }
+`
+const Subtitle = styled.h1`
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: left;
+    padding-bottom: 10px;
+    @media only screen and (max-height:650px){
+      font-size: 11px;
+    }
+`
+
+const Fact = styled.p`
+    color: white;
+    font-size: 15px;
+    text-align: left;
+    padding-bottom: 10px;
+    @media only screen and (max-height:650px){
+      font-size: 9px;
+
+    }
+`
+
+const SpeedBox = styled.div`
+    height: 25vh;
+    width: 20vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 10px;
+    position: absolute;
+    top: 60vh;
+    left: 170vh;
+    @media only screen and (max-height:650px){
+      width:40vh;
+      left:180vh;
+
+    }
+`
+const SpeedDis = styled.h1`
+    font-weight: bold;
+    padding-bottom: 10px;
+    @media only screen and (max-height:650px){
+      font-size: 10px;
+    }
+`
+const Speed = styled.p`
+    padding-bottom: 5px;
+    @media only screen and (max-height:650px){
+      font-size: 9px;
+
+    }
+`
+
+const HideFact = styled.button`
+    z-index: 100;
+    color: rgb(255, 255, 255);
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    width: auto;
+    padding: 7px;
+    position: relative;
+    left: 38vh;
+    top: 16vh;
+    font-size: small;
+    @media only screen and (max-height:650px){
+      font-size: 10px;
+      top:2vh;
+      width: auto;
+
+    }
+`

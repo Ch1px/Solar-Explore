@@ -2,61 +2,61 @@ import React from "react";
 import styled from "styled-components";
 import SphereDistort from "../models/sphereDistort";
 import Astro from "/src/assets/img/astroBook.png"
-
+import { Canvas } from "@react-three/fiber";
 
 const Section = styled.div`
 height: 100vh;
 width: 100%;
 scroll-snap-align: center;
 display:flex;
-flex-direction: column;
 align-items: center;
-
-@media only screen and (max-width:800px){
-    height: 100vh;
+justify-content: center;
+@media only screen and (max-width:768px){
+    height: 200vh;
+}
+@media only screen and (max-height:650px){
+    display:none;
 }
 `
 const Container = styled.div`
+max-width: 1400px;
+margin: 0 auto;
 padding:10px,0px;
 padding-bottom: 5px;
 padding-left: 10px;
 padding-right: 10px;
 height: 100%;
-scroll-snap-align: center;
 display: flex;
 justify-content: space-between;
-@media only screen and (max-width:1440px){
-    width: 1000px;
-    padding: 50px;
-}
-@media only screen and (max-width:800px){
-    width: 50vh;
+@media only screen and (max-width:768px){
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    
-
 }
+`
+const Right = styled.div`
+flex:1;
+position: relative;
 `
 
 const Left = styled.div`
- flex: 2;
+ flex: 1;
  display: flex;
  flex-direction: column;
  justify-content: center;
  gap: 20px;
- padding-left: 260px;
- @media only screen and (max-width:1440px){
+ @media only screen and (max-width:768px){
     align-items: center;
     text-align: center;
     flex:1;
     padding-left: 0px;
+    
 }
 `
 const Title = styled.h1`
 font-size:74px;
 font-weight: 600;
-@media only screen and (max-width:800px){
+@media only screen and (max-width:768px){
     text-align:center;
     font-size: 50px;
 }
@@ -66,7 +66,7 @@ const Subtitle = styled.p`
 font-size: 20px;
 padding-bottom: 10px;
 padding-right: 50px;
-@media only screen and (max-width:800px){
+@media only screen and (max-width:768px){
     padding:20px;
     text-align: center;
 }
@@ -88,13 +88,7 @@ background: linear-gradient(to right, #eb42ce ,  #0099ff 50%, #0099ff 50%);
   }
 `
 
-const Right = styled.div`
-flex:3;
-position: relative;
-@media only screen and (max-width:1450px){
-    display:none;
-}
-`
+
 const Img = styled.img`
 object-fit: contain;
 position: absolute;
@@ -112,7 +106,7 @@ animation: animate 2s infinite ease alternate;
         transform: translateY(30px);
     }
 }
-@media only screen and (max-width:800px){
+@media only screen and (max-width:768px){
     width: 300px;
     height:300px;
 }
@@ -136,7 +130,11 @@ const Home = () => {
                     <Button><a href="#About" onClick={scrollToSection}>Get Started</a></Button>
                 </Left>
                 <Right>
-                    <SphereDistort />
+
+                    <Canvas camera={{ fov: 25, position: [5, 5, 5] }} style={{ width: '100%', height: '100%' }}>
+                        <SphereDistort />
+                    </Canvas>
+
                     <Img src={Astro} />
                 </Right>
             </Container>

@@ -9,9 +9,13 @@ const Section = styled.div`
 display: flex;
 justify-content: center;
 width: 100%;
+z-index: 100000;
 
 @media only screen and (max-width:768px){
     width: 100%;
+}
+@media only screen and (max-height:650px){
+    display:none;
 }
 `
 const Container = styled.div`

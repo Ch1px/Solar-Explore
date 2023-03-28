@@ -62,7 +62,7 @@ function Model(props) {
 
 export default function draw() {
   return (
-    <Canvas camera={{ position: [0, 3, 5] }}  style={{width:'100%', height:'80%'}}>
+    <Canvas camera={{ position: [0, 3, 5] }}  style={{width:'100%', height:'100%'}}>
       <Model />
       <Starfield />
       <OrbitControls enableZoom={false} enablePan={false} autoRotate />

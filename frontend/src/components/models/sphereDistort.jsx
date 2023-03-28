@@ -1,18 +1,33 @@
-import { Canvas } from "@react-three/fiber";
+import { useRef } from 'react';
+import { useFrame, useThree } from '@react-three/fiber';
 import { MeshDistortMaterial, Sphere } from "@react-three/drei";
 import Starfield from "./StarField";
 
 const SphereDistort = () => {
+    const sphereRef = useRef();
+    const { size } = useThree();
+  
+    useFrame(() => {
+      const mediaQuery = window.matchMedia('(max-width: 768px)');
+      
+      if (mediaQuery.matches) {
+        sphereRef.current.scale.set(0.5, 0.5, 0.5);
+      } else {
+        sphereRef.current.scale.set(1, 1, 1);
+      }
+    });
 
     return (
-        <Canvas camera={{ fov: 25, position: [5, 5, 5] }}  style={{width:'100%', height:'100%'}}>
+        <>
             <Starfield />
             <ambientLight intensity={1} />
             <directionalLight position={[3, 2, 1]} />
-            <Sphere args={[1, 100, 200]} scale={1.25}>
+            <mesh ref={sphereRef}>
+            <Sphere args={[1, 50, 50]} scale={1.1}>
                 <MeshDistortMaterial color="#751947" attach="material" distort={0.5} speed={2} />
             </Sphere>
-        </Canvas>
+            </mesh>
+        </>
     )
 
 }

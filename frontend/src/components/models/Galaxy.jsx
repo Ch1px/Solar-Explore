@@ -11,7 +11,6 @@ import React, { useRef, useEffect, useState, useLayoutEffect } from 'react'
 import { useGLTF, useAnimations } from '@react-three/drei'
 import { useFrame, useThree } from '@react-three/fiber'
 import { gsap } from 'gsap';
-import Planets from './PlanetRTF';
 import styled from "styled-components";
 import { Canvas } from '@react-three/fiber'
 import Planet from './PlanetRTF'
@@ -28,13 +27,13 @@ import { Circle } from "@react-three/drei";
 import SunFlare from './SunFlare';
 import MilkyWay from '/src/assets/img/milkyway.png'
 import ArrowR from '/src/assets/img/arrowRight.png'
-
 export default function Galaxy(props) {
 
   const textureGalaxy = useLoader(TextureLoader, MilkyWay);
 
   textureGalaxy.magFilter = THREE.NearestFilter;
   textureGalaxy.minFilter = THREE.NearestFilter;
+
 
   const [isCanvasOpen, setIsCanvasOpen] = useState(false);
   const groupRef = useRef();
@@ -47,12 +46,13 @@ export default function Galaxy(props) {
   const handleClosePlanets = () => {
     setIsCanvasOpen(false);
   };
+
   return (
     <>
       {!isCanvasOpen ? (
         <OriginalCont>
           <Left>
-            <Canvas camera={{ position: [0, 10, 0] }} style={{width:'100%', height:'90%'}}>
+            <Canvas camera={{ position: [0, 10, 0] }} style={{ width: '100%', height: '90%' }}>
               <OrbitControls enableZoom={false} enablePan={false} enableRotate={false} autoRotate={true} />
               <Starfield />
               <ambientLight intensity={1} />
@@ -66,8 +66,7 @@ export default function Galaxy(props) {
                   </Circle>
                 </mesh>
               </group>
-
-      </Canvas>
+            </Canvas>
           </Left>
           <Right>
             <Title>Our Solar System</Title>
@@ -83,19 +82,39 @@ export default function Galaxy(props) {
 
         </OriginalCont>
       ) : (
-        <SolarContainer>
-        <Canvas frameloop="always" camera={{ position: [0, 50, 570], fov: 15 }} style={{ width: '99%', height: '100%' }}>
+        <>
+        <P>Please rotate your phone to access this feature</P>
+        <Container>
+        <Canvas frameloop="always" camera={{ position: [0, 50, 570], fov: 15 }} style={{ width: '100%', height: '100%', position:'absolute', top:'0px', left:'0px' }}>
           <Planet />
           <SolarStar />
           <SunFlare />
-          <Html position={[null]}><button id='close' onClick={handleClosePlanets}>Close</button></Html>
         </Canvas>
-        </SolarContainer>
+        <CloseButton onClick={handleClosePlanets}>Close</CloseButton>
+        <ContainerGuide>
+          <PGuide>- Scroll to Zoom
+            <br />- Click on planet to focus and learn!
+            <br />- Click 'The Sun' to recenter the camera
+          </PGuide>
+        </ContainerGuide>
+        </Container>
+        </>
       )}
     </>
   )
 }
-
+const P = styled.p`
+font-size:20px;
+font-weight: 700;
+padding: 10PX;
+text-align: center;
+@media only screen and (max-height:650px){
+    display:none;
+}
+@media only screen and (min-width:650px){
+    display:none;
+}
+`
 
 //style
 const ImgDisc = styled.p`
@@ -109,65 +128,66 @@ display:none;
 
 
 const OriginalCont = styled.div`
-height: 100%;
-width: 1420px;
-display: flex;
-gap: 20px;
+margin: 0 auto;
 padding:10px,0px;
-padding-bottom: 5px;
+max-width: 1400px;
 padding-left: 10px;
 padding-right: 10px;
-@media only screen and (max-width:1440px){
-    width: 1000px;
+height: 100%;
+display: flex;
+justify-content: space-between;
+@media only screen and (max-width:768px){
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
-@media only screen and (max-width:900px){
-    width: 50vh;
-    padding: 30px;
+@media only screen and (max-height:650px){
+    display:none;
 }
 `
 
-const SolarContainer = styled.div`
-height: 100%;
-width: 100%;
-@media only screen and (max-width:1440px){
-    width: 1000px;
+const Container = styled.div`
+  display: block;
+  position: relative;
+  margin: 0 auto;
+  width: 100vw !important;
+  height: 100%;
+@media only screen and (max-width:768px){
+    display: none;
 }
 `
 
 
 const Left = styled.div`
+flex:1;
 display: flex;
- flex: 2;
- position: relative;
+position: relative;
+flex-direction: column;
  justify-content: center;
  align-items: center;
- @media only screen and (max-width:1440px){
-    display: none;
-}
- @media only screen and (max-width:900px){
-    display: none;
-}
-
 `
 const Right = styled.div`
-flex:2;
-display: flex;
-flex-direction: column;
-justify-content: center;
-position: relative;
-@media only screen and (max-width:900px){
+ flex: 1;
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+
+ @media only screen and (max-width:768px){
     align-items: center;
     text-align: center;
+    flex:1;
     padding-left: 0px;
+    
 }
-
 `
 const Title = styled.h1`
     font-size:50px;
     position: relative;
     padding-bottom: 30px;
-@media only screen and (max-width:900px){
-    font-size: 45px;
+@media only screen and (max-width:768px){
+    padding-bottom: 10px;
+    top: -15vh;
+    font-size: 40px;
   
 }
 `
@@ -176,7 +196,8 @@ const Disc1 = styled.p`
 font-size:18px;
 padding-bottom: 15px;
 @media only screen and (max-width:900px){
-  font-size: 15px;
+  padding-bottom: 30px;
+  font-size: 12px;
 
 }
 `
@@ -185,7 +206,8 @@ const Disc = styled.p`
 font-size:18px;
 padding-bottom: 15px;
 @media only screen and (max-width:900px){
-  font-size: 15px;
+  padding-bottom: 30px;
+  font-size: 12px;
 
 }
 `
@@ -193,6 +215,52 @@ const SolarTitle = styled.p`
 font-size:25px;
 font-weight: bold;
 @media only screen and (max-width:820px){
+ font-size: 15px;
+ font-weight: 600;
+ padding-bottom: 20px;
+}
+`
 
+const CloseButton =  styled.button`
+    background-color: #b31818;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    width: 6vh;
+    padding: 7px;
+    top: 50px;
+    right: 20px;
+    position: absolute;
+    font-size: small;
+    z-index: 1000;
+
+    @media only screen and (max-height:650px){
+    top:10px;
+    right:10px;
+    font-size: x-small;
+    width: auto;
+}
+`
+const ContainerGuide = styled.div`
+    max-width: 200vh;
+    border-radius: 20px;
+    justify-content: center;
+    font-size: 15px;
+    position: absolute;
+    top: 70px;
+    right: 20px;
+@media only screen and (max-height:650px){
+    right:100px;
+    top:10px;
+    width:auto;
+}
+`
+
+const PGuide = styled.p`
+
+@media only screen and (max-height:650px){
+    font-size: 10px;
 }
 `
