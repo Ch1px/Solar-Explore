@@ -43,6 +43,9 @@ export default function Galaxy(props) {
     gsap.to(group.position, { y: "+=10", duration: 3 });
     setTimeout(() => setIsCanvasOpen(true), 3000);
   }
+  const handleOpenExplore = async () => {
+    setIsCanvasOpen(true);
+  }
   const handleClosePlanets = () => {
     setIsCanvasOpen(false);
   };
@@ -78,6 +81,7 @@ export default function Galaxy(props) {
             <SolarTitle>Why is it Called the Solar System?</SolarTitle>
             <Disc>There are many planetary systems like ours in the universe, with planets orbiting a host star. Our planetary system is called “the solar system” because we use the word “solar” to describe things related to our star, after the Latin word for Sun, "solis."</Disc>
             <ImgDisc>Click on the Milky Way to adventure deeper.</ImgDisc>
+            <ExploreButton onClick={handleOpenExplore}>Explore</ExploreButton>
           </Right>
 
         </OriginalCont>
@@ -91,6 +95,7 @@ export default function Galaxy(props) {
           <SunFlare />
         </Canvas>
         <CloseButton onClick={handleClosePlanets}>Close</CloseButton>
+        <TitleContainer><ExploreTitle>Solar Explore</ExploreTitle></TitleContainer>
         <ContainerGuide>
           <PGuide>- Scroll to Zoom
             <br />- Click on planet to focus and learn!
@@ -108,7 +113,7 @@ font-size:20px;
 font-weight: 700;
 padding: 10PX;
 text-align: center;
-@media only screen and (max-height:650px){
+@media only screen and (max-height:600px){
     display:none;
 }
 @media only screen and (min-width:650px){
@@ -136,12 +141,7 @@ padding-right: 10px;
 height: 100%;
 display: flex;
 justify-content: space-between;
-@media only screen and (max-width:768px){
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-@media only screen and (max-height:650px){
+@media only screen and (max-height:600px){
     display:none;
 }
 `
@@ -152,7 +152,7 @@ const Container = styled.div`
   margin: 0 auto;
   width: 100vw !important;
   height: 100%;
-@media only screen and (max-width:768px){
+@media only screen and (max-width:600px){
     display: none;
 }
 `
@@ -165,6 +165,9 @@ position: relative;
 flex-direction: column;
  justify-content: center;
  align-items: center;
+ @media only screen and (max-width:768px){
+    display: none;
+}
 `
 const Right = styled.div`
  flex: 1;
@@ -175,9 +178,17 @@ const Right = styled.div`
  @media only screen and (max-width:768px){
     align-items: center;
     text-align: center;
+    padding-bottom: 100px;
     flex:1;
-    padding-left: 0px;
-    
+}
+`
+const SolarTitle = styled.p`
+font-size:25px;
+font-weight: bold;
+@media only screen and (max-width:820px){
+ font-size: 15px;
+ font-weight: 600;
+ padding-bottom: 5px;
 }
 `
 const Title = styled.h1`
@@ -185,8 +196,7 @@ const Title = styled.h1`
     position: relative;
     padding-bottom: 30px;
 @media only screen and (max-width:768px){
-    padding-bottom: 10px;
-    top: -15vh;
+
     font-size: 40px;
   
 }
@@ -196,8 +206,8 @@ const Disc1 = styled.p`
 font-size:18px;
 padding-bottom: 15px;
 @media only screen and (max-width:900px){
-  padding-bottom: 30px;
-  font-size: 12px;
+  padding-bottom: 20px;
+  font-size: 13px;
 
 }
 `
@@ -206,18 +216,26 @@ const Disc = styled.p`
 font-size:18px;
 padding-bottom: 15px;
 @media only screen and (max-width:900px){
-  padding-bottom: 30px;
-  font-size: 12px;
+  padding-bottom: 20px;
+  font-size: 13px;
 
 }
 `
-const SolarTitle = styled.p`
-font-size:25px;
-font-weight: bold;
-@media only screen and (max-width:820px){
- font-size: 15px;
- font-weight: 600;
- padding-bottom: 20px;
+const ExploreButton =  styled.button`
+    background-color: #4618b3;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    width: 10vh;
+    white-space: nowrap;
+    padding: 7px;
+    font-size: small;
+    z-index: 1000;
+
+    @media only screen and (min-width:768px){
+      display: none;
 }
 `
 
@@ -236,7 +254,7 @@ const CloseButton =  styled.button`
     font-size: small;
     z-index: 1000;
 
-    @media only screen and (max-height:650px){
+    @media only screen and (max-height:600px){
     top:10px;
     right:10px;
     font-size: x-small;
@@ -251,7 +269,7 @@ const ContainerGuide = styled.div`
     position: absolute;
     top: 70px;
     right: 20px;
-@media only screen and (max-height:650px){
+@media only screen and (max-height:600px){
     right:100px;
     top:10px;
     width:auto;
@@ -260,7 +278,33 @@ const ContainerGuide = styled.div`
 
 const PGuide = styled.p`
 
-@media only screen and (max-height:650px){
+@media only screen and (max-height:600px){
     font-size: 10px;
+}
+`
+
+const TitleContainer = styled.div`
+  width: 20vh;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 60px;
+  left: 50px;
+  @media only screen and (max-height:600px){
+    bottom:20px;
+    left:10px;
+}
+`
+
+const ExploreTitle = styled.p`
+  color: white;
+  font-size: 25px;
+  font-weight: bold;
+  width: 30vh;
+  white-space: nowrap;
+  text-align: center;
+  position: absolute;
+  @media only screen and (max-height:600px){
+    font-size: 12px;
 }
 `

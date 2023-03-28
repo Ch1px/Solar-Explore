@@ -16,7 +16,7 @@ justify-content: center;
 @media only screen and (max-width:768px){
     height: 200vh;
 }
-@media only screen and (max-height:650px){
+@media only screen and (max-height:600px){
     display:none;
 }
 `
@@ -47,11 +47,12 @@ const Left = styled.div`
     text-align: center;
     flex:1;
     padding-left: 0px;  
+    padding-bottom: 100px;
 }
 `
 const Title = styled.h1`
     font-size:50px;
-    padding-bottom: 20px;
+    padding-bottom: 0px;
     
 @media only screen and (max-width:900px){
     font-size: 50px;

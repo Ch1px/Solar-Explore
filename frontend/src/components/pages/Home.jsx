@@ -12,9 +12,9 @@ display:flex;
 align-items: center;
 justify-content: center;
 @media only screen and (max-width:768px){
-    height: 200vh;
+    height: 100vh;
 }
-@media only screen and (max-height:650px){
+@media only screen and (max-height:600px){
     display:none;
 }
 `
@@ -37,6 +37,10 @@ justify-content: space-between;
 const Right = styled.div`
 flex:1;
 position: relative;
+@media only screen and (max-width:768px){
+    display: none;
+    
+}
 `
 
 const Left = styled.div`

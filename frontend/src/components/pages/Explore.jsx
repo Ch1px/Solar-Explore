@@ -12,7 +12,7 @@ display:flex;
 align-items: center;
 justify-content: center;
 @media only screen and (max-width:768px){
-    height: 200vh;
+    height: 100vh;
 }
 
 `

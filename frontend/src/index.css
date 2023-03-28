@@ -11,21 +11,4 @@
 
 
 
-#titleContainer {
-    width: 20vh;
-    display: flex;
-    justify-content: center;
-    position: relative;
-    bottom: 80px;
-    left: 20px;
-}
 
-#solarTitle {
-    color: white;
-    font-size: 25px;
-    font-weight: bold;
-    width: 30vh;
-    text-align: center;
-    position: relative;
-    left: 2vh;
-}

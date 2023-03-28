@@ -21,7 +21,9 @@ const Title = styled.h1`
         background-position: 0 100%;
     }
     @media only screen and (max-width:768px){
-  font-size: 10px;
+  font-size: 12px;
+  font-weight: bold;
+  padding-bottom: 2px;
 
 }
 `

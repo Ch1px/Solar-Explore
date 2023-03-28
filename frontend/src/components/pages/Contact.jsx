@@ -63,7 +63,7 @@ scroll-snap-align: center;
 display:flex;
 align-items: center;
 justify-content: center;
-@media only screen and (max-height:650px){
+@media only screen and (max-height:600px){
     display:none;
 }
 `
@@ -96,7 +96,8 @@ const Left = styled.div`
     align-items: center;
     text-align: center;
     flex:1;
-    width:0px;  
+    width:0px;
+    padding-bottom: 100px;
 }
 `
 

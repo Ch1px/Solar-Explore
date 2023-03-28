@@ -14,7 +14,7 @@ z-index: 100000;
 @media only screen and (max-width:768px){
     width: 100%;
 }
-@media only screen and (max-height:650px){
+@media only screen and (max-height:600px){
     display:none;
 }
 `

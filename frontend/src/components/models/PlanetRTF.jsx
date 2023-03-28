@@ -553,7 +553,7 @@ export default function Planets() {
   return (
 
     <group dispose={null}>
-      <Html position={[null]}><div id='titleContainer'><h1 id='solarTitle'>Solar Explore</h1></div>
+      <Html position={[null]}>
 
 
         <Refresh onClick={handleClick}>Refresh Orbit</Refresh>
@@ -827,12 +827,14 @@ const Refresh = styled.button`
     font-weight: 700;
     border: none;
     border-radius: 5px;
-    width: auto;
+    min-width: 10vh;
+    white-space: nowrap;
     padding:7px;
     font-size: small;
+    top:40px;
     left: 30px;
     z-index: 1000;
-    @media only screen and (max-height:650px){
+    @media only screen and (max-height:600px){
         left:10px;
         top:10px;
         width:auto;
@@ -849,12 +851,14 @@ const Rotate = styled.button`
     font-weight: 700;
     border: none;
     border-radius: 5px;
-    width: auto;
+    min-width: 10vh;
+    white-space: nowrap;
     padding:7px;
     font-size: small;
+    top:40px;
     left: 150px;
     z-index: 1000;
-    @media only screen and (max-height:650px){
+    @media only screen and (max-height:600px){
         left:100px;
         top:10px;
         width:auto;
@@ -870,9 +874,10 @@ const FactContainer = styled.div`
     left: 2vh;
     top: 10vh;
     text-align: left;
-    @media only screen and (max-height:650px){
+    @media only screen and (max-height:600px){
       width: 80vh;
       left: 1vh;
+      top:7vh;
     }
 `
 const PlanetName = styled.h1`
@@ -881,20 +886,22 @@ const PlanetName = styled.h1`
     font-weight: bold;
     padding-bottom: 15px;
     text-align: left;
-    @media only screen and (max-height:650px){
+    @media only screen and (max-height:600px){
       font-size: 13px;
-      padding-bottom: 7px;
+      padding-bottom: 3px;
 
     }
 `
 const Subtitle = styled.h1`
     color: white;
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 700;
     text-align: left;
     padding-bottom: 10px;
-    @media only screen and (max-height:650px){
-      font-size: 11px;
+    white-space: nowrap;
+    @media only screen and (max-height:600px){
+      font-size: 10px;
+      padding-bottom: 3px;
     }
 `
 
@@ -903,8 +910,9 @@ const Fact = styled.p`
     font-size: 15px;
     text-align: left;
     padding-bottom: 10px;
-    @media only screen and (max-height:650px){
+    @media only screen and (max-height:600px){
       font-size: 9px;
+      padding-bottom: 3px;
 
     }
 `
@@ -919,22 +927,23 @@ const SpeedBox = styled.div`
     position: absolute;
     top: 60vh;
     left: 170vh;
-    @media only screen and (max-height:650px){
+    white-space: nowrap;
+    @media only screen and (max-height:600px){
       width:40vh;
-      left:180vh;
+      left:165vh;
 
     }
 `
 const SpeedDis = styled.h1`
     font-weight: bold;
     padding-bottom: 10px;
-    @media only screen and (max-height:650px){
+    @media only screen and (max-height:600px){
       font-size: 10px;
     }
 `
 const Speed = styled.p`
     padding-bottom: 5px;
-    @media only screen and (max-height:650px){
+    @media only screen and (max-height:600px){
       font-size: 9px;
 
     }
@@ -949,13 +958,14 @@ const HideFact = styled.button`
     border-radius: 5px;
     width: auto;
     padding: 7px;
-    position: relative;
+    position: absolute;
     left: 38vh;
-    top: 16vh;
+    top: 12vh;
+    white-space: nowrap;
     font-size: small;
-    @media only screen and (max-height:650px){
+    @media only screen and (max-height:600px){
       font-size: 10px;
-      top:2vh;
+      top:10vh;
       width: auto;
 
     }
