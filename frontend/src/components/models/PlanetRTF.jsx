@@ -556,8 +556,7 @@ export default function Planets() {
       <Html position={[null]}>
 
 
-        <Refresh onClick={handleClick}>Refresh Orbit</Refresh>
-        <Rotate onClick={handleRotateClick}>Toggle Orbit</Rotate></Html>
+        </Html>
 
       <rectAreaLight rotation={[0, 0, 0]} color={'#f8f1e7'} intensity={20} position={[0, 0, 13.8]} />
       <rectAreaLight rotation={[3, 0, 0]} color={'#fad400'} intensity={20} position={[0, 0, -13.8]} />
@@ -600,7 +599,8 @@ export default function Planets() {
 
       {isClickedPlu && <Html position={[null]}><FactContainer><PlanetName>Pluto</PlanetName><Fact>Well Done! You found Pluto!<br /><br />Pluto was reclassified from a planet to a dwarf planet in 2006.<br /><br />Pluto – which is smaller than Earth’s Moon – has a heart-shaped glacier that’s the size of Texas and Oklahoma. This fascinating world has blue skies, spinning moons, mountains as high as the Rockies, and it snows – but the snow is red.<br /><br />A year on Pluto is 248 Earth years. A day on Pluto lasts 153 hours, or about 6 Earth days.<br /><br />Pluto’s surface is far too cold, -378 to -396 degrees F (-228 to -238 C), to sustain life as we know it.</Fact></FactContainer></Html>}
 
-      {isRotating && <Html position={[null]}><SpeedBox><SpeedDis>Orbit Speeds</SpeedDis><Speed>Mercury - 47.87 km/s</Speed><Speed>Venus- 35.02 km/s</Speed><Speed>Earth- 29.78 km/s</Speed><Speed>Mars - 24.077 km/s</Speed><Speed>Jupiter - 13.07 km/s</Speed><Speed>Saturn - 9.69 km/s</Speed><Speed>Uranus - 6.81 km/s</Speed><Speed>Neptune - 5.43 km/s</Speed></SpeedBox></Html>}
+      <Html position={[null]}><SpeedContainer><Refresh onClick={handleClick}>Refresh Orbit</Refresh>
+        <Rotate onClick={handleRotateClick}>Toggle Orbit</Rotate>{isRotating && <SpeedBox><SpeedDis>Orbit Speeds</SpeedDis><Speed>Mercury - 47.87 km/s</Speed><Speed>Venus- 35.02 km/s</Speed><Speed>Earth- 29.78 km/s</Speed><Speed>Mars - 24.077 km/s</Speed><Speed>Jupiter - 13.07 km/s</Speed><Speed>Saturn - 9.69 km/s</Speed><Speed>Uranus - 6.81 km/s</Speed><Speed>Neptune - 5.43 km/s</Speed></SpeedBox>}</SpeedContainer></Html>
       {isClickedFact && <Html position={[null]}><HideFact onClick={handleHideFact}>Hide Fact</HideFact></Html>}
 
       {/*Create objects*/}
@@ -818,9 +818,21 @@ export default function Planets() {
 
   )
 }
-
+const SpeedContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  position: relative;
+  margin: 0 auto;
+  width: 100vw !important;
+  height: 100vh !important;
+  align-items: flex-start;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  gap: 15px;
+`
 const Refresh = styled.button`
-    position:absolute;
+    position:relative;
     background-color: #4003b1;
     color: white;
     cursor: pointer;
@@ -830,21 +842,18 @@ const Refresh = styled.button`
     min-width: 10vh;
     white-space: nowrap;
     padding:7px;
+    top:50px;
     font-size: small;
-    top:40px;
-    left: 30px;
     z-index: 1000;
+   
     @media only screen and (max-height:600px){
-        left:10px;
-        top:10px;
-        width:auto;
         font-size: 10px;
         padding: 5px;
     }
 `
 
 const Rotate = styled.button`
-    position:absolute;
+    position:relative;
     background-color: #4003b1;
     color: white;
     cursor: pointer;
@@ -854,14 +863,11 @@ const Rotate = styled.button`
     min-width: 10vh;
     white-space: nowrap;
     padding:7px;
+    top:50px;
     font-size: small;
-    top:40px;
-    left: 150px;
     z-index: 1000;
     @media only screen and (max-height:600px){
-        left:100px;
-        top:10px;
-        width:auto;
+
         font-size: 10px;
         padding: 5px;
     }
@@ -877,7 +883,7 @@ const FactContainer = styled.div`
     @media only screen and (max-height:600px){
       width: 80vh;
       left: 1vh;
-      top:7vh;
+      top:1px;
     }
 `
 const PlanetName = styled.h1`
@@ -886,11 +892,15 @@ const PlanetName = styled.h1`
     font-weight: bold;
     padding-bottom: 15px;
     text-align: left;
+    @media only screen and (max-height:800px){
+    font-size: 20px;
+    padding-bottom: 3px;
+}
     @media only screen and (max-height:600px){
       font-size: 13px;
       padding-bottom: 3px;
-
     }
+
 `
 const Subtitle = styled.h1`
     color: white;
@@ -899,6 +909,10 @@ const Subtitle = styled.h1`
     text-align: left;
     padding-bottom: 10px;
     white-space: nowrap;
+    @media only screen and (max-height:800px){
+      font-size: 14px;
+      padding-bottom: 3px;
+    }
     @media only screen and (max-height:600px){
       font-size: 10px;
       padding-bottom: 3px;
@@ -910,29 +924,27 @@ const Fact = styled.p`
     font-size: 15px;
     text-align: left;
     padding-bottom: 10px;
+    @media only screen and (max-height:800px){
+      font-size: 12px;
+      padding-bottom: 3px;
+    }
     @media only screen and (max-height:600px){
       font-size: 9px;
       padding-bottom: 3px;
-
     }
+
 `
 
 const SpeedBox = styled.div`
     height: 25vh;
     width: 20vh;
-    display: flex;
-    flex-direction: column;
     justify-content: center;
     padding-left: 10px;
     position: absolute;
-    top: 60vh;
-    left: 170vh;
+    right:50px;
+    bottom: 130px;
     white-space: nowrap;
-    @media only screen and (max-height:600px){
-      width:40vh;
-      left:165vh;
-
-    }
+    z-index: 1000;
 `
 const SpeedDis = styled.h1`
     font-weight: bold;
@@ -965,7 +977,7 @@ const HideFact = styled.button`
     font-size: small;
     @media only screen and (max-height:600px){
       font-size: 10px;
-      top:10vh;
+      top:3vh;
       width: auto;
 
     }

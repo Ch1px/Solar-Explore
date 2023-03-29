@@ -13,10 +13,12 @@ scroll-snap-align: center;
 display:flex;
 align-items: center;
 justify-content: center;
+overflow-y: hidden;
+overflow-x: hidden;
 @media only screen and (max-width:768px){
     height: 200vh;
 }
-@media only screen and (max-height:600px){
+@media only screen and (max-height:500px){
     display:none;
 }
 `
@@ -42,6 +44,7 @@ const Left = styled.div`
  display: flex;
  flex-direction: column;
  justify-content: center;
+
  @media only screen and (max-width:768px){
     align-items: center;
     text-align: center;
@@ -53,13 +56,16 @@ const Left = styled.div`
 const Title = styled.h1`
     font-size:50px;
     padding-bottom: 0px;
-    
-@media only screen and (max-width:900px){
-    font-size: 50px;
+    @media only screen and (max-height:800px){
+        font-size: 40px;
 }
+    
 `
 const Disc = styled.div`
 font-size:18px;
+@media only screen and (max-height:800px){
+        font-size: 15px;
+}
 
 @media only screen and (max-width:900px){
 font-size: 15px;
@@ -69,6 +75,7 @@ font-size: 15px;
 const Right = styled.div`
 flex:1;
 position: relative;
+max-width:100%;
 @media only screen and (max-width:768px){
     display:none;
 }

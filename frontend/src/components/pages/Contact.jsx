@@ -41,10 +41,10 @@ const Contact = () => {
                     <Button>Send</Button>
                     <Sent>{success && "Your message has been sent. We'll get back to you ASAP :)"}</Sent>
                 </Form></Left>
-                <Right><Canvas camera={{ fov: 50, position: [0, 80, 0] }} style={{ width: '100%', height: '90%' }}>
+                <Right><Canvas camera={{ fov: 50, position: [0, 80, 0] }} style={{ width: '100%', height: '100%' }}>
                     <OrbitControls enableZoom={false} enablePan={false} enableRotate={false} />
-                    <ambientLight intensity={1} />
-                    <directionalLight position={[3, 2, 1]} />
+                    <ambientLight intensity={0.3} />
+                    <directionalLight position={[50, 50, 0]} />
                     <Model />
                     <Earth />
                     <Starfield />
@@ -63,12 +63,14 @@ scroll-snap-align: center;
 display:flex;
 align-items: center;
 justify-content: center;
-@media only screen and (max-height:600px){
+overflow-y: hidden;
+overflow-x: hidden;
+@media only screen and (max-height:500px){
     display:none;
 }
 `
 const Container = styled.div`
-max-width: 1400px;
+flex-basis: 1400px;
 margin: 0 auto;
 padding:10px,0px;
 padding-bottom: 5px;
@@ -87,7 +89,7 @@ justify-content: space-between;
 
 const Left = styled.div`
  flex: 1;
- width:730px;
+ max-width:730px;
  display: flex;
  flex-direction: column;
  justify-content: center;
@@ -96,8 +98,7 @@ const Left = styled.div`
     align-items: center;
     text-align: center;
     flex:1;
-    width:0px;
-    padding-bottom: 100px;
+    padding-bottom: 50px;
 }
 `
 
@@ -121,6 +122,7 @@ gap:25px;
 color: black;
 @media only screen and (max-width:768px){
     width:300px;
+    gap:15px;
 }
 `
 const Input = styled.input`
@@ -140,7 +142,7 @@ color: white;
 font-weight: bold;
 cursor:pointer;
 border-radius: 5px;
-padding: 20px
+padding: 20px;
 `
 
 const Sent = styled.div`
@@ -152,7 +154,7 @@ flex:1;
 position: relative;
 display: flex;
 align-items: center;
-@media only screen and (max-width:1420px){
+@media only screen and (max-width:768px){
     display:none;
 }
 `

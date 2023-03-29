@@ -8,7 +8,7 @@ const Title = styled.h1`
     font-weight:600;
     font-size: 15px;
     max-width: 100%;
-    text-align: left;
+    text-align: center;
     cursor: pointer;
     background: linear-gradient(to right, #3fb2ff, #eb42ce 50%, #ffffff 50%);
     background-clip: text;
@@ -29,9 +29,13 @@ const Title = styled.h1`
 `
 const ADate = styled.p`
 padding-bottom: 20px;
+text-align: center;
 @media only screen and (max-width:768px){
     padding-bottom:10px;
     font-size: 10px;
+}
+@media only screen and (max-height:800px){
+    padding-bottom:10px;
 }
 
 `

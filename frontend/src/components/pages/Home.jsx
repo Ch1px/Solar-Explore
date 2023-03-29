@@ -11,10 +11,12 @@ scroll-snap-align: center;
 display:flex;
 align-items: center;
 justify-content: center;
+overflow-y: hidden;
+overflow-x: hidden;
 @media only screen and (max-width:768px){
     height: 100vh;
 }
-@media only screen and (max-height:600px){
+@media only screen and (max-height:500px){
     display:none;
 }
 `
@@ -53,7 +55,7 @@ const Left = styled.div`
     align-items: center;
     text-align: center;
     flex:1;
-    padding-left: 0px;
+    padding-bottom:50px;
     
 }
 `
@@ -70,6 +72,9 @@ const Subtitle = styled.p`
 font-size: 20px;
 padding-bottom: 10px;
 padding-right: 50px;
+@media only screen and (max-height:800px){
+        font-size: 15px;
+}
 @media only screen and (max-width:768px){
     padding:20px;
     text-align: center;

@@ -90,7 +90,7 @@ export default function Galaxy(props) {
         <P>Please rotate your phone to access this feature</P>
         <Container>
         <Canvas frameloop="always" camera={{ position: [0, 50, 570], fov: 15 }} style={{ width: '100%', height: '100%', position:'absolute', top:'0px', left:'0px' }}>
-          <Planet />
+          <Planet isRotating/>
           <SolarStar />
           <SunFlare />
         </Canvas>
@@ -113,7 +113,7 @@ font-size:20px;
 font-weight: 700;
 padding: 10PX;
 text-align: center;
-@media only screen and (max-height:600px){
+@media only screen and (max-height:500px){
     display:none;
 }
 @media only screen and (min-width:650px){
@@ -141,7 +141,7 @@ padding-right: 10px;
 height: 100%;
 display: flex;
 justify-content: space-between;
-@media only screen and (max-height:600px){
+@media only screen and (max-height:500px){
     display:none;
 }
 `
@@ -152,7 +152,7 @@ const Container = styled.div`
   margin: 0 auto;
   width: 100vw !important;
   height: 100%;
-@media only screen and (max-width:600px){
+@media only screen and (max-width:500px){
     display: none;
 }
 `
@@ -185,6 +185,9 @@ const Right = styled.div`
 const SolarTitle = styled.p`
 font-size:25px;
 font-weight: bold;
+@media only screen and (max-height:800px){
+        font-size: 20px;
+}
 @media only screen and (max-width:820px){
  font-size: 15px;
  font-weight: 600;
@@ -195,6 +198,9 @@ const Title = styled.h1`
     font-size:50px;
     position: relative;
     padding-bottom: 30px;
+  @media only screen and (max-height:800px){
+        font-size: 35px;
+}
 @media only screen and (max-width:768px){
 
     font-size: 40px;
@@ -205,6 +211,9 @@ const Title = styled.h1`
 const Disc1 = styled.p`
 font-size:18px;
 padding-bottom: 15px;
+@media only screen and (max-height:800px){
+        font-size: 15px;
+}
 @media only screen and (max-width:900px){
   padding-bottom: 20px;
   font-size: 13px;
@@ -215,6 +224,9 @@ padding-bottom: 15px;
 const Disc = styled.p`
 font-size:18px;
 padding-bottom: 15px;
+@media only screen and (max-height:800px){
+        font-size: 15px;
+}
 @media only screen and (max-width:900px){
   padding-bottom: 20px;
   font-size: 13px;
@@ -241,12 +253,13 @@ const ExploreButton =  styled.button`
 
 const CloseButton =  styled.button`
     background-color: #b31818;
+    white-space: nowrap;
     color: white;
     font-weight: 700;
     cursor: pointer;
     border: none;
     border-radius: 5px;
-    width: 6vh;
+    min-width: 6vh;
     padding: 7px;
     top: 50px;
     right: 20px;
@@ -254,7 +267,7 @@ const CloseButton =  styled.button`
     font-size: small;
     z-index: 1000;
 
-    @media only screen and (max-height:600px){
+    @media only screen and (max-height:500px){
     top:10px;
     right:10px;
     font-size: x-small;
@@ -269,8 +282,8 @@ const ContainerGuide = styled.div`
     position: absolute;
     top: 70px;
     right: 20px;
-@media only screen and (max-height:600px){
-    right:100px;
+@media only screen and (max-height:500px){
+    right:60px;
     top:10px;
     width:auto;
 }
@@ -278,8 +291,9 @@ const ContainerGuide = styled.div`
 
 const PGuide = styled.p`
 
-@media only screen and (max-height:600px){
+@media only screen and (max-height:500px){
     font-size: 10px;
+
 }
 `
 
@@ -290,7 +304,7 @@ const TitleContainer = styled.div`
   position: absolute;
   bottom: 60px;
   left: 50px;
-  @media only screen and (max-height:600px){
+  @media only screen and (max-height:500px){
     bottom:20px;
     left:10px;
 }
@@ -304,7 +318,7 @@ const ExploreTitle = styled.p`
   white-space: nowrap;
   text-align: center;
   position: absolute;
-  @media only screen and (max-height:600px){
+  @media only screen and (max-height:500px){
     font-size: 12px;
 }
 `

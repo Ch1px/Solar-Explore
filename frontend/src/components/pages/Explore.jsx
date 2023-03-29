@@ -11,6 +11,8 @@ scroll-snap-align: center;
 display:flex;
 align-items: center;
 justify-content: center;
+overflow-y: hidden;
+overflow-x: hidden;
 @media only screen and (max-width:768px){
     height: 100vh;
 }
