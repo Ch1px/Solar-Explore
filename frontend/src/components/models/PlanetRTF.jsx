@@ -599,8 +599,8 @@ export default function Planets() {
 
       {isClickedPlu && <Html position={[null]}><FactContainer><PlanetName>Pluto</PlanetName><Fact>Well Done! You found Pluto!<br /><br />Pluto was reclassified from a planet to a dwarf planet in 2006.<br /><br />Pluto – which is smaller than Earth’s Moon – has a heart-shaped glacier that’s the size of Texas and Oklahoma. This fascinating world has blue skies, spinning moons, mountains as high as the Rockies, and it snows – but the snow is red.<br /><br />A year on Pluto is 248 Earth years. A day on Pluto lasts 153 hours, or about 6 Earth days.<br /><br />Pluto’s surface is far too cold, -378 to -396 degrees F (-228 to -238 C), to sustain life as we know it.</Fact></FactContainer></Html>}
 
-      <Html position={[null]}><SpeedContainer><Refresh onClick={handleClick}>Refresh Orbit</Refresh>
-        <Rotate onClick={handleRotateClick}>Toggle Orbit</Rotate>{isRotating && <SpeedBox><SpeedDis>Orbit Speeds</SpeedDis><Speed>Mercury - 47.87 km/s</Speed><Speed>Venus- 35.02 km/s</Speed><Speed>Earth- 29.78 km/s</Speed><Speed>Mars - 24.077 km/s</Speed><Speed>Jupiter - 13.07 km/s</Speed><Speed>Saturn - 9.69 km/s</Speed><Speed>Uranus - 6.81 km/s</Speed><Speed>Neptune - 5.43 km/s</Speed></SpeedBox>}</SpeedContainer></Html>
+      <Html position={[null]}><Container><Refresh onClick={handleClick}>Refresh Orbit</Refresh>
+        <Rotate onClick={handleRotateClick}>Toggle Orbit</Rotate>{isRotating && <SpeedBox><SpeedDis>Orbit Speeds</SpeedDis><Speed>Mercury - 47.87 km/s</Speed><Speed>Venus- 35.02 km/s</Speed><Speed>Earth- 29.78 km/s</Speed><Speed>Mars - 24.077 km/s</Speed><Speed>Jupiter - 13.07 km/s</Speed><Speed>Saturn - 9.69 km/s</Speed><Speed>Uranus - 6.81 km/s</Speed><Speed>Neptune - 5.43 km/s</Speed></SpeedBox>}</Container></Html>
       {isClickedFact && <Html position={[null]}><HideFact onClick={handleHideFact}>Hide Fact</HideFact></Html>}
 
       {/*Create objects*/}
@@ -818,7 +818,7 @@ export default function Planets() {
 
   )
 }
-const SpeedContainer = styled.div`
+const Container = styled.div`
   display: flex;
   justify-content: center;
   position: relative;
