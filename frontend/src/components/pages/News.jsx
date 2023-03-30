@@ -67,6 +67,10 @@ display:flex;
 flex-basis: 700px;
 justify-content: center;
 flex-direction: column;
+@media only screen and (max-width:768px){
+    text-align: left;
+    align-items: left;
+}
 `
 const Right = styled.div`
 display:flex;

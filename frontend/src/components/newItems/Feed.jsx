@@ -24,6 +24,7 @@ const Title = styled.h1`
   font-size: 12px;
   font-weight: bold;
   padding-bottom: 2px;
+  text-align: left;
 
 }
 `
@@ -33,6 +34,7 @@ text-align: center;
 @media only screen and (max-width:768px){
     padding-bottom:10px;
     font-size: 10px;
+    text-align: left;
 }
 @media only screen and (max-height:800px){
     padding-bottom:10px;

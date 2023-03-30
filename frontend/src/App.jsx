@@ -26,6 +26,7 @@ background: url(${Wallpaper});
 
 const Container = styled.div`
 margin: 0px;
+height: 100%;
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
   overflow-y: auto;

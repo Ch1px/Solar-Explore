@@ -302,7 +302,7 @@ const TitleContainer = styled.div`
   display: flex;
   justify-content: center;
   position: absolute;
-  bottom: 60px;
+  bottom: 70px;
   left: 50px;
   @media only screen and (max-height:500px){
     bottom:20px;

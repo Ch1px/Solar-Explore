@@ -847,6 +847,7 @@ const Refresh = styled.button`
     z-index: 1000;
    
     @media only screen and (max-height:600px){
+        top: 30px;
         font-size: 10px;
         padding: 5px;
     }
@@ -867,7 +868,7 @@ const Rotate = styled.button`
     font-size: small;
     z-index: 1000;
     @media only screen and (max-height:600px){
-
+        top: 30px;
         font-size: 10px;
         padding: 5px;
     }
@@ -881,7 +882,7 @@ const FactContainer = styled.div`
     top: 10vh;
     text-align: left;
     @media only screen and (max-height:600px){
-      width: 80vh;
+      width: 75vh;
       left: 1vh;
       top:1px;
     }
@@ -942,18 +943,20 @@ const SpeedBox = styled.div`
     padding-left: 10px;
     position: absolute;
     right:50px;
-    bottom: 130px;
+    bottom: 110px;
     white-space: nowrap;
     z-index: 1000;
 `
 const SpeedDis = styled.h1`
     font-weight: bold;
     padding-bottom: 10px;
+    font-size: 14px;
     @media only screen and (max-height:600px){
       font-size: 10px;
     }
 `
 const Speed = styled.p`
+font-size: 14px;
     padding-bottom: 5px;
     @media only screen and (max-height:600px){
       font-size: 9px;

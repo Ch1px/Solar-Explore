@@ -91,7 +91,9 @@ const NavBar = () => {
         <Section>
             <Container>
                 <Links>
-                    <Logo src={LogoPng} />
+                    <a href="#Home" onClick={scrollToSection}>
+                        <Logo src={LogoPng} />
+                    </a>
                     <List>
                         <ListItem><a href="#Home" onClick={scrollToSection}>Home</a></ListItem>
                         <ListItem><a href="#About" onClick={scrollToSection}>About</a></ListItem>
