@@ -11,7 +11,7 @@ import React, { useRef, useEffect, useState, useLayoutEffect } from 'react'
 import { useGLTF, useAnimations } from '@react-three/drei'
 import { useFrame, useThree } from '@react-three/fiber'
 import { gsap } from 'gsap';
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { Canvas } from '@react-three/fiber'
 import Planet from './PlanetRTF'
 import { Html, useCursor } from "@react-three/drei";
@@ -121,14 +121,29 @@ text-align: center;
 }
 `
 
+const gradient = keyframes`
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+`;
+
 //style
 const ImgDisc = styled.p`
-font-size:20px;
-padding-bottom: 10px;
-font-weight: 700;
-@media only screen and (max-width:820px){
-display:none;
-}
+  font-size: 20px;
+  font-style: italic;
+  background: linear-gradient(90deg, #00e1ff, #f50dfd);
+  background-size: 200% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: ${gradient} 2s linear infinite;
+  padding: 10px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-weight: 700;
+  margin-bottom: 10px;
+  @media only screen and (max-width:820px){
+    display:none;
+  }
 `
 
 

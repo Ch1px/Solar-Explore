@@ -5,6 +5,7 @@ import Contact from "./components/pages/Contact";
 import Explore from "./components/pages/Explore";
 import News from "./components/pages/News";
 import NavBar from "./components/navbar/NavBar";
+import SandBox from "./components/pages/SandBox";
 import styled from 'styled-components';
 import './index.css' 
 import Wallpaper from "/src/assets/img/wallpaper.jpg"
@@ -54,6 +55,7 @@ function App() {
           <About />
           <Explore />
           <News />
+          <SandBox />
           <Contact />
         </Container>
       </Section>

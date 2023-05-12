@@ -99,6 +99,7 @@ const NavBar = () => {
                         <ListItem><a href="#About" onClick={scrollToSection}>About</a></ListItem>
                         <ListItem><a href="#Explore" onClick={scrollToSection}>Our Solar System</a></ListItem>
                         <ListItem><a href="#News" onClick={scrollToSection}>Astronomy News</a></ListItem>
+                        <ListItem><a href="#SandBox" onClick={scrollToSection}>Universe Sandbox</a></ListItem>
                         <ListItem><a href="#Contact" onClick={scrollToSection}>Contact</a></ListItem>
                     </List>
                 </Links>
