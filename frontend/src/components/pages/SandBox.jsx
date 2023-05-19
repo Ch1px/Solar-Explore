@@ -4,7 +4,6 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import Space from '../models/SpaceBoy'
 
-import ArrowR from "/src/assets/img/arrowRight.png"
 
 const Section = styled.div`
 height: 100vh;
@@ -48,7 +47,7 @@ const SandBox = () => {
       const currentIframe = iframeRef.current;
       
       const loadIframeSrc = () => {
-        currentIframe.src = "/public/WB/index.html";
+        currentIframe.src = "/WebGLBuild/index.html";
       }
   
       const unloadIframeSrc = () => {

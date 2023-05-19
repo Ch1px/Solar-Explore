@@ -24,7 +24,6 @@ app.get('/', (req, res) => {
     res.send(articles);
 })
 
-// Change the listening port to 80
 const port = process.env.PORT || 80;
 
 const server = app.listen(port, () => {

@@ -24,14 +24,12 @@ export default function Model(props) {
     function handleMouseMove(event) {
       const { clientX, clientY } = event;
 
-      // Calculate the rotation and scale based on mouse position
       const mouse = {
         x: (clientY / window.innerHeight) * Math.PI - Math.PI / 2,
         y: (clientX / window.innerWidth) * Math.PI * 2,
         z: 0,
       };
 
-      // Use GSAP to animate the rotation and scale
       gsap.to(earth.current.rotation, {
         y: -mouse.y * 0.4,
         x: mouse.x * 0.2,
